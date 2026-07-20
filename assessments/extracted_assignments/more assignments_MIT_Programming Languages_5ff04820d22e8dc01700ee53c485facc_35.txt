@@ -1,0 +1,662 @@
+--- Page 1 ---
+6.821 Programming Languages Handout
+Fall 2002
+MASSACHVSETTS INSTITVTE OF TECHNOLOGY
+Department of Electrical Engineering and Compvter Science
+Final Examination 2001
+There are five problems on this examination. Make sure you don’t skip over any of a problem’s parts! They
+are followed by an appendix that contains reference material from the course notes. The appendix contains
+no problems; it is just a handy reference.
+You will have three hours in which to work the problems. Some problems are easier than others: read all
+problems before beginning to work, and use your time wisely!
+This examination is open-book: you may use whatever reference books or papers you have brought to the
+exam. The number of points awarded for each problem is placed in brackets next to the problem number.
+There are 100 points total on the exam.
+Do all written work in your examination booklet – we will not collect the examination handout itself; you
+will only be graded for what appears in your examination booklet. It will be to your advantage to show
+your work – we will award partial credit for incorrect solutions that make use of the right techniques.
+If you feel rushed, be sure to write a brief statement indicating the key idea you expect to use in your
+solutions. We understand time pressure, but we can’t read your mind.
+This examination has text printed on only one side of each page. Rather than flipping back and forth be
+tween pages, you may find it helpful to rip pages out of the exam so that you can look at more than one
+page at the same time.
+Contents
+Problem 1: Short Answer [20 points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+Problem 2: State: FLK# [20 points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+Problem 3: Explicit Types [20 points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+Problem 4: Type Reconstruction [20 points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+Problem 5: Compiling [20 points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+Appendix A: Standard Semantics of FLK! . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+Appendix B: Typing Rules for SCHEME/XSP . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+Appendix C: Typing Rules for SCHEME/R . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+Appendix D: Type Reconstruction Algorithm for SCHEME/R . . . . . . . . . . . . . . . . . . . . . . 14
+Appendix E: Meta-CPS Conversion Rules . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+Appendix F: Match Desugaring . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+The figures in the Appendix are very similar to the ones in the course notes. Some bugs have been fixed,
+and some figures have been simplified to remove parts inessential for this exam. You will not be marked
+down if you use the corresponding figures in the course notes instead of the appendices.
+
+--- Page 2 ---
+Problem 1: Short Answer [20 points]
+a. Given the following domains:
+A = {1} ⊥
+B = {a, b} ⊥
+(i) [2 points]How many set theoretic functions are there in A → B?
+(ii) [2 points] How many continuous functions are there in A → B?
+b. In Scheme/R (Scheme with type reconstruction) give the most general type schemes of the following
+expressions, or state why the expression does not have a type:
+(i) [1 points]
+(lambda (f) (lambda (g) (lambda (x) (g (f x)))))
+(ii) [1 points]
+(lambda (x) (x x))
+(iii) [1 points]
+(letrec ((f (lambda (x) (if (id x) (id 0) (id 1))))
+(id (lambda (y) y)))
+(f #t))
+(iv) [1 points]
+(lambda (id) (if (id #t) (id 0) (id 1)))
+c. Give the equivalent Scheme/XSP expression, and the type thereof, for each of the expressions in the
+previous part (part b).
+(i) [2 points]
+(ii) [2 points]
+(iii) [2 points]
+(iv) [2 points]
+d. [2 points] Give the desugaring of the following Scheme/R expression (the match desugaring can be
+found in Appendix F)
+(match z
+((cons 1 x) x)
+(x (cons 1 x)))
+e. [2 points] Use define-datatype to define the (queueof T) datatype that represents a queue with a list.
+For example, a (queueof int) would be represented by an integer list.
+2
+
+--- Page 3 ---
+Problem 2: State: FLK# [20 points]
+YOUR ANSWERS TOTHIS PROBLEM SHOULD BE BASED ON THE STANDARD DENOTATIONAL SE
+MANTICS FOR FLK! AS PRESENTED IN APPENDIX A.
+Sam Antics is working on a new language with hot new features that will appeal to government customers.
+He was going to base his language on Caffeine from Moon Microsystems, but negotiations broke down. He
+has therefore decided to extend FLK! and has hired you, a top FLK! consultant, to assist with modifying
+the language to support these new features. The new language is called FLK#, part of Sam Antics’ new
+.GOV platform. The big feature of FLK# is user tracking and quotas in the store. An important customer
+observed that government users tended to use the store carelessly, resulting in expensive memory upgrades.
+To improve the situation, the FLK# store will maintain a per-user quota. (A quota restricts the number of
+cells a particular user can allocate.) The Standard Semantics of FLK! are changed as follows:
+w ∈ UserID = Int
+q ∈ Quota = UserID → Int
+γ ∈ Cmdcont = UserID → Quota → Store → Expressible
+error-cont : Error → Cmdcont
+= λy . λw . λq . λs . (Error →(cid:3) Expressible y)
+UserID is just an integer. User ID 0 is reserved for the case when no one is logged in. Quota is a function
+that when given a UserID returns the number of cells remaining in the user ’s quota. The quota starts at
+100 cells, and a user ’s quota is tracked throughout the lifetime of the program (i.e., the quota is not reset
+upon logout). Cmdcont has been changed to take the currently logged in user ID, the current quota, and
+the current store to yield an answer. Plus, FLK# adds the following commands:
+E ::= ... [Classic FLK! expressions]
+| (login! w) [Log in user w]
+| (logout!) [Log out current user]
+| (check-quota) [Check user quota]
+(login! w)-logs in the user associated with the identifier w;returns w(returns an error if a user is already
+logged in or if the UserID is 0)
+(logout!) - logs the current user out; returns the last user ’s identifier (returns an error if there is no user
+logged in)
+(check-quota)-returns the amount of quota remaining
+The definition of E [[(check-quota)]]is:
+E [[(check-quota)]] =
+λekwq . if w =0
+then error-cont no-user-logged-in w q
+else (k (Int (cid:3) →Value (q w)) w q) fi
+a. [5 points] Write the meaning function clause for E [[(login! E)]].
+b. [5 points] Write the meaning function clause for E [[(logout!)]].
+c. [5 points] Give the definition of E [[(cell E)]]. Remember you cannot create a cell unless you are
+logged in.
+d. [5 points] Naturally, Sam Antics wants to embed some “trap doors” into the .GOV platform to enable
+him to “learn more about his customers.” One of these trap doors is the undocumented (raise-quota! n)
+command, which adds n cells to the quota of the current user and returns 0. Give the definition of
+E [[(raise-quota! E)]].
+3
+
+--- Page 4 ---
+Problem 3: Explicit Types [20 points]
+ANSWERS FOR THE FOLLOWING QUESTIONS SHOULD BE BASED ON THE SCHEME/XSP TYPING
+RULES GIVEN IN APPENDIX B.
+Louis Reasoner has had a hard time implementing letrec in a call-by-name version of Scheme/XSP,
+and has decided to use the fixed point operator FIX instead. For example, here the the correct defintion of
+factorial in Louis’ approach:
+(let ((fact-gen (lambda ((fact (-> (int) int)))
+(lambda ((n int)) (if (= n 0) 1 (* n (fact (- n 1))))))))
+((proj fix (-> (int) int)) fact-gen))
+Thus fix is a procedure that computes the fixed point of a generating function. Ben Bitdiddle has been
+called on the scene to help, and he has ensured that Louis’ Scheme/XSP supports recursive types using
+RECOF (see Appendix B).
+a. [4 points] What is the type of fact-gen?
+b. [3 points] What is the type of fix?
+c. [3 points] What is the type of ((proj fix (-> (int) int)) fact-gen)?
+Ben Bitdiddle defined the call-by-name version of fix to be:
+(let ((fix (plambda (t) (lambda ((f T1))
+(lambda ((x T2)) (f (x x))) (lambda ((x T2)) (f (x x)))))))
+... fix can be used here ...
+)
+d. [3 points] What is T1?
+e. [4 points] What is T2?
+f. [3 points] Louis has decided that he would like (fix E) to be a standard expression in his language.
+What is the typing rule for (fix E)?
+4
+
+--- Page 5 ---
+Problem 4: Type Reconstruction [20 points]
+ANSWERS FOR THE FOLLOWING QUESTIONS SHOULD BE BASED ON THE SCHEME/R TYPING
+RULES AND TYPE RECONSTRUCTION ALGORITHM GIVEN IN APPENDICES C AND D.
+With sales declining and customers flocking to competitors’ products, the boardofdirectors at Prophet.com
+has decided to oust CTOLouis Reasoner and has assigned you and Alyssa P. Hacker as the pro tempore co-
+CTOs. Alyssa believes the secret to regaining market share is to make Scheme/R more Internet-friendly. The
+next generation product, code-named Scheme/R 9i (the i stands for Internet), contains socket functionality
+to make it easier to write Internet servers.
+A socket is like a stream or a channel in that you can read data from and write data to sockets. Sockets
+are named by a port number and also have a specific data type associated with them that determines the
+type of data that can be transmitted or received over the socket. (For the purpose of this problem, you can
+ignore any problems involved with opening more than one socket on the same port.)
+We introduce a new type (socketof T) and six new forms:
+• (int-socket E port)returns a new integer socket.
+• (bool-socket E port)returns a new boolean socket.
+• (unit-socket E port)returns a new unit socket.
+• (symbol-socket E port)returns a new symbol socket.
+• (read-all! E socket E reader )takes a socket and calls procedure E reader once for each item remaining
+in the socket to be read; returns #u.
+• (write! E socket E datum )Writes E datum into the socket and returns #u.
+Alyssa has written the following Scheme/R type rules to get you started:
+A (cid:4) E : int
+[int-socket]
+A (cid:4) (int-socket E): (socketof int)
+A (cid:4) E : int
+[bool-socket]
+A (cid:4) (bool-socket E): (socketof bool)
+A (cid:4) E : int
+[unit-socket]
+A (cid:4) (unit-socket E): (socketof unit)
+A (cid:4) E : int
+[symbol-socket]
+A (cid:4) (symbol-socket E): (socketof symbol)
+A (cid:4) E socket : (socketof T)
+A (cid:4) E reader : (-> (T) unit) [read-all!]
+A (cid:4) (read-all! E socket E reader ): unit
+A (cid:4) E socket : (socketof T)
+A (cid:4) E datum : T [write!]
+A (cid:4) (write! E socket E datum ) : unit
+She has also agreed to write the implementation. Because you are a high-paid 6.821 consultant, your part is
+to write the type reconstruction algorithm for these constructs.
+a. [4 points] Give the type reconstruction algorithm for (int-socket E port).
+5
+
+--- Page 6 ---
+b. [4 points] Give the type reconstruction algorithm for (write! E socket E datum ).
+c. [4 points] Give the type reconstruction algorithm for (read-all! E socket E reader ).
+d. [4 points] As part of Louis’s severance agreement, he agreed to stay on for one month to write a proxy
+server for Prophet.com’s intranet (by proxy server we mean something that reads data on one socket
+and writes it to another). He wrote the following code:
+(letrec ((proxy (lambda (socket-in socket-out)
+(read-all! socket-in
+(lambda (x) (write! socket-out x)))))
+(do-proxy-http (lambda () (proxy (symbol-socket 80)
+(symbol-socket 8080))))
+(do-proxy-ftp (lambda () (proxy (int-socket 20)
+(int-socket 8020)))))
+(begin
+(do-proxy-http)
+(do-proxy-ftp)))
+Unfortunately, on his way out on his last day, he gives you the code and tells you it doesn’t type check.
+Give a semantically equivalent (i.e., preserves procedures and procedure calls) replacement for Louis’
+code that does type check.
+e. [4 points] Being the astute 6.821 consultant that you are, you also discover that Louis has used a
+construct that doesn’t have a type reconstruction algorithm in the book: begin. Give the type recon
+struction algorithm for (begin E 1 E 2).
+6
+
+--- Page 7 ---
+Problem 5: Compiling [20 points]
+ANSWERS FOR THE FOLLOWING QUESTIONS SHOULD BE BASED ON THE META CPS CONVER
+SION ALGORITHM GIVEN IN APPENDIX E.
+a. [7 points] What source code generated the following output from the Tortoise compiler?
+(program
+(define *top*
+(%closure (lambda (.closure8. x) x)))
+(call-closure
+*top*
+(%closure
+(lambda (.closure7. f .k1.)
+(call-closure
+.k1.
+(%closure
+(lambda (.closure6. x .k2.)
+(call-closure
+(%closure-ref .closure6. 1)
+x
+(%closure
+(lambda (.closure5. .t3.)
+(call-closure (%closure-ref .closure5. 1)
+.t3.
+(%closure-ref .closure5. 2)))
+(%closure-ref .closure6. 1)
+.k2.)))
+f))))))
+b. [7 points] The meaning of (COND (P1 E1) (P2 E2) (else E3)) is E1 if P1 is true, E2 is P1 is false
+and P2 is true, and E3 otherwise.
+What is MCPS[[(COND (P1 E1) (P2 E2) (else E3))]]?
+c. Louis Reasoner has decided to add garbage collection to a language that previously employed explicit
+storage allocation with MALLOC and FREE opeators. His new implementation ignores FREE and
+reclaims space using a brand new and correct garbage collector. The garbage collector has more than
+twice as much heap space as the old explictly managed heap. As soon as this new version of the
+language is released, several programs that used to run fine – crash!!
+(i) [3 points] What is the problem?
+(ii) [3 points] How can the programmers fix the problems with their programs?
+7
+
+--- Page 8 ---
+Appendix A: Standard Semantics of FLK!
+v ∈ Value = Unit + Bool + Int + Sym + Pair + Procedure + Location
+k ∈ Expcont = Value →Cmdcont
+γ ∈ Cmdcont = Store → Expressible
+Expressible = (Value +Error) ⊥
+Error = Sym
+p ∈ Procedure = Denotable → Expcont → Cmdcont
+d ∈ Denotable = Value
+e ∈ Environment = Identifier → Binding
+β ∈ Binding = (Denotable +Unbound) ⊥
+Unbound = {unbound}
+s ∈ Store = Location → Assignment
+l ∈ Location = Nat
+α ∈ Assignment = (Storable +Unassigned)
+⊥
+σ ∈ Storable = Value
+Unassigned = {unassigned}
+top-level-cont :Expcont
+=λv. λs. (Value (cid:3)→Expressible v)
+error-cont :Error → Cmdcont
+= λy. λs. (Error (cid:3)→Expressible y)
+empty-env :Environment =λI. (Unbound (cid:3)→Binding unbound)
+test-boolean :(Bool → Cmdcont)→ Expcont
+= λf. (λv. matching v
+(cid:6)(Bool →(cid:3) Value b)[] (f b)
+(cid:6)else (error-cont non-boolean)
+endmatching )
+Similarly for:
+test-procedure :(Procedure → Cmdcont)→ Expcont
+test-location :(Location → Cmdcont)→ Expcont
+etc.
+ensure-bound :Binding → Expcont → Cmdcont
+= λβk. matching β
+(cid:6)(Denotable →(cid:3) Binding v)[] (k v)
+(cid:6)(Unbound →(cid:3) Binding unbound)[] (error-cont unbound-variable )
+endmatching
+Similarly for:
+ensure-assigned :Assignment → Expcont → Cmdcont
+Figure 1: Semantic algebras for standard semantics of strict CBV FLK!.
+8
+
+--- Page 9 ---
+same-location? : Location →Location →Bool = λl 1 l 2 . (l 1 = Nat l 2 )
+next-location : Location → Location = λl . (l + 1)
+Nat
+empty-store : Store = λl . (Unassigned (cid:3)→Assignment unassigned)
+fetch : Location → Store → Assignment = λls . (s l)
+assign : Location → Storable →Store → Store
+= λl 1 σ s . λl 2 . if (same-location? l 1 l 2 )
+then (Storable (cid:3)→Assignment σ)
+else (fetch l 2 s)
+fresh-loc : Store → Location = λs . (first-fresh s 0)
+first-fresh : Store → Location → Location
+= λsl . matching (fetch l s)
+(cid:6) (Unassigned →(cid:3) Assignment unassigned)[] l
+(cid:6) else (first-fresh s (next-location l))
+endmatching
+lookup : Environment → Identifier → Binding = λeI . (eI)
+Figure 2: Store helper functions for standard semantics of strict CBV FLK!.
+9
+
+--- Page 10 ---
+TL:Exp →Expressible
+E :Exp →Environment →Expcont →Cmdcont
+L:Lit →Value ;Defined as usual
+TL[[E]] = E[[E]] empty-env top-level-cont empty-store
+E[[L]] = λek . k L[[L]]
+E[[I]] =λek . ensure-bound (lookup e I) k
+E[[(proc I E)]] =λek . k (Procedure (cid:3)→Value (λdk(cid:2) .E [[E]] [I :d]e k(cid:2)))
+E[[(call E1 E2)]] =λek . E [[ E1 ]] e (test-procedure (λp .E [[ E2 ]] e (λv .p v k)))
+E[[(if E1 E2 E3)]] =
+λek . E[[E1 ]] e (test-boolean (λb .if b then E[[E2 ]] e k e lse E[[E3 ]] e k))
+E[[(pair E1 E2)]] =λek . E [[ E1 ]] e (λv 1 .E [[ E2 ]] e (λv 2 .k (Pair (cid:3)→Value (cid:4)v 1 , v 2 (cid:5))))
+E[[(cell E)]] =λek . E [[ E]] e (λvs . k (Location →(cid:3) Value (fresh-loc s))
+(assign (fresh-loc s) v s))
+E[[(begin E1 E2)]] =λek . E[[E1 ]] e (λv ignore .E[[E2 ]] e k)
+E[[(primop cell-ref E)]] =λek . E [[ E ]] e (test-location (λls .ensure-assigned (fetch l s) k s))
+E[[(primop cell-set! E1 E2)]]
+=λek . E[[E1 ]] e (test-location (λl .E[[E2 ]] e (λvs.k (Unit (cid:3)→Value unit) (assign l v s))))
+E[[(rec I E)]] =λeks . let f = fix (λa. E [[ E]][I :(extract-value a)] e top-level-cont s)
+Expressible
+matching f
+(cid:6)(Value →(cid:3) Expressible v)[] E [[ E]][I: v]e ks
+(cid:6)else f
+endmatching
+extract-value :Expressible →Binding
+=λa. matching a
+(cid:6)(Value (cid:3)→Expressible v)[] (Denotable (cid:3)→Binding v)
+(cid:6)else ⊥
+Binding
+endmatching
+Figure 3: Valuation clauses for standard semantics of strict CBV FLK!.
+10
+
+--- Page 11 ---
+Appendix B: Typing Rules for SCHEME/XSP
+SCHEME/X Rules
+(cid:7) N : int [int]
+(cid:7) B : bool [bool]
+(cid:7) S : string [string]
+(cid:7) (symbol I) : sym [sym]
+A[I:T] (cid:7) I : T [var]
+∀i(A (cid:7) Ei : Ti )
+[begin]
+A (cid:7) (begin E1 ... En) : Tn
+A (cid:7) E : T
+[the]
+A (cid:7) (the T E) : T
+A (cid:7) E1 : bool ; A (cid:7) E2 : T ; A (cid:7) E3 : T
+[if ]
+A (cid:7) (if E1 E2 E3) : T
+A[I1:T1, ..., In:Tn ] (cid:7) EB : TB
+[λ]
+A (cid:7) (lambda ((I1 T1) ... (In Tn)) EB) : (-> (T1 ... Tn) TB)
+A (cid:7) EP : (-> (T1 ... Tn) TB)
+∀i(A (cid:7) Ei : Ti )
+[call]
+A (cid:7) (EP E1 ... En) : TB
+∀i(A (cid:7) Ei : Ti )
+A[I1:T1, ..., In:Tn ] (cid:7) EB : TB
+[let]
+A (cid:7) (let ((I1 E1) ... (In En)) EB) : TB
+A(cid:2) = A[I1:T1, ..., In:Tn ]
+∀i(A(cid:2) (cid:7) Ei : Ti )
+A(cid:2) (cid:7) EB : TB [letrec]
+A (cid:7) (letrec ((I1 T1 E1) ... (In T1 En)) EB) : TB
+A (cid:7) (∀i [T i /I i ])Ebody : Tbody [tlet]
+A (cid:7) (tlet ((I1 T1) ... (In Tn)) Ebody ) : Tbody
+∀i(A (cid:7) Ei : Ti )
+[record]
+A (cid:7) (record (I1 E1) ... (In En)) : (recordof (I1 T1) ... (In Tn))
+A (cid:7) E : (recordof ... (I T) ...)
+[select]
+A (cid:7) (select I E) : T
+A (cid:7) E : TE ; T = (oneof ... (I TE) ...)
+[one]
+A (cid:7) (one T I E) : T
+A (cid:7) Edisc : (oneof (I1 T1) ... (In Tn))
+∀i.∃j.((I i = I tagj )∧ (A[Ivalj :Ti ] (cid:7) Ej : T)) [tagcase1]
+A (cid:7) (tagcase Edisc (Itag1 Ival1 E1) ... (Itagn Ivaln En)) : T
+A (cid:7) Edisc : (oneof (I1 T1) ... (In Tn))
+∀i | (∃j.(I i = I tagj )) .A[Ivalj :Ti ] (cid:7) Ej : T
+A (cid:7) Edef ault : T [tagcase2]
+A (cid:7) (tagcase Edisc (Itag1 Ival1 E1) ... (Itagn Ivaln En) (else Edef ault )) : T
+11
+
+--- Page 12 ---
+Rules Introduced by SCHEME/XS to Handle Subtyping
+T (cid:11) T [reflexive-(cid:11)]
+T1 (cid:11) T2 ; T2 (cid:11) T3
+[transitive-(cid:11)]
+T1 (cid:11) T3
+(T1 (cid:11) T2 )
+(T2 (cid:11) T1 )
+[≡]
+T ≡ T
+1 2
+∀i∃j ((I i = J j )∧ (Sj (cid:11) Ti )) [recordof-(cid:11)]
+(recordof (J1 S1) ...(Jm Sm)) (cid:11) (recordof (I1 T1) ...(In Tn))
+∀j ∃i((J j = I i )∧ (Sj (cid:11) Si )) [oneof-(cid:11)]
+(oneof (J1 S1) ...(Jm Sm)) (cid:11) (oneof (I1 T1) ...(In Tn))
+∀i (Ti (cid:11) Si ) ; Sbody (cid:11) Tbody
+[->-(cid:11)]
+(-> (S1 ...Sn) Sbody )(cid:11) (-> (T1 ...Tn) Tbody )
+∀T([T/I
+1
+]T1 (cid:11) [T/I
+2
+]T2 )
+[recof-(cid:11)]
+(recof I1 T1)(cid:11) (recof I2 T2)
+A (cid:7) Erator : (-> (T1 ...Tn) Tbody )
+∀i ((A (cid:7) Ei : Si )∧ (Si (cid:11) Ti ))
+[call-inclusion]
+A (cid:7) (Erator E1 ...En) : Tbody
+A (cid:7)E: S
+S(cid:11) T [the-inclusion]
+A (cid:7) (the T E) : T
+Rules Introduced by SCHEME/XSP to Handle Polymorphism
+A (cid:7) E : T;
+∀i (I i ∈(cid:13) (FTV (Free-Ids [[E]])A)) [pλ]
+A (cid:7) (plambda (I1 ... In) E) : (poly (I1 ... In) T)
+A (cid:7) E : (poly (I1 ... In) TE)
+[project]
+A (cid:7) (proj E T1 ... Tn) :(∀i [T i /I i ]) TE
+(∀i [I i /J i ]) S (cid:11) T, ∀i (I i (cid:13)∈ Free-Ids [[S]]) [poly-(cid:11)]
+(poly (J1 ... Jn) S)(cid:11) (poly (I1 ... In) T)
+recof Equivalence
+(recof I T)≡ [(recof I T)/I]T
+12
+
+--- Page 13 ---
+Appendix C: Typing Rules for SCHEME/R
+(cid:4) #u : unit [unit]
+(cid:4) B : bool [bool]
+(cid:4) N : int [int]
+(cid:4) (symbol I) : sym [symbol]
+[...,I:T,...](cid:4) I : T [var]
+[...,I:(generic (I1 ... In) Tbody ),...](cid:4) I :(∀i [T i /I i ])Tbody [genvar]
+A (cid:4) Etest : bool ; A (cid:4) Econ : T ; A (cid:4) Ealt : T
+[if ]
+A (cid:4) (if Etest Econ Ealt ) : T
+A[I1:T1, ..., In:Tn ](cid:4) Ebody : Tbody
+[λ]
+A (cid:4) (lambda (I1 ... In) Ebody ): (-> (T1 ... Tn) Tbody )
+A (cid:4) Erator : (-> (T1 ... Tn) Tbody )
+∀i. (A (cid:4) Ei : Ti )
+[apply]
+A (cid:4) (Erator E1 ... En): Tbody
+∀i. (A (cid:4) Ei : Ti )
+A[I1:Gen(T 1, A), ..., In:Gen(T n, A)] (cid:4) Ebody : Tbody
+[let]
+A (cid:4) (let ((I1 E1) ... (In En)) Ebody ): Tbody
+∀i. (A[I1:T1, ..., In:Tn ](cid:4) Ei : Ti )
+A[I1:Gen(T 1, A), ... In:Gen(T n, A)] (cid:4) Ebody : Tbody
+[letrec]
+A (cid:4) (letrec ((I1 E1) ... (In En)) Ebody ) : Tbody
+∀i. (A (cid:4) Ei : Ti )
+[record]
+A (cid:4) (record (I 1 E 1) ... (I n E n)) : (recordof (I 1 T 1) ... (I n T n))
+A (cid:4) E r : (recordof (I 1 T 1) ... (I n T n))
+A[I 1:T 1, ..., I n:T n ](cid:4) E b : T [with]
+A (cid:4) (with (I 1 ... I n) E r E b): T
+A (cid:4) (letrec ((I1 E1) ... (In En)) Ebody ): T
+[program]
+A (cid:4) (program (define I1 E1) ... (define In En) Ebody ) : T
+Gen(T,A)= (generic (I1 ... In) T),where {I i } = FTV (T)− FTE(A)
+13
+
+--- Page 14 ---
+Appendix D: Type Reconstruction Algorithm for SCHEME/R
+R[[#u] ]AS = (cid:4)unit,S(cid:5)
+R[[B]]AS = (cid:4)bool,S(cid:5)
+R[[N]]AS = (cid:4)int,S(cid:5)
+R[[(symbol I)]]AS = (cid:4)sym,S(cid:5)
+R[[I]]A[I : T]S = (cid:4)T,S(cid:5)
+R[[I]]A[I : (generic (I 1 ... I n) T)]S = (cid:4)T[?v i /I i ],S(cid:5) (?v i are new)
+R[[I]]AS = fail (when I is unbound)
+R[[(if E t E c E a)]]AS = let (cid:4)T t ,S t (cid:5) = R [[E t ]]AS
+in let S t (cid:2) = U(T t ,bool,S t )
+in let (cid:4)T c ,S c (cid:5) = R [[E c ]]AS t (cid:2)
+in let (cid:4)T a ,S a (cid:5) = R [[E a ]]AS c
+in let S a (cid:2) = U(T c ,T a ,S a )
+in (cid:4)T a ,S a (cid:2) (cid:5)
+R[[(lambda (I 1 ... I n) E b)]]AS = let (cid:4)T b ,S b (cid:5) = R [[E b ]]A[I i :?v i ]S
+in (cid:4)( -> (?v 1 ... ?v n) T b),S b (cid:5) (?v i are new)
+R[[(E 0 E 1 ... E n)]]AS = let (cid:4)T 0 ,S 0 (cid:5) = R [[E 0 ]]AS
+in ...
+let (cid:4)T n ,S n (cid:5) = R [[E n ]]AS n−1
+in let S f = U(T 0 ,(-> (T 1 ... T n) ?v f ),S n )
+in (cid:4)?v f ,S f (cid:5) (?v f is new)
+R[[(let ((I 1 E 1) ... (I n E n)) E b)]]AS = let (cid:4)T 1 ,S 1 (cid:5) = R [[E 1 ]]AS
+in ...
+let (cid:4)T n ,S n (cid:5) = R [[E n ]]AS n−1
+in R [[E b ]]A[I i : Rgen(T i ,A,S n )]S n
+R[[(letrec ((I 1 E 1) ... (I n E n)) E b)]]AS = let A 1 = A[I i :?v i ] (?v i are new)
+in let (cid:4)T 1 ,S 1 (cid:5) = R [[E 1 ]]A 1 S
+in ...
+let (cid:4)T n ,S n (cid:5) = R [[E n ]]A 1 S n−1
+in let S b = U(?v i ,T i ,S n )
+in R [[E b ]]A[I i : Rgen(T i ,A,S b )] S b
+R[[(record (I 1 E 1) ... (I n E n))]]AS = let (cid:4)T 1 ,S 1 (cid:5) = R [[E 1 ]]AS
+in ...
+let (cid:4)T n ,S n (cid:5) = R [[E n ]]AS n−1
+in (cid:4)(recordof (I 1 T 1) ... (I n T n)),S n (cid:5)
+R[[(with (I 1 ... I n) E r E b)]]AS = let (cid:4)T r ,S r (cid:5) = R [[E r ]]AS
+in let S b = U(T r ,(recordof (I 1 ?v i) ... (I n ?v n)),S r ) (?v i are new)
+in R [[E b ]]A[I i :?v i ]S b
+Rgen(T,A,S)=G en((ST),(subst-in-type-env SA))
+14
+
+--- Page 15 ---
+Appendix E: Meta-CPS Conversion Rules
+In the following rules,grey mathematical notation (like λv)and square brackets[] are used for
+“meta-application”, which is evaluated as part of meta-CPS conversion. Code in BLACK TYPEWRITER FONT is
+part of the output program; meta-CPS conversion does not evaluate any of this code. Therefore, you can
+think of meta-CPS-converting an expression E as rewriting MCPS[[E ]]until no grey is left.
+E ∈ Exp
+m ∈ Meta-Continuation = Exp → Exp
+meta-cont → exp :(Exp → Exp)→ Exp =[λm . (LAMBDA (t)[m t])]
+exp → meta-cont : Exp → (Exp → Exp)=[λE . [λV . (CALL E V )]]
+meta-cont→exp [λV . (CALL K V )]= K
+MCPS : Exp → Meta-Continuation → Exp
+MCPS[[I]]= [λm . [m I]]
+MCPS[[L ]]= [λm . [m L]]
+MCPS[[(LAMBDA (I 1 ... I n) E)]]
+= [λm . [m (LAMBDA (I 1 ... I n .Ki.)
+[MCPS[[E ]] [exp → meta-cont .Ki.]])]]
+MCPS[[(CALL E
+1
+E 2)]]
+= [λm . [MCPS[[E 1 ]] [λv 1 .
+[MCPS[[E
+2
+]] [λv
+2
+.
+(CALL v 1 v 2 [meta-cont → exp m])]]]]]
+MCPS[[(PRIMOP P E
+1
+E 2)]]
+= [λm . [MCPS[[E 1 ]] [λv 1 .
+[MCPS[[E
+2
+]] [λv
+2
+.
+(LET ((.Ti. (PRIMOP P v 1 v 2)))
+[m .Ti.])]]]]]
+MCPS[[(IF E
+c
+E
+t
+E f)]]
+= [λm . [MCPS[[E c ]] [λv 1 .
+(LET ((K [meta-cont → exp m]))
+(IF v 1
+[MCPS[[E
+t
+]] [exp → meta-cont K]]
+[MCPS[[E
+f
+]] [exp → meta-cont K]]))]]]
+MCPS[[(LET ((I E def )) E body)]]
+= [λm . [MCPS[[E def ]] [λv .
+(LET ((I v)) [MCPS[[E body ]] m])]]]
+15
+
+--- Page 16 ---
+Appendix F: Match Desugaring
+D[[(match E (P 1 E 1) ... (P n E n))]]=
+(let ((I top E))
+D clauseseq [[[P 1 ,...,P n ], [E 1 ,...,E n ], I top , (lambda () (error "No pattern matches!"))]])
+D
+clauseseq
+[[[], [], V, F]]= (F)
+D
+clauseseq
+[[P
+1
+.P
+rest
+, E
+1
+.E
+rest
+, V, F]]=
+(let ((I fail (lambda () ;If P 1 doesn’t match, try the other clauses
+D
+clauseseq
+[[P
+rest
+, E
+rest
+, V, F]])))
+D
+pat
+[[P
+1
+, V, E
+1
+, I
+fail
+]])
+D pat [[L, V, S, F]]= (if (equal? LIT L V) S (F))
+D
+pat
+[[_, V, S, F]]= S
+D pat [[I, V, S, F]]= (let ((I V)) S)
+D pat [[(I P 1 ... P n), V, S, F]]=
+(I~ V
+(lambda (I 1 ... I n) ;Match the object’s component parts
+D
+patseq
+[[[P
+1
+,...,P
+n
+], [I
+1
+,...,I
+n
+], S, F]])
+F)
+D
+patseq
+[[[], [], S, F]]= S
+D
+patseq
+[[P
+1
+.P
+rest
+, I
+1
+.I
+rest
+, S, F]]=
+D
+pat
+[[P
+1
+, I
+1
+,
+D patseq [[P rest , I rest , S, F]], ;If P 1 matches, continue trying to match the rest
+F]]
+16

@@ -1,0 +1,109 @@
+--- Page 1 ---
+Department of Electrical Engineering and Computer Science
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+6.893 Fall 2009
+Quiz II
+All problems are open-ended questions. In order to receive credit you must answer the question
+as precisely as possible. You have 80 minutes to finish this quiz.
+Write your name on this cover sheet.
+Some questions may be harder than others. Read them all through first and attack them in the
+order that allows you to make the most progress. If you find a question ambiguous, be sure to
+write down any assumptions you make. Be neat. If we can’t understand your answer, we can’t
+give you credit!
+THIS IS AN OPEN BOOK, OPEN NOTES EXAM.
+Please do not write in the boxes below.
+I (xx/10) II (xx/30) III (xx/10) IV (xx/10)
+V (xx/10) VI (xx/20) VII (xx/10) Total (xx/100)
+Name:
+1
+
+--- Page 2 ---
+I KeyKOS
+1. [10 points]: Bob is running the privilege-separated Zoobar web site on a KeyNIX system,
+using code from lab 3. Suggest a way in which Bob can modify the Zoobar server-side code to take
+advantage of KeyKOS capabilities to improve the security of his site, in a way that he wouldn’t be
+able to do on Linux.
+2
+
+--- Page 3 ---
+II Network protocols
+Bob logs into an Athena workstation, which uses Kerberos to obtain a ticket for bob@ATHENA.MIT.EDU,
+and then runs Bob’s mail client, which contacts Bob’s post office server to fetch new messages.
+2. [10 points]: Alice doesn’t want Bob to know about an upcoming event, which was announced to
+Bob via email. To this end, Alice plans to intercept Bob’s communication with his post office server,
+and to pretend that Bob has no new mail. Alice can observe and modify all network packets sent
+by Bob. How does Kerberos prevent Alice from impersonating Bob’s mail server? Be as specific as
+possible; explain how Bob can tell between Alice and the real mail server in terms of network packets.
+3
+This course makes use of Athena, MIT's UNIX-based computing environment. OCW does not provide access to this environment.
+
+--- Page 4 ---
+Now, Alice wants to read Bob’s email, and intercepts all network packets ever sent and received by Bob’s
+workstation (which is the only computer that Bob uses). However, Alice does not know Bob’s password
+to access Bob’s post office server, and Bob’s packets to and from the post office server are protected by
+Kerberos.
+3. [10 points]: Suppose that after Bob reads and deletes all of his mail, Alice learns what Bob’s
+password was. Describe how Alice can obtain Bob’s past messages.
+4
+
+--- Page 5 ---
+4. [10 points]: To prevent Alice from reading any more messages, Bob ensures that Alice cannot
+intercept any subsequent network traffic, and changes his Kerberos password. Could Alice still read
+Bob’s mail after this? Explain why not or explain how.
+5
+
+--- Page 6 ---
+III ForceHTTPS
+5. [10 points]: Bob is developing a new web site, and wants to avoid the problems described in
+the ForceHTTPS paper. He uses HTTPS for all of his pages and marks all of his cookies “Secure”.
+Assuming Bob made no mistakes, is there any reason for Bob’s users to install the ForceHTTPS plugin
+and enable it for Bob’s site? Explain why or why not.
+6
+
+--- Page 7 ---
+IV BitLocker
+6. [10 points]: Alice wants to make BitLocker run faster. She decides that computing a different
+IV for each sector (pg. 13 in the BitLocker paper) is needlessly expensive, and replaces it with the
+s
+fixed value E(K ,e(0)) instead. Explain how an attacker may be able to leverage this change to
+AES
+obtain data from a stolen laptop that uses BitLocker in TPM-only mode.
+7
+
+--- Page 8 ---
+V Tor
+7. [10 points]: Bob is running a hidden service on top of Tor, and wants to know how frequently
+he should choose new introduction points. Bob cares about his identity not being exposed, and about
+the availability of his service. Help Bob make an informed choice by explaining the costs and benefits
+of rotating introduction points either more or less frequently.
+8
+
+--- Page 9 ---
+VI BackTracker
+8. [10 points]: Alice is using the VM-based BackTracker to analyze a compromised server, where
+an attacker obtained some user’s password, logged in via SSH, exploited a buffer overflow in a setuid­
+root program to gain root access, and trojaned the login binary, all using high-control events that are
+still stored in the event logger. How can Alice figure out what specific vulnerability in the setuid-root
+program the attacker exploited? In what situations would this be possible or not possible?
+9
+
+--- Page 10 ---
+9. [10 points]: The VM-based BackTracker system requires no modifications to the guest OS, but
+nonetheless makes assumptions about the guest OS. List assumptions that are critical to back-tracking
+attacks that used high-control events.
+10
+
+--- Page 11 ---
+VII 6.893
+We’d like to hear your opinions about 6.893, so please answer the following questions. (Any answer, except
+no answer, will receive full credit.)
+10. [10 points]: If you could change one thing in 6.893, what would it be?
+End of Quiz
+11
+
+--- Page 12 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.858 Computer Systems Security
+Fall 2014
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

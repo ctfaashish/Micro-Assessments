@@ -1,0 +1,106 @@
+--- Page 1 ---
+CSCE 3550 – Foundations of Cybersecurity Fall 2021
+Homework 3
+Due: 11:59 PM on Tuesday, September 28, 2021
+Form of submission: PDF, Word, or Text Document in Canvas
+Chapters 4 to 7 – Security Policies (Introduction to Computer Security, Bishop)
+1. (20 Points) Consider a computer system that provides protection using the Bell-LaPadula
+policy. How would a virus spread if:
+a. the virus were placed on the system at system low (the compartment that all other
+compartments dominate)?
+b. the virus were placed on the system at system high (the compartment that
+dominates all other compartments)?
+2. (20 points) Construct the following lattices:
+a. A Bell-LaPadula lattice consisting of two secrecy levels (Unclassified and Confidential,
+where Unclassified < Classified) and two categories (Hertz and Avis). The highest
+secrecy node should be the upper bound of the lattice. Regarding categories, the
+categories are defined to be separate organizations in which confinement of data to
+be desired. For example, a person with only Confidential rights in Hertz would not
+have access to even Unclassified data in Avis. Of course, you could have people with
+rights in both categories as well as objects that belong to both categories.
+b. A Biba lattice consisting of two integrity levels (High and Low) and two categories
+(Ford and GM). The highest integrity node should be the upper bound of the lattice.
+1 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:20:36 GMT -05:00
+https://www.coursehero.com/file/117340545/csce3550-Homework3-FA21docx/
+
+--- Page 2 ---
+CSCE 3550 – Foundations of Cybersecurity Fall 2021
+3. (15 points) Consider a system that combines the Military security policy and Bell-
+LaPadula confidentiality model. Given the security levels TOP SECRET, SECRET,
+CONFIDENTIAL, and UNCLASSIFIED (ordered from highest to lowest), and compartments
+Students, Faculty, Staff, and Contractors specify what type of access (read, write, both,
+none) is allowed in each of the following situations.
+a. John, cleared for (TOP SECRET, {Faculty, Staff, Students}), wants to access a document
+classified as (TOP SECRET, {Faculty, Staff, Contractors}).
+b. Bill, cleared for (CONFIDENTIAL, {Faculty, Students}), wants to access a document
+classified as (CONFIDENTIAL, {Students})
+c. Janet, cleared for (SECRET, {Faculty, Students}), wants to access document classified
+as (CONFIDENTIAL, {Faculty}).
+d. Pete, cleared for (CONFIDENTIAL, {Faculty, Staff}), wants to access a document
+classified as (SECRET, {Staff}).
+e. Chris, cleared for (CONFIDENTIAL, {Staff}) wants to access a document classified as
+(UNCLASSIFIED, {Staff}).
+4. (15 points) The conflict class "Airlines" contains the following company groups: Delta,
+United Airlines, American Airlines, and US Airways. The second conflict class "Hotels"
+contains the company groups: Holiday Inn, Inter Continental, Best Western, and Double
+Tree. Would the following scenarios be allowed under what conditions using the Chinese
+Wall security policy with regards to the type of access (read, write, both, none)?
+a. Tom has had access to Delta company group. Tom wants to get access to United
+Airlines company group.
+b. Bob has had access to Delta. Bob wants to get access to Holiday Inn company group.
+c. Jim wants to get access to Delta and United Airlines company groups.
+d. John wants to get access to Delta and Inter Continental company groups.
+e. A new hire, Ann, wants to get access to Double Tree company group.
+5. (16 points) Consider the following lattice of security labels in which all data is labeled
+2 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:20:36 GMT -05:00
+https://www.coursehero.com/file/117340545/csce3550-Homework3-FA21docx/
+
+--- Page 3 ---
+CSCE 3550 – Foundations of Cybersecurity Fall 2021
+with one of the following four security labels (the higher the label, the more confidential
+the information):
+Consider the following program snippet that calculates the results for output variables
+a, b, c, and d based on the values of input variables q, r, s, and t:
+…
+a = s + t;
+if (q > 0)
+{
+b = 1;
+if (r > 0)
+{
+c = 1;
+}
+}
+else
+{
+d = 1;
+}
+…
+The input variables are initially assigned the following security labels (and cannot be
+changed):
+ Label of q = Restricted (R)
+ Label of r = Secret (S)
+ Label of s = Confidential (C)
+ Label of t = Public (P)
+For each output variables a, b, c, and d, determine the minimal security label that can
+be assigned so that the code shown is secure according to the Bell-LaPadula model. To
+give you a good start, you are really only concerned with the "reads" and "writes",
+specifically with regard to up and down according to the model. You may assume that all
+output variables are initially set to the Public security label and that discretionary
+read/write access is available where applicable. You must justify your results for full
+credit.
+3 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:20:36 GMT -05:00
+https://www.coursehero.com/file/117340545/csce3550-Homework3-FA21docx/
+
+--- Page 4 ---
+CSCE 3550 – Foundations of Cybersecurity Fall 2021
+6. (14 points) Suppose you are designing a high integrity system. Which integrity model
+(Biba or Clark-Wilson) would you select to provide the best guidance? Justify your
+answer.
+4 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:20:36 GMT -05:00
+https://www.coursehero.com/file/117340545/csce3550-Homework3-FA21docx/
+Powered by TCPDF (www.tcpdf.org)

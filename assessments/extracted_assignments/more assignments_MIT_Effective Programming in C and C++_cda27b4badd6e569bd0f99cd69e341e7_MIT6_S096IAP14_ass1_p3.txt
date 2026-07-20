@@ -1,0 +1,130 @@
+--- Page 1 ---
+MIT 6.S096 Assignment 1, Problem 3
+Problem 3: Matrix Multiplication 2 (matrix2)
+Given an R
+×
+C matrix A and an R
+×
+C matrix B, with 1
+≤
+R , R , C , C
+≤
+1000, write a program
+A A B B A B A B
+that computes the matrix product C
+=
+AB. All entries in matrices A and B are integers with absolute
+value less than 1000, so you don’t need to worry about overflow. If matrices A and B do not have the
+right dimensions to be multiplied, the product matrix C should have its number of rows and columns
+both set to zero.
+Use the code provided in the file matrix2.data.zip as a basis for your program–the input / output
+needed is already written for you. Matrices will be stored as a structure which we’ll typedef
+as Matrix. This structure will contain the size of our matrix along with a statically-sized
+two-dimensional array to store the entries.
+typedef struct Matrix s {
+size t R, C;
+int *index;
+} Matrix;
+In this problem, the memory for each matrix will be dynamically allocated on the heap, and must be
+freed at the end of the program. You will need to implement a function to allocate a matrix capable of
+storing R
+×
+C elements, as well as a function that will destroy the memory for such a matrix.
+Do not submit your solution to problem ‘matrix’ for this problem or use statically allocated mem­
+ory; such solutions will not receive any points for the assignment, even though they would pass the
+grader’s tests.
+Resource Limits
+For this problem you are allotted 3 seconds of runtime and up to 32 MB of RAM.
+Input Format
+Line 1: Two space-separated integers, R and C .
+A A
+Lines 2... R
++
+1: Line i
++
+1 contains C space-separated integers: row i of matrix A.
+A A
+Line R
++
+2: Two space-separated integers, R and C .
+A B B
+Lines R
++
+3... R
++
+R
++
+4: Line i
++
+R
++
+3 contains C space-separated integers: row i of matrix A.
+A A B A B
+1
+
+--- Page 2 ---
+MIT 6.S096 Assignment 1, Problem 3
+Sample Input (file matrix2.in)
+3 2
+1 1
+1 2
+-4 0
+2 3
+1 2 1
+3 2 1
+Output Format
+Line 1: Two space-separated integers R and C , the dimensions of the product matrix C .
+C C
+Lines 2... R
++
+1: Line i
++
+1 contains C space-separated integers: row i of matrix C .
+C C
+If A and B do not have the right dimensions to be multiplied, your output should just be one line
+containing 0 0.
+Sample Output (file matrix2.out)
+3 3
+4 4 2
+7 6 3
+-4 -8 -4
+Output Explanation
+We are given
+⎛ ⎞
+1 1
+1 2 1
+A
+=
+⎝ 1 2⎠ and B
+=
+3 2 1
+−
+4 0
+so the product is the 3
+×
+3 matrix
+⎛ ⎞ ⎛ ⎞
+1 1 4 4 2
+1 2 1
+AB
+=
+⎝ 1 2⎠
+=
+⎝ 7 6 3 ⎠ .
+3 2 1
+−
+4 0
+−
+4
+−
+8
+−
+4
+2
+
+--- Page 3 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.S096 Effective Programming in C and C++
+IAP 2014
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

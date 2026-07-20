@@ -1,0 +1,118 @@
+--- Page 1 ---
+Question 1 (20 pts):
+There exist multiple TPM chipset manufacturers. Among them Infineon
+Technologies AG chipsets had a vulnerability that weakens public key resistance.
+Explain how the attackers can apply this attack.
+Unfortunately, the private keys for Infineon can be mathematically derived. More
+specifically, for larger packets, they are expected to have more difficult
+factorization than provided for their size which makes them easier to decrypt.
+Attackers can exploit this by using the more vulnerable keys to gain access
+Question 2 (25 pts):
+Recently a new version of Spectre attack has been announced; i.e., known as
+Spectre-BHI. Initially AMD was thought to be not affected by this attack, which
+was then shown to be incorrect. Explain
+(a) how this attack works (5 pts),
+(b) how AMD (was expected to) mitigate (5 pts),
+(c) what are the current solutions (10 pts)
+(d) how the current solutions affect the performance (5 pts)
+a. The attack is a Branch History Injection attack. Unlike other Spectre variants
+that primarily target the branch prediction mechanism, Spectre-BHI
+manipulates the branch history buffer to influence speculative execution
+paths, leading to unauthorized access to data across different security
+domains.
+b. AMD's initial response to speculative execution vulnerabilities, including
+the various forms of Spectre, involved deploying microcode updates and
+relying on software patches to isolate sensitive data and reduce the risk of
+unauthorized access. These mitigations were based on making speculative
+execution paths more predictable and secure, reducing the window of
+opportunity for attackers.
+c. There’s a couple of solutions currently out for the Spectre BHI attack
+involving hardware and software:
+
+--- Page 2 ---
+a. AMD has made some microcode changes to patch vulnerabilities in
+the CPU's speculative execution mechanism
+b. Operating system patches that isolate sensitive kernel and user space
+memory regions more effectively
+c. Compiler-based mitigations like inserting barriers in code at critical
+points to prevent speculative execution from crossing security
+boundaries.
+d. These current solutions have a performance impact, especially the compiler
+mitigations, due to the compiler not being able to do speculative execution
+properly.
+Question 3 (20 pts):
+What are the differences between paravirtualization, full virtualization, hardware-
+assisted virtualization? What are their pros and cons?
+Paravirtualization:
+- Type of hardware virtualization that enables the guest operating system in a VM to
+access hypervisor directly
+- Guest OS is aware that it is running on virtualized environment and involves
+modifying kernel of OS to not cause privilege violations with hypercalls to the
+hypervisor
+- Pros
+o Increased performance to due reduced overhead compared to full
+virtualization
+o Lower latency and higher throughput compared to full
+- Cons
+o Requires mod of guest OS which limits compatibility
+o Complex to modify OS kernel
+Full Virtualization:
+- Simulates complete hardware environment which allows unmodified guest OS to
+run
+- Includes emulating hardware components that guest OS interacts with
+- Pros
+o High compatibility compared to para
+
+--- Page 3 ---
+o Easier to deploy and use
+- Cons
+o Higher overhead
+o Lower performance
+Hardware-assisted Virtualization
+- Uses features of modern CPUs to provide support to virtualization
+- CPU extensions are used to improve performance and efficiency
+- Pros
+o Improved performance compared to software only
+o Lower overhead compared to full software only
+- Cons
+o Dependent on specific CPU features which limits compatibility
+o Complex in managing hardware features
+Question 4 (20 pts):
+Xen is one of the commonly used hypervisors. What makes it special? What are
+the advantages of Xen compared to other hypervisors?
+Xen is open source which allows for community contributions and customization.
+It supports paravirtualization and hardware-assisted. Since it has a small footprint,
+it is suitable for embedded systems and cloud environments. Xen is known for
+performance and scalability so it is popular in large scale deployments. Some of
+the advantages include: strong isolation between virtual machines, support for
+live migration, robust resource management features, and active community and
+commercial support options.
+Question 5 (20 pts):
+This step will be a hands-on implementation. On your Linux VM, on one terminal
+run top command and on another terminal, run the following command (it has to
+be exactly the same, be careful):
+:(){ :|:& };:
+a. What happens when you run this attack? Also explain using the top behavior.
+
+--- Page 4 ---
+b. What is this attack called?
+c. Show one method to prevent it and prove that it worked. Explain how it
+prevents.
+That command is a fork bomb. It spawns processes recursively and consumes a lot
+of system resources such as memory and CPU. The top command will show how
+those resources are being impacted. One method to prevent it is to limit the
+amount of processes a user can spawn. By using ulimit to set limits on resource
+usage per user, we can mitigate fork bombs. When I ran the command again, the
+processes were no longer able to spawn and consume resources once the limit
+was reached.
+Question 6 (15 pts):
+What is the difference between a side-channel attack and covert-channel attack.
+Give one example to explain.
+The difference is that side-channel attacks come from unintended leakage of
+information from a system. Covert-channel attacks involve communication
+between processes that violates security policies, using hidden channels to
+transmit information.
+Where a side-channel timing attack can be performed to exploit the variations in
+encryption processing time to infer information about cryptographic keys, a
+covert-channel attack would use hidden communication channels within the same
+network to transmit sensitive data between separate departments.

@@ -1,0 +1,46 @@
+--- Page 1 ---
+In-class: Barriers
+In-class: Barriers
+In this assignment we will explore how to implement a barrier using condition variables provided by the pthread
+library. Condition variables are a sequence coordination technique similar to xv6's sleep and wakeup.
+Please feel free to collaborate with others on these exercises.
+Download barrier.c and compile it on your computer:
+$ gcc -g -O2 -pthread barrier.c
+$ ./a.out 2
+Assertion failed: (i == t), function thread, file barrier.c, line 55.
+The 2 specifies the number of threads that synchronize on the barrier ( in ). Each thread sits in a
+nthread barrier.c
+tight loop. In each loop iteration a thread calls and then sleeps for some random number of microseconds.
+barrier()
+The assert triggers, because one thread leaves the barrier before the other thread has reached the barrier. The desired
+behavior is that all threads should block until s have called .
+nthread barrier
+Your goal is to achieve the desired behavior. In addition to the lock primitives that you have seen before, you will need
+the following new pthread primitives (see man pthread for more detail):
+pthread_cond_wait(&cond, &mutex); // go to sleep on cond, releasing lock mutex
+pthread_cond_broadcast(&cond); // wake up every thread sleeping on cond
+releases the when called, and re-acquires the before returning.
+pthread_cond_wait mutex mutex
+We have given you . Your job is to implement so that the panic won't occur. We've
+barrier_init() barrier()
+defined for you; its fields are for your use.
+struct barrier
+There are two issues that complicate your task:
+You have to deal with a succession of barrier calls, each of which we'll call a round. records the
+bstate.round
+current round. You should increase when each round starts.
+bstate.round
+You have to handle the case in which one thread races around the loop before the others have exited the barrier.
+In particular, you are re-using from one round to the next. Make sure that a thread that leaves
+bstate.nthread
+the barrier and races around the loop doesn't increase while a previous round is still using it.
+bstate.nthread
+Test your code with one, two, and more than two threads.
+Submit: your modified barrier.c
+
+--- Page 2 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.828 Operating System Engineering
+Fall 2012
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

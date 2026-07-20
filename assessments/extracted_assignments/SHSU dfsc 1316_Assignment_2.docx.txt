@@ -1,0 +1,114 @@
+--- Page 1 ---
+DFSC 1316 Introductions to Digital Forensics and Information Assurance
+Assignment 2
+Name: Score:
+Instruction: This assignment contains the questions in Mobile Forensics and Network
+Fundamentals, in a total of 145 points. The submission due is 11:59PM, Wednesday Nov. 6th.
+Mobile Forensics (30 points)
+1. What is the difference between forensics imaging and file-to-file copy operation in our computer systems
+such as in Windows operating system (5 points)
+File-to-file copy edits the metadata, meanwhile, the forensics imaging makes a copy without altering any data.
+2. Please briefly describe subscriber identity module (SIM) card on mobile phones and the functionalities with
+SIM card (10 points)
+Subscriber identity module (SIM) cards are found in most GSM devices and are used to identify and
+authenticate subscribers. Its purpose includes storing personal information, storing messages, and storing
+service-related information.
+3. In mobile phones, where are system data stored in? (5 points)
+Electronically erasable programmable read-only memory (EEPROM)
+4. How do we isolate the mobile device after seizure from incoming signals? What is the drawback of the
+isolation strategy? (5 points)
+Place the device in a paint can
+Use the Paraben Wireless StrongHold Bag—an “evidence bag” for wireless radio frequency devices, such as
+Cell Phones and Tablets
+Use eight layers of antistatic bags to block the signal
+The drawback is the mobile device is put into roaming mode, which accelerates battery drainage.
+5. Which tools are used for examining cellular phones (5 points)
+EnCase
+Device Seizure
+Mobil Forensic Edit!
+Oxygen Software
+Celldek
+Cellebrite
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:17 GMT -05:00
+https://www.coursehero.com/file/51681974/Assignment-2docx/
+
+--- Page 2 ---
+6. Please complete the layer names on seven-layer OSI reference model in the order, and give the
+following network protocols that work at the layer. Protocols: IP, TCP, MIME, PPP, FTP, UDP,
+HTTP, IPSec, SMTP (15 points).
+Layer Name Protocols on the left Layer
+Layer 7 Application FTP HTTP SMTP Telnet DHCP DNS
+Layer 6 Presentation MIME and RTP
+Layer 5 Session Sockets and RTP
+Layer 4 Transport TCP and UDP
+Layer 3 Network IP IPSec ICMP and OSPF
+Layer 2 Data Link Point-to-Point Protocol and IEEE
+802.11 Wireless Lan
+Layer 1 Physical Ethernet, Hub, Switch, NIC
+7. Explain the function of the following fields in TCP header of a data packet: source and destination
+port numbers, sequence number, and acknowledgement number (10 points).
+Source and Destination Port Numbers—The communication endpoints for sending and receiving
+devices
+Sequence Number—Mark the ordering of a group of messages
+Acknowledgement Number—Both senders and receivers use the acknowledgment numbers field to
+communicate the sequence numbers of messages that are either recently received or expected to be
+sent
+8. In Windows, what is the command to find the MAC address of a NIC installed in the computer (5
+points)?
+Ipconfig/all or getmac
+9. A network switch works in which layer? What address does a switch recognize and use to forward
+data (5 points)?
+Layer 2 data link layer and uses MAC address.
+10. What are the two main reliable services that TCP provides? What are some other tasks of TCP?(10
+points)
+TCP service provides reliability between sending and receiving, flow control, congestion control
+and its connection oriented
+11. Answer the following questions about the very first data packet that a client sends to the web server
+www.ebay.com to request a web page (20 points):
+a. What is the segment payload?
+The segment payload is the data that is carried on behalf of the application that is the
+user’s information
+b. What important information is added to the TCP segment header?
+All important information is added to the TCP segment header.
+c. What important information is added to the IP header?
+All important information is added to the IP header
+d. What important information is added to the frame header?
+All important information is added to the frame header
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:17 GMT -05:00
+https://www.coursehero.com/file/51681974/Assignment-2docx/
+
+--- Page 3 ---
+12. Answer the following about IP addresses (15 points):
+e. IPv4 is how many binary bits long? 32 binary bits
+f. IPv6 is how many binary bits long? 128 binary bits
+g. What are the two main reasons for using IP addresses? System upgrades become easier
+(new MAC address only needs new mapping to the original IP) and Security (better NOT
+to expose you MAC (like SSN)) [Location and Identification]
+h. If your computer’s wired network adapter has IP address of 192.191.163.7, and the
+subnet mask is 255.255.252.0, how many IP addresses at most can there be within this
+subnet? What is the subnet ID? 192.191.160.1 – 192.191.163.254 and Subnet ID =
+192.191.160.0
+13. What are the input and output of the Address Resolution Protocol (ARP)? What are the Windows
+commands to show the current ARP cache table and to delete an entry with a specific IP address? (10
+points)
+The input of ARP is the IP Address and the output of the ARP is the MAC address. The windows
+command to show the current ARP is “-a” and to delete the entry with a specified IP address is
+“-d inet_addr”
+14. Please briefly describe ARP cache poisoning. (5 points)
+ARP poisoning is where a target computer could be convinced to send frames destined for one
+computer to a different computer
+15. What are the two most popular uses of IP spoofing? (5 points)
+The two most popular used of IP spoofing include in Distributed Denial of Service attacks (DDoS)
+and to break IP address-based authentication.
+16. What are the possible defenses against DoS attacks? (5 points)
+The possible defenses include not clicking on unknown websites or URLs from emails
+17. What is SSL? Is it useful to prevent Web spoofing? Why? (10 points)
+SSL stands for Secure Socket Layer protocol and was created by Netscape to ensure secure
+transactions between web servers and browsers. The protocol uses a third party, a Certificate
+Authority (CA), to identify one end or both ends of the transactions.
+SSL connections use an encryption key and digital certificate to verify that
+a website's communications originate from a reliable source. Though there are many reasons to
+use SSL connections, SSL also help stop attackers from “spoofing.”
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:17 GMT -05:00
+https://www.coursehero.com/file/51681974/Assignment-2docx/
+Powered by TCPDF (www.tcpdf.org)

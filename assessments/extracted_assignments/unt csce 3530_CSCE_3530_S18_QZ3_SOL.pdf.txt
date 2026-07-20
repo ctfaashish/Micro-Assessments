@@ -1,0 +1,43 @@
+--- Page 1 ---
+CSCE 3530 - Spring 2018 - Intro, to Computer Networks Name:
+Quiz #3
+20 Points
+1. What are the ports used by FTP? What information is transferred through these
+ports? (4 Points)
+Port 2d- I- i usad po*tonu dao C)
+Po+> 2.1 - 1> is 4a Cov¥ro) poet ad + is Jso Ao, c,, c,
+h
+6ows%
+oiaA- CotwoSg
+2. Differentiate (at least two differences per protocol) at least two protocols used to
+retrieve emails. (4 Points)
+(2) Pos Ys sjlela r*oS Sezfyoy8
+inA? :-ANows vSe18 0’8*3+ tafo-Ce-xreis )n *oldans
+(2) \ WAP ojan Se- OC~oM SeMora.
+3. What is Domain Name System (DNS)? What are the (at least two) services offered
+by DNS? (4 Points)
+DNa,- 1)1*4 %a vSeo+Tojo hastToJme }o Ip oddyela •
+: -4 8ost okoia
+¥ Lood s*BbvRon
+Page 1 of 2
+©2018 Robin Pottathuparambil 3/7/2018
+
+--- Page 2 ---
+4. A file of size F = 1x106 bits is distributed to N peers. The server has an upload rate of
+us = 1x105 bps. Each peer has a download rate of di = 1x105 bps and an upload rate
+of Ui = 1x104 bps. For N = 5, Find the distribution time for client-server distribution and
+P2P distribution. Which type of distribution takes the least time? What value of N
+would make the time for client-server distribution and P2P distribution the same?
+Show your steps. (8 Points)
+Des >= max {NF/us, F/dmin}
+DP2p >= max {F/us, F/dmin , NF/(u,+ L!,u)}
+7 ma. t 10, 10, 33:33]
+- 38.33 Cac.c
+q exa Aos Bwas
+"Pa?
+For N. 1, + <+ Da Dpap is &a-m '
+bernusse Ha is Dn cun} oyl Ay* wPf "
+I . auk anvotupear one ' + 14*. Lome *A*u
+3/7/2018
+Page 2 of 2
+© 2018 Robin Pottathuparambil

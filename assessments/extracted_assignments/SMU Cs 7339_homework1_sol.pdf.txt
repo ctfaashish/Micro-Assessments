@@ -1,0 +1,60 @@
+--- Page 1 ---
+Solution:
+a. At first glance, this code looks fine, but what happens if IsAccessAllowed fails? For example,
+what happens if the system runs out of memory, or object handles, when this function is called?
+The user can execute the privileged task because the function might return an error such as
+ERROR NOT ENOUGH MEMORY.
+b.
+DWORD dwRet = IsAccessAllowed(...);
+if (dwRet == NO_ERROR) {
+// Secure check OK.
+// Perform task.
+} else {
+// Security check failed.
+// Inform user that access is denied.
+}
+In this case, if the call to IsAccessAllowed fails for any reason, the user is denied access to the
+privileged operation.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:12:14 GMT -05:00
+https://www.coursehero.com/file/242105599/homework1-solpdf/
+
+--- Page 2 ---
+Solution:
+a. Will be detected with both (i) DS and (ii) MAC. x', auth(x’) != auth(x).
+b. Won’t be detected by either (Remark: use timestamps).
+c. (i) DS: Bob simply has to verify the message with the public key from both. Obviously, only
+Alice’s public key results in a successful verification.
+(ii) MAC: Bob has to challenge both, Oscar and Alice, to reveal their secret key to him (which he
+knows anyway). Only Alice can do that. x, auth(x). y, auth(y). z, auth(z)
+d. (i) DS: Alice has to force Bob to prove his claim by sending her a copy of the message in question
+with the signature auth(x). Then Alice can show that message and signature can be verified with
+Alice’s public key. Alice must have generated the message. Auth(x)
+(ii) MAC: No, Bob can forge the auth(x) and claim that Alice generated this message.
+Solution:
+The statement is false. Such a function cannot be one-to-one because the number of inputs to the
+function is of arbitrary, but the number of unique outputs is 2n. Thus, there are multiple inputs that
+map into the same output.
+Solution:
+The plaintext is “homework”
+The key: shift +4
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:12:14 GMT -05:00
+https://www.coursehero.com/file/242105599/homework1-solpdf/
+
+--- Page 3 ---
+Solution:
+We show the creation of a digital envelope:
+Solution:
+Solution:
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:12:14 GMT -05:00
+https://www.coursehero.com/file/242105599/homework1-solpdf/
+
+--- Page 4 ---
+Solution:
+For a static biometric device, the user's biometric is matched to a template at the client; thus, the client
+biometric device must be authenticated. For a dynamic biometric device, the host or server generates a
+random sequence of numbers, characters, or words. The user then generates a response (handwriting,
+voice) and the result is analyzed at the host. In this case, the client biometric device need not be
+authenticated.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:12:14 GMT -05:00
+https://www.coursehero.com/file/242105599/homework1-solpdf/
+Powered by TCPDF (www.tcpdf.org)

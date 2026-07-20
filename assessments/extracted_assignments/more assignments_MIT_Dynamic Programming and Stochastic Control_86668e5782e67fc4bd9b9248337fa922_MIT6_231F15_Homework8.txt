@@ -1,0 +1,41 @@
+--- Page 1 ---
+6.231 Dynamic Programming and Optimal Control
+Homework Due Nov. 15, 2015
+Prof. Dimitri Bertsekas
+Problem 1
+2.3 (Another Version of Value Iteration)
+Considern-statediscountedMDPofSection2.1andtheversionoftheVImethod
+that starts with an arbitrary function J : S (cid:55)→ (cid:60) and generates recursively
+FJ,F2J,..., where F is the mapping given by
+(cid:80)
+g(i,u)+α p (u)J(j)
+(FJ)(i)= min j(cid:54)=i ij .
+u∈U(i) 1−αp ii (u)
+Showthat(FkJ)(i)→J∗(i)ask→∞andprovidearateofconvergenceestimate
+that is at least as favorable as the one for the ordinary method. Show that F is
+the DP mapping for an equivalent DP problem where there is 0 probability of
+self-transition at every state.
+Problem 2
+3.2
+A gambler engages in a game of successive coin flipping over an infinite horizon.
+He wins one dollar each time heads comes up, and loses m > 0 dollars each
+timetwosuccessivetailscomeup(sothesequenceTTTTloses3mdollars). The
+gambler at each time period either flips a fair coin or else cheats by flipping a
+two-headed coin. In the latter case, however, he gets caught with probability
+p > 0 before he flips the coin, the game terminates, and the gambler keeps his
+earnings thus far. The gambler wishes to maximize his expected earnings.
+(a) View this as an SSP problem and identify all proper and all improper
+policies.
+(b) Identify a critical value m such that if m > m, then all improper policies
+give an infinite cost for some initial state.
+(c) Assume that m > m, and show that it is then optimal to try to cheat if
+the last flip was tails and to play fair otherwise.
+(d) Show that if m<m it is optimal to always play fair.
+1
+
+--- Page 2 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.231 Dynamic Programming and Stochastic Control
+Fall 2015
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

@@ -1,0 +1,15 @@
+--- Page 1 ---
+6.897 Spring 2004
+Homework 4
+Handed out: 5/6/2004
+Due: 5/12/2004 (last day of class!)
+This homework problem relates to pairing-based cryptography;
+see the readings available on the server.
+Problem.
+--------
+Part A:
+Give a careful definition of a "trapdoor pairing" (like a
+standard bilinear map except that the pairing can only be
+computed if you have certain "trapdoor information").
+Part B:
+Give an application of trapdoor pairings. 

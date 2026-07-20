@@ -1,0 +1,92 @@
+--- Page 1 ---
+Introduction to Computer Security CSCE 3550 Michael Mendoza 9/7/2020
+Homework 1 (contains 2 pages)
+Due on Sep 7 at 11:59pm
+1. Classify each of the following as a violation of confidentiality, or integrity, or availability
+made by an attacker called Eve:
+a. Eve runs the TCP SYN Flood attack. Availability
+b. Eve publicly discloses Alice’s grade for Homework 1. Confidentiality
+c. Eve changes the amount on Bob’s check from $100 to $1000. Integrity
+Note: The TCP SYN Flood attack will be covered in the future lectures. Feel free to do the Internet
+search to learn how it works.
+[15 points]
+2. How many different combinations does each of these sequences have?
+a. A five-digit PIN code. (Each digit takes values from 0 to 9.) 105 = 100,000
+b. A password consisting of 5 characters which may be selected from the English alphabet
+(not case-sensitive, i.e., uppercase and lowercase characters are treated as equivalent)
+and digits from 0 to 9. 365 = 60,466,176
+c. A password consisting of 12 characters which may be selected from the English alphabet
+(case-sensitive); digits from 0 to 9; and 10 special characters (including, e.g., “!”, “#”, “$”, etc.).
+7212 = 1.94x1022
+Note: The question is about ALL possible combinations, i.e., repetition of the characters is allowed.
+The answer may be approximate; example: 3.2·1015.
+[20 points]
+3. Some “electronic signature” schemes place a signer’s name (often written using a special
+handwritten-looking font) into an electronic document. As an example, see a promissory note—
+displayed on the assignment page—where a fictional person named Bob Bobson is a signer.
+Do you think that such the scheme provides an adequate protection of the document’s integrity?
+If yes, explain your answer. If no, suggest possible attacks. (For example, consider whether it is easy
+to change an amount on this promissory note from $100 to $1000, without anyone noticing it.) No,
+someone could just type up another note like this one and just copy the electronic signature, so
+changing the amount to $1000 is incredibly easy. This violates Bob’s integrity because he isn’t really
+signing off on these, someone else is “forging” the signature since it is electronic.
+Note 1: If you came up with an attack, you do not have attached a forged document—just explaining
+how it works is enough.
+Note 2: As an extra step, you may consider and suggest a method(s) to prevent your attack.
+(This extra question is worth no points—it is just for fun.)
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:20:32 GMT -05:00
+https://www.coursehero.com/file/68566058/HW1-CSCE-3550docx/
+
+--- Page 2 ---
+[20 point]
+4. Suppose that you are an administrator in some organization. You receive a report from
+a cybersecurity company stating that:
+a) Cybersecurity attacks against your organization’s current network configuration are expected to
+result in an average loss of $20,000 per year, for the next 5 years.
+b) A network security defense mechanism which will certainly alleviate these attacks is expected to
+cost $50,000 for installation (one-time spending), and $2,000 in maintenance costs per year.
+Assuming that you trust the company’s estimates, would you choose to deploy this defense
+mechanism or not? Explain your answer. I would approve of the installation because due to the
+attacks, the company would end up losing 100k over the 5 years, while upgrading to the newer
+system would only cost 50k once, and then 2k every year.
+[15 points]
+5. What are the minimal permissions which are necessary for an ordinary (unprivileged) user to delete
+a file /d1/f ? This means that the root directory contains a subdirectory “d1”, which contains the file
+named “f”. Assume that the user has “rwx” (i.e., read, write, execute) permissions for the root
+directory, and that the permissions for the root directory do not need to be minimized. Usually all
+you need is the write permission and search permission to delete a file so “rw-“ is enough but,
+“changing the name of a file or deleting it completely are not tasks that require the write() system
+call. So a user doesn't need read (r) or write (w) permission to rename or delete a file.” You only
+need write permission on the directory that contains the file.
+Note: Clearly, if the user has “rwx” permissions for both “d1” and “f” then it is possible to delete “f”.
+How about when the user has “rw-” (i.e., read, write, but no execute) permission for “f”?
+Or “rw-” permission for “d1”, etc.
+Tip: This document contains a useful explanation:
+https://wpollock.com/AUnix1/FilePermissions.htm
+[15 points]
+6. What if an ordinary user Alice sets a “---------” permission to some file, i.e., no read, write, and
+execute rights for owner (herself), group, and others. How can she regain access to this file (e.g., if
+she wants to delete it? Since Alice is the owner, she can change permissions on the file whenever,
+and she can regain access to the file.
+[10 points]
+7. Ransomware typically works as follows: It identifies the user data and then encrypts all of them.
+While in the process of encrypting, it works similarly to the disk encryption software
+—in the “on-the-fly” mode—so that users typically do not notice the problem until all their data
+have been encrypted, and then the ransom is demanded. This process may take several days or
+longer, depending on the ransomware. Suppose now that a user set up an automatic backup
+process, which keeps a single backup copy from the previous day. Clearly, this maybe not be
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:20:32 GMT -05:00
+https://www.coursehero.com/file/68566058/HW1-CSCE-3550docx/
+
+--- Page 3 ---
+an effective countermeasure against ransomware, because yesterday’s backup may have already
+been encrypted.
+Propose a different backup schedule that may potentially provide an effective countermeasure
+against ransomware. Having multiple backup copies would be better than a single backup just in
+case that one was encrypted by ransomware. Also using a cloud backup increases security on your
+files. Cloud backups introduce redundancy and add an extra layer of protection.
+[10 points]
+Total points: 105 (if the actual grade exceeds 100, it will be set to 100).
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:20:32 GMT -05:00
+https://www.coursehero.com/file/68566058/HW1-CSCE-3550docx/
+Powered by TCPDF (www.tcpdf.org)

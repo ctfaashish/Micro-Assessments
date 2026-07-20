@@ -1,0 +1,113 @@
+--- Page 1 ---
+Running head: LAB 2 REPORT 1
+Lab 2 Report
+Prince Danso
+Liberty University
+Digital Forensics
+CSCI 511
+Dr. Jennifer Lee
+
+--- Page 2 ---
+LAB 2 REPORT 2
+*** Please ensure that you document the steps and include screenshots as
+needed. Also highlight important details to show the answer clearly and in your
+personalized way to differentiate from the screenshots in the lab instructions. ***
+*** Please be sure that you have the two elements (your name and time/date
+stamp) included in each of your screenshots. For details, please refer to week 1’s
+announcement titled “Requirement on Screenshots in Lab Report”. ***
+Lab 2a: Linux Users and Groups
+Managing Users and Groups in Linux
+LA Explain the functions of these commands: ‘useradd’, ‘passwd’ and ‘su’. Provide a
+usage example for each command.
+useradd: create or add user
+passwd: used to update or add password for a user
+
+--- Page 3 ---
+LAB 2 REPORT 3
+su: used to switch between users
+Step 15 Check the permissions of the salesdata file, change those permissions so others can
+edit the document and verify the changes. Make screen captures.
+Your answer goes here.
+Step 19 Return to the root account. Now remove the users you created. Make screen
+captures.
+
+--- Page 4 ---
+LAB 2 REPORT 4
+Your answer goes here.
+LA Explain the functions of these commands: ‘
+touch : its used to create files
+chmod: its used to modify user permissions to a file
+userdel: its used to delete or remove a user
+
+--- Page 5 ---
+LAB 2 REPORT 5
+Your answer goes here.
+CQ Create a user account named ‘Sam’ and a group named ‘Management’. Assign user
+Sam to the Management group. Create a file ‘ManagementData’ and change its
+permissions so the Management group can edit the file.
+Lab 2b: Creating a Forensic Image
+Create a Forensic Image
+Step 3 In FTK Imager, open the File menu from the toolbar and select Create Disk Image.
+Make screen captures.
+
+--- Page 6 ---
+LAB 2 REPORT 6
+LA What is a physical image? What is a logical image?
+A physical image is a bit-for-bit image that collects all the data from the source; seen and unseen. A
+logical image is an image of what a general user sees when looking at the source
+CQ When a source is encrypted, what is the best image type? Why?
+if a source is encrypted, the best image type is Logical because This is due to the fact that unless the
+examiner has the key for the encryption, the physical data is still encrypted and can only be viewed
+logically
+Step 5 After selecting the source for the image, you need to point the tool to the location
+you want to image from. Make screen captures.
+
+--- Page 7 ---
+LAB 2 REPORT 7
+Step 11 After an image is created, FTK imager determines the sector count, computes the
+MD5 and SHA1 hash values, and determines if there are any bad or damaged
+sectors. Make screen captures showing the result.
+
+--- Page 8 ---
+LAB 2 REPORT 8
+Verifying an image was created
+Step 1 Navigate to the desktop and open the folder that contains the created image. Open
+the created text file. Make screen captures.
+
+--- Page 9 ---
+LAB 2 REPORT 9
+LA The text file contains the data about the created image. This includes the case
+information that was inputted by you. Does all the information seem consistent with
+what was inputted or calculated during the imaging process?
+Yes, it does
+Step 3 Switch back to the FTK Imager tool, open the File menu and select Add Evidence
+Item.
+
+--- Page 10 ---
+LAB 2 REPORT 10
+Step 6 After the image has been loaded, right click on the file and select Verify
+Drive/Image.
+
+--- Page 11 ---
+LAB 2 REPORT 11
+LA How is an image verification done?
+The way that the verification is done is by calculating and comparing Hash Values
+LA Take a few moments to look through the image and describe what kind of data is on
+the imaged flash drive.
+Invalid partition, Error loading operating system and missing operating system
+CQ What are Hash values? Explain two important hashing algorithms: MD5
+(Message Digest) and SHA-1 (Secure Hash Algorithm 1). Use the Internet to
+research.
+Hash values can be thought of as fingerprints for files. The hash value - is produced that
+identifies the contents of the file
+
+--- Page 12 ---
+LAB 2 REPORT 12
+The MD5 hashing algorithm is a one-way cryptographic function that accepts a message
+of any length as input and returns as output a fixed-length digest value to be used for
+authenticating the original message
+When Data is fed to MD5 Hashing Algorithm, it generates a 128-bit Hash Value String as
+a 32-digit hexadecimal number
+SHA-1 is a cryptographic hash function which takes an input and produces a 160-bit hash
+value known as a message digest – typically rendered as a hexadecimal number, 40 digits
+long

@@ -1,0 +1,439 @@
+--- Page 1 ---
+Assignments for an Objects-First
+Introductory Computer Science Curriculum
+Mathias Ricken
+Dept. of Computer Science
+Rice University
+Houston, TX 77005
++1 713-348-3836
+mgricken@rice.edu
+ABSTRACT an early-on focus on object-oriented (OO) design and
+programming with UML diagrams, design patterns,
+Designing an effective curriculum to teach programming and
+documentation, and unit testing can alleviate many of the
+software engineering to beginning students is challenging. An
+concerns voiced in the report. Such a curriculum can only be
+objects-first course prepares students in an excellent way for the
+successful, though, if students face interesting and sufficiently
+requirements in industry and academia by focusing on program
+complex problems that clearly show the beneficial effects of OO
+design, thereby enabling students to write correct, robust, flexible,
+technology on important software quality factors.
+and extensible software. This paper outlines the effects of an
+object-oriented approach on software quality and describes five Section 2 discusses some of these quality factors and how an OO
+assignments that can be used as teaching tools in an objects-first approach can improve them. Section 3 describes five assignments
+course to evaluate and reinforce the students’ understanding . that can be used at different stages in objects-first CS1/CS2
+courses to refine the students’ understanding of OO principles and
+Categories and Subject Descriptors
+practices. Section 4 makes an attempt to evaluate the objects-first
+D.1.5 [Programming Techniques ]: Object-oriented
+approach.
+Programming.
+2. SOFTWARE QUALITY FACTORS
+General Terms
+Software needs to exhibit certain characteristics, which can be
+Design
+external and internal to the program. External factors are visible
+to a user and include correctness and robustness. Internal quality
+Keywords
+factors are apparent only to the developer and are important in the
+CS1/CS2, objects-first, design patterns, pedagogy, assignments,
+design, implementation, and extension of the product. Flexibility,
+software quality.
+extensibility, testability, and documentation fall into this group.
+1. INTRODUCTION In the end, only external quality factors are of immediate interest
+to a user, but in order to create a program that offers these factors
+From the beginnings of computer science as a discipline, the
+in a timely, cost-effective, and foresighted fashion, developers
+structure of the introductory curriculum and the role of
+need to focus on the internal factors as well.
+programming have been debated. Traditionally, programming is
+taught in an imperative-first style that focuses on programming An OO approach to software development can improve the
+language elements such as expressions, control structures, and quality factors mentioned above by providing means of managing
+functions. the program’s complexity, thus enhancing the program’s overall
+quality. The effects of object orientation on several quality
+The ACM/IEEE-CS Report on Computing Curricula 2001 [1]
+factors are evaluated below.
+established that introductory courses are often too concerned with
+language syntax and do not adequately teach program design. 2.1.Correctness
+Because of the focus on syntax, imperative-first introductory
+Correctness describes the ability of the program to perform its
+courses frequently have to use overly simple assignments that do
+task in accordance with the program specifications and therefore
+not motivate students, misrepresent the nature of software
+serves as indispensable quality attribute. While it remains
+engineering, and provide students with too little practice of
+difficult to produce large systems without defects, OO design and
+design, testing, and documentation.
+programming moderate the problem through the use of abstraction
+An alternative objects-first introductory curriculum that combines and modularity. Both of these principles allow the developer to
+understand and design parts of the program in isolation.
+Abstraction reduces a system’s complexity by highlighting
+commonalities (invariants) among similar problems and ignoring
+differences (variants). OO design enables the developer to
+encode these invariants in concrete portions of a superclass, which
+deals with the varying portions abstractly and without having to
+know what they do or how they are implemented. The variants
+are then placed in subclasses that extend the superclass. This
+separation of variants and invariants ensures that invariants cannot
+
+--- Page 2 ---
+be changed, causing the program to be both correct and simpler to extended life-time of a project gained by flexible and extensible
+understand. designs further exacerbates this problem, since the behavior of the
+system must be understood at a later time and often by different
+Modularity divides a system into several independent pieces that
+developers.
+communicate with each other only via a small, well-defined
+interface. The use of interfaces as means of communication lets a Commenting styles such as Javadoc [2] allow developers to place
+module deal with other portions of the system at an abstract level, documentation directly in the code. An external program then
+strictly delineating a module’s responsibilities. Such loose and automatically processes these comments to create a set of
+abstract coupling between modules limits the knowledge of other independent and convenient documentation files. This removes
+objects and thus assists in the maintenance of invariants. A the burden of creating the documentation in a separate step and
+modular design also removes the necessity for developers to be keeps it synchronized with revisions of the code.
+familiar with the entire system by reducing dependencies between
+Similarly, unit tests can be placed directly in the code to facilitate
+portions of the code, thus fostering independent and concurrent
+regression testing. The use of a unit testing framework like
+development.
+JUnit [3] provides a formal way to ensure that a change has no
+2.2.Robustness negative effects on the system. The practices of creating unit tests
+before a program bug is fixed and requiring all unit tests to
+Robustness is a system’s ability to withstand both accidental and
+succeed before code can be committed prevent bugs from
+intentional abuse while continuing to function in a well-defined,
+reappearing and keep the central repository clean. Unit tests can
+non-catastrophic manner. In contrast to correctness, which
+also be used to provide a more detailed version of the
+derives from system behavior in states covered by the
+specification and internal documentation, providing both expected
+specifications, robustness deals with unexpected situations.
+results and usage examples.
+Robustness follows from information hiding and a clear
+While documentation and testing are not directly related to an OO
+delineation of responsibility. The system must be set up to
+approach to software development, their application in the ways
+prevent an object from performing actions that are outside its
+described above is much more prevalent in the OO culture than in
+domain, thereby guaranteeing that it cannot adversely affect other
+the traditional imperative one.
+components of the system. This guarantee alleviates the need for
+programmatic value checking in many different places, something It is interesting to note that an imperative-first course, which
+easily forgotten when a program grows. Information hiding and needs simple examples, to a certain extent prevents a focus on
+delineation of responsibility are design aspects, though; therefore, flexibility, extensibility, documentation, and testing, while an
+robustness must be built into the system from the very beginning. objects-first course with its demand for sufficiently complex
+assignments even requires paying attention to these factors.
+It is hard to design a system that is robust and also flexible and
+extensible: A design that prevents a system from leaving a well-
+3. SUITABLE ASSIGNMENTS
+defined set of states appears resilient to change. If, however, the
+As the previous section has described, OO concepts can improve
+system makes use of abstraction and modularity, it can be
+the quality factors important to software development.
+extended by changing the variants without undermining the
+Unfortunately, traditional imperative-first introductory curricula
+structure enforced by invariant code. Again, the correct
+typically do not teach object orientation until the end of the first
+decomposition of a problem into variants and invariants is
+semester and do not place much emphasis on it. In most cases,
+necessary to find the proper abstractions.
+departments provide an upper-level course on “OO
+2.3.Flexibility and Extensibility methodologies” instead. At this time, however, students are
+unable to leverage the benefits of object orientation. They possess
+Flexibility and extensibility are two of the internal quality factors
+the intellectual capabilities and the knowledge to use classes,
+that are important in software development. A flexible system
+inheritance, and so on, but they fail to see the advantages. This is
+can be changed in one area without breaking other parts or
+partially due to the limited time spent on the topic and the small
+requiring a large number of changes elsewhere. An extensible
+exercises used. A typical toy example that uses an abstract
+system can easily be augmented to fulfill new requirements
+animal, able to make a sound, and concrete animals such as dogs
+without necessitating changes to the existing portions.
+and cats, simply is not a compelling example of how OO design
+As programs become more complex, the ability to leverage design and programming can help. To demonstrate the importance of
+and code from previous projects and to extend them beyond the secondary or internal quality factors such as robustness,
+original specifications becomes more important. Developers flexibility, and extensibility, exercises must go beyond small-scale
+should therefore strive to solve not only a single instance of a programs.
+problem, but a family of related problems. Again, abstraction and
+Finding suitable assignments for an objects-first curriculum is
+modularity are principles necessary to achieve this. Abstraction
+problematic. The exercises need to demonstrate the positive
+allows the developer to generalize a solution for a specific task
+effect of an OO approach to software quality while remaining
+and apply it to similar ones, and modularity minimizes an object’s
+within the limited scope of the learning students. Below, we
+dependence on other objects with which it interacts, making the
+describe five sufficiently complex yet entertaining assignments
+object replaceable and reusable.
+that can be used in objects-first introductory courses. The Shape
+2.4.Documentation and Testing Calculator is used in our institution’s objects-first CS1 course; the
+Like flexibility and extensibility, testing and documentation remaining assignments are used in CS2 courses.
+becoming more important as the projects size grows.
+It is important that the assignments described below are given in
+Unfortunately, internal documentation is often neglected both in
+the context of a comprehensive instruction in OO design and
+computer science courses and in the industry, even though it is
+programming. For all of them, students should possess a solid
+necessary for maintaining a correct and robust solution. The
+
+--- Page 3 ---
+understanding of inheritance, composition, delegation model The assignment introduces “process flow diagramming”, an
+programming, polymorphism, closures, and anonymous inner application of the delegation model, which in combination with an
+classes. Most of the assignments also require the use of several OO data structure, the visitor pattern, and anonymous inner
+design patterns, such as abstract factory, composite, singleton, classes converts the design of complex algorithms into a
+state, strategy, visitor, and decorator [2]. Since all of the systematic process. This technique eliminates the need for the
+assignments involve GUI programming, the model-view- large nested if-statements that are usually seen in complex
+controller (MVC) pattern is also used extensively. algorithms and replaces them with nested visitors delegating calls
+from one object to the next. These calls employ polymorphism to
+3.1.Shape Calculator
+automatically perform the correct behavior based on the system
+The Shape Calculator [5] is a GUI application that can compute state. Using nested visitors in place of if-statements is less error-
+the area of an arbitrary shape. The class representing this shape prone, since the programmer is forced to consider all possible
+can be compiled later and loaded into the program at runtime. At states in which the system can be. It is impossible to accidentally
+our institution, the project is currently being assigned as a 1.5 ignore a condition that is rare or unexpected.
+hour laboratory exercise in the 9 th week of the CS1 course that
+To be prepared for this assignment, the course needs to have
+extends into a week-long homework assignment, which takes
+covered using an OO binary tree structure and implementing
+students 3 to 6 hours to complete.
+algorithms operating on it using the visitor pattern. Instructors
+The project is used as an introduction to GUI programming in need to make sure students do not attempt to solve the problems
+Java. Creating simple window frames, adding GUI components, of manipulating the binary tree using a global approach – the
+and drawing on the window panel are valuable skills by result would be a complicated, imperatively written solution.
+themselves that will be used in most future assignments in Instead, students should focus on local decisions and make use of
+CS1/CS2. Here, however, the project is also being used to delegation and recursion to limit the scope and complexity of the
+dramatically visualize the compelling use of OO principles like problem. By closely following the process flow diagrams, the
+encapsulation, inheritance, and polymorphism, and how they task can be transformed to a number of local decisions that easily
+make an application extensible. map to nested visitors and thus to simpler and more robust code.
+The visual nature of the project mixes fun with theory and 3.3.Sorting
+motivates students to learn more about OO concepts. The project
+In the Sorting assignment [6], students experiment with bubble
+is relatively small – the sample solution is only about 1,000 lines
+sort, merge sort, quick sort, and several other comparison-based
+of code – yet is able to demonstrate powerful capabilities that
+algorithms and display their effects through animation.
+would be nearly impossible to produce without using an OO
+design. To further narrow down the size of the project, the All sorting algorithms are modeled using an OO formulation of
+assignment is set up in four parts and provides detailed step-by- Merritt’s divide-and-conquer taxonomy [7]: The array is split, the
+step instructions in the beginning, while giving the students more subarrays are recursively sorted and then merged again. Since
+freedom and responsibilities towards its end. this general process is invariant, it can be encoded in a superclass
+employing the template method pattern [2]. The differences
+By designing a completely functional, non-trivial GUI program
+between the algorithms are relegated into variant subclass code,
+from scratch, students learn to use Java’s GUI framework and the
+and the decorator pattern is used to augment the sorting
+use of anonymous inner classes as event listeners. Anonymous
+algorithms with animation capabilities [8]. The assignment serves
+inner classes are also used inside abstract factories, which enable
+as an example of how a separation of variants from invariants
+the program to manufacture instances whose concrete class is
+makes a program more abstract and easier to understand, and the
+unknown to the application. This reinforces the concepts of
+addition of animation in an unobstrusive way stresses the
+closures and the abstract factory pattern.
+extensibility of OO solutions.
+At the time this assignment is used, students should be acquainted
+The use of Merritt’s taxonomy and OO design enables our
+with the abstract factory, composite, and singleton patterns.
+students to compare and contrast the different sorting algorithms
+Beyond these requirements, there are two difficulties which
+with much attention to detail. The division of an algorithm into
+instructors need to consider: Often, students have problems
+“split”, “recur”, and “join” phases often simplifies the
+understanding the service-oriented nature of screen painting. It is
+memorization of the algorithms and the discussion of their
+not immediately obvious to students that control flow is actually
+asymptotic behaviors.
+inverted and that the GUI invokes their code. Students will also
+need to learn that local variables must be declared final if they We also use this assignment to introduce several elements of
+wish to access them from within an anonymous inner class, which procedural programming, such as arrays, loops, and conditionals,
+also means the variables’ values cannot be changed. Good use of whose presentation we delayed in favor of OO concepts. An
+direct access to variables outside the anonymous inner class but imperative-first course could take the opposite direction and adapt
+within its scope is necessary to fully utilize inner classes. this assignment to present inheritance, polymorphism, and several
+design patterns to students trained in procedural programming.
+3.2.Tournament Tree
+Like the other assignments, this project offers the necessary
+In the Tournament Tree [6] exercise, students design and complexity to highlight the positive aspects of object orientation,
+implement a GUI application that allows the user to edit, display, and the application of both procedural and OO concepts makes it
+and simulate a tournament tree as used in a single-elimination an ideal candidate for the introduction of the respective other
+sports tournament. The project is designed for students in a paradigm.
+curriculum that has included some OO implementations of
+common data structures and provides an interesting application of 3.4.Games for Two
+binary trees in a sports context that is familiar to students. The Games for Two assignment [6] presents students with a
+framework for playing two-person turn-based board games. The
+
+--- Page 4 ---
+project is set up as a GUI application that is flexible and the components of the problem and makes use of design patterns
+extensible enough to support both human and computer players such as command, visitor, abstract factory, decorator, and
+for arbitrary games that fit the description above. The two observer-observable [2] to maintain loose and abstract coupling.
+examples used in this exercise are Connect–n and Othello. The assignment therefore places much emphasis on the design
+aspect of such a system and addresses issues like modeling,
+The project is broken down into two milestones. The first
+components and frameworks, documentation, and testing.
+milestone asks students to instantiate the client side of a façade
+pattern [2] that hides the internals of the game model from players The visual way of presenting these subjects enables students to
+using it. They also need to finish developing the skeleton reinforce the concepts learned so far in a compelling and
+Connect–n board model by implementing methods to make a immediate manner. To make sure the considerable size of the
+move and check its validity. Finally, students should improve the project does not overwhelm students, we have split the assignment
+provided random move strategy to only choose from valid moves; into two milestones. Milestone 1 requires students to extend the
+the sample solution chooses from all moves, valid or invalid. simulation by subclassing while treating most of the framework as
+a “black box”, which serves as an example of how a modular
+For the second milestone, students apply the strategy pattern to
+system reduces complexity. In the process of finishing
+write intelligent computer players using the min-max principle,
+milestone 1, students add a new species of fish and a new type of
+alpha-beta pruning, and depth-limited search. Students are
+environment. Both the fish and the environment behave radically
+directed towards a high degree of code reuse, which can be
+different from previous classes, yet the changes require less than
+achieved by implementing the alpha and beta accumulators as
+200 lines of code, most of which is boilerplate code anyway.
+subclasses of the max and min accumulators, respectively. Depth-
+limited search uses a decorator pattern and can be used in For milestone 2, students receive the entire framework as source
+conjunction with any other strategy. code, which also includes solutions to the problems from
+milestone 1. Some portions of the framework, however, have
+Remarkable about these strategies is that they can be used to play
+been removed and contain only stub code. In the first part of
+both Connect–n and Othello, and any other game that fits the
+milestone 2, students need to understand the system internals and
+above description, without modification. The general two-player
+how the fish and the environment cooperate while remaining
+round-based game model, the board models for the different
+decoupled. By reimplementing the portions of the framework that
+games, and the movement strategies are loosely coupled and
+have been stubbed out, students take a grand tour of the system
+communicate only at an abstract level. The game model
+and see how message passing, abstract coupling through
+alternatingly asks the players’ strategies for a move and then lets
+interfaces, and several design patterns fit together. The different
+the board model execute it. The search strategies simply look for
+parts that have been removed were selected to produce a large
+the best possible move in the current situation, whatever “best”
+range of different program failures and thus expose students to
+means for a given board model. Due to their generic
+different situations requiring debugging: In some cases, a method
+implementation, the same strategies can be used in all kinds of
+is not implemented, causing a rupture in the code path, in others a
+games. This serves as a convincing example of the powers of OO
+data structure is used improperly, breaking the data flow.
+design.
+Students can use the unit tests provided by the project to
+The project also provides students with an opportunity to improve continuously monitor their progress and the correctness of their
+their grades in an entertaining way: At the end of the semester, work, while still having to research and implement the system on
+students can submit specialized Othello strategies and let them their own. The test cases offer error messages and hints in plain
+compete against each other for extra credit. Every semester, many English but do not reveal the solution.
+students participate and voluntarily spend hours fine-tuning their
+In the final part of the assignment, students improve the
+code and thus their programming skills.
+simulation by adding more functionality. This requires changing
+Since the project is aimed at students at the end of CS2, it requires the fish hierarchy to implement behavior not by inheritance but by
+that students are able to effectively read documentation and delegation. In the course of this exercise, students again
+analyze an existing framework. experience how separating variants from invariants makes a
+system both more flexible and less complex.
+3.5.Marine Biology Simulation
+As a final project for a CS2 course, the assignment naturally
+The Marine Biology Simulation [9] is derived from the Java AP
+presupposes students have been taught the basic OO skills
+Marine Biology Simulation Case Study [10] used in high school
+mentioned in Section 3, as well as additional design patterns,
+AP computer science courses. Students work on this project over
+especially command and factory method [2]. Design,
+the course of three weeks for a total of about 10 hours.
+documentation and testing tools, such as UML, Javadoc and
+The project places a strong emphasis on creating a robust, JUnit, respectively, must also be addressed.
+flexible, and extensible solution by correctly modeling abstraction
+Instructors will need to ensure their students understand the
+and loose coupling. It uses an incremental, test-driven approach
+concept of a “local environment” and how it is modeled. We also
+that first familiarizes students with the project by extending the
+received questions about the callback-style communication
+framework, which is initially provided as binary code with
+between a fish and its environment.
+complementing Javadoc. In the later parts of the assignment,
+students are asked to reimplement and then improve the 4. AN EVALUATION OF OBJECTS-FIRST
+framework to achieve additional functionality.
+In an attempt to study the quality of education students in our
+The project provides a framework of 13,000 lines of code and thus objects-first CS1/CS2 courses receive, we compared their
+possesses the necessary complexity sought for in a final project performance in a systems class to that of graduate students in the
+that is to illuminate the benefits gained from object orientation. same class. Since we usually require undergraduate transfer
+Its flexible and robust design was achieved by carefully analyzing students to take our CS1/CS2 courses, graduate students are the
+
+--- Page 5 ---
+only group of students that is largely unaffected by the objects- between user processes has to be done using the kernel.
+first approach. The systems course is typically taken right after Operating systems also provide interfaces that allow user
+CS2, uses C and assembly as programming languages, and processes to treat devices abstractly; the concrete implementations
+employs no OO concepts at all. are hidden in device drivers. Delineation of responsibilities and
+abstract device access make an operating system both robust and
+Over the course of five years, we evaluated the grades of 180
+extensible. While these concepts cannot and should not be the
+undergraduate and 32 graduate students. We found that the
+focus of an introductory course, they serve to captivate the
+average course grade for undergraduates was 2.97 (“B”;
+students’ fascination and motivate them to pursue their computer
+σ » 1.138), the average for graduates was 3.29 (“B+”; σ » 0.824).
+science careers with even greater interest.
+This means that graduate students outperformed undergraduates
+by about 12 percent, or a third of a letter grade. Considering that 5. CONCLUSION
+many of the undergraduates were only in their third semester, Both anecdotal and statistical evidence shows that an objects-first
+though, this difference is small. We therefore believe that our introductory curriculum provides a superb alternative to the
+objects-first CS1/CS2 courses equip students well even for prevalent imperative-first approaches. For such a curriculum to
+assignments in more traditional settings. Unfortunately, due to be successful, though, compelling examples and assignments of
+the small size of our institution, it is difficult to obtain data that adequate complexity are required. The five assignments
+significantly supports or rejects any hypotheses. Our inquiry also presented in this paper stress OO design and the resulting
+ignores other factors, such as the background of graduate students robustness, flexibility, and extensibility that would be hard to
+and prior programming experience. achieve without the use of object orientation.
+Reservations against objects-first courses often stem from the The end is an introductory curriculum that addresses several of the
+view of object orientation as an “advanced” concept too problems mentioned in the ACM/IEEE-CS report and that
+complicated to teach to beginning students. The experience at our provides students with the skills to write better software.
+institution over the past years and data collected by Phil Ventura
+at SUNY Buffalo [11], however, suggest the opposite. The main 6. REFERENCES
+predictor for success in assignments, exams, and courses in [1] Final Report of the Joint AMC/IEEE-CS Task Force on
+general in an objects-first curriculum seems to be the effort Computing Curricula 2001 for Computer Science,
+students put into the class. In Ventura’s study, labs attended and ACM/IEEE, 2001.
+exams taken accounted for 86.3 percent of the variance in course
+scores. Other factors, such as year in college, declared major, [2] http://java.sun.com/j2se/javadoc/
+GPA, or mathematics background showed only little predictive
+[3] http://www.junit.org/
+power. The study also showed that, in contrast to typical
+imperative-first courses, the evaluated objects-first course is not [4] Gamma, E., R. Helm, R. Johnson, and J. Vlissides. Design
+gender-biased and does not disadvantage students without prior Patterns, Elements of Reusable Object-Oriented Software,
+programming experience. The evidence therefore suggests that Addison-Wesley, 1995.
+objects-first is an introduction to computer science for everyone.
+[5] Cheng, E., D. Nguyen, M. Ricken, and S. Wong,N ifty
+Imperative-first courses largely ignore software design, leaving Assignments: Abstract Factories and the Shape Calculator.
+students unequipped when dealing with the larger projects their ACM OOPSLA Educators’ Symposium 2004.
+futures indubitably hold in store. Objects-first courses, on the
+[6] http://www.owlnet.rice.edu/~comp212/04-
+other hand, spend much more time on the design aspects and
+spring/assign.shtml
+introduce a language’s syntax only when it is necessary.
+Concepts like classes, inheritance, composition, UML, and some [7] Merritt, S. A Logical Inverted Taxonomy of Sorting
+design patterns are usually introduced in the first half of CS1 Algorithms. Communications of the ACM, Vol. 28, 1 (Jan
+already. While procedural elements of programming are still 1985), 96-99.
+introduced towards the end of the first semester, students find this
+[8] Nguyen, D. and S. Wong, Design Patterns for Sorting. ACM
+paradigm shift much easier to master than the one found in
+SIGCSE 2001.
+imperative-first courses [12].
+[9] Cheng, E., D. Nguyen, M. Ricken, and S. Wong,N ifty
+The size and nature of the assignments used in our introductory
+Assignments: Marine Biology Simulation. ACM OOPSLA
+courses enable students to effectively participate in upper-level
+Educators’ Symposium 2004.
+courses as well as in the development of complicated large-scale
+software. In our production programming course, students have [10] The College Board, Java Marine Biology Simulation Case
+employed OO design and unit testing to develop, maintain, and Study, http://apcentral.collegeboard.com/
+enhance DrJava [13], an integrated development environment of
+considerable complexity. This enterprise has been successful over [11] Ventura, P., On the Origin of Programmers: Identifying
+the course of several years in spite of an ever-changing group of Predictors of Success for an Objects-First CS1, Dissertation,
+student developers who often join directly after having completed SUNY Buffalo, 2003.
+the CS2 course [14].
+[12] Alphonce, C. and P. Ventura, Object Orientation in CS1-CS2
+Suitable examples for an objects-first curriculum also lend by Design, ACM ITiCSE 2002.
+themselves well for introducing advanced concepts in computer
+[13] http://drjava.org/
+science, such as systems security, graphics, and distributed
+computing. To demonstrate the steps necessary to achieve [14] Allen, E., R. Cartwright, and C. Reis, Production
+robustness, for example, an operating system analogy can be used: Programming in the Classroom. ACM SIGCSE 2003
+Only the kernel can perform certain tasks, and any communication

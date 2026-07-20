@@ -1,0 +1,492 @@
+--- Page 1 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+Final Exam
+Due May 10 at 3:45pm Points 50 Questions 42
+Available May 10 at 1:15pm - May 10 at 3:45pm about 3 hours
+Time Limit 75 Minutes
+Instructions
+• The exam on modules 7, 8, 9, 10, 11 and 12.
+• The exam will be available on Monday May 10, 2022 from 1:15 PM to 3:45 PM.
+• You need to answer 38 MCQs with 1 point for each + 4 Short questions with 3
+points for each.
+• You will have only 75 minutes to complete your exam in one sitting.
+Attempt History
+Attempt Time Score
+LATEST Attempt 1 73 minutes 35 out of 50 *
+* Some questions not yet graded
+ Correct answers will be available on May 10 at 4pm.
+Score for this quiz: 35 out of 50 *
+Submitted May 10 at 3:05pm
+This attempt took 73 minutes.
+Question 1 1 / 1 pts
+What is perceptron?
+a neural network that contains feedback
+an auto-associative neural network
+1 of 23 5/10/2022, 3:05 PM
+
+--- Page 2 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+a double layer auto-associative neural network
+a single layer feed-forward neural network with pre-processing
+Question 2 1 / 1 pts
+How can learning process be stopped in backpropagation
+rule?
+there is convergence involved
+no heuristic criteria exist
+none of the mentioned
+on basis of average gradient value
+Question 3 1 / 1 pts
+Layers between the input and output layers are known as:
+Hidden layer
+Resultant layer
+Output layer
+Multilayer
+2 of 23 5/10/2022, 3:05 PM
+
+--- Page 3 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+Question 4 1 / 1 pts
+What is meant by generalized in statement “backpropagation
+is a generalized delta rule” ?
+because delta rule can be extended to hidden layer units
+because delta is applied to only input and output layers, thus making it
+more simple and generalized
+it has no significance
+none of the mentioned
+Question 5 1 / 1 pts
+What are general limitations of back propagation rule?
+scaling
+slow convergence
+local minima problem
+all of the mentioned
+Question 6 1 / 1 pts
+The network that involves backward links from output to the
+3 of 23 5/10/2022, 3:05 PM
+
+--- Page 4 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+input and hidden layers is called as ____.
+perceptrons
+self organizing maps
+multi layered perceptron
+recurrent neural network
+Question 7 1 / 1 pts
+ROC chart is a __________ plot.
+Multi-dimensional
+One-dimensional
+Two-dimensional
+Three-dimensional
+Question 8 1 / 1 pts
+For SVM, which options are correct?
+Deleting the support vectors won’t change the position of the hyperplane
+4 of 23 5/10/2022, 3:05 PM
+
+--- Page 5 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+None of the mentioned.
+Support vectors are data points that are far away from the hyperplane
+and influence the position and orientation of the hyperplane
+Support vectors are data points that are closer to the hyperplane and
+influence the position and orientation of the hyperplane
+Question 9 1 / 1 pts
+Which of the following are real world applications of the
+SVM?
+All of the mentioned
+Text and Hypertext Categorization
+Image Classification
+Clustering of News Articles
+Question 10 1 / 1 pts
+What’s the objective of the support vector machine
+algorithm?
+None of the mentioned
+5 of 23 5/10/2022, 3:05 PM
+
+--- Page 6 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+to find an optimal hyperplane in an N-dimensional space that distinctly
+classifies the data points where N is the number of features.
+to find an optimal hyperplane in an N-dimensional space that distinctly
+classifies the data points where N is the number of target variables.
+to find an optimal hyperplane in an N-dimensional space that distinctly
+classifies the data points where N is the number of samples.
+Question 11 1 / 1 pts
+Which of the following is not a correct statement for SVM.
+SVMs can be reused as algorithms for learning linear classifiers
+All instances are required to define the maximum margin hyperplane.
+SVMs are resilient to overfitting
+Instances closest to the maximum margin hyperplane are called support
+vectors
+Question 12 1 / 1 pts
+If x1, x2 are independent variables and y the dependent
+variable, which of the following represents a linear regression
+model?
+6 of 23 5/10/2022, 3:05 PM
+
+--- Page 7 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+y = a0 + a1x1 + a2x2
+y = a0 + a1/x1 + a2/x2
+y = a0 + a1x1 + a2x22
+y = a0 + a1x12 + a2x2
+IInnccoorrrreecctt Question 13 0 / 1 pts
+A rule with a lower value of confidence and
+support could be
+preferred because:
+None of the mentioned
+Such rules are bound to hold throughout the dataset
+It indicates novelty
+Such rules are more interesting
+Question 14 1 / 1 pts
+Which of the following is not an example of frequent
+pattern analysis?
+Can we predict the winner of match?
+7 of 23 5/10/2022, 3:05 PM
+
+--- Page 8 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+Can we automatically classify web documents?
+What kinds of DNA are sensitive to this new drug?
+What are the subsequent purchases after buying a PC?
+Question 15 1 / 1 pts
+Which of the following learning algorithm can be used to
+predict a combination of attributes?
+Naïve Bayesian.
+Decision tree.
+Apriori.
+K-means
+Question 16 1 / 1 pts
+Which of the following would be appropriate for a
+data mining
+algorithm aimed at discovering which groups of products
+consumers
+would tend to purchase together?
+Decision rules
+8 of 23 5/10/2022, 3:05 PM
+
+--- Page 9 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+Classification rules
+Association rules
+Decision trees
+Question 17 1 / 1 pts
+Which of the following best describes the Apriori principle?
+If an itemset is frequent, then all of its subsets must also be frequent
+All of the mentioned
+Support of an itemset never exceeds the support of its subsets
+When the anti-monotone property of support holds on given itemset
+Question 18 1 / 1 pts
+Which of the following can affect the complexity of Apriori?
+All of the mentioned
+Maximum number of items in the transactions
+Dimensionality of the given data set
+Number of transactions in the database
+9 of 23 5/10/2022, 3:05 PM
+
+--- Page 10 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+Question 19 1 / 1 pts
+The subdivision of the hierarchical methods are:
+Partition and agglomerative
+Agglomerative and divisive
+Partition and divisive
+Distance based and density based
+Question 20 1 / 1 pts
+Which one of the following correctly defines the term cluster?
+Operations on a database to transform or simplify data in order to
+prepare it for a machine-learning algorithm
+Symbolic representation of facts or ideas from which information can
+potentially be extracted
+Group of similar objects that differ significantly from other objects
+All of the mentioned
+10 of 23 5/10/2022, 3:05 PM
+
+--- Page 11 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+IInnccoorrrreecctt Question 21 0 / 1 pts
+In cluster analysis, which of the following is an advantage of
+choosing k>1?
+Minimizes classification rate
+Maximizes misclassification rate
+Provides smoothing that reduces the risk of over fitting
+Doesn’t maximize classification rate
+Question 22 1 / 1 pts
+Which one of the following statements about the K-means
+clustering is incorrect?
+All of the mentioned
+The nearest neighbor is the same as the K-means
+The goal of the k-means clustering is to partition (n) observation into (k)
+clusters
+K-means clustering can be defined as the method of quantization
+Question 23 1 / 1 pts
+11 of 23 5/10/2022, 3:05 PM
+
+--- Page 12 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+Partition algorithms usually stop when -----.
+All the observation are assigned to the cluster
+During the same iteration no reallocation occurs, subdivision appears
+stable with respect to the evaluation criterion chosen
+Reallocation occurs and subdivision appears unstable
+Subdivisions appear unstable
+Question 24 1 / 1 pts
+_______ Method derives clusters from the number of
+observations locally falling in a neighborhood of each
+observation.
+Grid method
+Partition method
+Density-based method
+Hierarchical method
+Question 25 1 / 1 pts
+Which clustering algorithm starts with each cluster
+comprising exactly one observation and then progressively
+12 of 23 5/10/2022, 3:05 PM
+
+--- Page 13 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+combines the two nearest clusters until there is just one
+cluster left at the end?
+Complete Linkage clustering
+Agglomerative clustering
+Single Linkage clustering
+Divisive clustering
+Question 26 1 / 1 pts
+Which statement is not true about cluster analysis?
+Groups or clusters are suggested by the data, not defined a priori.
+Objects in each cluster tend to be similar to each other and dissimilar to
+objects in the other clusters.
+Cluster analysis is also called classification analysis or numerical
+taxonomy.
+Cluster analysis is a technique for analyzing data when the criterion or
+dependent variable is categorical and the independent variables are
+interval in nature.
+Question 27 1 / 1 pts
+13 of 23 5/10/2022, 3:05 PM
+
+--- Page 14 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+An observation that is extreme, being distant from the rest of
+the data is termed a ------.
+Feature
+Outlier
+Class
+Predictor
+Question 28 1 / 1 pts
+Which one of the following can be defined as the data object
+which does not comply with the general behavior (or the
+model of available data)?
+Evaluation Analysis
+Classification
+Prediction
+Outlier Analysis
+Question 29 1 / 1 pts
+For the purpose of anomaly detection, in the statistical-based
+approaches we need to -----.
+14 of 23 5/10/2022, 3:05 PM
+
+--- Page 15 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+All of the mentioned
+assume data comes rom normal distribution
+reduce data to lower dimensional data
+use certain kernel function on the given data to construct such a model
+Question 30 1 / 1 pts
+Which of the following will be Euclidean Distance between
+the two data point A(1, 3) and B(2, 3)?
+2
+8
+1
+4
+Question 31 1 / 1 pts
+One of the drawbacks of using statistical methods in anomaly
+detection is:
+Sometime it can be Can difficult to decide on number of clusters
+15 of 23 5/10/2022, 3:05 PM
+
+--- Page 16 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+Density may become less meaningful in high-dimensional space.
+It may be hard to estimate the true distribution for high dimensional data.
+all of the mentioned
+Question 32 1 / 1 pts
+One of the strengths of using statistical methods in anomaly
+detection is:
+It is very effective to find the outliers.
+All of the mentioned
+Theoretically it can be Theoretically it can be applicable to all kinds of
+dataapplicable to all kinds of data
+It can use many dimensionality reduction approaches.
+Question 33 1 / 1 pts
+Which of the following is not trend of data mining?
+Using data mining tasks of customers for targeted marketing
+All of the mentioned
+Mining multimedia, text and web data
+16 of 23 5/10/2022, 3:05 PM
+
+--- Page 17 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+Distributed data mining an real-time data stream mining
+Question 34 1 / 1 pts
+Which of the following is not part of Web Mining:
+Usage Mining
+Structure Mining
+Content Mining
+Database Mining
+IInnccoorrrreecctt Question 35 0 / 1 pts
+Which of the following is an example of the Mining Graphs
+and Network?
+Sequential Pattern Mining in Symbolic Sequences
+Clustering, Ranking and Classification of Heterogeneous Networks
+All of the mentioned
+Mining Web Data
+17 of 23 5/10/2022, 3:05 PM
+
+--- Page 18 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+Question 36 1 / 1 pts
+In web mining, _________ is used to know the order in which
+URLs tend to be accessed.
+clustering
+associations
+classification
+sequential analysis
+Question 37 1 / 1 pts
+Which of the following is a new trend in data mining?
+Invisible data mining
+All of the mentioned
+Scalable data mining methods
+A Web mining
+Question 38 1 / 1 pts
+Which of the following is not an example application of data
+mining in science and engineering?
+18 of 23 5/10/2022, 3:05 PM
+
+--- Page 19 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+All of the mentioned
+Mining of spatiotemporal, biological, diverse semantics and relationships
+C)
+Use sequential pattern mining to investigate changes in customer
+consumption or loyalty
+Use data mining in monitoring systems, software bugs and network
+intrusion
+Question 39 Not yet graded / 3 pts
+Clustering has been popularly recognized as an important
+data mining task with broad applications. Give one
+application example for each of the following cases:
+a) An application that takes clustering as a major data mining
+function.
+b) An application that takes clustering as a preprocessing
+tool for data preparation for other data mining tasks.
+Your Answer:
+Clustering is recognized as an important data mining task with broad
+applications.
+a.)
+ANS: An example that takes clustering as a major data mining function
+could be a system that identifies groups of houses in a city according to
+house type, value, and geographical location. More specifically, a
+clustering algorithm loke CLARANS can be used to discover that, say,
+the most expensive housing units in Vancouver can be grouped into just
+19 of 23 5/10/2022, 3:05 PM
+
+--- Page 20 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+a few clusters.
+(b)
+ANS: An example application that takes clustering as a pre-processing
+tool for other data mining is spatial data mining. Spatial data mining is
+the discovery of interesting relationships and characteristics that may
+exist implicitly in spatial databases. We can apply cluster analysis only
+to spatial attributes, where natural notions of similarity exist. Various
+clustering algorithms, such as PAM, CLARA, or CLARANS may be
+used. The clusters obtained from the clustering algorithm may trigger
+the generation of nonspatial components in the sext step if such a
+generation from interesting groups of objects.
+Question 40 Not yet graded / 3 pts
+Discuss the basic difference between the agglomerative and
+divisive hierarchical clustering algorithms and mention which
+type of hierarchical clustering algorithm is more commonly
+used.
+Your Answer:
+ANS: When compared to agglomerative clustering, divisive clustering is
+more complicated because we require a flat clustering algorithm as a
+subroutine to separate each cluster until each data has its own
+singleton cluster.
+Divisive clustering is more efficient if we do not generate a complete
+hierarchy all the way down to individual data leaves. Time complexity of
+a naïve agglomerative clustering is O(n3) because we exhaustively
+scan N x N matrix dist_mat for lowest distance in each of N-1 iterations.
+Using priority queue data structure, we can reduce this complexity to
+O(n2logn). By using some more optimizations, it can be brought down
+to O(n2). Whereas for divisive clustering given a fixed number of top
+levels, using an efficient flat algorithm like k-means, divisible algorithms
+are linear in the number of patterns and clusters.
+20 of 23 5/10/2022, 3:05 PM
+
+--- Page 21 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+The dividing algorithm is also more precise. Without first examining the
+global distribution of data, agglomerative clustering makes judgments
+based on local patterns or neighbour points. These early decisions are
+irreversible. When generating top-level dividing decisions, divisive
+clustering takes into account the global distribution of data.
+Question 41 Not yet graded / 3 pts
+A database has 4 transactions, shown below.
+Items
+TID
+bought
+T100 {K, A, D, B}
+{D, A, C, E,
+T200
+B}
+T300 {C, A, B, E}
+T400 {B, A, D}
+Assuming a minimum level of support min_sup = 60% and a
+minimum level of confidence min_conf = 80%.
+Given the frequent itemsets are: {{A}, {B}, {D}, {A, B}, {B,
+D}, {A, B, D}}.
+List all of the strong association rules (with support s and
+confidence c) matching the following metarule, where X is
+a variable representing customers, and item denotes
+i
+variables representing items (e.g., “A”, “B”, etc.):
+∀ X∈ transaction, buys(X,item1)∧ buys(X,item2)⇒
+buys(X,item3)[s,c]
+21 of 23 5/10/2022, 3:05 PM
+
+--- Page 22 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+Your Answer:
+ANS:We have given the minimum level of support min_sup = 60% and
+minimum level of confidence min_conf = 80%. So, using this strong
+association rules are given below:
+buys(X, A) ^ buys(X, B) → buys(X, D) (75%, 75%). Hence, it is not
+Strongly connected (Not Strong)
+buys(X, A) ^ buys(X, D) → buys(X, B) (75%, 100%). Hence, it Strongly
+connected. (Strong)
+buys(X, B) ^ buys(X, D) → buys(X, A) (75%, 100%). Hence, it is
+Strongly connected. (Strong)
+Question 42 Not yet graded / 3 pts
+Consider the following set of one-dimensional points: {4, 6,
+17, 19, 23, 27, 33, 37}. Suppose we apply k-means
+clustering to obtain three clusters, A, B, and C. If the three
+initial centroids are located at (15, 25, 31), respectively.
+Show: The three clusters and their new three centers after
+the first round of execution.
+Your Answer:
+ANS: We have given the one-dimensional points:
+{4,6,17,19,23,27,33,37} and the initial centroids are A :15. B: 25, C: 31.
+So, by using the initial centroids we calculate the cluster for A, B and C.
+For Cluster A= {4,6,17,19}
+Centroids = (4+6+17+19)/4 = 11.5
+For Cluster B= {23,27}
+Centroid= (23+27)/2 = 25
+For Cluster C= {33,37}
+22 of 23 5/10/2022, 3:05 PM
+
+--- Page 23 ---
+Final Exam: CSCE 5380 Section 002 - Data Mining (Spring 2022 1) https://unt.instructure.com/courses/62453/quizzes/416436
+centroid= (33+37)/2 = 35
+Hence, the new centroids for the cluster A, B and C are (11.5, 25, 35)
+respectively.
+Quiz Score: 35 out of 50
+23 of 23 5/10/2022, 3:05 PM

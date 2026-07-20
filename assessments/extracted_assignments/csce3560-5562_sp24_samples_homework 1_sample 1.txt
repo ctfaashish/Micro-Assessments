@@ -1,0 +1,91 @@
+
+CSCE 3560 & 5562 – Cloud Security
+
+Question 1: Classify each of thefollowing as a violation of confidentiality, or
+integrity, or availability and explainwhy/how:
+
+1.Eve runs TCP SYN attack against Alice’s email server.
+Availability: Alice’s email serveris waiting to complete the original phony connection
+request,whileits resources are being reserved or exhausted making it unable to respond to
+legitimate requests.
+
+2.Eve is the system admin and misconfigures the company’s email server in a way that all
+the received emails are broadcasted to all.
+Confidentiality: Broadcasting the received emails to all violates and compromises the
+confidentiality of the information.The purpose of confidentiality is to conceal
+information from unauthorized personnel, or even the existence of information.
+
+3.Eve discloses Bob’s health records.
+Confidentiality: The disclosure of Bob’s health records without explicit permission or
+authorization is a violation of confidentiality.It is also a violation of HIPPA laws which is a
+violation of confidentiality.
+
+4.Eve overwrites the files under /var/logof a protected server with empty files.
+Integrity: The unauthorized or unintended tampering of data is a violation of the integrity of
+the data.
+
+Question 2: Find two big cyber attacks targeted to cloud computing occurred after
+2020(i.e.,2020-2023). For each of them, answer the following questions to apply threat
+modeling framework:
+
+- Who applied the attack? What was the purpose?
+- When we apply STRIDE, which issue was targeted by the attackers?
+- How was the attack mitigated?
+- Apply DREAD for both of them and compare which one would have the higher priority.
+
+In 2021 LinkedIn suffered a data breach. The hacker known as “TomLiner” stole around 700
+million LinkedIn user’s information to sell on the darkweb. When we apply STRIDE, we see
+that the attacker was targeting information disclosure (usernames, emails,linked socialmedia
+accounts, etc.). LinkedIn mitigated the attack by issuing a statement to its users ensuring full
+law enforcement cooperation and urging them to stay vigilant against suspicious activity and to
+change passwords.
+
+In 2022, China witnessed its biggest data leak ever recorded-over 1 billion Chinese citizen’s
+data. The Shanghai police database leak was conducted by an unidentified hacker with the sole
+purpose of extorting the Shanghai Police Department. When we apply STRIDE we see that
+the attacker was similarly targeting information disclosure(names,numbers, governmentID
+numbers, police reports,etc.).To mitigate the attack and prevent rampant chaos, the Chinese
+authorities censored the news on the leak and hindered its spreading on social media sites.
+When we apply DREAD to both attacks (on a scale of 0- 5),we see:
+
+Threat D R E A D Sum
+LinkedIn 5 3 3 3 5 19
+Shanghai 5 3 4 5 5 22
+Due to the sheer magnitude of affected parties and nature of the exploit,the 2022 Shanghai
+police data breach would be given the higher priority.
+
+Question 4: Find three IDS/IPS and compare them interms of
+- What are they focusing on?
+- What are they monitoring and how?
+- Are they signature based or anomaly based?
+- Give an example of their rule (one rule for each IDS/IPS) and explain what it does.
+
+Fortinet’s FortiGate focuses on providing security across various network elements. 
+It monitors network traffic at the perimeter, inspects packets, and applies security policies based on various parameters. 
+FortiGate is primarily signature-based and identifies known attack patterns and malicious content based on a signature database. 
+An example of its rule is: config ips sensor. As Fortinet uses a predefined set of rules and configurations within its IPS sensor, 
+this rule allows configurations based on defined company policies.
+
+Juniper’s SRX Series focuses on securing networks against various threats. It monitors network traffic in real time, inspects packets, and applies security policies to detect and prevent known attacks. Juniper employs both signature-based, as well as anomaly-based, detection techniques to identify deviations from normal traffic patterns. An example of its rule is: set security idp policy to xyz, rulebase-ips rule1 match attacks predefined. This rule specifies an IPS policy (xyz) and rule1 matching predefined attack signatures.
+
+F5’s Big-IP focuses on application delivery, load balancing, and traffic management. It monitors and manages application traffic, inspecting packets at the application layer. Big-IP employs both signature-based and anomaly-based detection techniques.
+
+Question 5: Assume that you are creating a service that includes a web server and a database server, which are located on different computers. The clients are accessing the web server using HTTPS protocol. The web server communicates with the database server using PostgreSQL. The admin should be able to have access to both computers using SSH. And, there should be no further access to these machines. Create the required custom firewall rules (for simplification you can use UFW).
+
+
+The custom firewall rules must be designed in such a way that allows the administrator’s
+machine’s IPaddress to access the database server and webserver on port 21.This implicit
+permission would deny all other requests from any other machine than the administrator’s.
+Using the Uncomplicated Firewall:
+
+Allow incoming traffic on 443/ PostgreSQL port
+sudo ufw allow 443/tcp or
+sudo ufw allow 5432/tcp
+Allow incoming traffic only from admin’s IP
+Allow [admin’s IP] on SSH21
+Deny all other incoming traffic
+sudo ufw default deny incoming
+Allow all outgoing traffic
+sudo ufw default allow outgoing
+enable ufw
+sudo ufw enable

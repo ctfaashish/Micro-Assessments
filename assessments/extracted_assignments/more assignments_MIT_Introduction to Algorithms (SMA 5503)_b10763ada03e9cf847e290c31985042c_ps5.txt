@@ -1,0 +1,262 @@
+--- Page 1 ---
+Introduction to Algorithms October 24, 2005
+Massachusetts Institute of Technology 6.046J/18.410J
+Professors Erik D. Demaine and Charles E. Leiserson Handout 16
+Problem Set 5
+MIT students: This problem set is due in lecture on Monday, October 31, 2005. The homework
+lab for this problem set will be held 2–4 P.M. on Sunday, October 30, 2005.
+Reading: Chapter 14 and Skip List Handout.
+Both exercises and problems should be solved, but only the problems should be turned in.
+Exercises are intended to help you master the course material. Even though you should not turn in
+the exercise solutions, you are responsible for material covered in the exercises.
+Mark the top of each sheet with your name, the course number, the problem number, your
+recitation section, the date and the names of any students with whom you collaborated. Please
+staple and turn in your solutions on 3-hole punched paper.
+You will often be called upon to “give an algorithm” to solve a certain problem. Your write-up
+should take the form of a short essay. A topic paragraph should summarize the problem you are
+solving and what your results are. The body of the essay should provide the following:
+1. A description of the algorithm in English and, if helpful, pseudo-code.
+2. At least one worked example or diagram to show more precisely how your algorithm works.
+3. A proof (or indication) of the correctness of the algorithm.
+4. An analysis of the running time of the algorithm.
+Remember, your goal is to communicate. Full credit will be given only to correct solutions
+which are described clearly. Convoluted and obtuse descriptions will receive low marks.
+Exercise 5-1. Do Exercise 14.1-5 on page 307 of CLRS.
+Exercise 5-2. Do Exercise 14.2-1 on page 310 of CLRS.
+Exercise 5-3. Do Exercise 14.3-4 on page 317 of CLRS.
+Exercise 5-4. Do Problem 14.2 on page 318 of CLRS.
+
+--- Page 2 ---
+2 Handout 16: Problem Set 5
+Problem 5-1. Skip Lists and B-trees
+Intuitively, it is easier to find an element that is nearby an element you’ve already seen. In a
+dynamic-set data structure, a finger search from x to y is the following query: given the node in
+the data structure that stores the element x, and given another element y, find the node in the data
+structure that stores y. Skip lists support fast finger searches in the following sense.
+(a) Give an algorithm for finger searching from x to y in a skip list. Your algorithm
+should run in O(lg(2+|rank(x)−rank(y)|)) time with high probability, where rank(x)
+denotes the current rank of element x in the sorted order of the dynamic set.
+When we say “with high probability” we mean high probability with respect to m =
+2 + |rank(x) − rank(y)|. That is, your algorithm should run in O(lg m) time with
+probability 1 − 1/m�, for any � � 1.
+Assume that the finger-search operation is given the node in the bottommost list of the
+skip list that stores the element x.
+To support fast finger searches in B-trees, we need two ideas: B+-trees and level linking. Through­
+out this problem, assume that B = O(1).
+A B + -tree is a B-tree in which all the keys are stored in the leaves, and internal nodes store copies
+of these keys. More precisely, an internal node pwith k+ 1 children c ,c ,...,c stores k keys:
+1 2 k+1
+the maximum key in c ’s subtree, the maximum key in c ’s subtree, . . . , the maximum key in c ’s
+1 2 k
+subtree.
+(b) Describe how to modify the B-tree SEARCH algorithm in order to find the leaf con­
+taining a given key x in a B+-tree in O(lg n) time.
+(c) Describe how to modify the B-tree INSERT and DELETE algorithms to work for B+-
+trees in O(lg n) time.
+A level-linked B+-tree is a B+-tree in which each node has an additional pointer to the node
+immediately to its left among nodes at the same depth, as well as an additional pointer to the node
+immediately to its right among nodes at the same depth.
+(d) Describe how your B+-tree INSERT and DELETE algorithms from part (c) can be
+modified to maintain level links in O(log n) time per operation.
+(e) Give an algorithm for finger searching from x to y in a level-linked B+-tree. Your
+algorithm should run in O(lg(2 + |rank(x) − rank(y)|)) time.
+These ideas suggest a connection between skip lists and level-linked 2-3-4 trees. In fact, a skip list
+is essentially a randomized version of level-linked B+-tree.
+(f) Describe how to implement a deterministic skip list. That is, your data structure
+should have the same general pointer structure as a skip list: a sequence of one or
+
+--- Page 3 ---
+Handout 16: Problem Set 5 3
+y ( m 1, 7 5 = ) 3 (5, 4) y ( m 1, 7 5 = ) 3 ( m 5, 5 4 = ) 6
+m5 =6
+(3, 3)
+(−2, 3) m ( 6 3 , = 3) 3 ( m − 1 2 , = 3) 3 m6 =3
+m1 =3
+(3, 2)
+(1, 1) ( m 3, 4 2 = ) 4 ( m 1, 3 1 = ) 2 m4 =4
+m3 =2
+x
+x
+(−1, −1) (2, −1)
+(−1, −1) (2, −1) m2 =2 m8 =2
+m2 =2 m8 =2
+xmin =1
+Figure 1: In this example of eight points, if Figure 2: When x min = 1, T(1) =
+f(p ) = m , then F(S) = 25. {p ,p ,p ,p ,p ,p } and F(T(1)) = 20.
+i i 3 4 5 6 7 8
+more linked lists with pointers between nodes in adjacent lists that store the same key.
+The SEARCH algorithm should be identical to that of a skip list. You will need to
+modify the INSERT operation to avoid the use of randomization to determine whether
+a key should be promoted. You may ignore DELETE for this problem part.
+Problem 5-2. Fun with Points in the Plane
+It is 3 a.m. and you are attempting to watch 6.046 lectures on video, looking for hints for Problem
+Set 5. For some odd reason, possibly because you are fading in and out of consciousness, you start
+to notice a strange cloud of black dots on an otherwise white wall in your room. Thus, instead of
+watching the lecture, your subconscious mind starts trying to solve the following problem.
+Let S = {p ,p ,...,p } be a set of npoints in the xy plane. Each point p has coordinates (x ,y )
+1 2 n i i i
+and has a weight m (a real number representing the size of the dot). Let f(p) = f(x,y,m) be
+i
+an arbitrary function mapping a point p with coordinates (x,y) and weight m to a real number,
+computable in O(1) time. For a subset T of S, define the function F(T) to be the sum of f(p )
+i
+over all points in T, i.e.,
+F(T) = f(p).
+�
+p�T
+For example, if f(p ) = m , then F(S) is the sum of the weights of all n points. This case is
+i i
+depicted in Figure 1.
+Our goal is to compute the function F for certain subsets of the points. We call each subset a
+query, and for each query T, we want to calculate F(T). Because there may be a large number of
+queries, we want to design a data structure that will allow us to efficiently answer each query.
+
+--- Page 4 ---
+4 Handout 16: Problem Set 5
+First we consider queries that restrict the x coordinate. In particular, consider the set of points
+whose x coordinates are at least x . Formally, let T(x ) be the set of points
+min min
+T(x ) = {p � S | x � x } .
+min i i min
+We want to answer queries of the following form: given any value x as input, calculate the
+min
+value F(T(x )). Figure 2 is an example of such a query. In this case, x = 1, and the points
+min min
+of interest are those with x coordinate at least 1.
+(a) Show how to modify a balanced binary search tree to support such a query in O(lg n)
+time. More specifically, the computation of F(T(x )) can be performed using only
+min
+a single walk down the tree. You do not need to support updates (insertions and
+deletions) for this problem part.
+(b) Consider the static problem, where all n points are known ahead of time. How long
+does it take to build your data structure from part (a)?
+(c) In total, given n points, how long does it take to build your data structure and answer
+k different queries? On the other hand, how long would it take to answer k different
+queries without using any data structure and using the na¨ıve algorithm of computing
+F(T(x )) from scratch for every query? For what values of k is it asymptotically
+min
+more efficient to use the data structure?
+(d) We can make this data structure dynamic by using a red-black tree. Argue that the
+augmentation for your solution in part (a) can be efficiently supported in a red-black
+tree, i.e., that points can be inserted or deleted in O(lg n) time.
+Next we consider queries that take an interval X = [x ,x ] (with x � x ) as input
+min max min max
+instead of a single number x . Let T(X) be the set of points whose x coordinates fall in that
+min
+interval, i.e.,
+T(X) = {p | x � [x ,x ]} .
+i i min max
+See Figure 3 for an example of this sort of query.
+We claim that we can use the same dynamic data structure from part (d) to compute F(T(X)).
+(e) Show how to modify your algorithm from part (a) to compute F(T(X)) in O(lg n)
+time. Hint: Find the shallowest node in the tree whose x coordinate lies between x
+min
+and x .
+max
+Finally, we generalize the static problem to two dimensions. Suppose that we are given two inter­
+vals, X = [x ,x ] and Y = [y ,y ]. Let T(X,Y) be the set of all points in this rectangle,
+min max min max
+i.e.,
+T(X,Y) = {p | x � X and y � Y} .
+i i i
+See Figure 4 for an example of a two-dimensional query.
+
+--- Page 5 ---
+Handout 16: Problem Set 5 5
+y ( m 1, 7 5 = ) 3 m (5, 5 4 = ) 6 y ( m 1, 7 5 = ) 3 (5, 4)
+m5 = 6
+(3, 3)
+m (− 1 2 , = 3 ) 3 m6 = 3 (−2, 3) m ( 6 3 , = 3) 3
+m1 =3 ymax =2.5
+(3, 2)
+m (1, 3 1 = ) 2 m4 = 4 (1, 1) m ( 4 3 , = 2 ) 4
+m3 = 2
+x
+x
+(−1, −1) (2, −1)
+m2 = 2 m8 = 2 (−1, −1) (2, −1)
+m2 =2 m8 = 2
+xmax = 3.5
+xmin = 1 xmax =1 xmin =1 ymin = −2
+Figure 3: When X = [1,3.5], T(X) = Figure 4: For X = [1,3.5] and Y =
+{p ,p ,p ,p ,p } and F(T(X)) = 14. [−2,2.5], T(X,Y) = {p ,p ,p } and
+3 4 6 7 8 3 4 8
+F(T(X,Y)) = 8.
+(f) Describe a data structure that efficiently supports a query to compute F(T(X,Y)) for
+arbitrary intervals X and Y. A query should run in O(lg
+2
+n) time. Hint: Augment a
+range tree.
+(g) How long does it take to build your data structure? How much space does it use?
+Unfortunately, there are problems with making this data structure dynamic.
+(h) Explain whether your argument in part (d) can be generalized to the two-dimensional
+case. What is the worst-case time required to insert a new point into the data structure
+in part (f)?
+(i) Suppose that, once we construct the data structure with n initial points, we will per­
+form at most O(lg n) updates. How can we modify the data structure to support both
+queries and updates efficiently in this case?
+Completely Optional Parts
+The remainder of this problem presents an example of a function F that is useful in an actual
+application and that can be computed efficiently using the data structures you described in the
+previous parts. Parts (j) through (l) outline the derivation of the corresponding function f(p ).
+i
+The remainder of this problem is completely optional. Please do not turn these parts in!
+As before, consider a set S = {p ,p ,...,p } of n points in the plane, with each point p having
+1 2 n i
+coordinates (x ,y ) and a weight m . We want to compute the axis that minimizes the moment of
+i i i
+
+--- Page 6 ---
+6 Handout 16: Problem Set 5
+inertia of the points in the set. Formally, we want to compute a line L in the plane that minimizes
+the quantity
+n
+2
+m d(L, p ) ,
+� i � i
+i=1
+where d(L, p ) is the distance from point p to the line L. If m = 1 for all i, we can think of this
+i i i
+axis as the “orientation” of the set.
+(j) One parameterization of a line in the xy plane is to describe it using a pair (�, �),
+where � is the distance from the origin to the line and � is the angle the line makes
+with the x axis. It can be shown that the distance between a point (x, y) and a line L
+parameterized by (�, �) is
+|x sin � − y cos � + �|.
+We defined the orientation of the set of points S as the line L = (�, �) that minimizes
+the function
+n
+f (�, �) = m (x sin � − y cos � + �)
+2
+.
+� i i i
+i=1
+Show that setting αf = 0 gives us the constraint
+α�
+M sin � − M cos � + M � = 0,
+x1 y1 0
+where
+n n n
+M = m , M = m x , M = m y .
+0 � i x1 � i i y1 � i i
+i=1 i=1 i=1
+(k) Show that setting αf = 0 and using the constraint from part (j) leads to the equation
+α�
+2 (M M − M M )
+0 xy x1 y1
+tan 2� = ,
+M (M − M ) + M 2 − M 2
+0 x2 y2 y1 x1
+where
+n n n
+M = m x y , M = m x
+2
+, M = m y
+2
+.
+xy � i i i x2 � i i y2 � i i
+i=1 i=1 i=1
+(l) Give the function f (p ) that makes the orientation problem a special case of the prob­
+i
+lem we just solved. Hint: The function f (p ) is a vector-valued function.
+i

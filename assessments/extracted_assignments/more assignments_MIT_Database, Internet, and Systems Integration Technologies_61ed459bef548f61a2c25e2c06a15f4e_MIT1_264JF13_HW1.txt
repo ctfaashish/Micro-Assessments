@@ -1,0 +1,214 @@
+--- Page 1 ---
+Homework 1
+1.264, Fall 2013
+Software process
+Due Wednesday, September 11
+1. Automated location data on public transit vehicles (35%)
+Your company just received a contract to develop an automated vehicle location system for a
+transit agency. GPS receivers and wireless modems are being placed on all buses in the fleet
+and will report location data every minute. The agency has retained your company to write
+the system to display the data in a Web-based system.
+The selection committee thought your proposal was wonderful, and it additionally wanted to
+interface your system to the farebox on the bus. This would provide an estimate of how full
+the bus is, which is useful for passengers waiting to board at locations where they can choose
+to take a different route, or where they can wait for a near-empty bus closely following a full
+bus.
+You had written your proposal as a stand-alone system without the ability to interface with
+other systems. The project is 18 months in duration and you have been asked if you can add
+the extra interface within that time.
+You meet with your boss the next day, who had participated in the final presentations and
+question-answer period. She believes that you will need to implement the farebox interface to
+win the project, and that the revised budget and schedule cannot be much greater than those in
+the current proposal. The two of you discuss it for an hour, and you agree to a 21 month
+effort (versus 18), with at 15% higher budget.
+You have 8 technical staff members on the project; this is unchanged. Your initial proposal
+had assumed that requirements were set. You must now develop the requirements for the
+farebox interface, as well as deciding how to display the bus load information in your system;
+it’s not just the sum of boardings from the farebox, since riders alight at many stops also.
+These requirements changes take two unplanned months at the start, and the additional
+features lengthen the design period by a month as well, consuming the entire 3 months of
+extra time.
+Developing the interface to the farebox goes very slowly. The farebox vendor interface has
+many bugs since it’s never been used before, and you also wind up having to ask for some
+changes in it to support the tie to the GPS location: the clocks have to be synchronized, logic
+for handling farebox errors must be developed, etc. The farebox vendor has little incentive to
+move quickly, and development falls two months behind schedule at the halfway point.
+QA and documentation staff tell you that it will take them two months longer than scheduled
+to review all the requirements and design changes, modify the documentation, and to conduct
+roughly double the amount of testing and review that was originally scheduled, because of the
+many complications in the interface to the farebox. This puts you 4 months behind.
+1
+
+--- Page 2 ---
+The client, the transit agency, is not pleased when you inform them that the project is
+projected to take 25 months, versus the 21 in your proposal, and the 18 month expectation that
+they still hold on to from the original proposal. The transit agency demands a weekly on-site
+progress meeting that requires two of the technical staff to spend two days a week to prepare,
+travel to and from the agency, and to give a presentation on project status. This cuts the
+effective size of your staff from 8 to 7.2, a 10% cut, which you estimate will increase the time
+to complete by 10% or roughly 2 more months. The projected completion time is now 27
+months and you will overrun your budget by 10% plus the extra travel costs.
+You are the 6 month point in the project. You meet with your boss to discuss how to complete
+the project in 21 months and on budget. You have implicitly been using a waterfall lifecycle
+model so far.
+a. At this point you read the Rapid Development book, and tell your boss that
+you now understand how to manage projects better. Your boss asks you to write a
+memo, no more than two pages, double-spaced, that:
+ lists the mistakes that were made in this project,
+ what should be done instead in these areas, and
+ what you would recommend to prevent this from occurring again.
+Your memo must be well-reasoned and well-written. It is often effective to describe the
+decision issues and summary of conclusions at to the start of the memo.
+2. Manufacturing process software (15%)
+Your company had hired a large IT consulting firm to build a specialized software system for
+your manufacturing plants. You had examined off-the-solutions, but none had the ability to
+process the unique products that you make. Your products are assembled from a large set of
+standard components in a custom configuration for every customer. No off-the-shelf system
+allowed you to track the components, assemblies and connectors in a way that interfaced with
+your robotic production clusters; no off-the-shelf system allowed your customers and you to
+record past product customization so it could easily be reused in future orders for similar (but
+not identical) products.
+The large IT firm used an “agile” process. The initial versions of the plant software were done
+quickly but were so simplified that it was hard for your staff to even comment on them.
+However, it was taking a very long time for your staff to educate the IT firm on the
+complexities that the real plant software would have to handle, and initial versions from the
+IT firm were very weak.
+The project was scheduled to produce initial software that could be installed in the plant in 12
+months. After 6 months of work, it seemed that 80% of the effort had been spent educating
+the outside firm. No usable requirements, designs or software had been produced. You meet
+with your boss to discuss options.
+2
+
+--- Page 3 ---
+Your boss asks you to write a memo, no more than one page, double-spaced, to list
+at least two options that you believe will allow the manufacturing software to be built in
+12 months. If you feel 12 months is infeasible, provide a better schedule estimate.
+Briefly describe the key problems to be resolved, and how each of your options
+addresses them. Recommend one option to your boss.
+Your memo must be well-reasoned and well-written. It is often effective to describe the
+decision issues and summary of conclusions at to the start of the memo.
+There is not a single answer to these questions; you should provide a reasoned response,
+referencing material in McConnell. Cover only the major points.
+3. Software installation (50%)
+Install Visual Paradigm 10.2, SQL Server Express 2012 and Microsoft Visual Studio Express
+2012 for Web on your laptop computer. If needed, install Java runtime software, make sure
+that Microsoft security patches are being installed and that a firewall and virus protection are
+installed. See the reading on the course Web site for detailed download and installation
+instructions. If your installed version of Microsoft Windows does not have English as its
+language, you may have difficulties installing SQL Server Express or Microsoft Visual
+Studio for Web. Check the Microsoft Web site to see if problems have been reported
+with your language. We recommend that you use the English version.
+a. After installing the Visual Paradigm software, perform the following steps and hand in
+a screen shot of the result:
+1. Open Visual Paradigm. Choose a workspace if prompted. The default is fine.
+2. File-> New Project. Name it Homework 1. ‘Create Blank Project.’
+3. File-> New Diagram -> UML Diagrams -> Use Case Diagram. Accept the
+default name, Use Case Diagram 1.
+4. Click on the Use Case icon in Tools; click on the editor window. Name the use
+case Example 1. Repeat; name the second use case Example 2. Click on the
+Association icon in Tools; connect your two use cases with it by holding down
+the left button on your mouse and drawing a line between them.
+5. The output should look like Figure 1 below.
+6. File-> Save Project and Exit.
+b. After installing the SQL Server software, perform the following steps and hand in a
+screen shot of the result:
+1. Open SQL Server Management Studio. Use SQL Server Authentication with
+the username and password that you established when you installed the
+software. Do not use Windows Authentication. Make sure you created a
+username and password for yourself when you installed. If you didn’t, correct
+this now. Look online or ask the TA at office hours.
+2. Click on the ‘New Query’ button at the upper left to open a SQL query file in
+the editor.
+3. In the editor, type: CREATE DATABASE Homework1
+3
+
+--- Page 4 ---
+4. Click on the Execute button.
+5. In the Object Explorer, right click on Databases and select ‘Refresh’. The
+Homework1 database should now appear in the list.
+6. In the dropdown window at the upper left, select Homework1 as the working
+database.
+7. In the editor, type: CREATE TABLE Test1 (Sales MONEY). Highlight that
+line with the mouse (left click and drag), and click on the ‘Execute’ button.
+Open the Homework1 entry in the Object Explorer under Databases; then open
+the Tables entry under Homework1. Left click on the Tables entry, select
+Refresh, and the Test1 table should appear in the list. It will display as
+dbo.Test1. (dbo means database owner.)
+8. In the editor, type: INSERT INTO Test1 VALUES (100). Execute it.
+9. In the editor, type: SELECT * FROM Test1. Execute it.
+10. The output should look like Figure 2 below.
+c. After installing the Microsoft Visual Studio Express 2012 for Web, perform the
+following steps and hand in a screen shot of the result:
+1. Open VS Express for Web. On the main menu, choose File->New Web Site.
+(Do not select New Project.) Under Installed Templates, Visual C#, select New
+Project-> ASP.NET Web Site. (Do not use Visual Basic.) Use the default
+name and location. (WebSite1 in your …WebSites folder).
+2. In the window on the upper right, select the Database Explorer tab. Right click
+on Data Connections and select Add Connection. Select Microsoft SQL
+Server(Sql Client), not SQL Server Database File.
+3. In the Add Connection dialog box, select or enter your server name
+(.\SQLEXPRESS or whatever you configured when you installed), ‘Use SQL
+Server Authentication’, your username and password, check ‘Save my
+password’, and select the Homework1 database. Press ‘Test connection’; it
+should be ok.
+4. From the main VS Express for Web menu at the top, select File-> New File.
+Under Installed Templates on the left, choose Visual C#. Click on Web Form
+and click Add. The file name will be Default2.aspx.
+5. Select the Design view tab on the bottom left.
+6. Using the toolbox on the left margin, open the data tab and select
+SQLDataSource. Left click and drag it onto the main editor; select Configure
+Data Source, select the Homework1 connection, and click through all the
+defaults. Select ‘Test Query’, which should return ‘100’, and then click on
+Finish.
+7. Again using the data tab in the toolbox on the left margin, select GridView and
+drag it on top of the SQLDataSource in the main editor window. Configure it
+by choosing SQLDataSource1. Nothing else needs to be changed.
+8. The Web page, in design view, should look like Figure 3 below.
+9. Save the Web page (ctrl-S). Accept the default name of Default2.aspx.
+10. On the File menu, click on ‘View in Browser’ and a page should appear as
+shown in Figure 4 below.
+4
+
+--- Page 5 ---
+d. Register your SQL Server and VS Express for Web software at the Microsoft
+site. Go to Help-> Register Product. It will expire in 30 days if you don’t register
+it. If you don’t do this, your software will expire at about the time we start to use
+it in class.
+e. Set a default browser; it can be any browser that you prefer. See your browser’s
+instructions for how to do this; it’s generally in your browser’s Options menu.
+Figure 1: Visual Paradigm
+5
+
+--- Page 6 ---
+Figure 2: SQL Server
+6
+
+--- Page 7 ---
+Figure 3. VS Express for Web
+Figure 4. Browser view of Web page
+7
+
+--- Page 8 ---
+3. Course policies. (You must answer these questions correctly to receive credit for this
+and future homework submissions.)
+a. What is the academic honesty policy for homework sets?
+b. Must both teammates participate in all parts of doing each homework?
+c. Can you look at another group’s homework, or allow them to look at your homework?
+d. How many copies of the homework submission should your team upload to the 1.264 course
+Web site? (If you upload the wrong number, we will not grade that homework and
+you and your partner will receive a zero grade.)
+e. Does everyone have to upload their active learning exercises separately to the 1.264 course
+Web site, even if they worked with someone else during the class?
+f. Are you allowed to work with someone on active learning exercises?
+Please submit this on the course Web site along with your answers to questions 1 and 2.
+Hand in:
+Place all of your Word files for questions 1, 2 and 3, and the four screen shots for question 3
+into a single zip file that you upload to the course Web site.
+8
+
+--- Page 9 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+1.264J / ESD.264J Database, Internet, and Systems Integration Technologies
+Fall 2013
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

@@ -1,0 +1,33 @@
+
+There exist multiple TPM chipset manufacturers. Among them Infineon Technologies AG
+chipsets had a vulnerability that wakens public key resistance. Explain how the attackers can
+apply this attack.
+
+Question 2 (25 pts):
+Recently a new version of Spectre attack has been announced; i.e., known as Spectre-BHI.
+Actually, initially AMD was thought to be not affected by this attack, which was then shown to
+be incorrect. Explain
+(a) how this attack works (5 pts),
+(b) how AMD (was expected to) mitigate (5 pts),
+(c) what are the current solutions (10 pts)
+(d) how the current solutions affect the performance (5 pts)
+Question 3 (20 pts):
+What are the differences between paravirtualization, full virtualization, hardware-assisted
+virtualization? What are their pros and cons?
+
+Question 4 (20 pts):
+Xen is one of the commonly used hypervisors. What makes it special? What are the advantages
+of Xen compared to other hypervisors?
+
+Question 5 (20 pts):
+This step will be a hands-on implementation. On your Linux VM, on one terminal run top
+command and on another terminal, run the following command (it has to be exactly the same, be
+careful):
+:(){ :|:& };:
+a. What happens when you run this attack? Also explain using the top behavior.
+b. What is this attack called?
+c. Show one method to prevent it and prove that it worked. Explain how it prevents.
+
+Question 6 :
+What is the difference between a side-channel attack and covert-channel attack. Give one
+example to explain.

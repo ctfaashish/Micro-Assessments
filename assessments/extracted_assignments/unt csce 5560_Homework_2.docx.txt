@@ -1,0 +1,112 @@
+--- Page 1 ---
+CSCE 5560 Secure Electronic Commerce Spring 2018
+Homework 2
+Due: 11:59 PM on Tuesday, February 13, 2018.
+Please answer in your own words.
+1. (15 points) With regards to hardware scalability, identify and briefly describe the three
+steps that can be taken to meet increasing demands for web site services.
+The steps which are involved for increasing the demands of web site services are as
+follows:
+ Scalability of hardware Horizontally
+It involves the addition of processing servers to the site and balancing the load among
+them. It can be done using various PCs, so that if one machine fails another machine
+would come into existence.
+ Scalability of hardware Vertically
+It includes the upgrading the servers such as converting from single core processor to
+multi core processors. Among which some servers may be powerful, and some may be
+little less when compared with others.
+ Improvising the processing architecture
+It can be achieved by recognizing the similar workloads and using the same kind servers
+being allocated to them for the processing of data.
+2. (20 points) We discussed in class that third generation e-commerce technologies added
+the capability for customers to find information about companies, products, and services
+through the use of search engines. The search engines themselves make use of web
+crawlers to find and index available web pages, which increases the likelihood of
+potential customers finding out about web sites.
+a. State one valid reason why an owner of a web site might not want to have a web
+crawler access his/her web site.
+Using a web crawler for his/her website, results in indexing of the website content when
+anyone searches for the content. So, the site only places in the top inly when the site has
+the maximum hits. If the site doesn’t have many views, then the search results in various
+other sites rather than his/her’s website. Therefore, instead of using a web crawler for the
+website, it is better to place the advertisements for the website so that it may result in
+views than the web crawler.
+b. E-commerce sites use markup languages such as HTML and XML as part of their
+infrastructure for message and information distribution. These tags can make simplify
+the job of search engine by providing context to the site’s content, such as clarifying
+which of several meanings of a particular word is the relevant one. What is one major
+1 of 3
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:14 GMT -05:00
+https://www.coursehero.com/file/28668988/Homework-2docx/
+
+--- Page 2 ---
+CSCE 5560 Secure Electronic Commerce Spring 2018
+downside of search engines relying on this page content?
+E-commerce sites use HTML and XML as a part of their websites. Whenever, the website
+is being updated with new data, the XML needs more tags be added to display the new
+data. When the data grows bigger, the tags needed to display also gets larger which
+results in blank spaces in the search engine, if any tag gets avoided. This results in
+downside of the search engines which rely on the page content displayed using the tags.
+3. (15 points) Explain the difference(s) between XML and HTML and why XML is
+important for e-commerce.
+ XML is used to describe data and to focalize on what the data represent whereas
+HTML is about displaying data.
+ The goal of XML is to handle a data structure and its representation.
+ XML provides robust, persistent and verifiable file format for the storage and
+transmission of text and data. It removes the complex options of SGML.
+4. (10 points) Based on the OSI or TCP/IP model that we discussed, why would it not be
+sufficient to provide security at the lowest layer (i.e., the physical layer or network access
+layer, respectively) to prevent attacks?
+ In case of OSI model, fragmentation attacks may occur, when the hacker
+manipulates the datagram fragments to overlap in such a way to crash the victim’s
+computer. In this physical layer as well, if the hacker gets any physical access, it
+must be concerned.
+ In the TCP/IP model, the hackers can use a variety of programs to spoof the MAC
+address on the network layer. Physical layer is always a threat, when considered
+the attention of the user or developer.
+5. (15 points) List each component of a 3-tiered architecture model in e-commerce and
+describe the role of each.
+ Presentation Layer
+It is given as the user interface. Main function of the interface is to translate tasks and
+results to format that the user can understand.
+ Logic Tier
+This layer makes the logical discussions and evaluations & also performs calculations. It
+also moves and processes data between the top and bottom layers.
+ Data Tier
+This is the layer which performs the storage and retrieval process from the database. This
+data is then pushed to the top layers for the user.
+2 of 3
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:14 GMT -05:00
+https://www.coursehero.com/file/28668988/Homework-2docx/
+
+--- Page 3 ---
+CSCE 5560 Secure Electronic Commerce Spring 2018
+6. (15 points) Identify the three key points of vulnerability in an e-commerce environment.
+Briefly identify/describe the at least two ways each vulnerability can be exploited and the
+countermeasures that may be implemented to prevent these attacks.
+Three key points of vulnerability in an e-commerce environment are:
+ Client
+A client may be attacked through computer viruses or the loss of the machine. Attack can
+be of just leaving the system when the account is logged in. Counter measures can be
+given as the personal firewalls, education about the attacks and importance of account
+credentials, may also include the anti-virus software.
+ Server
+The server can be attacked by the malicious code, insider jobs, line tap, or the rogue
+programs. For the server attacks the countermeasures may include firewalls, password
+policy, anti-virus software and the encryption.
+ Communication Channel
+The communication channel can be exploited by the man-in-the-middle attacks, denial-of-
+service, traffic analysis etc. Counter measures for securing the communication channel is
+through encryption of communication channel by SSL, VPN’s or S-HTTP.
+7. (10 points) Why are spyware and adware considered to be a security threat?
+ Spyware can be used to track the usage of computer by different persons. It also
+collects the personal information such as frequently visited websites, even credit
+card details. When the spyware is installed, the user cannot find it. It can be in the
+form of cookies.
+ Adware may slow your computer and flood your screen with pop-up
+advertisements. This program may collect information regarding the websites you
+visit for generating targeted advertisements.
+3 of 3
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:14 GMT -05:00
+https://www.coursehero.com/file/28668988/Homework-2docx/
+Powered by TCPDF (www.tcpdf.org)

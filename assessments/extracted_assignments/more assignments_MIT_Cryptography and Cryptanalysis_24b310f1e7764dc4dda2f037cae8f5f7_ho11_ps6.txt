@@ -1,0 +1,68 @@
+--- Page 1 ---
+6.875/18.425J Cryptography and Cryptanalysis April 20, 2005
+Handout 11: Problem Set #6
+This problem set is due on: May 3, 2005.
+Problem 1 ­ Perfectly Hiding Commitment
+Definition:
+A two­round perfectly­hiding commitment scheme is a triple of efficient algorithms
+(GEN, COM, V ER) satisfying the following properties.
+Correctness: For all security parameters k and inputs α,
+Pr[g ← GEN(1k ); (c, d) ← COM(g, α) : V ER(g, c, d, α) = TRUE] = 1
+Binding: For all k, and for any probabilistic polynomial­time cheating commiter C∗:
+Pr[g ← GEN(1k ); (c, d , d , α , α ) ← C∗(g) :
+1 2 1 2
+V ER(g, c, d , α ) = V ER(g, c, d , α ) = TRUE ∧ α �= α ] < negligible(k)
+1 1 2 2 1 2
+Perfect Hiding: For all k, and all inputs α and β the following distributions are identical:
+�g ← GEN(1k ); (c, d) ← COM(g, α) : (g, c)� = �g ← GEN(1k ) : (c, d) ← COM(g, β) : (g, c)�
+Protocol:
+Consider the following two­round protocol for committing to a k­bit value, α. The
+algorithm GEN randomly selects (p, g, h) subject only to the following conditions: (1)
+p is a k + 1­bit prime number and (2) g and h are generators of Z∗. The algorithm
+p
+COM on input (p, g, h) and α selects a random t ∈ Z∗ and outputs the commitment
+p
+message c = gthα mod p and the decommitment message t. The algorithm V ER on
+input (p, g, h), c, t and α outputs TRUE if and only if c = gthα (mod p).
+Prove: the above protocol is, in fact, a perfectly­hiding commitment scheme.
+11­1
+
+--- Page 2 ---
+Problem 2 ­ Zero­Knowledge in Parallel
+Let (GEN, COM,V ER) be a perfectly hiding commitment scheme. Here we provide a
+five­round proof system for ISO.1 with negligible soundness error.
+1. The prover selects g ← GEN(1k ) and sends g to the verifier.
+2. The verifier chooses a k­bit random string r, selects (c, d) ← COM(g,r) and sends
+c to the prover.
+3. The prover randomly selects k graphs C ,. . .C such that each C is isomorphic to
+1 k i
+G and sends C ,. . ., C to the verifier.
+1 k
+4. The verifier sends d and r to the prover.
+5. If r = V ER(g, c,d) then for each graph C the prover sends the verifier a random
+i
+isomorphism mapping G to C if the ith bit of r is 0 and a random isomorphism
+i
+mapping H to C if the ith bit of r is 1.
+i
+Prove: the above protocol is, in fact, a zero­knowledge proof system for ISO.
+Problem 3 ­ Hiding and Binding
+Prove or Disprove: There exists a bit commitment scheme which is both perfectly
+hiding and perfectly binding.
+Note: A perfectly hiding commitment scheme is defined in problem 1. A commitment
+scheme is perfectly binding if the binding condition holds with respect to all cheating com­
+miters (as opposed to only those running in probabilistic polynomial­time). Encryption
+is an example of a perfectly binding commitment scheme.
+Problem 4 ­ Proofs of Knowledge
+Let L be a language in NP and for x ∈ L let W be the set of NP­witnesses for x.
+x
+Informally, (P,V ) is a ZK proof of knowledge for L if on common input x, P convinces
+V that he knows an element of W and yet interacting with P provides V provides P
+x
+with no knowledge other than that x ∈ L. (In particular, V learns nothing about which
+element of W the prover knows!)
+x
+Provide a formal definition of a zero­knowledge proof of knowledge and explain why your
+definition captures informal notion above.
+1The language of all pairs of graphs (G, H) such that G is isomorphic to H.
+11­2

@@ -1,0 +1,73 @@
+--- Page 1 ---
+6.231 Dynamic Programming
+Midterm, Fall 2009
+Problem 1 (30 points)
+Anenterprisingfinancierdreamsofmakingitbiginthecurrencymarket. Hemaytradebetweenncurrencies
+c ,...,c and can convert a unit of c to r units of c , for any currency pair (c ,c ) (we assume r >0 for
+1 n i ij j i j ij
+all i and j). He is looking for a cycle of currencies
+c →c →···→c →c
+i1 i2 ik i1
+such that
+r ·r ···r ·r >1
+i1i2 i2i3 ik−1ik iki1
+(also known as an arbitrage opportunity).
+(a) Formulate a shortest path problem, which has finite (>−∞) shortest distances if and only if there is no
+arbitrage opportunity.
+(b) Give an algorithm that detects the existence of an arbitrage opportunity.
+Problem 2 (35 points)
+Considerthebasicproblemoverafinitehorizonandassumethatthesystemequationx =f (x ,u ,w )
+k+1 k k k k
+has a special structure whereby from state x after applying u we move to an intermediate “post-decision
+k k
+state” y =p (x ,u ) at cost g (x ,u ). Then from y we move at no cost to the new state x according
+k k k k k k k k k+1
+to
+x =h (y ,w ),
+k+1 k k k
+where the distribution of the disturbance w depends only on y , and not on prior disturbances, states, and
+k k
+controls. Denote:
+J (x ): The optimal cost-to-go starting at time k from state x .
+k k k
+V (y ): The optimal cost-to-go starting at time k from post-decision state y .
+k k k
+(a) Write a DP algorithm that generates only J , k =0,1,...,N −1.
+k
+(b) Write a DP algorithm that simultaneously generates J and V , k =0,1,...,N −1.
+k k
+(c) Write a DP algorithm that generates only V , k =0,1,...,N −1.
+k
+(d) Compare the algorithms and discuss the advantages and disadvantages of each in the case where J and
+k
+or V are computed off-line, and the optimal policy is computed on-line with knowledge of J and/or V ,
+k k k
+k =0,1,...,N −1.
+1
+
+--- Page 2 ---
+Problem 3 (35 points)
+A workshop manager has just bought an expensive new machine, and at each day he has two options:
+maintain the machine at cost M, or not maintain it. However, in the latter case, he runs the risk of a
+breakdown, which costs B and occurs with probability p , where j is the number of consecutive days after
+j
+the preceding breakdown (if any) that the machine has not been maintained (e.g., on the first day with
+no maintenance the probability of breakdown is p , on the second successive day of no maintenance the
+1
+probability of breakdown is p , etc). Assume that p is monotonically nondecreasing in j, and that there
+2 j
+exists an integer m such that p B >M.
+m
+(a) Formulate this as an infinite horizon discounted cost problem with states 0,1,...,m, and write the cor-
+responding Bellman’s equation.
+(b) Characterize as best as you can the optimal policy.
+(c) Formulate the infinite horizon average cost version of this problem with finite state space and write the
+corresponding Bellman’s equation. State an assumption under which Bellman’s equation holds.
+2
+
+--- Page 3 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.231 Dynamic Programming and Stochastic Control
+Fall 2015
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

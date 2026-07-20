@@ -1,0 +1,148 @@
+--- Page 1 ---
+MIT 6.S096 Assignment 2, Problem 2
+Problem 2: Minimum Spanning Tree (mst)
+The C++ standard template library provides us with a large number of containers and data structures that we can go ahead and use in our programs. We’ll be learning how to use a priority queue, which is available in the
+<
+queue
+>
+header.
+The problem we can solve using a priority queue is that of computing a minimum spanning tree. Given
+a fully connected undirected graph where each edge has a weight, we would like to find the set of edges
+with the least total sum of weights. This may sound abstract; so here’s a concrete scenario:
+You’re a civil engineer and you’re trying to figure out the best way to arrange for internet access in your small island nation of C-Land. There are N
+(
+3
+≤
+N
+≤
+250,000
+)
+towns on your island connected by M
+(
+N
+≤
+M
+≤
+250, 000
+)
+various roads and you can walk between any two towns on the island by traversing some sequence of roads. However, you’ve got a limited budget and have determined that the cheapest way to arrange for internet access is to build some fiber-optic cables along existing roadways. You have a list of the costs of laying fiber-optic cable down along any particular road, and want to figure out how much money you’ll need to successfully complete the project–meaning that, at the end, every town will be connected along some sequence of fiber-optic cables. Luckily, you’re also C-Land’s resident computer scientist, and you remember hearing about Prim’s algorithm
+in one of your old programming classes. This algorithm is exactly the solution to your problem, but it requires a priority queue...and ta-da! Here’s the C++ standard template library to the rescue.
+If this scenario is still not totally clear, look at the sample input description on the next page. Our input data describing the graph will be arranged as a list of edges (roads and their fiber-optic cost) and for our program we’ll covert that to an adjacency list: for every node in the graph (town in the country), we’ll have a list of the nodes (towns) it’s connected to and the weight (cost of building fiber-optic cable along).
+adj[0]
+→ (
+1, 1.0
+) (
+3, 3.0
+)
+adj[1]
+→ (
+0, 1.0
+) (
+2, 6.0
+) (
+3, 5.0
+) (
+4,1.0
+)
+.
+.
+.
+This data structure might be a pain to allocate and keep track of everything in C. The C++ STL will simplify things. First, our adjacency list can be represented as a list of C++
+vectors, one for each node. To further simplify and abstract things, we’ve created a wrapper class called AdjacencyList that you can use; it already has a method written to help with reading the input. Resource Limits
+Your program will be allowed up to 3 seconds of runtime and 32MB of RAM.
+1
+
+--- Page 2 ---
+MIT 6.S096 Assignment 2, Problem 2
+Input Format
+Line 1: Two space-separated integers: N , the number of nodes in the graph, and M , the number of
+edges.
+Lines 2... M : Line i contains three space-separated numbers describing an edge: s and t , the IDs of
+i i
+the two nodes involved, and w , the weight of the edge.
+i
+Sample input (file mst.in)
+6 9
+0 1 1.0
+1 3 5.0
+3 0 3.0
+3 4 1.0
+1 4 1.0
+1 2 6.0
+5 2 2.0
+2 4 4.0
+5 4 4.0
+Input Explanation
+We can visualize this graph as in Figure 1; let A, B, C ,... represent the nodes with IDs 0,1,2,...
+respectively. Looking at our input file, the we can see that the second line 0 1 1.0 describes edge
+between A and B of weight 1.0 in our diagram, the third line 1 3 5.0 describes the edge between B
+and D of weight 5.0, and so on. On the right, we can see a minimum spanning tree for our graph. Every
+Figure 1: The full graph on the left and the minimum spanning tree on the right.
+vertex lies in one totally connected component, and the edges here sum to 1.0
++
+1.0
++
+1.0
++
+4.0
++
+2.0
+=
+9.0,
+which will be our program’s output.
+2
+
+--- Page 3 ---
+MIT 6.S096 Assignment 2, Problem 2
+Output Format
+Line 1: A single floating-point number printed to at least 8 decimal digits of precision, representing
+the total weight of a minimum spanning tree for the provided graph.
+Sample output (file mst.out)
+9.00000000
+Template Code
+If you take a look in the provided template file provided in the file mst.data.zip as a basis for your
+program, you’ll see some data structures already written for you.
+#include <vector>
+class State {
+size t node;
+double dist;
+public:
+State( size t aNode, double aDist ) : node{aNode}, dist{aDist} {}
+inline size t node() const { return node; }
+inline double dist() const { return dist; }
+};
+class AdjacencyList {
+std::vector< std::vector<State> > vert;
+AdjacencyList() = delete;
+public:
+AdjacencyList( std::istream &input );
+inline size t size() const { return vert.size(); }
+inline const std::vector<State>& vert( size t node ) const {
+return vert[node];
+}
+void print();
+};
+Some questions to ask yourself for understanding:
+•
+What does AdjacencyList() = delete; mean? Why did we do that?
+•
+This is a fairly complicated line:
+inline const std::vector<State>& vert( size t node ) const.
+Justify or question each use of const.
+3
+
+--- Page 4 ---
+MIT 6.S096 Assignment 2, Problem 2
+•
+Why don’t we need to write our own destructor for the AdjacencyList class?
+•
+How large is a single instance of the State class in memory, most likely?
+Think these questions through and ask about anything that you’re unsure of on Piazza.
+4
+
+--- Page 5 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.S096 Effective Programming in C and C++
+IAP 2014
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

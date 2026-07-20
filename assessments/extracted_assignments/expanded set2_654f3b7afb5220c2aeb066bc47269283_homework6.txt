@@ -1,0 +1,59 @@
+--- Page 1 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.854J / 18.415J Advanced Algorithms
+�� Fall 2008
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.
+
+--- Page 2 ---
+18.415/6.854 Advanced Algorithms
+Problem Set 6
+Lecturer: Michel X. Goemans
+1. The betweenness problem is defined as follows: We are given n and a set T of m triples
+of the elements of (1,. .. , n). We say that an ordering of (1,. . . , n) satisfies a triple
+?r
+(i,j, k), if j is between i and k in (For example, the ordering (5,3,1,2,4) satisfies
+?r.
+the triples (5,1,2) and (1,3,5), but not (3,2,1)). The question is to find an ordering
+of {I, . . . ,n) that satisfies the maximum number of triples in T.
+This problem is known to be NP-hard, even if we restrict to instances for which an
+ordering that satisfies all the triples exist.
+(a) Use randomization to find a simple ;-approximation algorithm for this problem.
+Prove the correctness of your algorithm.
+(b) Use the method of conditional expect ati ons to derandomize your algorithm.
+(c) Assume there is an ordering that satisfies all the triples in T. Prove that there
+are vectors vl, .. . , vn E Rn such that
+for all i,j,
+for all (i,j, k) E T
+Show how we can find such vl, . . . ,vn using semidefinite programming.
+(d) Give an example where the program (1)is satisfiable, but there is no ordering
+that satisfies all the triples in T.
+(e) Assume that vl, . .. ,vn E Rn is a solution of the program (1). Choose r uniformly
+11,
+at random from {p E Rn : llpll = and consider the ordering obtained by
+sorting the elements of {1,. .. , n) with respect to their rTvi value. Show that in
+expectation this ordering satisfies at least half the constraints in T.
+Consider the following scheduling problem. We are given n jobs that are all available
+at time 0 and that can be processed on any of m machines. Each job has a processing
+time pj which represents the amount of time a machine (any one of them) needs to
+process it (without interruption). A machine can only process one job at a time. This
+scheduling problem is to assign each job to a machine and schedule the jobs so as
+Cj
+to minimize picj where Cjrepresents the time at which the processing of job j
+completes. (For example, if we have 5 jobs of unit processing time and 3 machines,
++ + + +
+there are many ways of obtaining an objective function value of 1 1 1 2 2 = 7.)
+(a) Show that the problem is equivalent to minimizing Cr=l M: where Mi is the
+total amount of processing time assigned to machine i.
+
+--- Page 3 ---
+(b) Let L = pj be the average load of any machine. Show that any optimum
+solution for Cy=l M: will be such that each machine i either satisfy Mi5 2L or
+processes a single job j with pj > 2L.
+(c) Assume that pj 2aL for some constant a > 0 for every job j, and assume that
+all pj's can only take k different values, where k is a fixed constant. Design a
+polynomial-time algorithm for this case.
+(d) Assume that pj 2 aL for some constant a > 0 for every job j. Design a
+polynomial-time approximation scheme for this case.
+(e) Not part of the problem set and not graded, just for "fun". Can you also get a
+polynomial-time approximation scheme without the pj 2 aL assumption?

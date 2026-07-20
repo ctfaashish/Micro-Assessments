@@ -1,0 +1,270 @@
+--- Page 1 ---
+Department of Electrical Engineering and Computer Science
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+6.830 Database Systems: Fall 2008 Quiz I
+There are17 questions and10 pages in this quiz booklet. To receive credit fora question, answer
+it according to the instructions given. You can receive partial credit on questions. You have 80
+minutes to answer the questions.
+Write your name on this cover sheet AND at the bottom of each page of this booklet.
+Some questions may be harder than others. Attack them in the order that allows you to make
+the most progress. If you find a question ambiguous, be sure to write down anyassumptions you
+make. Be neat. If we can’tunderstand your answer, we can’tgive you credit!
+THIS IS AN OPEN BOOK, OPEN NOTES QUIZ.
+NO PHONES, NO LAPTOPS, NO PDAS, ETC.
+Do not write in the boxes below
+1-4 (xx/20) 5-7 (xx/16) 8-10 (xx/20) 11-13 (xx/21) 14-17 (xx/23) Total (xx/100)
+Name:
+
+--- Page 2 ---
+6.830Fall 2008, Quiz1 Page2 of 10
+I Short Answer
+1. [6 points]: To reduce the number of plans the query optimizer must consider, the Selinger Opti­
+mizer employs a number of heuristics to reduce the search space. List three:
+(Fill in the blanks below.)
+A.
+B.
+C.
+2. [4 points]: Give one reason whythe REDO pass of ARIES must use physical logging.
+(Write your answer in the space below.)
+Name:
+
+--- Page 3 ---
+6.830Fall 2008, Quiz1 Page3 of 10
+II Optimistic Concurrency Control
+For the following transaction schedules, indicate which transactions would commit and which would abort
+when run using the parallel validation scheme described in the Kung and Robinson paper on Optimistic
+Concurrency Control. Also give a brief justification for your answer. You may assume that if a transaction
+aborts, it does not execute its write phase, rolling back instantly at the end of the validation phase.
+3. [4 points]:
+Time
+Read Validate Write
+T1
+Read set: {A,B} Write set: {B,C}
+T2
+Read set: {A,D} Write set: {A,B}
+(Write your answer in the spaces below.)
+Transactions that commit:
+Transactions that abort:
+Justification:
+4. [6 points]:
+Read Validate Write
+T1
+Read set: {A,B} Write set: {B,C}
+T2
+Read set: {A,B} Write set: {B,D}
+T3
+Read set: {D} Write set: {D}
+(Write your answer in the spaces below.)
+Transactions that commit:
+Transactions that abort:
+Justification:
+Name:
+
+--- Page 4 ---
+6.830Fall 2008, Quiz1 Page4 of 10
+III Schema Design
+Consider a relational table:
+Professor(
+professor name, professor id,
+professor office id, student id,
+student name, student office id,
+student designated refrigerator id, refrigerator owner id,
+refrigerator id, refrigerator size, secretary name,
+secretary id, secretary office )
+Suppose the data has the following properties:
+A. Professors and secretaries have individual offices, students share offices.
+B. Students can work for multiple professors.
+C. Refrigerators are owned by one professor.
+D. Professors can own multiple refrigerators.
+E. Students can only use one refrigerator.
+F. The refrigerator the student uses mustbeownedby oneof the professors they work for.
+G. Secretaries can work for multiple professors.
+H. Professors only have a single secretary.
+5. [10 points]: Put this table into 3rd normal form by writing out the decomposed tables; designate
+keys in your tables by underlining them. Designate foreign keys by drawing an arrow from a foreign
+key to the primary key it refers to (see example below.) Note that some of the properties listed above
+maynotbe enforced(i.e., guaranteedtobetrue)bya3NF decomposition.
+(Write your answer in the space below.)
+emp : eid, name, dno
+dept : did, bldg, name
+Example decomposition of
+emp/dept tables showing
+primary and foreign keys.
+Name:
+
+--- Page 5 ---
+6.830Fall 2008, Quiz1 Page5 of 10
+6. [3 points]: Which of the eight properties (A–H) of the data are enforced (i.e., guaranteed to be true)
+by the 3NF decomposition and primary and foreignkeys yougave above?
+(Write your answer in the space below.)
+7. [3 points]: What could a database administrator do to make sure the properties not explicitly en­
+forced by your schema are enforced by the database?
+(Write your answer in the space below.)
+IV External Aggregation
+Suppose you are implementing an aggregation operator fora database system, and you need to support aggre­
+gation over very large data sets with more groups than can fit into memory.
+Your friend JohnnyJoin begins writing out how he would implement the algorithm. Unfortunately, he stayed
+up all nightworking on Lab3and so trailsoff in an incoherent stream of obscenities and drool before finishing
+his code. His algorithm begins as follows:
+input :TableT, aggregation function fname, aggregation field aggf , group by field gbyf
+/* Assume T has |T | pages and your system has |M| pages of memory */
+/* Partition phase */
+� �
+n ← |T | ;
+|M|
+Allocate bufs, n pagesof memory for outputbuffers;
+Allocate files, an array of n files for partitions;
+foreach record r ∈ T do
+h ← hash(r.gbyf ); /* h ∈ [1... n] */
+Write r into page buf s[h];
+if page buf s[h]is fullthen
+Add buf s[h]to file files[h], and set the contents of buf s[h]to empty;
+end
+end
+/* Aggregate phase */
+foreach f ∈ files do
+/* Your code goes here. */
+end
+Name:
+
+--- Page 6 ---
+6.830Fall 2008, Quiz1 Page6 of 10
+8. [6 points]: Relative to |T|, how big must |M| be for the algorithm to function correctly? Justify your
+answer with a sentence or brief analytical argument.
+(Write your answer in the space below.)
+9. [8 points]: Assuming the aggregate phase does only one pass over the data, and that fname
+= ’AVG’, describe briefly what should go in the body of the for loop (in place of “Your code goes
+here”). You may write pseudocode or a few short sentences. Suppose the system provides a function
+emit(group,val) to output the value of a group.
+(Write your answer in the space below.)
+10. [6 points]: Describean alternativeto this hashing-based algorithm. Your answer shouldn’trequire
+more than a sentence or two.
+(Write your answer in the space below.)
+Name:
+
+--- Page 7 ---
+6.830Fall 2008, Quiz1 Page7 of 10
+V Cost Estimation
+Suppose you are given a database with the following tables and sizes, and that each data page holds 100
+tuples, that both leaf and non-leafB+Tree pages are dense-packed and hold 100keys, and that youhave 102
+pagesof memory. Assume that thebufferpoolis managedas describedinthe DBMINPaper(“AnEvaluation
+ofBuffer Management Strategies for Relational Database Systems.”, VLDB 1985.)
+Table Size, in pages
+T 100
+1
+T 1000
+2
+T 5000
+3
+11. [15 points]: Estimate the minimum numberofI/Os required for the following join operations. Ig­
+nore the difference between random and sequentialI/O. Assume thatB+Trees store pointers to records
+in heap filesin their leaves (i.e.,B+Tree pages only storekeys, not tuples.)
+(Write your answers in the spaces below. Justify each answer
+with a short analytical argument.)
+• Nested loops join between T and T , no indices.
+1 2
+• Grace hash join between T and T , no indices.
+2 3
+• Index nested loops join betweena foreignkeyof T andthe primarykeyof T , withaB+Tree index on
+2 3
+T and no index on T .
+3 2
+Name:
+
+--- Page 8 ---
+6.830Fall 2008, Quiz1 Page8 of 10
+VI ARIES with CLRs
+Suppose you are given the following log file.
+LSN TID PrevLsn Type Data
+1 1 - SOT -
+2 1 1 UP A
+3 1 2 UP B
+4 2 - SOT -
+5 2 4 UP C
+6 - - CP dirty, trans
+7 3 - SOT -
+8 2 5 UP D
+9 3 7 UP E
+10 1 3 COMMIT -
+11 2 8 UP B
+12 2 8 CLR B
+13 3 7 CLR E
+12. [2 points]: After recovery, which transactions will be committed and which will be aborted?
+(Write your answers in the spaces below)
+Committed:
+Aborted:
+13. [4 points]: Supposethedirtypage tableintheCP recordhasonlypageAinit. AtwhatLSNwill
+the REDO pass of recovery begin?
+(Write your answer in the space below)
+LSN:
+Name:
+
+--- Page 9 ---
+6.830Fall 2008, Quiz1 Page9 of 10
+14. [4 points]: Again, supposethedirtypage tableintheCP recordhasonlypageAinit. What pages
+may be written during the REDO pass of recovery?
+(Write your answer in the space below)
+Pages:
+15. [4 points]: Onceagain, suppose the dirty page tablein theCP record has only pageAin it. What
+pages may be written during the UNDO pass of recovery?
+(Write your answer in the space below)
+Pages:
+VII Snapshot Isolation
+Oracle and Postgres both use a form of transaction isolation called snapshot isolation. One possible imple­
+mentation of snapshot isolation is as follows:
+• Every object (e.g., tuple or page) in the database has a timestamp; multiple copies (“versions”) of
+objects withold timestamps arekept untilno transaction needsto read themagain. (For this question,
+you don’tneed to worry about how such old versions are maintained or discarded.)
+• When a transaction begins, the system records the transaction’s start time stamp, ts . Timestamps are
+s
+monotonically increasing, such that no two transactions have the same timestamp value.
+• Whenatransaction T writes an object O,it addsthenewversionoftheO to T ’s local write set. Versions
+in the local write set are not readby other transactions until afterThas committed.
+• When a transaction T reads an object O, it reads the most recent committed version with timestamp
+≤ ts , reading O from T’s own local write set if O has been previously written by T .
+s
+• When a transaction T commits, a new timestamp, ts is taken. Forevery object O in T’s local write set,
+c
+if the most recent version of O in the database has timestamp ≤ ts , then O is written into the database
+s
+with timestamp ts . Otherwise, T aborts. Only one transaction commits at a time.
+c
+Name:
+
+--- Page 10 ---
+6.830Fall 2008, Quiz1 Page 10 of 10
+For example, consider the following schedule:
+Initial database: objects A and B, bothversion0(denoted A and B )
+0 0
+T 1(ts = 1) T 2(ts = 2)
+s s
+Read(A )
+0
+Write(A)
+Read(A )
+0
+Write(A)
+commit(ts = 3)
+c
+install A
+3
+attempt to commit with ts = 4,
+c
+but abort, because last version of A (3) > ts = 2
+s
+Here, T2aborts because it tried to write A concurrently with T1.
+16. [10 points]: Is snapshot isolation conflict serializable? If yes, state briefly why. If not, give an
+example of a non-serializable schedule.
+(Write your answer in the space below.)
+17. [5 points]: Oracle claims that snapshot isolationis muchfaster than traditional concurrency con­
+trol. Why?
+(Write your answer in the space below.)
+End of Quiz I
+Name:
+
+--- Page 11 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.830 / 6.814 Database Systems
+Fall 2010
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

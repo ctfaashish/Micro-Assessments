@@ -1,0 +1,108 @@
+--- Page 1 ---
+1. “Certifiable Authority” (15 Points)
+Alice wants to send a secure message to Bob, outlining her latest plans to take control of the small
+country of Mythologia. Alice and Bob have an insecure communication channel that runs through Trudy,
+a member of Mythologia’s elite intelligence agency who is looking to foil the plans of Alice and Bob once
+again. Both Alice and Bob can contact a mutually trusted Certificate Authority who doesn’t play
+favorites. An outline of their communication channel is shown below.
+Describe the process Alice and Bob would use to communicate securely. You may use a diagram like
+the following to outline the communication flow, or you may describe the process with text.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:12:19 GMT -05:00
+https://www.coursehero.com/file/231008761/CS-7339-Spring-Midterm-2023pdf/
+
+--- Page 2 ---
+2. “Requesting Rare Resources” (15 Points)
+Suppose a custom web server were running with the following configuration file:
+$ cat customSRV.conf
+For completeness’ sake, the system is running behind a reverse proxy routed based on the hostname
+header. However, there's been a problem with our custom nameserver, and only the hostname
+associated with our university is currently mapped to a public IP address (refer to our discussion on DNS
+and feel free to review https://howdns.works/).
+a. Craft an HTTP request that would retrieve the file located at
+/home/webuser/LegendaryServer/admin.php, along with the necessary headers to complete the
+request in accordance with the below parameters.
+Clients should attempt to leave the TCP connection established for followup requests. Include
+whatever headers are necessary to accomplish this goal, but because we'd like to save bandwidth,
+don't include any headers that wouldn't be necessary to complete a valid request. Pay close
+attention to the configuration file settings!
+b. Then, using HTTP basic authentication (base-64 encoded), submit a POST to the same endpoint. For
+the basic credentials, use your professor's last name in all lowercase letters as the user and
+Unguessablecanary77canary78canary79canary81LLAKGOSD9375! as the password (very secure). Once
+again, only include necessary headers, including those you used in part a. Also complete the request in
+accordance with the below parameters.
+For the POST body, use Transfer-Encoding: Chunked to designate the body length (hint: don't forget
+carriage return/newlines!). Do not use Content-Length. Refer to our lecture on HTTP
+Desynchronization/Request Forgery for a refresher on Chunked Encoding.
+For the body contents, submit the following JSON object. HOWEVER, base-64 encode the values. For
+example, if {"test":"contents"} were the JSON object, the body would contain
+{"test":"Y29udGVudHM="}:
+{"serverContents": "HAHAHACK3D", "serverAuthor": "1337 H4CKeR", "serverVersion":
+"DEFACED7719"}
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:12:19 GMT -05:00
+https://www.coursehero.com/file/231008761/CS-7339-Spring-Midterm-2023pdf/
+
+--- Page 3 ---
+3. “Asynchronous Agents” (15 Points)
+a. Furthermore, suppose the above application implements a frontend-backend infrastructure. The
+frontend respects the Transfer-Encoding header. The backend respects the Content-Length header.
+Generate an HTTP request that would smuggle a GET request to
+/home/webuser/LegendaryServer/secretEndpoint.php with the header X-SMUGGLED: True in the
+smuggled request.
+b. Now suppose instead that both servers respect both headers. However, the frontend detects and
+processes the header with the following Python code:
+The backend detects and processes the header with the following Python code:
+Generate an HTTP request that would smuggle a GET request to
+/home/webuser/LegendaryServer/secretEndpoint.php with the header X-SMUGGLED: True in the
+smuggled request.
+4. “CSRFing The Net” (10 Points)
+a. Suppose that you want to prevent CSRF in the above application. Why should we not rely on the
+SameSite cookie header? Describe two attack vectors in which the default SameSite header may not
+protect our application.
+b. Name three other mechanisms you can use to prevent CSRF attacks. Describe one disadvantage of
+each approach. Pick the approach you'd choose if you were developing an application, and describe
+why.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:12:19 GMT -05:00
+https://www.coursehero.com/file/231008761/CS-7339-Spring-Midterm-2023pdf/
+
+--- Page 4 ---
+5. “Resource Sharing is Daring” (10 Points)
+Explain why the following CORS policy is invalid, and what the effects might be if it were a legal
+preflight (OPTIONS) response.
+6. "Cross-Site Conundrum" (10 Points)
+You have encountered a vulnerable page in a local small business e-commerce website. You've
+downloaded the webpage to experiment with (see exam ZIP file). Submit a proof of concept screenshot
+activating an alert() via a vulnerability in the webpage and show how you would fix the issue by
+modifying the site JavaScript (several solutions will be accepted).
+7. “Injection II: The SQL”(5 Points)
+The following SQL statement is vulnerable to SQL Injection. Provide an example of a payload that
+would exploit this vulnerability, explain its impact, and correct the issue by demonstrating what a
+secure implementation would look like.
+$username = $_POST[‘username’];
+$password = $_POST[‘password’];
+$query = “select * from Users where user=’” + $username + “’ and
+password=’” + $password + “’;”
+$mysql.query($query);
+8. Forum Filters (10 Points)
+You’ve found a website that allows you to link images with <img> tags to a public forum. The backend
+only filters the characters < and > within the <img> tags.
+a. How would you exploit a vulnerability to harvest user accounts on this site?
+b. You’ve discovered that user cookies are the MD5 of their password. What could you use to
+get the plaintext passwords of users who have weak passwords in constant time? How does
+this technology work?
+c. What changes would you suggest to the website implementation team to mitigate or reduce
+these risks?
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:12:20 GMT -05:00
+https://www.coursehero.com/file/231008761/CS-7339-Spring-Midterm-2023pdf/
+
+--- Page 5 ---
+9. “Ziplocked And Loaded” (5 Points)
+Should you encrypt first and then compress, or compress first and then encrypt? Why?
+10. “Amazon Prime” (5 Points)
+Describe the similarities and differences between a block cipher and a stream cipher.
+BONUS (+7):
+Generate your own keypair, attach the public key to this answer, and then sign your answer sheet with
+that private key, using SHA-1 as the hashing scheme. Submit the signature as a byte string to Canvas
+with your answers (remember that if you modify your answers, you’ll have to recalculate the signature).
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:12:20 GMT -05:00
+https://www.coursehero.com/file/231008761/CS-7339-Spring-Midterm-2023pdf/
+Powered by TCPDF (www.tcpdf.org)

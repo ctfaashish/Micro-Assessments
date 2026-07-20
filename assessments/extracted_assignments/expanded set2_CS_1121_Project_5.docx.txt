@@ -1,0 +1,113 @@
+--- Page 1 ---
+CS-1121 Visual Basic
+Project 5 Report
+Title: Modified Savings Solution-Intermediate
+Author: Olajumobi Akeeb
+I certify that this project is the product of my own intellectual labor.
+_________________________________________________________
+(Author’s signature)
+Date: 2/21/2017
+Lab: 11:00-11:50am
+Grading:
+______ Project Execution (0-10)
+3 Lesson A
+3 Lesson B
+4 Lesson C
+______ Program Documentation (0-5)
+3 TOE Chart
+1 Code
+1 Screen Captures
+______ Total
+1
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:49 GMT -05:00
+https://www.coursehero.com/file/30615226/CS-1121-Project-5docx/
+
+--- Page 2 ---
+TOE CHART
+Task Object Event
+Input: User enters the amount deposited txtDeposit None
+Processing: btnCalc Click
+1. Declare variables
+Rate as decRate
+Balance as dblBalance
+Deposit as dblDeposit
+Year as intYear
+2. Perform input tasks
+Read amount deposited into as dblDeposit
+3. Calculations
+Calculate balance as dblBalance=dblDeposit *
+(1+decRate) ^ intYear
+4. Perform output tasks
+Display intYear
+Display decRate
+Display intYear
+Output: Displays the Year, Rate and Balance txtBalance None
+Exit the application btnExit Click
+2
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:49 GMT -05:00
+https://www.coursehero.com/file/30615226/CS-1121-Project-5docx/
+
+--- Page 3 ---
+PROJECT CODE
+' Name: Savings Project
+' Purpose: Display a savings account balance
+' for each of 5 years using rates
+' from 3% to 6% in increments of 1%
+' Programmer: <olajumobi akeeb> on <2/17/2017>
+Option Explicit On
+Option Strict On
+Option Infer Of
+Public Class frmMain
+Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles btnCalc.Click
+' calculate account balances for each of five years
+' using rates from 3% to 6% in increments of 1%
+Dim dblDeposit As Double
+Dim dblBalance As Double
+'Dim decRate As Decimal
+Double.TryParse(txtDeposit.Text, dblDeposit)
+txtBalance.Text = "Year" & ControlChars.Tab & "Rate" & ControlChars.Tab &
+"Balance" & ControlChars.NewLine
+' calculate and display account balances
+For intYear As Integer = 1 To 5 'Step 1
+txtBalance.Text = txtBalance.Text & intYear.ToString &
+ControlChars.NewLine
+For decRate As Decimal = 0.03D To 0.06D Step 0.01D
+dblBalance = dblDeposit * (1 + decRate) ^ intYear
+txtBalance.Text = txtBalance.Text & ControlChars.Tab & decRate.ToString("p0") &
+ControlChars.Tab & dblBalance.ToString("c2") & ControlChars.NewLine
+Next decRate
+Next intYear
+End Sub
+Private Sub txtDeposit_Enter(sender As Object, e As EventArgs) Handles txtDeposit.Enter
+txtDeposit.SelectAll()
+End Sub
+Private Sub CancelKeys(sender As Object, e As KeyPressEventArgs) Handles
+txtDeposit.KeyPress
+' allows the text box to accept only numbers, the period, and the Backspace key
+If (e.KeyChar < "0" OrElse e.KeyChar > "9") AndAlso e.KeyChar <> "." AndAlso e.KeyChar
+<> ControlChars.Back Then
+e.Handled = True
+End If
+End Sub
+Private Sub ClearLabel(sender As Object, e As EventArgs) Handles txtDeposit.TextChanged
+txtBalance.Text = String.Empty
+3
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:49 GMT -05:00
+https://www.coursehero.com/file/30615226/CS-1121-Project-5docx/
+
+--- Page 4 ---
+End Sub
+Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+Me.Close()
+End Sub
+End Class
+SCREEN CAPTURES
+4
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:49 GMT -05:00
+https://www.coursehero.com/file/30615226/CS-1121-Project-5docx/
+
+--- Page 5 ---
+5
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:49 GMT -05:00
+https://www.coursehero.com/file/30615226/CS-1121-Project-5docx/
+Powered by TCPDF (www.tcpdf.org)

@@ -1,0 +1,61 @@
+--- Page 1 ---
+CSCE 3560/5562 – Cloud Security
+Spring 2024
+University of North Texas
+Lab 1
+Objective
+In this lab, we will experiment with the virtual machine (VM) and the basics of cybersecurity as a
+summary.
+Steps
+1. (15 pts) First step is creating a VM:
+a. Install a hypervisor. You can choose any of the virtualization platforms including but not
+limited to VirtualBox, UTM, VMware, KVM, Xen, Hyper-V, etc. Among them VirtualBox is
+my preferred one (if you are not using Apple Silicon) because of its features and free to use.
+For Apple Silicon, it seems that VirtualBox is not very stable yet; so, you can try options such
+as UTM or VMware.
+b. Create a Linux VM. For this purpose, you need to download a Linux installer (ISO image)
+first. We will be using an Ubuntu-based Linux distribution. Personally, I prefer Xubuntu or
+Lubuntu as a VM as they are lightweight compared to many; but, you are free to use another
+one (Ubuntu, Kubuntu, etc.). For example, you can get Xubuntu ISO from the following
+URL: https://cdimage.ubuntu.com/xubuntu/releases/jammy/release/
+c. Now, you need to create the VM using this ISO – 1GB RAM and 1 core should be sufficient
+(if you have more resources available, you can definitely increase) but make sure that you
+have sufficient disk space (at least 80GB would be suggested from my end).
+d. When you are creating your VM, make sure that your hostname is csce3560 or csce5562
+(based on your course). And, for your default user, use your name. For example, for my
+case, it would be as follows: cihan@csce5562 (assuming that I am taking grad level). If your
+VM does not fulfill this, you will not get any points!
+e. Take a screenshot and show your VM (especially the terminal readable showing your
+command line)
+Next steps after creating the VM (the next steps will be all through terminal/command line unless
+otherwise mentioned:
+2. (5 pts) Learn your VM IP through terminal (and provide a screenshot where your output and
+command are both seen, highlight your IP).
+3. (5 pts) Make sure that OpenSSH server is installed and running (prove it using a screenshot)
+4. (10 pts) Show the active ports (put a screenshot) and explain at least 3 of these ports (what are
+they for, which service uses them).
+5. (5 pts) Create a new user with the username: test and password: test (show your command and
+screenshot)
+6. (15 pts) Assume that you already know the username. Show how you can apply brute force
+password cracking using hydra tool (show your command and show how much time it took to
+crack the password).
+7. (10 pts) Show how changing a password of a user account is applied in the password file. To do
+that you need to show the differences between the before and after change occurs (edit the test
+account password). Explain the contents of the file for your test username in details as we have
+discussed in the class.
+8. (20 pts) Network plays a major role in system security and one requirement is monitoring
+capability. Install Wireshark (or tcpdump) and demonstrate that you are able to monitor the DNS
+
+--- Page 2 ---
+packets. If needed, you may query a domain. Explain your steps and your findings together with
+screenshots.
+9. (10 pts) Create a file with your name (e.g., cihan.txt). Edit the file permission and make it
+writable by owner, readable by all, and executable by the group. Show your command and prove
+your finding.
+10. (15 pts) When providing virtualization, transparency is highly desired. To demonstrate that list
+your virtual harddrive partitions, your CPU info and memory info and explain if you are able to
+identify that you are able to run a VM or a physical machine.
+For each part, you need to take a screenshot and demonstrate your findings.
+Further info:
+• Make sure that you are deleting user ‘test’ at the end of this lab. But, please do not delete the VM
+since we will be using it in the next labs.

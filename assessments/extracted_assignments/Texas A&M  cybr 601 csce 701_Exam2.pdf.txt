@@ -1,0 +1,949 @@
+--- Page 1 ---
+2023/12/9 i 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Exam 2: Chapter 11 through 20
+Due Nov 8 at 11:59am Points 100 Questions 100
+Available until Nov 8 at 11:59am Time Limit 50 Minutes
+Instructions
+Texas A&M Cybersecurity Exam Guidelines
+Multiple Choice Exam
+Duration: 50 minutes
+Number of Questions: 100
+Platform: Canvas LMS
+
+
+--- Page 3 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Question 2 0/1pts
+Which authentication model is designed around the concept of using
+tickets for accessing objects?
+RSA Encryption
+OAuth 2.0
+ou Answered [ LDAP Authentication
+correct Answer Kerberos
+Question 3 0/1 pts
+What is an access control method that would allow you to control access
+to records o nly when so meone is scheduled to work?
+correct Answer Attribute-Based Access Control (ABAC)
+Role-Based Access Control (RBAC)
+ou Answered [ Mandatory Access Control (MAC) ]
+Discretionary Access Control (DAC)
+Question 4 1/1 pts
+When both the client and the server authenticate each other, this is called
+https://canvas.tamu.edu/courses/251040/quizzes/419170 3/42
+
+--- Page 4 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Reciprocal authentication
+Correctl Mutual authentication
+Bidirectional authentication
+One-way authentication
+Question 5 171 pts
+What is the authentication process that allows a user to enter their user ID
+(or username) and password, and then move from application to
+application or resource to resource witho ut having to supply further
+a uthentication information? (NOTE: TAMU Uses this)
+Multi-Step Authentication
+Correctl Single Sign On
+Two-Factor Authentication
+Biometric Authentication
+T~
+et
+W
+Which access control model is designed around the type of tasks people
+perform?
+DAC (Discretionary Access Control)
+ABAC (Attribute-Based Access Control)
+Correct! RBAC (Role-Based Access Control)
+https://canvas.tamu.edu/courses/251040/quizzes/419170 4/42
+
+--- Page 5 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+MAC (Mandatory Access Control)
+Question 7 0/1 pts
+What is the protocol used for RADIUS?
+orrect Answe‘r UDP
+ou Answered TCP
+Propietary
+NetBIOS
+\&es{ions 0/1pts
+A ticket-granting server is an important element in which of the following
+aut hentication models?
+ou Answered [ PPP
+RADIUS
+orrect Answer Kerberos
+L2TP
+eSS e,
+wg 1/1 pts
+https://canvas.tamu.edu/courses/251040/quizzes/419170 5/42
+
+--- Page 6 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+|
+What term describes a system wh@sourca has access rules set
+for it all of the time?
+]
+T
+Discretionary Access Control (DAC)
+Attribute-Based Access Control (ABAC)
+Correct!
+Mandatory Access Control (MAC)
+/ —
+Role-Based Access Control (RBAC)
+1/1 pts
+Question 10
+In the context of cybersecurity, what term refers to the condition where
+trust is extended to another domain that is already trust ed?
+Trust boundary
+Correctl!
+Transitive Trust
+Zero trust
+Trustless
+1/1 pts
+Question 11
+What is the 32-character identifier attached to the header of a packet
+used for auth entication to an 801.11 access p oint?
+IP Address (Internet Protocol Address)
+Correctl!
+SSID (Service Set Identifier)
+https://canvas.tamu.edu/courses/251040/quizzes/419170 6/42
+
+--- Page 7 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+MAC Address (Media Access Control Address)
+WEP Key (Wired Equivalent Privacy Key)
+0/1 pts
+Question 12
+In our class lecture, we mentioned that Wi-Fi 6 uses what frequency?
+orrect Answelr 6Ghz
+ou Answered| [ 5G
+]
+2.4Ghz
+LTE
+0/1 pts
+Question 13
+What is the best way to avoid problems with Bluetooth?
+ou Answered Encryption
+Keep personal info off your phone
+Buy a new phone often
+orrect Answer Keep Bluetooth discoverability off
+0/1 pts
+Question 14
+https://canvas.tamu.edu/courses/251040/quizzes/419170 7/42
+
+--- Page 8 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+801.11ax is also called?
+ou Answered [ Wi-Fi 5
+5G
+orrect Answer < Y_V;FQ
+Wi-Fi 4
+Question 15 0/1pts
+Which frequencies are used in the IEEE 802.22a standard?
+ou Answered‘ [ 2 AGHzZ
+orrect Answer @
+60GHz
+900MHz
+Question 16 1/1 pts
+What is a feature that can disclose a user's position when sharing photos?
+Exif Data
+Facial Recognition
+Timestamping
+https://canvas.tamu.edu/courses/251040/quizzes/419170 8/42
+
+--- Page 9 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Correctl! Geotagging
+1/1 pts
+Question 17
+( 802.1X i>a protocol for which aspect of Ethernet?
+\
+Cabling
+Correct! @lenticafiD
+Wireless Jamming
+Speed
+0/1 pts
+Question 18
+What is the standard for @ew@led?
+N
+f
+NFC (Near Field Communication)
+Bluetooth
+ou Answered [ WiFi Alliance
+orrect Answer (IEEE 802.11
+1/1 pts
+Question 19
+What element does not belong in a mobile device security policy in an
+enterprise employing BYOD?
+https://canvas.tamu.edu/courses/251040/quizzes/419170 9/42
+
+--- Page 10 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Remote Wiping
+Separation of personal and business-related information
+Correctl!
+Mobile device carrier selection
+Passwords and screen locking
+1/1 pts
+Question 20
+What are two common mobile device security measures?
+Passcode Sharing ; Cloud Backup
+App Installation ; Voice Recognition
+Screen Mirroring ; GPS Tracking
+Correct!
+Screen Locking ; Remote Wiping
+1/1 pts
+Question 21
+IPS stands for?
+Interactive Protection System
+Correctl!
+Intrusion Prevention System
+Intrusion Prevention Sensor
+Intrusion processing system
+https://canvas.tamu.edu/courses/251040/quizzes/419170 10/42
+
+--- Page 11 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Question 22
+111 pts
+What are honeypots used for?
+To attract customers to e-commerce sites
+Correctl To attract attackers by simulating systems with open network services
+To monitor network usage by employees
+To process alarms from other IDSs
+Question 23 0/1pts
+What is a technique for matching an element against a large set of
+patterns and using activit y as a screening elem ent?
+Behavioral Anomaly Detection
+ou Answered [ Heuristic Analysis
+orrect Answer Context-Based Signature
+Signature-Based Matching
+_\
+@stionZy 0/1 pts
+e ———
+An IDS that looks for unusual or unexpected behavior is using a(n)
+/
+https://canvas.tamu.edu/courses/251040/quizzes/419170 11/42
+
+--- Page 12 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+host-based
+network-based
+ou Answered
+| signature-based
+orrect Answer anomaly detection model
+~_
+L —
+Question 25 0/1pts
+What allows administrators to send all traffic passing through a network
+switch to a specific port on the switch?
+Switch Isolation
+orrect Answer
+Port Mirroring
+ou Answered
+Traffic Splitting
+Packet Filtering
+Question 26 171 pts
+An attacker scanning a network full of inviting, seemingly vulnerable
+targets might actually be scanning a(n)
+Correctl!
+honeypot/honeynet
+intranet
+subnet
+https://canvas.tamu.edu/courses/251040/quizzes/419170 12/42
+
+--- Page 13 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+extranet
+Question 27
+0/1pts
+Which of the following is not a capability of network-based IDS?
+orrect Answer It can decrypt and read encrypted traffic
+It can detect denial-of-service attacks
+It can be tuned to a particular network enviornment
+ou Answered [ It can decode UDP and TCP packets
+Question 28
+11/1 pts
+What are the two main types of IDS signatures?
+network based and file based
+OpenAl and VectraAl
+active and reactive
+Correctl Context based and content based
+\
+N
+(\Wy 0/1 pts
+What is a technique wheret@is queried and ide@ based on its
+m query? T —
+https://canvas.tamu.edu/courses/251040/quizzes/419170 13/42
+
+--- Page 14 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Port Scanning
+Ping Sweeping
+ou Answered
+[ Trace Routing
+orrect Answer @er Grabbi@
+\/
+Question 30 171 pts
+a reque;Dover a known port is an
+identify the version of a s ervice i§ an example of what?
+TCP Reset
+Shutter sniffing
+Protocol analysis
+Correct!
+@er Grabbing
+¥
+Question 31 171 pts
+When a user or process supplies more data than was expected, a(n)
+may OCCuUr.
+unvetted execution
+80's party
+Correct!
+@erflow
+sql injection
+https://canvas.tamu.edu/courses/251040/quizzes/419170 14/42
+
+--- Page 15 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Question 32
+111 pts
+What is the term for the basic software on a computer that handles input
+and output?
+Driver
+Firmware
+Kernel
+Correctl Operating System
+Question 33
+0/1pts
+The shadow file on a UNIX/Linux system contains which of the following?
+File permissions for system files
+orrect Answer The password associated with a user account
+Network services started when the system is booted
+ou Answered [
+Group policy information ]
+Question 34
+1/1 pts
+In most UNIX/Linux operating systems, each running program is given a
+unique number called a(n)
+https://canvas.tamu.edu/courses/251040/quizzes/419170 15/42
+
+--- Page 16 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+System Code (SC)
+Application Key (AK)
+Correct! Process Identifier (PID)
+Thread Ildentifier (TID)
+Question 35 171 pts
+What is a bundled set of software updates, fixes, and additional functions
+contained in a self-installing package, primarily used for the Windows
+operating system?
+Windoze ME
+Windows 3000
+Correctl Service Pack
+Windows Version 24
+Question 36 1/1 pts
+Hotfix is a small software update designed to address a specific, often
+urgent, problem?
+False
+Correct! True
+https://canvas.tamu.edu/courses/251040/quizzes/419170 16/42
+
+--- Page 17 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Question 37
+0/1pts
+What is the process of establishing a system's security state?
+Optimization
+ou Answered Benchmarking
+Normalization
+orrect Answer Baselining
+Question 38 1/1 pts
+What is the term for the use of the network architecture to Mt
+communication between devices?
+Network Expansion
+Network Aggregation
+Correctl Network Segmentation
+Network Convergence
+Question 39 0/1pts
+What is the term f@ and preparing a system for the production
+environment?
+Softening
+https://canvas.tamu.edu/courses/251040/quizzes/419170 17/42
+
+--- Page 18 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+I
+orrect Answer Hardening
+|
+ou Answered [ Normalization
+Adaptation
+Question 40
+11/1 pts
+To stop a particular service or program running on a UNIX/Linux operating
+system, you might use the command.
+netstat
+inetd
+grep
+Correct! Kill
+Question 41
+11/1 pts
+A SYN flood is an example of what type of attack?
+Malicious Code
+Man In the Middle Attack
+Correct! Denial of Service (DOS) attack
+Spoofing
+https://canvas.tamu.edu/courses/251040/quizzes/419170 18/42
+
+--- Page 19 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Question 42
+0/1pts
+A NIC can be set to promiscuous mode to enable
+orrect Answer Sniffing
+Tunneling
+ou Answered Routing
+Filtering
+Question 43
+iets
+What is it called when an attack renders a resource useless?
+Intrusion Detection
+Packet Inspection
+Correct! Denial of Service (DOS) attack
+Data Breach
+Question 44
+111 pts
+What term refers to a way back into a machine via an unauthorized
+chanofn aeccelss ?
+Hidden Path
+https://canvas.tamu.edu/courses/251040/quizzes/419170 19/42
+
+--- Page 20 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Side Door
+Trapdoor
+Correctl! Backdoor
+/
+( uest)lon 1/1 pts
+Which attack takes advantage of|trusted relationshiQhat exist between
+two systems?
+password guessing
+sniffing
+Brute forcing
+Correct! @
+Question 46
+111 pts
+An attack in which an attacker attempts to lie and misrepresent themself
+in order to gain access to information that c an be useful in an attack is
+known as wh ich of the fol lowing?
+Correctl!
+Social Engineering
+Social Science
+White-hat hacking
+Social Manipulation
+https://canvas.tamu.edu/courses/251040/quizzes/419170 20/42
+
+--- Page 21 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Qu%s@fi 1/1 pts
+What is an example of changing a source IP address for malicious
+purposes?
+Routing
+Filtering
+Firewalling
+Correct! ( Spo ofing )
+\
+Question 48
+1/1 pts
+In what type of attack does an attacker re-send the series of commands
+and codes used in a financial transaction to cause the transaction to be
+conducted multiple times?
+Backdoor
+Spoofing
+Correctl! Replay
+Man In the Middle
+Question 49
+1/1 pts
+What can be done to abuse the TCP handshake in an effort to overuse
+server resources”?
+https://canvas.tamu.edu/courses/251040/quizzes/419170 21/42
+
+--- Page 22 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Correctl!
+SYN flood
+ARP flood
+ICMP flood
+UDP flood
+Question 50 171 pts
+An attack in which the attacker simplWr all traffic being
+transmitted across a network, in the hop e of viewing something such as a
+user ID and pa ssword combo, is known as a(n):
+gorilla attack
+backdoor attack
+Denial of Service (DOS) attack
+Correctl!
+% attack
+Question 51 171 pts
+To search through a system to find files containing a phrase, what would
+be the best tool to use?
+Ip a
+logger
+chmod
+https://canvas.tamu.edu/courses/251040/quizzes/419170 22/42
+
+--- Page 23 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+I
+Correctl! grep
+11/1 pts
+Question 52
+If you wish to find a file containing a particular text pattern, you could use
+CC
+tcpdump
+Correct! grep
+curl
+Question 53
+0/1pts
+To capture an image of the memory in a running system, you can use
+whic h of the following?
+grep
+orrect Answer
+memdump
+ou Answered
+dumpmem
+logger
+1/1 pts
+Question 54
+https://canvas.tamu.edu/courses/251040/quizzes/419170 23/42
+
+--- Page 24 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+The enumeration is a list of known vulnerabilities in software
+systems
+Powershell
+Correct Common Vulnerabilities and Exposures (CVE)
+Nessus
+Parrot OS
+Question 55 1/1 pts
+What is a sandbox program designed to analyze malicious software,
+separatin g the software from direct con nection to the OS?
+Sandboxie
+Malwarebytes
+Bitdefender
+Correct! Cuckoo
+Question 56 1/1 pts
+What does chmod do?
+Changes the crypto of a file
+Correctl Sets permission on a file
+https://canvas.tamu.edu/courses/251040/quizzes/419170 24/42
+
+--- Page 25 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Lists all the files in a working directory
+Changes a file to magik
+Question 57 171 pts
+The command can return the first few lines of a file.
+tshark
+Correct! head
+E——
+tcpdump
+dd
+T
+@estion 58 ) 171 pts
+/__
+The tool is designed to transfer data to or from a server, without
+user interaction.
+ipconfig
+tshark
+dd
+Correct! curl
+Question 59 0/1pts
+https://canvas.tamu.edu/courses/251040/quizzes/419170 25/42
+
+--- Page 26 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+To automate system administration across an enterprise X-Box (err, |
+mean Windows network), including using Windows objects, the best
+choice would be which of the following?
+Python
+Wireshark
+orrect Answer PowerShell
+ou Answered [ BASH scripting
+]
+Question 60 171 pts
+To secure communications during remote access of a system, you can
+use which of the following tools?
+Correctl! SSH
+tcpdump
+OpenSSL
+dd
+Question 61 171 pts
+Is HTML e-mail potentially dangerous?
+No
+https://canvas.tamu.edu/courses/251040/quizzes/419170 26/42
+
+--- Page 27 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+I
+Correctl! Yes
+0/1pts
+Question 62
+What does the keyword [secure] in a cookie do?
+orrect Answer It prevents the cookie from passing over HTTP connections
+It tells the browser that the cookie is a security upgrade
+ou Answered [ It locks down the cookie and encrypts it so the browser can't read it ]
+It causes the system to encrypt its contents
+Question 63 1/1 pts
+What is one of the biggest reasons spam is prevalent today?
+Regular mail is too slow
+Spam is popular among boomers
+Correct! Criminals use zombie botnets
+Spam is sent from the government
+Question 64 11/1 pts
+Spam is a popular term for
+https://canvas.tamu.edu/courses/251040/quizzes/419170 27/42
+
+--- Page 28 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Security Policy Automation Mechanism
+System Protection Analysis Matrix
+Correct! Unsolicited commercial e-mail
+Security Protocol Anomaly Management (SPAM)
+Question 65 171 pts
+A large source of spam is zombie computers that are part of a(n)
+Skynet
+Cybernetics Network
+Correctl! Botnet
+Firewall Cluster
+T~
+A@n 66 1/1 pts
+—
+allows outside users to send e-mail via your mail servers (a risky
+practice to allow).
+Sienar Systems
+Thunderbird Mail Server
+Correct! Open relay
+Exchange Server
+https://canvas.tamu.edu/courses/251040/quizzes/419170 28/42
+
+--- Page 29 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Question 67
+111 pts
+Why is an open e-mail relay bad?
+It allows anyone to remotely control the server.
+Correctl It will allow anyone to send spam through the server.
+No e-mail will go through.
+It makes the e-mail server reboot once a day.
+11/1 pts
+Question 68
+What is code signing used to do?
+Prevent copyright infringement by code copying
+Correctl Provide a method to demonstrate code integrity
+Guarantee code functionality
+Allow authors to take artistic credit for their hard work
+Question 69 0/1pts
+Security for JavaScript in a browser is established by whom?
+The developer at the time of code development
+https://canvas.tamu.edu/courses/251040/quizzes/419170 29/42
+
+--- Page 30 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Security for JavaScript is not necessary because it is secure by design
+orrect Answer The user through browser preferences
+ou Answered
+The browser code-signing it upon execution
+Question 70
+11/1 pts
+The most prevalent protocol that e-mail is sent by is
+Hypertext Electronic Mail Protocol (HEMP)
+Secure Transmission Email Protocol (STEP)
+Correctl Simple Mail Transfer Protocol (SMTP)
+Digital Courier Messaging Protocol (DCMP)
+Question 71
+111 pts
+What term is used to describe the offering of a computing platform in the
+cloud?
+Infrastructure as a service
+Network as a service
+Correctl Platform as a service
+Software as a service
+https://canvas.tamu.edu/courses/251040/quizzes/419170 30/42
+
+--- Page 31 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Question 72 11/1 pts
+What type of cloud structure combines elements from private, public, and
+community cloud structures?
+Multi-cloud
+Federated cloud
+Integrated cloud
+Correct!
+Hybrid cloud
+@stio@g 1/1 ptS
+—/
+is a distributed form of cloud computing, where the workload is
+performed on a distributed, decentralized architecture.
+Storm cloud
+Nebula cloud
+Partly sunny cloud
+Correctl!
+( Fog c@ting
+N~
+1/1 pts
+Question 74
+As we discussed in class, having a public cloud platform can be costly
+and can have unexpected costs.
+Correctl
+True
+https://canvas.tamu.edu/courses/251040/quizzes/419170 31/42
+
+--- Page 32 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+False
+Question 75 11/1 pts
+What allows connections to and from a virtual private cloud instance?
+Correct! Virtual private cloud endpoint
+Network bridge
+Firewall gateway
+Router hub
+P
+\lekstifn 76} 1/1pts
+-—
+The policies and procedures employed to connect to@ystems of the
+enterp rise and the cloud to enable communi cation with th e data is
+referr ed to as wh at?
+Container security
+API inspection
+Dynamic resource allocation
+Correctl
+— Secrets managem ent -
+Quegtion 77 \ 1/1 pts
+Y
+https://canvas.tamu.edu/courses/251040/quizzes/419170 32/42
+
+--- Page 33 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Why is VM sprawl an issue?
+The more virtual machines in use, the hard it is to migrate a VM to a live
+server
+VMs are easy to create, so you can end up with many to perform a single
+function
+VM sprawl uses too many resources
+Correct!
+When servers are no longer physical, it can be @to locate a@
+Qc hin e) \_/
+—_—
+Question 78
+11/1 pts
+Which cloud deployment model has the fewest security controls?
+Correct! Public
+Hybrid
+Private
+Community
+Question 79
+1/1 pts
+https://canvas.tamu.edu/courses/251040/quizzes/419170 33/42
+
+--- Page 34 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+When software, either malware or an attacker, escapes from one VM to
+the underlying OS, this is referred to as VM escape
+Correct! VM escape
+Virtual incursion
+Hypervisor breach
+Host intrusion
+Question 80
+0/1 pts
+In class we discussed Texas A&M's hypervisor. What is the name of it?
+ou Answered [ HyperV Hullabaloo
+]
+Rev It Up
+orrect Answer Texas Cyber Range (TXCR)
+RELLIS Cyber Range
+1171 pts
+Question 81
+First day
+Unpatched bug
+First day
+https://canvas.tamu.edu/courses/251040/quizzes/419170 34/42
+
+--- Page 35 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Undetected flaw
+Correct!
+Zero day
+Q@ 0/1pts
+\
+N Using a series of malformed inputs to test for conditions such as buffer
+o verflows is called fuzzing.
+orrect Answelr True
+|
+ou Answorod| [ False
+Question 83 0/1 pts
+As we discussed in class, can the manager talk during a SCRUM?
+orrect Answer No
+ou Answered
+Yes
+] Managers are not allowed to speak unless they also contribute to
+- coding. If they talk, they are called the Pighead
+111 pts
+Question 84
+As we discussed in class, good software developers make a good income
+and usually code on average about 2 to 3 hours a day.
+https://canvas.tamu.edu/courses/251040/quizzes/419170 35/42
+
+--- Page 36 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+I
+Correctl!
+Qu@ 39 0/1pts
+As we discussed in class, t@t arrives at the designated
+SCRUM meeting point (usually in the hallway), is the first person to kick-
+o ff the SCRUM.
+orrect Answer
+False
+|
+ou Answered True
+It's the_|ast person enters the SCRUM who starts it off and it
+|
+goes clock-wise.
+‘{i
+\
+Question 86
+0/1 pts
+Input validation is important to prevent what?
+orrect Answer buffer overflow
+Index sequence error
+ou Answered Unhandled exception
+https://canvas.tamu.edu/courses/251040/quizzes/419170 36/42
+
+--- Page 37 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Operator overload error
+0/1 pts
+Question 87
+The largest class of errors in software engineering can be attributed to
+which of the following?
+privilege violations
+poor testing
+ou Answered canonicalization errors
+~
+orrect Answer Improper input validation
+Question 88 171 pts
+Which of the following is one of the most fundamental rules to good
+coding practices?
+Don't use pointers
+Use obscure coding practices
+Code twice, test once
+Correctl Validate all inputs
+1/1 pts
+Question 89
+https://canvas.tamu.edu/courses/251040/quizzes/419170 37/42
+
+--- Page 38 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+What is ‘a number tbat Is suitable for an encryption function called?
+Securely generated
+Randomized key
+Cipher variable
+Correctl Cryptog raphic@
+1/1 pts
+Question 90
+The is a linear software engineering model with no repeating
+steps.
+loop method
+scrum method
+Correctl waterfall method
+shasta method
+0/1 pts
+Question 91
+Risk analysis is synonymous with risk assessment.
+orrect Answer True
+https://canvas.tamu.edu/courses/251040/quizzes/419170 38/42
+
+--- Page 39 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+|
+ou Answered False ]
+Question 92 0/1pts
+As we discussed in class, in Jurassic Park, the raptor test the fence for
+what? (This is something that can be exploited to cause harm)
+Hardening
+orrect Answer Vulnerability
+ou Answered [ Threat ]
+Risk Assessment
+@stion 9 0/1 pts
+As we discussed in class, what NIST publication is used Security and
+Privacy Controls for Information Systems and Organizations
+NIST 800-61r2
+orrect Answelr N 800_5U
+|
+ou Answered [ NIST 900 series
+NIST ISTR 2300
+— - N
+< QuestW 1/1 pts
+\
+https://canvas.tamu.edu/courses/251040/quizzes/419170 39/42
+
+--- Page 40 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+What may also be calle@easu@
+Correct! mty control
+\’
+Safety net
+Security shield
+Risk buffer
+Question 95
+1/1 pts
+As we discussed in class, the four ways you can handle risk?
+Accept ; Ignore ; Mitigate ; Transfer
+False
+Correctl! True
+0/1 pts
+Question 96
+The definition of risk can be described as the possibility of suffering harm
+or loss
+ou Answered [
+False
+correct Answer True
+https://canvas.tamu.edu/courses/251040/quizzes/419170 40/42
+
+--- Page 41 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Question 97
+1/1 pts
+When a threat exploits a vulnerability, you experience an impact.
+False
+Correct! True
+estion 98 > 0/1pts
+_/ T
+As we discussed in clags, CIS Versio As how many control families?
+ou Answcrod‘ [ 10
+correct Answer 8
+;_\
+20
+S
+Question 99 0/1 pts
+As we discussed in class, in Jurassic Park, the raptor breaking through
+the fence is called the ? (This is something that has the potential to cause
+harm)
+correct Answelr Threat
+|
+ou Answered Vulnerability
+Impact
+https://canvas.tamu.edu/courses/251040/quizzes/419170 41/42
+
+--- Page 42 ---
+2023/12/9 K% 1-8:38 Exam 2: Chapter 11 through 20: CYBR 201/601 : FOUNDATIONS OF CYBERSECURITY
+Mitigate
+0/1 pts
+Question 100
+As we discussed in class, are you a risk expert?
+ou Answered False
+~ Yes, you are. Because you came to class; drove a bike; walked;
+~ drove; etc. These are all risky behaviors, but you know how to
+- traverse even with risk.
+orrect Answer True
+Quiz Score: 66 out of 100
+This quiz score has been manually adjusted by +1.0 points.
+https://canvas.tamu.edu/courses/251040/quizzes/419170 42/42

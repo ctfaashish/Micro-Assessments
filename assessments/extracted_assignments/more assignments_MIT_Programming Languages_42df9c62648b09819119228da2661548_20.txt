@@ -1,0 +1,385 @@
+--- Page 1 ---
+6.821 Programming Languages Handout
+Fall 2002
+MASSACHVSETTS INSTITVTE OF TECHNOLOGY
+Department of Electrical Engineering and Compvter Science
+2002 Midterm
+There are four problems on this examination. They are followed by an appendix that contains reference
+material from the course notes. The appendix contains no problems; it is just a handy reference.
+You will have eighty-five minutes in which to work the problems. Some problems are easier than others:
+read all problems before beginning to work, and use your time wisely!
+This examination is open-book: you may use whatever reference books or papers you have brought to class.
+The number of points awarded for each problem is placed in brackets next to the problem number. There
+are 100 points total on the exam.
+Do all written work in your examination booklet — we will not collect the examination handout itself; you
+will only be graded for what appears in your examination booklet. It will be to your advantage to show
+your work — we will award partial credit for incorrect solutions that make use of the right techniques.
+If you feel rushed, be sure to write a brief statement indicating the key idea you expect to use in your
+solutions. We understand time pressure, but we can’t read your mind.
+This examination has text printed on only one side of each page. Rather than flipping back and forth be-
+tween pages, you may find it helpful to rip pages out of the exam so that you can look at more than one
+page at the same time.
+Contents
+Problem1:ShortAnswer[18points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+Problem2:OperationalSemantics:[18points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+Problem3:DenotationalSemantics:[34points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+Problem4:Control[30points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+AppendixA:PostFixGrammar . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+AppendixB:PostFixSOSfromChapter3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+AppendixC:StandardSemanticsofFLK! . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+The figures in the Appendix are very similar to the ones in the course notes. Some bugs have been fixed,
+and some figures have been simplified to remove parts inessential for this exam. You will not be marked
+down if you use the corresponding figures in the course notes instead of the appendices.
+
+--- Page 2 ---
+Problem 1: Short Answer [18 points]
+Evaluate the following expressions in the given models. If the expression evaluates to an error, say what
+kind of error it is.
+(let ((x 1))
+(let ((f (lambda (y) (+ x y))))
+(let ((x 2))
+(f 1))))
+a. [2 points] static scoping, call by value
+b. [2 points] dynamic scoping, call by value
+(let ((f (lambda () 1))
+(g (lambda () (f))))
+(let ((f (lambda () 2)))
+(g)))
+c. [2 points] static scoping, call by value
+d. [2 points] dynamic scoping, call by name
+(let ((x 0))
+(let ((f (lambda (y) (/ y x))))
+(let ((x 1))
+(set! f (lambda (y) (/ y x))))
+(let ((x 2))
+(f x))))
+e. [2 points] static scoping, call by value
+f. [2 points] dynamic scoping, call by value
+(let ((x (/ 1 0))
+(y 0))
+(let ((z (begin (set! y (+ y 1)) 5)))
+((lambda (x) (x (x x)))
+(lambda (x) (+ z y z y)))))
+g. [2 points] static scoping, call by name
+h. [2 points] static scoping, call by value
+i. [2 points] static scoping, call by need
+2
+
+--- Page 3 ---
+Problem 2: Operational Semantics: [18 points]
+Ben Bitdiddle’s company, which sells commercial PostFix implementations, has been hard-hit by the In­
+ternet stock bust and has sent him off to MIT to bring back new commercializable technology. Ben Bitdiddle
+has been learning about functional programming, and while he still prefers PostFix, he is intrigued by the
+notion of currying. He proposes two new PostFix constructs that permit creating and taking apart PostFix
+procedures. The constructs are called pack and unpack.
+• pack expects the first value on the stack to be a number n, and it expects there to be at least n more
+values on the stack. It packages together the next n values on the stack, c ,...,c , as a command
+n 1
+sequence C =(c ... c ) and pushes C on the stack.
+1 n
+• unpack expects the first value on the stack to be a command sequence C = (c ...c ). It pushes
+1 n
+c ,...,c ,n on the stack in that order.
+1 n
+If the preconditions are not met, the operational semantics gets stuck.
+unpack permits the PostFix stack to contain commands, which was previously impossible. For example,
+consider the following PostFix program:
+(N N N (add add) exec) ⇒ N + N + N
+3 2 1 1 2 3
+We can think of (add add) as a procedure of three arguments that adds N , N , and N . Using unpack
+1 2 3
+and pack, we can write a currying procedure that takes a three-argument procedure, N , and N , and
+1 2
+outputs a procedure that takes one argument N and outputs N + N + N . The currying procedure is
+3 1 2 3
+(unpack 2 add pack) and it works as follows:
+(N N (add add) (unpack 2 add pack) exec) ⇒ (N N add add)
+2 1 2 1
+Ben’s company has built proprietary optimization technology that can convert this command sequence to
+(N add), where N = N + N . Together, these two innovations promise a remarkable improvement in
+4 4 1 2
+PostFix efficiency.
+a. [5 points] Give a rewrite rule for unpack.
+b. [5 points] Give a rewrite rule for pack.
+c. [8 points] In addition to performing partial evaluation, Ben would like to be able to reuse its results;
+after all, procedures that can only be called once are of limited use. Ben proposes to add a restricted
+form of dup to PostFix+{unpack, pack}; the restricted dup may only be used immediately after pack.
+Do all such programs terminate? Argue briefly: give either an energy function or a counterexample.
+3
+
+--- Page 4 ---
+Problem 3: Denotational Semantics: [34 points]
+YOUR ANSWERS TO THIS PROBLEM SHOULD BE BASED ON THE STANDARD DENOTATIONAL SE­
+MANTICS FOR FLK! AS PRESENTED IN APPENDIX C.
+Ben Bitdiddle enjoys the convenience of short-circuiting operators and has a proposal for making them
+even more powerful.
+A standard short-circuiting logical operator evaluates only as many of its operands as necessary; it
+evaluates its arguments in left-to-right order, stopping as soon as it evaluates an argument that determines
+the value of the entire expression. For instance, if and is a short-circuiting operator, then the following
+program evaluates to #f without raising an error:
+(and #f (= 0 (/ 1 0)))
+However, reversing the order of the expressions leads to an error:
+(and (= 0 (/ 1 0)) #f)
+Ben Bitdiddle reasons that the second expression, too, should evaluate to #f. After all, one of the
+operands evaluates to #f, and that determines the value of the entire expression. He proposes a very-short­
+circuiting operator nd-and (non-deterministic and) such that if either operand evaluates to false, then only
+that operand is evaluated; otherwise, both operands are evaluated. His goals are:
+• The expression errs or infinite-loops only if at least one of the operands does, and the other expression
+does not evaluate to #f. (Hint: infinite loops, errors, and concurrency are not the main point of this
+problem.)
+• The value of the entire expression is the and of all the visibly evaluated operands, where a visibly
+executed operand is one whose side effects have been performed on the resulting store.
+• The entire expression evaluates to #t if and only if both operands are visibly evaluated (because both
+operands must be evaluated to achieve that result).
+• The entire expression evaluates to #f if and only if exactly one expression is visibly evaluated.
+Alyssa P. Hacker does not believe Ben’s goals are achievable. She says she can satisfy the first two goals
+plus either of the last two goals, but not all four goals simultaneously.
+a. [6 points] Informally describe the operational semantics for one of the possibilities for nd-and that
+satisfies Alyssa’s claim.
+b. [8 points] What is E [[(nd-and E E )]] for the version of nd-and that you described above?
+1 2
+c. [4 points] Can nd-or (nondeterministic or) be defined in terms of nd-and? Explain briefly.
+d. [3 points] What does the following FLAVAR! program evaluate to?
+(let ((a 2))
+(let ((and-result (nd-and (= a 3)
+(begin (set! a 3) #t))))
+(list and-result a)))
+e. [3 points] What does the following FLAVAR! program evaluate to?
+(let ((a 2))
+(let ((and-result (nd-and (= a 2)
+(begin (set! a 3) #t))))
+(list and-result a)))
+4
+
+--- Page 5 ---
+f. [6 points] Demonstrate that Alyssa’s assertion is correct. Given your semantics for nd-and, write an
+nd-and expression that fails one of the last two constraints. The expression should either definitely
+evaluate to #t, but with the side effects of just one of its arguments; or it should definitely evaluate to
+#f, but with the side effects of both arguments.
+g. [4 points] Suggest a restriction (to FLAVAR!, FLK!, or nd-and) that achieves all of Ben’s goals.
+5
+
+--- Page 6 ---
+Problem 4: Control [30 points]
+YOUR ANSWERS TO THIS PROBLEM SHOULD BE BASED ON THE STANDARD DENOTATIONAL SE­
+MANTICS FOR FLK! AS PRESENTED IN APPENDIX C.
+After hearing that Ben Bitdiddle’s MIT experience led him to experiment with currying (Problem 2), the
+president of Ben’s company exclaimed, “I won’t be caught selling buggy whips, curry combs, or other
+horse products in the modern economy!” and sent Ben off to New Jersey to learn some more practical
+programming constructs.
+Ben noted that FLK! is missing the while loop, which is standard in other languages, and reasons that
+adding it will reduce programmers’ resistance to FLK!.
+Ben proposes three new constructs — while, continue, and break — to ensure that C programmers feel
+at home programming in FLAVAR!. The command (while E E E ) behaves as follows. If E
+cond body final cond
+is true, then evaluate E and loop back to re-evaluate the entire while form (starting with E again).
+body cond
+If E is false, then the value of the entire while expression is the result of evaluating E .
+cond final
+Within E , (continue) preempts execution of the smallest enclosing E and returns to the top of
+body body
+that loop.
+Finally, (break E ) forces the entire while expression to terminate with the value E (without evaluat­
+3 3
+ing E ).
+final
+Consider the following procedure:
+(define f
+(lambda (xval)
+(let ((x (cell xval)))
+(while (begin (cell-set! x (+ (cell-ref x) 1)) (< (cell-ref x) 0))
+(begin (cell-set! x (+ (cell-ref x) 1))
+(if (< (cell-ref x) 0)
+(continue)
+(break 42)))
+(- (cell-ref! x) 1)))))
+Evaluation proceeds as follows:
+(f -10) ⇒ 42
+(f -11) ⇒ -1
+In order to provide a meaning for the new commands, we must change the meaning function E and add
+a new domain:
+E : Exp → Environment → Expcont → ContCont → BreakCont → Cmdcont
+c ∈ ContCont = Expcont
+b ∈ BreakCont = Expcont
+a. [14 points] What is E [[(while E E E ) ]]?
+cond body final
+b. [8 points] What is E [[(continue)] ]?
+c. [8 points] What is E [[(break E)] ]?
+6
+
+--- Page 7 ---
+Appendix A: PostFix Grammar
+P ∈ Program
+Q ∈ Commands
+C ∈ Command
+A ∈ Arithmetic-operator = {add, sub, mul, div}
+R ∈ Relational-operator = {lt, eq, gt}
+N ∈ Intlit = {..., -2, -1, 0, 1, 2, ...}
+P ::= (Q) [Program]
+Q ::= C* [Command-sequence]
+C ::= N [Integer-literal]
+| pop [Pop]
+| swap [Swap]
+| A [Arithmetic-op]
+| R [Relational-op]
+| sel [Select]
+| exec [Execute]
+| (Q) [Executable-sequence]
+Figure 1: The S-Expression Grammar for PostFix
+7
+
+--- Page 8 ---
+Appendix B: PostFix SOS from Chapter 3
+C, F , I and O for our PostFix SOS are given by:
+C = Commands × Stack
+F = {[] } × Stack
+Command
+I : Program →C
+= λP . matching P
+� (Q) [] �Q, [] �
+Value
+endmatching
+O : F → Answer
+= λ�[] , S� . matching S
+Command
+� V . S� [] (Value �→Answer V)
+� [][] (Error �→Answer error)
+endmatching
+�N . Q, S� ⇒ �Q, N . S� [numeral]
+�(Q ). Q , S� ⇒ �Q , Q . S� [executable]
+exec rest rest exec
+�pop. Q, V . S� ⇒ �Q, S� [pop]
+top
+�swap. Q, V . V . S� ⇒ �Q, V . V . S� [swap]
+1 2 2 1
+�sel. Q , V . V .0. S� ⇒ �Q , V . S� [sel-false]
+rest false true rest false
+�sel. Q , V . V . N . S� ⇒ �Q , V . S�
+rest false true test rest true [sel-true]
+where N �≡ 0
+test
+�exec. Q , Q . S� ⇒ �Q @ Q , S� [execute]
+rest exec exec rest
+�A . Q, N . N . S� ⇒ �Q, N . S�
+1 2 result
+where N ≡ (calculate A N N ) [arithop]
+result 2 1
+and ¬ ((A ≡ div) ∧ (N ≡ 0))
+1
+�R . Q, N . N . S� ⇒ �Q, 1. S�
+1 2 [relop-true]
+where (compare R N N )
+2 1
+�R . Q, N . N . S� ⇒ �Q, 0. S�
+1 2 [relop-false]
+where ¬ (compare R N N )
+2 1
+Figure 2: Rewrite rules defining the transition relation for PostFix.
+8
+
+--- Page 9 ---
+Appendix C: Standard Semantics of FLK!
+v ∈ Value = Unit + Bool + Int + Sym + Pair + Procedure + Location
+k ∈ Expcont = Value → Cmdcont
+γ ∈ Cmdcont = Store → Expressible
+Expressible = (Value + Error)
+⊥
+Error = Sym
+p ∈ Procedure = Denotable → Expcont → Cmdcont
+d ∈ Denotable = Value
+e ∈ Environment = Identifier → Binding
+β ∈ Binding = (Denotable + Unbound)
+⊥
+Unbound = {unbound}
+s ∈ Store = Location → Assignment
+l ∈ Location = Nat
+α ∈ Assignment = (Storable + Unassigned)
+⊥
+σ ∈ Storable = Value
+Unassigned = {unassigned}
+top-level-cont : Expcont
+= λv . λs . (Value �→Expressible v)
+error-cont : Error → Cmdcont
+= λy . λs . (Error �→Expressible y)
+empty-env : Environment = λI . (Unbound �→Binding unbound)
+test-boolean :(Bool → Cmdcont) → Expcont
+= λf . (λv . matching v
+� (Bool �→Value b)[] (f b)
+� else (error-cont non-boolean)
+endmatching )
+Similarly for:
+test-procedure :(Procedure → Cmdcont) → Expcont
+test-location :(Location → Cmdcont) → Expcont
+etc.
+ensure-bound : Binding → Expcont → Cmdcont
+= λβ k . matching β
+� (Denotable �→Binding v)[] (k v)
+� (Unbound �→Binding unbound)[] (error-cont unbound-variable)
+endmatching
+Similarly for:
+ensure-assigned : Assignment → Expcont → Cmdcont
+Figure 3: Semantic algebras for standard semantics of strict CBV FLK!.
+9
+
+--- Page 10 ---
+same-location? : Location → Location → Bool = λl l . (l = l )
+12 1 Nat 2
+next-location : Location → Location = λl . (l + 1)
+Nat
+empty-store : Store = λl . (Unassigned �→Assignment unassigned)
+fetch : Location → Store → Assignment = λls . (s l)
+assign : Location → Storable → Store → Store
+= λl σ s . λl . if (same-location? l l )
+1 2 1 2
+then (Storable �→Assignment σ)
+else (fetch l s)
+2
+fresh-loc : Store → Location = λs . (first-fresh s 0)
+first-fresh : Store → Location → Location
+= λsl . matching (fetch l s)
+� (Unassigned �→Assignment unassigned)[] l
+� else (first-fresh s (next-location l))
+endmatching
+lookup : Environment → Identifier → Binding = λeI . (eI)
+Figure 4: Store helper functions for standard semantics of strict CBV FLK!.
+10
+
+--- Page 11 ---
+TL : Exp → Expressible
+E : Exp → Environment → Expcont → Cmdcont
+L : Lit → Value ; Defined as usual
+TL [[E ]] = E [[E ]] empty-env top-level-cont empty-store
+E [[L ]] = λek . k L [[L ]]
+E [[I ]] = λek . ensure-bound (lookup e I) k
+E [[(proc I E) ]] = λek . k (Procedure �→Value (λdk � . E [[E ]] [I : d]e k �))
+E [[(call E E ) ]] = λek . E [[E ]] e (test-procedure (λp . E [[E ]] e (λv . p v k)))
+1 2 1 2
+E [[(if E E E )] ] =
+1 2 3
+λek . E [[E ]] e (test-boolean (λb . if b then E [[E ]] e k else E [[E ]] e k))
+1 2 3
+E [[(pair E E )] ] = λek . E [[E ]] e (λv . E [[E ]] e (λv . k (Pair �→Value �v , v �)))
+1 2 1 1 2 2 1 2
+E [[(cell E) ]] = λek . E [[E ]] e (λvs . k (Location �→Value (fresh-loc s))
+(assign (fresh-loc s) v s))
+E [[(begin E E ) ]] = λek . E [[E ]] e (λv . E [[E ]] e k)
+1 2 1 ignore 2
+E [[(primop cell-ref E)] ] = λek . E [[E ]] e (test-location (λls . ensure-assigned (fetch l s) k s))
+E [[(primop cell-set! E E )] ]
+1 2
+= λek . E [[E ]] e (test-location (λl . E [[E ]] e (λvs.k (Unit �→Value unit) (assign l v s))))
+1 2
+E [[(rec I E)] ] = λeks . let f = fix (λa . E [[E ]] [I :(extract-value a)] e top-level-cont s)
+Expressible
+matching f
+� (Value �→Expressible v)[] E [[E ]] [I : v]e ks
+� else f
+endmatching
+extract-value : Expressible → Binding
+= λa . matching a
+� (Value �→Expressible v)[] (Denotable �→Binding v)
+� else ⊥
+Binding
+endmatching
+Figure 5: Valuation clauses for standard semantics of strict CBV FLK!.
+11

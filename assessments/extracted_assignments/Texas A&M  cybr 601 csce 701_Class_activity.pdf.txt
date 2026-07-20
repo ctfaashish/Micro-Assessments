@@ -1,0 +1,57 @@
+--- Page 1 ---
+Alvaro Zschiesche
+Activity: Theoretical Home Network Security Audit
+1. Quick Network Draft:
+• Smart TV
+• Play Station
+• PC
+• MacBook
+• Alexa
+• iPad
+• iPhone
+• Wi-Fi router
+• Google Chromecast
+• Security Cameras
+2. Vulnerability Brainstorm:
+• Smart TV: Usually we don’t upload very often the software of the TV and that could lead
+to threats and susceptible malware, also unsecured app downloads could be a problem.
+• Play Station: Due to the online gaming, especially children could be good victims of
+social engineering. In addition, players can get hit by DDoS attacks.
+• PC: More common risk are viruses coming from shady downloads. Also old software.
+• MacBook: Same as PC but also is vulnerable to public networks, as we spoke in class.
+And if the Mac is lost or stolen our data could be compromised.
+• Alexa: It can listen to every conversation you are having.
+• iPad: Not keeping software updated. Also as MacBooks it can be stolen.
+• iPhone: Same as iPad.
+• Security cameras: Can be hacked and have unauthorized.
+• Google Chromecast: Because you can share your screen and other personal
+information, guest can maybe access and connect without being on the same wifi or
+connect to your own wifi if you don’t have strong password.
+• Wi-Fi router: Unauthorized access if they guess your password.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:16:47 GMT -05:00
+https://www.coursehero.com/file/226228547/Class-activitypdf/
+
+--- Page 2 ---
+Alvaro Zschiesche
+3. Mitigation Strategies
+• Smart TV: Regularly update OS and apps, and avoid downloading from untrusted
+sources.
+• Play Station: Talk with kids about the dangers of talking and trusting things to people
+they don’t know and the consequences.
+• PC: Use antivirus, keep OS and programs updated. Be careful with the things you
+download.
+• MacBook: Use antivirus, keep OS and programs updated. Be careful with the things you
+download. Don’t lose it and always keep an eye on it so they don’t steal it.
+• Alexa: Configurate it the best way you can to improve the privacy. Disable the
+microphone when not using it.
+• iPad: Keep OS and apps up to date, use app permissions judiciously. Don’t lose it and
+always keep an eye on it so they don’t steal it.
+• iPhone: Keep OS and apps up to date, use app permissions judiciously. Don’t lose it and
+always keep an eye on it so they don’t steal it.
+• Wi-Fi router: Change default passwords and put a strong one.
+• Google Chromecast: Don’t let anybody connect, keep a regular track on the google app
+to see what devices are connected. Strong Wi-Fi password.
+• Security Cameras: Strong passwords and updated firmware.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:16:47 GMT -05:00
+https://www.coursehero.com/file/226228547/Class-activitypdf/
+Powered by TCPDF (www.tcpdf.org)

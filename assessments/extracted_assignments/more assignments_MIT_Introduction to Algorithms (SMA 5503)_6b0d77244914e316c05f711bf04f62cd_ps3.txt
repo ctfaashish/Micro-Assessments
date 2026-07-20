@@ -1,0 +1,104 @@
+--- Page 1 ---
+Introduction to Algorithms October 3, 2005
+Massachusetts Institute of Technology 6.046J/18.410J
+Professors Erik D. Demaine and Charles E. Leiserson Handout 9
+Problem Set 3
+MIT students: This problem set is due in recitation on Friday, October 7, 2005. The homework
+lab for this problem set will be held 7–9 P.M. on Wednesday, October 5, 2005.
+SMA students:
+Reading: Sections 11.1–11.3 and Section 11.5.
+Both exercises and problems should be solved, but only the problems should be turned in.
+Exercises are intended to help you master the course material. Even though you should not turn in
+the exercise solutions, you are responsible for material covered in the exercises.
+Mark the top of each sheet with your name, the course number, the problem number, your
+recitation section, the date and the names of any students with whom you collaborated.
+You will often be called upon to “give an algorithm” to solve a certain problem. Your write­up
+should take the form of a short essay. A topic paragraph should summarize the problem you are
+solving and what your results are. The body of the essay should provide the following:
+1. A description of the algorithm in English and, if helpful, pseudo­code.
+2. At least one worked example or diagram to show more precisely how your algorithm works.
+3. A proof (or indication) of the correctness of the algorithm.
+4. An analysis of the running time of the algorithm.
+Remember, your goal is to communicate. Full credit will be given only to correct solutions
+which are described clearly. Convoluted and obtuse descriptions will receive low marks.
+Exercise 3­1. Do Exercise 11.1­1 on page 222 in CLRS.
+Exercise 3­2. Do Exercise 11.2­3 on page 229 in CLRS.
+Exercise 3­3. Do Exercise 11.3­3 on page 236 in CLRS.
+Exercise 3­4. Do Problem 11­2 on page 250 in CLRS.
+
+--- Page 2 ---
+2 Handout 9: Problem Set 3
+Problem 3­1. Pattern Matching
+Principal Skinner has a problem: he is absolutely sure that Bart Simpson has plagiarized some text
+on a recent book report. One of Bart’s sentences sounds oddly familiar, but Skinner can’t quite
+figure out where it came from. Skinner decides to see if some smart­alec MIT student can help
+him out.
+Skinner gives you a DVD containing the full text of the Springfield public library. The data is
+stored in a binary string T[1],T[2],...,T[n], which we view as an array T[1 ..n], where each
+T[i] is either 0 or 1. Skinner also gives you the quote from Bart Simpson’s book report, a shorter
+binary string P[1 ..m], again where each P[i] is either 0 or 1, and where m < n. For a binary
+string A[1 ..k] and for integers i,j with 1 ≤ i ≤ j ≤ k, we use the notation A[i..j] to refer
+to the binary string A[i],A[i + 1],...,A[j], called a substring of A. The goal of this problem
+is to determine whether P is a substring of T, i.e., whether P = A[i..j] for some i,j with
+1 ≤ i ≤ j ≤ n.
+For the purpose of this problem, assume that you can manipulate O(log n)­bit integers in constant
+time. For example, if x ≤ n7 and y ≤ n5, then you can calculate x+ y in constant time. On the
+other hand, you may not assume that m­bit integers can be manipulated in constant time, because
+m may be too large. For example, if m = Θ(log 2 n) and x and y are each m­bit integers, you
+cannot calculate x + y in constant time. (In general, it is reasonable to assume that you can
+manipulate integers of length logarithmic in the input size in constant time, but larger integers
+require proportionally more time.)
+(a) Assume that you have a hash function h(x) that computes a hash value of the m­
+bit binary string x = A[i..(i + m − 1)], for some binary string A[1 ..k] and some
+1 ≤ i ≤ k− m+ 1. Moreover, assume that the hash function is perfect: if x =� y, then
+h(x) �= h(y). Assume that you can calculate the hash function in O(m) time. Show
+how to determine whether P is a substring of T in O(mn) time.
+(b) Consider the following family of hash functions h , parameterized by a prime num­
+p
+ber pin the range [2,cn4] for some constant c > 0:
+h (x) = x (mod p) .
+p
+Assume that p is chosen uniformly at random among all prime numbers in the range
+[2,cn4]. Fix some i with 1 ≤ i ≤ n− m+ 1, and let x = T[i..(i+ m− 1)]. Show
+that, for an appropriate choice of c, and if x =� P, then
+� � 1
+Pr h (x) = h (P) ≤ .
+p p
+p n
+Hint: Recall the following two number­theoretic facts: (1) an integer xhas at most lg x
+prime factors; (2) the Prime Number Theorem: there are Θ(x/lg x) prime numbers in
+the range [2,x].
+(c) How long does it take to calculate h (x), as defined in part (b)? Hint: Notice that x is
+p
+an m­bit integer, and hence cannot be manipulated in constant time.
+
+--- Page 3 ---
+Handout 9: Problem Set 3 3
+(d) For 1 ≤ i ≤ n− m, show how to calculate h (A[(i+ 1) ..(i+ m)]) in constant time
+p
+if you already know the value of h (A[i..(i+ m− 1)]), as defined in part (b)?
+p
+(e) Using the family of hash functions from part (b), devise an algorithm to determine
+whether P is a substring of T in O(n) expected time.
+Problem 3­2. 2­Universal Hashing
+Let H be a class of hash functions in which each h ∈ H maps the universe U of keys to {0,1,...,m− 1}.
+We say that H is 2­universal if, for every fixed pair �x,y� of keys where x � = y, and for any h
+chosen uniformly at random from H, the pair �h(x),h(y)� is equally likely to be any of the m2
+pairs of elements from {0,1,...,m− 1}. (The probability is taken only over the random choice
+of the hash function.)
+(a) Show that, if H is 2­universal, then it is universal.
+(b) Construct a specific family H that is universal, but not 2­universal, and justify your
+answer. Write down the family as a table, with one column per key, and one row per
+function. Try to make m, |H|, and |U|as small as possible.
+Hint: There is an example with m, |H|, and |U|all less than 4.
+(c) Suppose that an adversary knows the hash family H and controls the keys we hash,
+and the adversary wants to force a collision. In this problem part, suppose that H is
+universal. The following scenario takes place: we choose a hash function h randomly
+from H, keeping it secret from the adversary, and then the adversary chooses a key x
+and learns the value h(x). Can the adversary now force a collision? In other words,
+can it find a y =� x such that h(x) = h(y) with probability greater than 1/m?
+If so, write down a particular universal hash family in the same format as in part (b),
+and describe how an adversary can force a collision in this scenario. If not, prove that
+the adversary cannot force a collision with probability greater than 1/m.
+(d) Answer the question from part (c), but supposing that H is 2­universal, not just uni­
+versal.

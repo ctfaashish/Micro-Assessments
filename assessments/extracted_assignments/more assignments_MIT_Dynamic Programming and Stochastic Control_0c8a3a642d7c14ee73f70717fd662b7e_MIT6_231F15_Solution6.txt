@@ -1,0 +1,433 @@
+--- Page 1 ---
+Exercise 7.3
+(a) Given that he is in state 1, the manufacturer has two possible controls:
+µ(1)∈U(1)={A:advertise, A¯:don’t advertise}
+Given that he is in state 2, the manufacturer may apply the controls:
+µ(2)∈U(2)={R:research, R¯ :don’t research}
+We want to find an optimal stationary policy, µ, such that Bellman’s equation is satisfied. That is, µ should
+solve:
+(cid:8) (cid:9)
+J(i)=maxE g(µ(i))+αJ(j) i=1,2
+µ j
+where j is the state following the application of µ(i) at state i. We can obtain the minimum by solving
+Bellman’s equation for each possible stationary policy and comparing the resulting costs.
+For µ1 =(A,R):
+J1(1)=4+α[.8J1(1)+.2J1(2)]
+J1(2)=−5+α[.7J1(1)+.3J1(2)]
+Letting J¯1 =[J1(1) J1(2)](cid:48), we can write:
+(cid:20) (cid:21) (cid:20) (cid:21)
+4 .8 .2
+J¯1 = +α J¯1
+−5 .7 .3
+Finally, then:
+(cid:18) (cid:20) (cid:21)(cid:19)−1(cid:20) (cid:21)
+.8 .2 4
+J¯1 = I−α
+.7 .3 −5
+For µ2 =(A,R¯), we similarly obtain:
+(cid:18) (cid:20) (cid:21)(cid:19)−1(cid:20) (cid:21)
+.8 .2 4
+J¯2 = I−α
+.4 .6 −3
+For µ3 =(A¯,R):
+(cid:18) (cid:20) (cid:21)(cid:19)−1(cid:20) (cid:21)
+.5 .5 6
+J¯3 = I−α
+.7 .3 −5
+For µ4 =(A¯,R¯):
+(cid:18) (cid:20) (cid:21)(cid:19)−1(cid:20) (cid:21)
+.5 .5 6
+J¯4 = I−α
+.4 .6 −3
+(cid:20) (cid:21)
+1−p p
+As α→1, we have for any matrix M = :
+q 1−q
+(cid:20) (cid:21) (cid:20) (cid:21)
+1 1−α+αq αp 1 q p
+(I−αM)−1 = →
+(1−α)(1−α+α(p+q)) αq 1−α+αp δ(p+q) q p
+where δ =1−α. Thus, as α→1:
+(cid:20) (cid:21) (cid:20) (cid:21) (cid:20) (cid:21) (cid:20) (cid:21)
+4 4 6 6
+J¯1 = , J¯2 = , J¯3 = , J¯4 =
+−5 −3 −5 −3
+Thus, the optimal stationary policy is the shortsighted one of not advertising or researching.
+1
+1
+
+--- Page 2 ---
+(cid:20) (cid:21)
+1−p p
+As α→1, we have for any matrix :
+q 1−q
+(cid:20) (cid:21)
+1 q p
+(I−αM)−1 →
+δ(p+q) q p
+where δ =1−α. Thus, as α→1:
+(cid:20) (cid:21) (cid:20) (cid:21) (cid:20) (cid:21) (cid:20) (cid:21)
+1 2 1 5/3 1 17/12 1 1
+J¯1 = , J¯2 = , J¯3 = , J¯4 =
+δ 2 δ 5/3 δ 17/12 δ 1
+Thus, the optimal policy is the farsighted one to advertise and research.
+(b)Usingpolicyiteration: Lettheinitialstationarypolicybeµ0(1)=A¯(don’tadvertise), µ0(1)=R¯ (don’t
+research). Evaluating this policy yields
+(cid:18) (cid:20) (cid:21)(cid:19)−1(cid:20) (cid:21) (cid:20) (cid:21)
+.5 .5 6 15.49
+J =(I−αP )−1g = I−0.9 ≈ .
+µ0 µ0 µ0 .4 .6 −3 5.60
+The new stationary policy satisfying T J =TJ is found by solving
+µ1 µ0 µ0
+2
+(cid:88)
+µ1(i)=argmax[g(i,u)+α p (u)J (j)].
+ij µ0
+j=1
+We then have
+µ1(1)=argmax[4+0.9(0.8J (1)+0.2J (2)),6+0.9(0.5J (1)+0.5J (2))]
+µ0 µ0 µ0 µ0
+=argmax[16.2,15.5]
+=A.
+Similarly,
+µ1(2)=argmax[−5+0.9(0.7J (1)+0.3J (2)),−3+0.9(0.4J (1)+0.6J (2))]
+µ0 µ0 µ0 µ0
+=argmax[6.27,5.60]
+=R.
+Evaluating this new policy yields
+(cid:18) (cid:20) (cid:21)(cid:19)−1(cid:20) (cid:21) (cid:20) (cid:21)
+.8 .2 4 22.20
+J = I−0.9 ≈ .
+µ1 .7 .3 −5 12.31
+Attempting to find another improved policy, we see that
+µ2(1)=argmax[4+0.9(0.8J (1)+0.2J (2)),6+0.9(0.5J (1)+0.5J (2))]
+µ1 µ1 µ1 µ1
+=argmax[22.20,21.53]
+=A,
+2
+2
+
+--- Page 3 ---
+and
+µ2(2)=argmax[−5+0.9(0.7J (1)+0.3J (2)),−3+0.9(0.4J (1)+0.6J (2))]
+µ1 µ1 µ1 µ1
+=argmax[12.31,11.64]
+=R.
+Since J =TJ , we’re done. The optimal policy is thus µ=(A,R).
+µ1 µ1
+The linear programming formulation for this problem is
+minλ +λ
+1 2
+subject to
+λ ≥4+0.9[0.8λ +0.2λ ]
+1 1 2
+λ ≥6+0.9[0.5λ +0.5λ ]
+1 1 2
+λ ≥−5+0.9[0.7λ +0.3λ ]
+2 1 2
+λ ≥−3+0.9[0.4λ +0.6λ ].
+2 1 2
+ByplottingtheseequationsorbyusinganLPpackage,weseethattheoptimalcostsareJ∗(1)=λ∗ =22.20
+1
+and J∗(2)=λ∗ =12.31.
+2
+3
+
+--- Page 4 ---
+Exercise 7.5
+(a) Define three states: {(s,r): the umbrella is in the same location as the person and it is raining, (s,n):
+the umbrella is in the same location as the person and it is not raining, and o: the umbrella is in the other
+location}. In state (s,n), the person makes the decision whether or not to take the umbrella. In state (s,r),
+the person has no choice and takes the umbrella. In state o, the person also has no choice and does not take
+the umbrella. Bellman’s equation yields
+J(o)=pW +αpJ(s,r)+α(1−p)J(s,n)
+J(s,r)=αpJ(s,r)+α(1−p)J(s,n)
+J(s,n)=min[αJ(o),V +αpJ(s,r)+α(1−p)J(s,n).
+An alternative is to use the following two states are: {s : the umbrella is in the same location as the
+person, o: the umbrella is in the other location}. In state s, the person takes the umbrella with probability
+p (if it rains) and makes a decision whether or not to take the umbrella with probability 1−p (if it doesn’t
+rain). In state o, the person has no decision to make. Bellman’s equation yields
+J(o)=pW +αJ(s)
+J(s)=pαJ(s)+(1−p)min[V +αJ(s),αJ(o)]
+=min[(1−p)V +αJ(s),pαJ(s)+(1−p)αJ(o)].
+(b) In the two-state formulation, since J(o) is a linear function of J(s), we need only concentrate on min-
+imizing J(s). The two possible stationary policies are µ1(s) = {T : take umbrella} and µ2(s) = {L :
+leave umbrella}.
+For µ1, we have
+J1(s)=(1−p)V +αJ(s)
+(1−p)V
+= .
+1−α
+For µ2, we have
+J2(s)=pαJ(s)+(1−p)αJ(o)
+=pαJ(s)+(1−p)α[pW +αJ(s)]
+(1−p)pW
+= .
+1 −p−(1−p)α
+α
+So the optimal policy is to take the umbrella whenever possible if
+J1(s)<J2(s),
+4
+4
+
+--- Page 5 ---
+or when
+(1−p)V (1−p)pW
+< .
+1−α 1 −p−(1−p)α
+α
+This expression simplifies to
+V(1+α)
+p> α .
+W +V
+Using the three-state formulation, we see from the second equation that
+1−αp
+J(s,n)= J(s,r).
+α(1−p)
+Then, the other two equations become
+J(o)=pW +J(s,r)
+and
+J(s,n)=min[αJ(o),V +J(s,r)].
+J(o) and J(s,n) are linear functions of J(s,r) so again, we can just concentrate on minimizing J(s,r) via
+the equation
+1−αp
+J(s,r)=min[αJ(o),V +J(s,r)].
+α(1−p)
+Using the same process as in the two-state formulation, we get the same result.
+Exercise 7.7
+Suppose that J (i+1)≥J (i) for all i. We will show that J (i+1)≥J (i) for all i. Consider first the
+k k k+1 k+1
+case i+1<n. Then by the induction hypothesis, we have
+c(i+1)+α(1−p)J (i+1)+αpJ (i+2)≥ci+α(1−p)J (i)+αpJ (i+1). (1)
+k k k k
+Define for any scalar γ,
+(cid:2) (cid:3)
+F (γ)=min K+α(1−p)J (0)+αpJ (1), γ .
+k k k
+Since F (γ) is monotonically increasing in γ, we have from Eq. (1),
+k
+(cid:0) (cid:1)
+J (i+1)=F c(i+1)+α(1−p)J (i+1)+αpJ (i+2)
+k+1 k k k
+(cid:0) (cid:1)
+≥F ci+α(1−p)J (i)+αpJ (i+1)
+k k k
+=J (i).
+k+1
+Finally, consider the case i+1=n. Then, we have
+J (n)=K+α(1−p)J (0)+αpJ (1)
+k+1 k k
+(cid:0) (cid:1)
+≥F ci+α(1−p)J (i)+αpJ (i+1)
+k k k
+=J (n−1).
+k+1
+The induction is complete.
+5
+5
+
+--- Page 6 ---
+Exercise 7.8
+A threshold policy is specified by a threshold integer m and has the form
+Process the orders if and only if their number exceeds m.
+The cost function corresponding to a threshold policy specified by m will be denoted by J . By Prop.
+m
+3.1(c), this cost function is the unique solution of system of equations
+(cid:26)
+K+α(1−p)J (0)+αpJ (1) if i>m,
+J (i)= m m (1)
+m ci+α(1−p)J (i)+αpJ (i+1) if i≤m.
+m m
+Thus for all i≤m, we have
+ci+αpJ (i+1)
+m
+J (i)= ,
+m
+1−α(1−p)
+c(i−1)+αpJ (i)
+m
+J (i−1)= .
+m
+1−α(1−p)
+From these two equations it follows that for all i≤m, we have
+J (i)≤J (i+1) ⇒ J (i−1)<J (i). (2)
+m m m m
+Denote now
+γ =K+α(1−p)J (0)+αpJ (1).
+m m
+Consider the policy iteration algorithm, and a policy µ that is the successor policy to the threshold policy
+corresponding to m. This policy has the form
+Process the orders if and only if
+K+α(1−p)J (0)+αpJ (1)≤ci+α(1−p)J (i)+αpJ (i+1)
+m m m m
+or equivalently
+γ ≤ci+α(1−p)J (i)+αpJ (i+1).
+m m
+In order for this policy to be a threshold policy, we must have for all i
+γ ≤c(i−1)+α(1−p)J (i−1)+αpJ (i) ⇒ γ ≤ci+α(1−p)J (i)+αpJ (i+1). (3)
+m m m m
+This relation holds if the function J is monotonically nondecreasing, which from Eqs. (1) and (2) will be
+m
+true if J (m)≤J (m+1)=γ.
+m m
+Let us assume that the opposite case holds, where γ <J (m). For i>m, we have J (i)=γ, so that
+m m
+ci+α(1−p)J (i)+αpJ (i+1)=ci+αγ. (4)
+m m
+We also have
+cm+αpγ
+J (m)= ,
+m
+1−α(1−p)
+from which, together with the hypothesis J (m)>γ, we obtain
+m
+cm+αγ >γ. (5)
+6
+6
+
+--- Page 7 ---
+Thus, from Eqs. (4) and (5) we have
+ci+α(1−p)J (i)+αpJ (i+1)>γ, for all i>m, (6)
+m m
+so that Eq. (3) is satisfied for all i>m.
+For i≤m, we have ci+α(1−p)J (i)+αpJ (i+1)=J (i), so that the desired relation (3) takes the
+m m m
+form
+γ ≤J (i−1) ⇒ γ ≤J (i). (7)
+m m
+Toshowthatthisrelationholdsforalli≤m,wearguebycontradiction. Supposethatforsomei≤mwehave
+J (i)<γ ≤J (i−1). ThensinceJ (m)>γ,theremustexistsomei>isuchthatJ (i−1)<J (i). But
+m m m m m
+thenEq.(2)wouldimplythatJ (j−1)<J (j)forallj ≤i,contradictingtherelationJ (i)<γ ≤J (i−1)
+m m m m
+assumed earlier. Thus, Eq. (7) holds for all i≤m so that Eq. (3) holds for all i. The proof is complete.
+Exercise 7.10
+(a) The states are si, i=1,...,n, corresponding to the worker being unemployed and being offered a salary
+wi,ands¯i,i=1,...,n,correspondingtotheworkerbeingemployedatasalarylevelwi. Bellman’sequation
+is
+ 
+n
+(cid:88)
+J(si)=maxc+α ξ
+j
+J(sj), wi+αJ(s¯i), i=1,...,n, (1)
+j=1
+J(s¯i)=wi+αJ(s¯i), i=1,...,n, (2)
+where ξ is the probability of an offer at salary level wj at any one period.
+j
+From Eq. (2), we have
+wi
+J(s¯i)= i=1,...,n,
+1−α
+so that from Eq. (1) we obtain
+ 
+n
+(cid:88) wi
+J(si)=maxc+α ξ
+j
+J(sj), ,
+1−α
+j=1
+Thus it is optimal to accept salary wi if
+ 
+n
+(cid:88)
+wi ≥(1−α)c+α ξ
+j
+J(sj).
+j=1
+The right-hand side of the above relation gives the threshold for acceptance of an offer.
+(b) In this case Bellman’s equation becomes
+  
+n n
+(cid:88) (cid:88)
+J(si)=maxc+α ξ
+j
+J(sj), wi+α(1−p
+i
+)J(s¯i)+p
+i
+ξ
+j
+J(sj) (3)
+j=1 j=1
+ 
+n
+(cid:88)
+J(s¯i)=wi+α(1−p
+i
+)J(s¯i)+p
+i
+ξ
+j
+J(sj). (4)
+j=1
+7
+7
+
+--- Page 8 ---
+Let us assume without loss of generality that
+w1 <w2 <···<wn.
+Let us assume further that p =p for all i. From Eq. (4), we have
+i
+wi+p
+(cid:80)n
+ξ J(sj)
+J(s¯i)= j=1 j ,
+1−α(1−p)
+so it follows that
+J(s¯1)<J(s¯2)<···<J(s¯n). (5)
+WethusobtainthatthesecondterminthemaximizationofEq.(3)ismonotonicallyincreasingini,implying
+that there is a salary threshold above which the offer is accepted.
+In the case where p is not independent of i, salary level is not the only criterion of choice. There must
+i
+be consideration for job security (the value of p ). However, if p and wi are such that Eq. (5) holds, then
+i i
+there still is a salary threshold above which the offer is accepted.
+Exercise 7.11
+Using the notation of Exercise 7.10, Bellman’s equation has the form
+ 
+n n
+(cid:88) (cid:88)
+λ+h(si)=maxc+ ξ
+j
+h(si), wi+(1−p
+i
+)h(s¯i)+p
+i
+ξ
+j
+h(sj), i=1,...,n, (3)
+j=1 j=1
+n
+(cid:88)
+λ+h(s¯i)=wi+(1−p )h(s¯i)+p ξ h(sj), i=1,...,n. (4)
+i i j
+j=1
+From these equations, we have
+ 
+n
+(cid:88)
+λ+h(si)=maxc+ ξ
+j
+h(sj), λ+h(s¯i), i=1,...,n,
+j=1
+so it is optimal to accept a salary offer wi if h(s¯i) is no less that the threshold
+n
+(cid:88)
+c−λ+ ξ h(sj).
+j
+j=1
+Here λ is the optimal average salary per period (over an infinite horizon). If p =p for all i and w1 <w2 <
+i
+··· < wn, then from Eq. (4) it follows that h(s¯i) is monotonically increasing in i, and the optimal policy is
+to accept a salary offer if it exceeds a certain threshold.
+8
+8
+
+--- Page 9 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.231 Dynamic Programming and Stochastic Control
+Fall 2015
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

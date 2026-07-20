@@ -1,0 +1,46 @@
+--- Page 1 ---
+CSCI 5010 Assignment 2
+2-24 e (total time spent 30 mins)
+(e.i.)
+The degree of this relationship is a one-to-many relationship.
+(e.ii.)
+ER diagram for piano and designer
+2-24 f
+(f.i.)
+The degree is 2 which is binary. It is many-to-many.
+(f.ii.)
+At least two technicians must inspect the piano before it is sent to customer
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:51 GMT -05:00
+https://www.coursehero.com/file/55922220/CSCI-5010-Assignment-2docx/
+
+--- Page 2 ---
+2-24 g
+(g.i)
+The relationship in this case is of degree 1 (unary). The relationship is one-to-many.
+(g.ii)
+The chief technician is not a separate entity type on its own. Hence, no supervisor therefore
+having a cardinality of 0. Some of The technicians that inspect are themselves supervisors.
+2-35
+Total time (20 minutes)
+a) A Student work for School. STUDENT 0:1 SCHOOL.
+A school employs one or many students. SCHOOL 0:M STUDENTS
+b) A student can attend a club if that club is located in the school in which that student is
+attending.
+c) Another way of doing this is by adding an attribute to the student entity specifying if
+the student works for the school he/she is attending. This attribute can be binary to
+specify if the student is working or not. By doing this we can remove the “Work For”
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:51 GMT -05:00
+https://www.coursehero.com/file/55922220/CSCI-5010-Assignment-2docx/
+
+--- Page 3 ---
+relationship and have an instance for the attribute work for in student entity. This
+would be a better way to enforce business policies.
+d) Yes it is possible. A students can belong to a club if they choose to. The club the
+student may decide to attend my be located in another school. However, a school must
+have a club in it.
+2.39 g (time 40 mins)
+An artwork is created by an artist. However some artworks are created by unknow artist
+(ARTWORK 0:1 ARTIST).
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:51 GMT -05:00
+https://www.coursehero.com/file/55922220/CSCI-5010-Assignment-2docx/
+Powered by TCPDF (www.tcpdf.org)

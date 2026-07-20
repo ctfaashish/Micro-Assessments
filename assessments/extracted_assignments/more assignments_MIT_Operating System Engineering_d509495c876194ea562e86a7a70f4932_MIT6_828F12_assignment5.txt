@@ -1,0 +1,114 @@
+--- Page 1 ---
+In-class: xv6 CPU alarm
+In-class: xv6 CPU alarm
+We encourage you to collaborate with others on these in-class exercises.
+In this exercise you'll add a feature to xv6 that periodically alerts a process as it uses CPU time. This might be useful
+for compute-bound processes that want to limit how much CPU time they chew up, or for processes that want to
+compute but also want to take some periodic action. More generally, you'll be implementing a primitive form of user-
+level interrupt/fault handlers; you could use something similar to handle page faults in the application, for example.
+You should add a new system call. If an application calls , then after
+alarm(interval, handler) alarm(n, fn)
+every "ticks" of CPU time that the program consumes, the kernel will cause application function to be called.
+n fn
+When returns, the application will resume where it left off. A tick is a fairly arbitrary unit of time in xv6,
+fn
+determined by how often a hardware timer generates interrupts.
+You should put the following example program in :
+alarmtest.c
+#include "types.h"
+#include "stat.h"
+#include "user.h"
+void periodic();
+int
+main(int argc, char *argv[])
+{
+int i;
+printf(1, "alarmtest starting\n");
+alarm(10, periodic);
+for(i = 0; i < 50*500000; i++){
+if((i++ % 500000) == 0)
+write(2, ".", 1);
+}
+exit();
+}
+void
+periodic()
+{
+printf(1, "alarm!\n");
+}
+The program calls to ask the kernel to force a call to every 10 ticks, and then spins
+alarm(10, periodic) periodic()
+for a while. After you have implemented , should produce output like this:
+alarm() alarmtest
+$ alarmtest
+alarmtest starting
+.....alarm!
+....alarm!
+.....alarm!
+......alarm!
+.....alarm!
+....alarm!
+....alarm!
+......alarm!
+.....alarm!
+...alarm!
+...$
+Hint: the right declaration to put in is:
+user.h
+int alarm(int ticks, void (*handler)());
+Hint: Your should store the alarm interval and the pointer to the handler function in new fields in the
+sys_alarm()
+structure; see .
+proc proc.h
+Hint: here's a for free:
+sys_alarm()
+1
+
+--- Page 2 ---
+In-class: xv6 CPU alarm
+int
+sys_alarm(void)
+{
+int ticks;
+void (*handler)();
+if(argint(0, &ticks) < 0)
+return -1;
+if(argptr(1, (char**)&handler, 1) < 0)
+return -1;
+proc->alarmticks = ticks;
+proc->alarmhandler = handler;
+return 0;
+}
+Hint: You'll need to keep track of how many ticks have passed since the last call (or are left until the next call) to a
+process's alarm handler; you'll need a new field in for this too. You can initialize fields in
+struct proc proc
+in .
+allocproc() proc.c
+Hint: Every tick, the hardware clock forces an interrupt, which is handled in by ;
+trap() case T_IRQ0 + IRQ_TIMER
+you should add some code here.
+Hint: You only want to manipulate a process's alarm ticks if there's a process running and if the timer interrupt came
+from user space; you want something like
+if(proc && (tf->cs & 3) == 3) ...
+Hint: In your code, when a process's alarm interval expires, you'll want to cause it to execute its handler.
+IRQ_TIMER
+How can you do that?
+Hint: You need to arrange things so that, when the handler returns, the process resumes executing where it left off.
+How can you do that?
+Hint: You can see the assembly code for the alarmtest program in alarmtest.asm.
+Hint: It will be easier to look at traps with gdb if you tell qemu to use only one CPU, which you can do by running
+make CPUS=1 qemu
+It's OK if your solution doesn't save the caller-saved user registers when calling the handler.
+Challenges: 1) Save and restore the caller-saved user registers around the call to handler. 2) Prevent re-entrant calls to
+the handler -- if a handler hasn't returned yet, don't call it again. 3) Assuming your code doesn't check that is
+tf->esp
+valid, implement a security attack on the kernel that exploits your alarm handler calling code.
+Submit: The code that you added to trap.c.
+2
+
+--- Page 3 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.828 Operating System Engineering
+Fall 2012
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

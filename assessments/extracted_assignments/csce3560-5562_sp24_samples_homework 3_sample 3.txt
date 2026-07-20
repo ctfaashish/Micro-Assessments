@@ -1,0 +1,69 @@
+--- Page 1 ---
+Question 1: Covert-Channel Attack Study
+M. Yan, Y. Shalabi and J. Torrellas, "ReplayConfusion: Detecting cache-based covert channel
+attacks using record and replay," 2016 49th Annual IEEE/ACM International Symposium on
+Microarchitecture (MICRO), Taipei, Taiwan, 2016, pp. 1-14, doi:
+10.1109/MICRO.2016.7783742. keywords: {Trojan
+horses;Receivers;Hardware;Security;Protocols;Timing;Indexes},
+How the Covert-Channel Works:
+Architecture and Environment: The covert-channel described operates within a multi-core
+processor environment leveraging the Last Level Cache (LLC). The document discusses an
+attack scenario where both a "trojan" (sender) and a "spy" (receiver) are involved, potentially
+running on the same physical machine but separated by OS-level or hypervisor-enforced
+isolation.
+Creation of the Covert-Channel: The covert channel utilizes the LLC's behavior regarding
+cache misses and the specific mapping of memory addresses to cache sets. The described attack,
+called "Prime+Probe," involves the spy process priming the cache by filling specific cache sets
+with its data. Then, the trojan modifies the cache state based on the information it wants to send.
+The spy measures the cache miss rates upon accessing the same sets to infer the data encoded by
+the trojan.
+Generalization: The technique heavily relies on the specific architecture of the LLC and the
+ability to manipulate and monitor cache states effectively. Therefore, its applicability might be
+limited to environments where such detailed interaction with the hardware cache is possible and
+where processes can measure detailed cache performance metrics. Systems with different cache
+architectures or stricter isolation between processes might not be susceptible in the same way.
+Advantages and Disadvantages:
+Advantages: The attack can be highly stealthy as it exploits hardware-level mechanisms that
+are typically not monitored by traditional security tools.
+Disadvantages: It requires specific hardware conditions and detailed knowledge of the
+system's cache architecture, which may not be generally available or consistent across different
+systems. Additionally, the complexity of executing such an attack without being detected can be
+high, as it involves precise timing and control of cache interactions.
+3. XaaS – Everything as a Service
+Software as a Service / SaaS: Provides software applications over the internet; Microsoft Office
+365.
+Platform as a Service / PaaS: Offers hardware and software tools over the internet; Google App
+Engine
+Internet as a Service / IaaS: Provides virtualized computing resources over the internet; Amazon
+Web Services
+
+--- Page 2 ---
+Database as a Service / DBaaS: Offers database management systems as a cloud service;
+Amazon RDS
+4. Xen is type-A and is very efficient in managing multiple virtual machines on the same
+physical hardware. It allows direct access to hardware and has more efficient resource allocation.
+This helps to minimize overhead and maximize performance. Strong isolation between virtual
+machines. Supports paravirtualization and full virtualization. Compared to other hypervisors like
+VMware or Hyper-V, Xen is often praised for lower overhead and better security via
+compartmentalization.
+5. OpenStack's Glance provides image services to OpenStack. It allows users to discover,
+register, and retrieve virtual machine images. Glance API accepts API calls for image discovery,
+retrieval, and storage. Glance Registry stores, processes, and retrieves metadata about images.
+Image Storage is the actual storage for image files, which can be configured to use various back
+ends like local filesystems, object storage or Amazon S3.
+6. Live migration works by memory, storage, and network connectivity of the VM are transferred
+from the original host to the destination. To minimize downtime, techniques like pre-copy
+memory migration, where memory pages are transferred while the VM is still running, are used.
+Only deltas of changed memory pages are transferred at the final stage. If the destination host
+fails before completion, the VM should go back to operating on the original host, or it could
+unexpectedly shut down and require a restart.
+7. In terms of cloud computing,
+Components for facilities:
+• A power supply to ensure uninterrupted power. A cooling system to maintain optimal
+hardware temperatures. Physical security to control and watch the system.
+Components of hardware resources:
+Servers which are hosts for running apps and services. Storage devices for data retention. Virtual
+machines to conduct tests and develop. Lastly, networking gear like switches and routers for
+connectivity.
+Reference for this question:
+https://www.skytap.com/terms-glossary/cloud-infrastructure-components/

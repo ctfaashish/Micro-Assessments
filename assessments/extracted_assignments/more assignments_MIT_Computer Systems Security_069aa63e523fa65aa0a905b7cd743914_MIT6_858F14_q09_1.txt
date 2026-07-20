@@ -1,0 +1,156 @@
+--- Page 1 ---
+Department of Electrical Engineering and Computer Science
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+6.893 Fall 2009
+Quiz I
+All problems are open-ended questions. In order to receive credit you must answer the question
+as precisely as possible. You have 80 minutes to finish this quiz.
+Write your name on this cover sheet.
+Some questions may be harder than others. Read them all through first and attack them in the
+order that allows you to make the most progress. If you find a question ambiguous, be sure to
+write down any assumptions you make. Be neat. If we can’t understand your answer, we can’t
+give you credit!
+THIS IS AN OPEN BOOK, OPEN NOTES EXAM.
+Please do not write in the boxes below.
+I (xx/18) II (xx/16) III (xx/18) IV (xx/8) V (xx/18)
+VI (xx/8) VII (xx/8) VIII (xx/6) Total (xx/100)
+Name:
+1
+
+--- Page 2 ---
+I Buffer Overflows
+Ben Bitdiddle is building a web server that runs the following code sequence, in which process_req()
+is invoked with a user-supplied string of arbitrary length. Assume that process_get() is safe, and for
+the purposes of this question, simply returns right away.
+void process_req(char *input) {
+char buf[256];
+strcpy(buf, input);
+if (!strncmp(buf, "GET ", 4))
+process_get(buf);
+return;
+}
+1. [6 points]: Ben Bitdiddle wants to prevent attackers from exploiting bugs in his server, so he
+decides to make the stack memory non-executable. Explain how an attacker can still exploit a buffer
+overflow in his code to delete files on the server. Draw a stack diagram to show what locations on the
+stack you need to control, what values you propose to write there, and where in the input string these
+values need to be located.
+2
+
+--- Page 3 ---
+2. [6 points]: Seeing the difficulty of preventing exploits with a non-executable stack, Ben
+instead decides to make the stack grow up (towards larger addresses), instead of down like on the x86.
+Explain how you could exploit process_req() to execute arbitrary code. Draw a stack diagram
+to illustrate what locations on the stack you plan to corrupt, and where in the input string you would
+need to place the desired values.
+3
+
+--- Page 4 ---
+3. [6 points]: Consider the StackGuard system from the “Buffer Overflows” paper in the context of
+Ben’s new system where the stack grows up. Explain where on the stack the canary should be placed,
+at what points in the code the canary should be written, and at what points it should be checked, to
+prevent buffer overflow exploits that take control of the return address.
+4
+
+--- Page 5 ---
+II XFI
+4. [2 points]: Suppose a program has a traditional buffer overflow vulnerability where the attacker
+can overwrite the return address on the stack. Explain what attacks, if any, an attacker would be able
+to mount if the same program is run under XFI. Be specific.
+5. [4 points]: Suppose a program has a buffer overflow vulnerability which allows an attacker
+to overwrite a function pointer on the stack (which is invoked shortly after the buffer is overflowed).
+Explain what attacks, if any, an attacker would be able to mount if the same program is run under XFI.
+Be specific.
+5
+
+--- Page 6 ---
+6. [4 points]: Suppose a malicious XFI module, which is not allowed to invoke unlink(),
+attempts to remove arbitrary files by directly jumping to the unlink() code in libc. What precise
+instruction will fail when the attacker tries to do so, if any?
+7. [6 points]: Suppose a malicious XFI module wants to circumvent XFI’s inline checks in its
+code. To do so, the module allocates a large chunk of memory, copies its own executable code to it
+(assume XFI is running with only write-protection enabled, for performance reasons, so the module
+is allowed to read its own code), and replaces all XFI check instructions in the copied code with NOP
+instructions. The malicious module then calls a function pointer, whose value is the start of the copied
+version of the function that the module would ordinarily invoke. Does XFI prevent an attacker from
+bypassing XFI’s checks in this manner, and if so, what precise instruction would fail?
+6
+
+--- Page 7 ---
+III Privilege Separation
+8. [4 points]: OKWS uses database proxies to control what data each service can access, but lab 2
+has no database proxies. Explain what controls the data that each service can access in lab 2.
+9. [8 points]: In lab 2, logging is implemented by a persistent process that runs under a separate
+UID and accepts log messages, so that an attacker that compromises other parts of the application
+would not be able to corrupt the log. Ben Bitdiddle dislikes long-running processes, but still wants to
+protect the log from attackers. Suggest an alternative design for Ben that makes sure past log messages
+cannot be tampered with by an attacker, but does not assume the existence of any long-running user
+process.
+7
+
+--- Page 8 ---
+10. [6 points]: Ben proposes another strawman alternative to OKWS: simply use chroot() to
+run each service process in a separate directory root. Since each process will only be able to access
+its own files, there is no need to run each process under a separate UID. Explain why Ben’s approach
+is faulty, and how an attacker that compromises one service will be able to compromise other services
+too.
+8
+
+--- Page 9 ---
+IV Information Flow Control
+11. [8 points]:
+This problem was buggy; everyone received full credit.
+9
+
+--- Page 10 ---
+V Java
+12. [4 points]: When a privileged operation is requested, extended stack introspection walks up
+the stack looking for a stack frame which called enablePrivilege(), but stops at the first stack
+frame that is not authorized to call enablePrivilege(). Give an example of an attack that could
+occur if stack inspection did not stop at such stack frames.
+10
+
+--- Page 11 ---
+13. [8 points]: Suppose you wanted to run an applet and allow it to connect over the network to
+web.mit.edu port 80, but nowhere else. In Java, opening a network connection is done by constructing
+a Socket object, passing the host and port as arguments to the constructor. Sketch out how you would
+implement this security policy with extended stack introspection, assuming that the system library
+implementing sockets calls checkPrivilege("socket") in the Socket constructor. Explain
+how the applet must change, if any.
+11
+
+--- Page 12 ---
+14. [6 points]: Sketch out how you would implement the same security policy as in part (b), except
+by using name space management. Explain how the applet must change, if any.
+12
+
+--- Page 13 ---
+VI Browser
+15. [8 points]: The paper argues that the child policy (where a frame can navigate its immedi­
+ate children) is unnecessarily strict, and that the descendant policy (where a frame can navigate the
+children of its children’s frames, and so on) is just as good. Give an example of how the descendant
+policy can lead to security problems that the child policy avoids.
+13
+
+--- Page 14 ---
+VII Resin
+16. [8 points]: Sketch out the Resin filter and policy objects that would be needed to avoid cross-
+site scripting attacks through user profiles in zoobar. Assume that you have a PHP function to strip
+out JavaScript.
+14
+
+--- Page 15 ---
+VIII 6.893
+We’d like to hear your opinions about 6.893, so please answer the following questions. (Any answer, except
+no answer, will receive full credit.)
+17. [2 points]: How could we make the ideas in the course easier to understand?
+18. [2 points]: What is the best aspect of 6.893?
+19. [2 points]: What is the worst aspect of 6.893?
+End of Quiz
+15
+
+--- Page 16 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.858 Computer Systems Security
+Fall 2014
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

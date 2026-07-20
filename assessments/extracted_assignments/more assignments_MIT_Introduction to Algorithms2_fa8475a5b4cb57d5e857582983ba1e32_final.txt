@@ -1,0 +1,59 @@
+--- Page 1 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.006 Introduction to Algorithms
+Spring 2008
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.
+
+--- Page 2 ---
+Introduction to Algorithms: 6.006
+Massachusetts Institute of Technology May 9, 2008
+Professors Srini Devadas and Erik Demaine Handout 13
+Final Practice Problems
+1 Subset Sum
+You are given a sequence of n numbers (positive or negative):
+x ,x ,...,x
+1 2 n
+Yourjobisto selecta subsetof these numbersof maximum total sum, subjecttothe constraint that
+you can’t select two elements that are adjacent (that is, if you pick x then you cannot pick either
+i
+x or x ).
+i−1 i+1
+Explain how you can find, in time polynomial in n, the subset of maximum total sum.
+
+--- Page 3 ---
+2 Handout 13: Final Practice Problems
+2 Collecting Coins
+You are given an n-by-n grid, where each square (i, j) contains c(i, j) gold coins. Assume that
+c(i, j) ≥ 0 forall squares. You must startinthe upper-left cornerandendinthelower-right corner,
+and at each step you can only travel one square down or right. When you visit anysquare, including
+your starting or ending square, you may collect all of the coins on that square. Give an algorithm
+to find the maximum number of coins you can collect if you follow the optimal path.
+
+--- Page 4 ---
+Handout 13: Final Practice Problems 3
+3 True/False
+Decide whether these statements are True or False. You must briefly justify all your answers to
+receive full credit.
+1. AnyDynamic Programming algorithm with n subproblems will run in O(n) time.
+True False
+Explain:
+2. Karatsuba’s method is based on the use of continued fractions.
+True False
+Explain:
+√
+3. Newton’s Method for computing 2 essentially squares the number of correct digits at each
+iteration.
+True False
+Explain:
+
+--- Page 5 ---
+4 Handout 13: Final Practice Problems
+4 Numerics
+√
+Suppose we are trying to compute 3 9 (the cube root of 9).
+Explain carefully how one iteration of Newton’s Method works for this problem, starting
+with an initial guess of x = 2. (Hint: the function to use is f(x) = x3 − 9. ) Be sure to
+0
+derive carefully the value of x .
+1

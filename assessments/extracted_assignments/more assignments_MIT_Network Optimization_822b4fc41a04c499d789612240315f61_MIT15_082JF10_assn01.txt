@@ -1,0 +1,58 @@
+--- Page 1 ---
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+15.082J/6.855J/ESD.78J – Network Optimization (Fall 2010)
+Problem Set 1
+Due Session 3
+at the beginning of class
+READINGS in AMO.
+• Chapter 1, “Introduction,” pages 1 to 20
+• Sections 2.1 to 2.3 in Chapter 2, “Paths, Trees, and Cycles,” pages 23 to 38
+• Chapter 3, “Algorithm Design and Analysis,” pages 53 to 85
+• Sections A.1 to A.2 in Appendix A, “Data Structures,” pages 765 to 773
+HOMEWORK EXERCISES.
+Notes:
+• Each person may discuss problems with other students; however, each individual's
+work should be his or her own.
+• Some of the exercises are odd numbered exercises from the textbook. The solutions
+to these are available from the course website menu or from "Network Flows" on
+Professor Orlin’s home page (http://jorlin.scripts.mit.edu). We recommend that
+you attempt solve the odd numbered exercises before consulting the solutions on
+the web site. These problems do not need to be handed in. (The number of odd
+numbered exercises on this problem set is larger than is typical for subsequent
+problem sets.)
+• If you become aware of a written solution to any other homework problems, we ask
+that you not consult the solution.
+• Homework will be graded out of 4 points. Each problem (except for odd numbered
+exercises) will be worth 1 point.
+Chapter 1 of AMO
+Exercise 1.1.
+Exercise 1.7. Also, explain how to interpret a solution to the shortest path as a
+solution to the paragraph problem.
+Chapter 2 of AMO
+Exercise 2.1
+Exercise 2.3
+Exercise 2.13
+Exercise 2.15
+Exercise 2.31. (You can specify the forward star as in the book, or the adjacency
+lists as in the class notes.)
+1. Exercise 2.50
+
+--- Page 2 ---
+Chapter 3 of AMO
+Exercise 3.1
+Exercise 3.3
+Exercise 3.5
+2. Exercise 3.10
+Exercise 3.13
+3. Exercise 3.14
+Exercise 3.15
+Exercise 3.21
+Exercise 3.29
+4. Exercise 3.30
+
+--- Page 3 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+15.082J / 6.855J / ESD.78J Network Optimization
+Fall 2010
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

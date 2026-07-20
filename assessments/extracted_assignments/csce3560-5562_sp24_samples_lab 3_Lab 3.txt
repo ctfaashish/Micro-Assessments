@@ -1,0 +1,58 @@
+--- Page 1 ---
+CSCE 3560/5562 – Cloud Security
+Spring 2024
+University of North Texas
+Lab 3
+In this lab, we will be running some covert-channel attacks and experiments.
+Step 1 (10 pts):
+Create two VMs on the same computer; you can do it by cloning your existing VM if your hypervisor
+allows it (most probably it has this option). Show both your VMs from your hypervisor.
+Step 2 (15 pts):
+In this step, on VM1 you will be creating a heavy disk-write operation for approximately 10 seconds. For
+this purpose, you will be using dd command with bs and count parameters as well as dsync info (as a hint)
+and you need to find the right configurations for your computer.
+You should automate the time measuring as well; i.e., there is one command that shows how much time it
+takes to run an application (real-time, this is another hint for you).
+You will be running at least 5 times and show them all, they should be relatively close to each other.
+Which commands and which parameters did you use? Show your command, your parameters, and all the
+times you have observed as a table and also as a single screenshot.
+Step 3 (20 pts):
+Now, we will use both VMs for the following purpose: We will try to understand if we are sharing the same
+harddrive. Of course, we will simplify and will try to fine-tune for the moment. Now you need to run dd
+command on VM2 with a change in the configurations: use ten times higher for the count size. Meanwhile,
+you will be running the original dd command and check the time on VM1. Now you should observe that
+the time you spent is higher at least 10%. This part will change based on your computer; therefore, you may
+need to run different configurations and try to find the right one. You can end the command on VM2 now.
+You will be running the same experiment at least 5 times and show them all, they should be relatively close
+to each other.
+What is the right dd command and configurations you found? Show your command, your parameters, and
+all the times you have observed as a table and also as a single screenshot How much of time difference did
+you observe in average?
+Step 4 (50 pts):
+You will be writing a code running on VM1 with the following pseudocode:
+Result = NULL
+Connect to VM2:
+Run dd on VM2 with larger parameter
+Run dd on VM1
+Get time of dd on VM1 as t_dd
+If(t_dd >= threshold): # the threshold you previously observed
+Result = 1
+Else:
+Result = 0
+Connect to VM2:
+End dd command if it is still running
+
+--- Page 2 ---
+You can use any languages and any protocols you want. However, the whole code needs to be automated
+showing your result.
+Show that you can detect the co-residency.
+Upload your codes as Appendix for this question.
+Step 5 (35 pts):
+Now we will use the previous command and we will move forward if you are able to show that you
+observe Result is 1 (i.e., you demonstrated co-residency). Now, send 100110 from VM2 to VM1 using a
+loop.
+Upload your codes as Appendix for this question.
+NOTE: You will be uploading all your codes as appendices at the end. If the code is not there, you will
+not get any points. And, they need to be working codes; i.e., we will check the codes.
+APPENDIX:
+Step 3 Codes:

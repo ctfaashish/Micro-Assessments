@@ -1,0 +1,170 @@
+--- Page 1 ---
+IntroductiontoAlgorithms: 6.006
+MassachusettsInstituteofTechnology November1,2011
+ProfessorsErikDemaineandSriniDevadas ProblemSet6
+Problem Set 6
+Both theory and programming questions are due on Tuesday, November 15 at 11:59PM.
+Please download the .zip archive for this problem set, and refer to the README.txt file for
+instructionsonpreparingyoursolutions.
+Wewillprovidethesolutionstotheproblemset10hoursaftertheproblemsetisdue. Youwill
+have to read the solutions, and write a brief grading explanation to help your grader understand
+your write-up. You will need to submit the grading guide by Tuesday, November 22, 11:59PM.
+Yourgradewillbebasedonbothyoursolutionsandthegradingexplanation.
+Problem6-1. [30points] ICanHazMoarFrendz?
+Alyssa P. Hacker is interning at RenBook (人书 / 人書 in Chinese), a burgeoning social network
+website. Sheneedstoimplementanewfriendsuggestionfeature. Fortwofriendsuandv (friend-
+shipisundirected),theEdgeRankER(u,v)canbecomputedinconstanttimebasedontheinterest
+u shows in v (for example, how frequently u views v’s profile or comments on v’s wall). Assume
+that EdgeRank is directional and asymmetric, and that its value falls in the range (0,1). A user
+u is connected to a user v if they are connected through some mutual friends, i.e., u = u has a
+0
+friendu ,whohasafriendu ,...,whohasafriendu = v. Theintegerk isthevaguenessofthe
+1 2 k
+connection. Definethestrengthofsuchaconnectiontobe
+k
+(cid:89)
+S(p) = ER(u ,u ).
+i−1 i
+i=1
+For a given user s, Alyssa wants to have a way to rank potential friend suggestions according to
+the strength of the connections s has with them. In addition, the vagueness of those connections
+shouldnotbemorethank,avalueAlyssawilldecidelater.
+Help Alyssa by designing an algorithm that computes the strength of the strongest connection
+between a given user s and every other user v to whom s is connected with vagueness at most
+k, in O(kE +V) time (i.e., for every pair of s and v for v ∈ V\{s}, compute the strength of the
+strongest connection between them with vagueness at most k). Assume that the network has |V|
+users and |E| friend pairs. Analyze the running time of your algorithm. For partial credit, give a
+slowerbutcorrectalgorithm. Youcandescribeyouralgorithminwords,pseudocodeorboth.
+Problem6-2. [30points] RenBookCompetitor
+Having experienced RenBook and its alternatives, you’ve come to the conclusion that the social
+networkingwebsitescurrentlyouttherelackfocus. You’vedecidedtocreateasocialnetworkthat
+caters specifically to the algorithms-in-Python crowd. Excited about this idea, you’ve pitched to
+various investors, a few of whom have traded you a check in return for convertible debt. You’re
+readytogo! Nowyouhavetoimplementyouridea.
+1
+
+--- Page 2 ---
+ProblemSet6
+Thefirststepistorentamachineontheweb,ataskwhichyou’veeasilyaccomplishedusingyour
+newly-acquired funding. The next step, however, is harder to complete: you must install a web
+server library and all of its dependencies. Each library that you wish to install can depend on a
+number of other libraries, which you will have to install first. Each of those libraries can in turn
+haveitsowndependencies.
+Youcantrytoinstallthelibrariesone-by-oneandresolvethedependenciesbyhand,butyou’dlike
+to write a script that will do the work for you. Fortunately, having studied graphs in 6.006, you’re
+confidentthat youwillbeable toaccomplishthis task. Youwillneedto determinewhichlibraries
+needtobeinstalledandthengeneratetheorderinwhichthelibrarieswillbeinstalledsothatthere
+willbenodependencyproblems.
+Examining the software library repository, you see that there are V total libraries, which together
+have a total of E dependencies. The repositories enforces the rule that dependencies cannot be
+cyclic. Librariesrarelyalldependononeanother,soyoucansafelyassumethatE (cid:28) V2.
+(a) Aninstallationorderisanorderingofallthelibrariessuchthateachlibrary’sdepen-
+dencies appear prior to it in the sequence. If we install each library in this sequence
+in order, we are guaranteed to avoid dependency problems. Describe in detail how to
+generateaninstallationorderfortheentirerepositoryinO(V +E)time.
+We wish to install a web server library along with its dependencies. Suppose that some libraries
+are already installed on your system, and that only P libraries remain to be installed (you can
+determine whether a library has already been installed by performing a dictionary lookup in O(1)
+time). AssumethatthemaximumnumberofdependenciesforanygivenlibraryisD.
+(b) Give pseudocode for an algorithm that generates an installation order for the non-
+installed libraries that are needed for installing the web server library in O(P +PD)
+time. Describe your algorithm. You may use any routine given in CLRS as a subrou-
+tine in your pseudocode, and you can use a textual description, a clarifying example,
+oracorrectnessproofforthedescription.
+Problem6-3. [30points] Rubik’sCube
+Inthisproblem,youwilldevelopalgorithmsforsolvingthe2×2×2Rubik’sCube,knownasthe
+Pocket Cube. Call a configuration of the cube “k levels from the solved position” if it can reach
+thesolvedconfigurationinexactlyk twists,butcannotreachthesolvedconfigurationinanyfewer
+twists.
+TherubikdirectoryintheproblemsetpackagecontainstheRubik’sCubelibraryandagraphical
+userinterfacetovisualizeyouralgorithm.
+We will solve the Rubik’s Cube puzzle by finding the shortest path between two configurations
+(thestartandgoal)usingBFS.
+ABFSthatgoesasdeepas14levels(thediameterofthepocketcube)willtakeafewminutes(not
+tomentionthememoryneeded). Afewminutesistooslowforus: wewanttosolvethecubevery
+quickly!
+2
+
+--- Page 3 ---
+ProblemSet6
+Instead, we will take advantage of a fact that we saw in lecture: the number of nodes at level 7
+(halfthediameter)ismuchsmallerthanhalfthetotalnumberofnodes.
+Withthisinmind,wecaninsteaddoatwo-wayBFS,startingfromeachendatthesametime,and
+meeting in the middle. At each step, expand one level from the start position, and one level from
+theendposition,andthenchecktoseewhetheranyofthenewnodeshavebeendiscoveredinboth
+searches. Ifthereissuchanode,wecanreadoffparentpointers(inthecorrectorder)toreturnthe
+shortestpath.
+Writeafunctionshortest pathinsolver.pythattakestwopositions,andreturnsalistof
+movesthatisashortestpathbetweenthetwopositions.
+Testyourcodeusingtest solver.py. Checkthatyourcoderunsinlessthan5seconds.
+Problem6-4. [30points] FromBerkleetoBerkeley
+Jack Florey and his fellow hackers are planning to put a TARDIS1 on Berkeley’s most symbolic
+tower. However, the company responsible for transporting the construction material mistook the
+destination as Berklee College of Music. In order to save the extra cost of transportation back to
+Berkeley, Jack wants to help them to find the fastest route from Berklee to Berkeley. He down-
+loaded the data from the National Highway Planning Network (NHPN)2. However, as he did not
+take6.006anddoesnotknowhowtoimplementtheDijkstra’salgoritm,heturnstoyouforhelp.
+The partial code is in the dijkstra directory in the zip file for this problem set. It contains
+a data directory which includes node and link text files from the NHPN. Open nhpn.nod
+and nhpn.lnk in a text editor to get a sense of how the data is stored (datadict.txt and
+format.txt have more precise descriptions of the data fields and their meanings). The Python
+modulenhpn.pyprovidedcontainscodetoloadthetextfilesintoNodeandLinkobjects. Read
+nhpn.pytounderstandtheformatoftheNodeandLinkobjects.
+In dijkstra.py, the PathFinder object contains a source node, a destination node, and a
+Network object which represents the highway network with a list of Node objects. For each
+node,node.adjcontainsalistofallnodesadjacenttonode.
+Yourtaskisimplementingthemethod
+PathFinder.dijkstra(weight, nodes, source, destination)
+using Dijkstra’s algorithm. It is given a function weight(node1, node2) that returns the
+weight of the link between node1 and node2, a list of all the nodes, a source node and a
+destination node in the network. The method should return a tuple of the shortest path from
+the source to the destination as a list of nodes, and the number of nodes visited during
+the execution of the algorithm. A node is visited if the shortest path of it from the source is
+computed. Youshouldstopthesearchassoonastheshortestpathtothedestinationisfound.
+Function distance(node1, node2) is a weight function used by the main program to
+call the dijkstra method. It returns the distance between two NHPN nodes. Nodes come with
+1DoctorWho’sTimeAndRelativeDimensionInSpace
+2http://www.fhwa.dot.gov/planning/nhpn/
+3
+
+--- Page 4 ---
+ProblemSet6
+latitudeandlongitude(inmillionthsofdegrees). Forsimplicity,wetreattheseas(x,y)coordinates
+on a flat surface, where the distance between two points can be calculated using the Pythagorean
+Theorem.
+TheNodeDistancePairobjectwrapsagivennodeanditsdistancewhichcanbeusedasakey
+inthepriorityqueue.
+ThePythonmodulepriority queue.pycontainsamin-heapbasedimplementationofprior-
+ityqueue. Itisaugmentedwithamapofkeystotheirindicesintheheap,sothatthedecrease key(key)
+methodtakesO(1)timetolookupthekeyinthepriorityqueue.
+AfterimplementingPathFinder.dijkstra(),youcanrun
+python dijkstra.py < tests/0boston berkeley.in
+toseetheshortestdistancefromBoston,MAtoBerkeley,CA.
+Tovisualizetheresult,youcanrunthefollowingcommand.
+TRACE=kml python dijkstra.py < tests/0boston berkeley.in
+OnWindows,usethefollowingcommandinstead:
+dijkstra kml.bat < tests/0boston berkeley.in
+This will create two files, path flat.kml and path curved.kml. Both should be paths
+from Boston, MA to Berkeley, CA. path flat.kml is created using the distance function de-
+scribedearlier,andpath curved.kmliscreatedusingadistancefunctionthatdoesnotassume
+that the Earth is flat. .kml files can be viewed using Google Maps, by putting the file in a web-
+accessible location (such as your*Athena Public directory), going to http://maps.google.
+com and putting the URL (http://...) in the search box. Try asking Google Maps for driving
+directions from Berklee to Berkeley to get a sense of how similar their answer is. Two sample
+.kml files path flat sol.kml and path curved sol.kml are provided in the same
+directoryandyoucancheckyourresultsagainstthesamples.
+YoucanusethefollowingcommandtorunallthetestsonyourDijkstra’simplementation:
+python dijkstra test.py
+When your code passes all the tests and runs reasonably fast (the tests should complete in less
+than 40s when using CPython), upload your modified dijkstra.py to the course submission
+site. Ourautomatedgradingcodewilluseourversionsofdijkstra test.py,nhpn.py,and
+priority queue.py,sopleasedonotmodifythesefiles.
+*Athena is MIT's UNIX-based computing environment. OCW does not provide access to it.
+4
+
+--- Page 5 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.006 In troduction to Algorithms
+Fall 2011
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

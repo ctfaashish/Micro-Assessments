@@ -1,0 +1,61 @@
+--- Page 1 ---
+CSCE 3530 - Spring 2018 - Intro, to Computer Networks Name:
+Quiz #4
+20 Points
+1. Differentiate (at least two differences) between connectionless demultiplexing and
+connection-oriented demultiplexing. (4 Points)
+Corneckonkeacamutfiplevina ‘uthl dasny Ipuwre is domlwi*h
+OErBon R ed8«co asA dahrakon Port Nvbevs.U THa
+is c
+°( dAmviBpks don vt VDP Cocs
+Cotype tXow -O%ven *A damo8pt-r ! (1a dam v • T Pkoo r isdoy Uh
+Souye 2, aad«oa on. soura pov+ kvmbey, d4Breonf odd-n) ard
+aahnolioy Poc+ wmbet THs ute or d-yulpkwvs i ADravs%
+Top C2 )
+2. Differentiate (at least two differences) between Go-Back-N (GBN) and Selective
+Repeat (SR) protocols. (4 Points)
+k Seinda Cu.mdok
+(2)
+CU&*
+iik .©L ordal O
+OcMsbdawent •
+3. List at least six fields in the TCP segment. (6 Points)
+* Sovfe et Nmbey
++ Da%raGoy Port
+% Semwane wwmber
+atwowuaevent wwber
+4
++ YEteye wndow
++ Chauow
+4/2/2018
+© 2018 Robin Pottathuparambil Page 1 of 2
+
+--- Page 2 ---
+4. What is TCP fast retransmit? (2 Points)
+%e**a &aw- dqje +ru
+o3kan Senduv Aews A. a CM Oy*
+O8 U*nov
+3w0v 4 •
+5. Compute the checksum for the below payload(data). (4 Points)
+0x1 IFF 0xFF22 OXAA25 0xFF37
+9vo e 0» • w *
+Dp~ •
+0KnFf DOO | 000 t 1111 Illi
+D KF Fa2 tiv ini Ooto 0010
+10 10 to 1 0 Oo । o D 10 |
+0KAA2r
+Ct)
+DxF3* ■ h 11 ooh Olli
+10
+Hu io l 0 01 i i 01
+L.
+___* i o
+- 7 V •
+<0 v 10 10 Olli 1 1 1 I
+4 Complmes} o loo 010 1 090 ODO 0
+5 8
+ok 0
+csauesom 1- 0 X4580
+Cl)
+©2018 Robin Pottathuparambil Page 2 of 2
+4/2/2018

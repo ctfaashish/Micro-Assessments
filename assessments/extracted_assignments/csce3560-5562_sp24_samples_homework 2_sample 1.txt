@@ -1,0 +1,111 @@
+--- Page 1 ---
+CSCE 3560/5562 – Cloud Security
+Spring 2024
+Homework 2
+Question 1(20 pts):
+There exist multiple TPM chipset manufacturers. Among them Infineon Technologies AG
+chipsets had a vulnerability that weakens public keyresistance.Explain how theattackers
+can applythis attack.
+This vulnerabilityallowedusers to reverseengineer/exploitcryptographic
+systemsenabling an attackerto recreatesystemssuchas RSA.Withthis RSAexample
+an attackercould recreate auser'sRSAprivatekey, which canbeusedtoSSH intoa
+device forinitial access.
+Question 2(25 pts):
+Recently anewversion of Spectreattackhas beenannounced;i.e., known asSpectre-BHI.
+Actually,initiallyAMD was thoughttobe notaffectedbythis attack,whichwasthen shownto
+be incorrect.Explain
+(a) howthis attackworks (5pts),
+Theattack works bymanipulating the pre-setconditions in aCPUand the
+executionbehavior of saidCPU.The attack manipulatesthe processesbranch orderof
+processes in orderto speculative executecodeto accessprivilegedmemory in orderto
+steal sensitivedata.
+(b) how AMD(was expected to)mitigate (5 pts),
+AMD mitigated these vulnerabilities by updatingthe microcodeon theCPU aswell
+as changing the privileges of specific processes that could be predicted and abused.
+(c) what are the current solutions(10 pts)
+Thebest currentsolution isto notpurchaseaCPUvulnerable tothis attack.
+(d) how thecurrentsolutionsaffect the performance(5 pts)
+Getting anew CPU could bebetterfor theperformance but will bring downtime.
+
+--- Page 2 ---
+Question 3(20 pts):
+What arethedifferencesbetween paravirtualization, full virtualization,hardware-assisted
+virtualization?What aretheirpros andcons?
+Paravirtualization is whenaVMdoesnot createitsownvirtual hardware
+and isspawned on the operating systemlayer. The guestOS is awareit isaVMand
+communicates directlywith theHypervisor forfunctionality. A hugepro is thatit
+does notrequire specific hardwareas “Hardware-assistedvirtualization” while
+having lessoverheadthan “Full Virtualization.” A largeconis therange of
+operating systemsofferingthis type ofvirtualization. You havelimited options
+compared to the othersvirtualization options.
+Full Virtualization iswhereaVMis createdon theoperating system layer,
+while creating itsown independent virtual hardware. Apro is thevirtual hardware,
+partially the virtual drive(.vbx, .vdhx,etc..) canbetransferredto manyoperating
+systemsmaking itquite versatile. Aconthough is performance,it is moreabstracted
+than per saythe “Hardware-assistedvirtualization” leading tomore errorsthan the
+other options.
+Hardware-assistedvirtualization is whenaVMis createdstraightoff the
+hardware, whilecreating itsown virtualizedhardware gettingridof layersof
+abstraction. Thelargestprois performance onceup,and due tothe leastlayersof
+abstraction they tend to run thebest. A conwouldbegettingit up andrunning
+though, thesehypervisors tendto requiremore technicalknowledge than the
+previous options.
+Question 4(20 pts):
+Xenisone of thecommonly usedhypervisors.What makesit special?What arethe advantages
+of Xencomparedto otherhypervisors?
+There areafewthings that makeXen special,oneis itis wellknown for having a
+smaller sizecoderepositoryand thedevelopershaveput afocus on creating secure code.
+Aswellit isoften referredto asthe“pioneer” ofparavirtualization, still offeringsomeof
+the best paravirtualizationservices to thisday. Also,it iscommonly used,thereis good
+documentation to setupaXen hypervisor but thebest onesare quiteold. Assomeone
+who’s setup XenVM’s myselfit'snot toodifficult at allthough.
+Xen's largestadvantagein my eyesis itslightweight,the clusterability and
+security.Asdiscussedbefore, Xen pridesitselfon being lightweightmakingit suitable for
+large environments.This alongsideitsclustering capability boosts itsusein large
+environments, howevera regularuser maynotbeable totake advantageofthe clustering
+capabilities. Finally,Xen providesuniqueand strongisolation betweenguest andhosts,
+alongside secure coding practices,that makes itsecurity notablecompared toother
+hypervisors.
+
+--- Page 3 ---
+Question 5(20 pts):
+This stepwill be ahands-onimplementation. Onyour Linux VM,ononeterminalrun top
+commandand onanotherterminal, runthe following command(it hastobe exactlythesame,be
+careful):
+:(){ :|:& };:
+a. Whathappens when yourunthis attack? Alsoexplainusingthe topbehavior.
+Theattack works bydefining afunction called“:”, it willthenspawn
+another oneof theseprocesses“:”, runsit in thebackground,thenre-calls itself
+repeating the process,overwhelmingresources.The CPUusageof thedevice
+goesup the longerI letthe forkbomb run when Iusethe topcommand.
+b.What isthisattack called?
+It iscalleda“Fork Bomb” andis atypeof DoSattack
+c. Show onemethod topreventit andprove that itworked. Explainhow itprevents.
+One methodwould besettingawhite listorblack liston commands/scripting
+capability,whateverlist you usetomake surecommon fork bombsarenotallowed tobe
+executed.Another methodwould beusing theulimit command.The ulimitcommand will
+limit the processesausercanhaverunning atonce.
+Forexamplewith auser ‘bill’you could usethe command
+sudo-u billulimit -u 100
+This would setbill toonly allow himto run100processes, limitingthe capabilities of
+the attack. Sudo privilegesare required.
+
+--- Page 4 ---
+Question 6(15 pts):
+What isthedifferencebetweenaside-channel attackandcovert-channel attack.Giveone
+example toexplain.
+A sidechannel attackexploit utilizes the poweranalysisof cryptographic
+operations.I alwaysthink about SammyKhamkar's presentation whenthis attack
+isbrought up. Inthe talk heshowed himselfusing an iPhone speakerto listento the
+noises/vibrationscausedby the electricitysurgingthrough thedevice. When a
+computer usesaddition,multiplication,subtraction, etc..itutilizes different
+amounts of power,wecanuse micstoidentify thesenoises.If amalicious useris
+able to setup adevicewithamicthat hasthe capabilitiesto catch thesenoiseswhile
+the device isgoing through someencryptionprocess, it canreverseengineer thekey
+being usedthrough these noises/vibrations.Sammy Kahmardemonstrates himself
+crackingquantum computingbasedencryption methods withthis technique.
+A covert-channel attack iswheretwoprocesses sharethesameresource, one
+process amalicious user owns. Thisattack is whenauser willmanipulate the
+process they haveaccess overto gain accesstothe information from theother
+process using the samesharedresource. This makes itquite different from a
+side-channel attack.

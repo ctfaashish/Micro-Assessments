@@ -1,0 +1,35 @@
+--- Page 1 ---
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+15.082J/6.855J/ESD.78J – Network Optimization (Fall 2010)
+Problem Set 3
+Due Session 13
+at the beginning of class
+Hand in the exercises labeled 1, 2, 3, 4 and 5.
+READINGS in AMO.
+• Chapter 6, “Maximum Flows: Basic Ideas,” pages 166 to 197
+• Sections 7.1 to 7.5 in Chapter 7, “ Maximum Flows: Polynomial Algorithms,” pages 207
+to 223
+HOMEWORK EXERCISES. Chapters 6 and 7 of AMO
+Exercise 6.3
+Exercise 6.11
+1. Exercise 6.12
+2. Exercise 6.16
+Exercise 6.25
+Exercise 6.31
+3. Exercise 6.30 HINT: Let (i, j) be an arc for which x = u in every maximum
+ij ij
+flow. Let x* be some optimal flow.
+Let S* = {k ∈ N: there is a path from i to k in G(x*) }. Let T* = N\S*. Show that
+(S*, T*) is a minimum capacity s-t cut and that i ∈ S* and j ∈ T*.
+4. Exercise 6.34 (For true statements,
+it suffices to give a brief explanation)
+Exercise 7.3
+5. Exercise 7.8 (For true statements,
+it suffices to give a brief explanation)
+
+--- Page 2 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+15.082J / 6.855J / ESD.78J Network Optimization
+Fall 2010
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

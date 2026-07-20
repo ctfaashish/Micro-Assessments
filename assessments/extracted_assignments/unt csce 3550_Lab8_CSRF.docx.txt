@@ -1,0 +1,229 @@
+--- Page 1 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Lab 8:
+Cross-Site Request Forgery (CSRF)
+Attack Lab
+This lab uses the SEEDUbuntu-16.04-32bit virtual machine (VM). Please use this website for
+the guidelines on how to obtain this VM: http://www.cis.syr.edu/~wedu/seed/lab_env.html
+(Note that this VM is not available in the CSE repository.)
+See http://www.cis.syr.edu/~wedu/seed/Labs_16.04/Documents/SEEDVM_VirtualBoxManual.pdf for
+the guidelines on importing the SEEDUbuntu VM into VirtualBox. Follow the 7 steps in “How to Use
+Virtualbox to Run SEEDUbuntu VM”. For this lab, you do not need to configure the network
+(as explained in the Appendix B). Setup the SEED Ubuntu network setting as NAT.
+This document contains customizations, questions, and additional instructions specific to
+how this SEED lab is conducted for this course.
+You may consider having a copy of the original SEED lab description
+(https://seedsecuritylabs.org/Labs_16.04/PDF/Web_CSRF_Elgg.pdf)
+open in another window. More information on the original SEED lab (which this assignment is based
+upon) is available here: https://seedsecuritylabs.org/Labs_16.04/Web/Web_CSRF_Elgg/.
+IMPORTANT NOTES:
+ URLs (www.csrflabelgg.com and www.csrflabattacker.com) in the below tasks
+should only be accessed from inside of the SEEDUbuntu-16.04-32bit VM.
+ The /etc/hosts file is modified to map the domain name of each URL
+to the virtual machine’s local IP address (127.0.0.1).
+ Make sure to use the website names EXACTLY as they are shown above,
+otherwise you may get the wrong website.
+ DO NOT access these URLs from your host machine or from other VM’s
+as the actual Internet domains are not controlled by UNT.
+
+--- Page 2 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Task 1: Observing HTTP Requests
+Q1: Use the “HTTP Header Live” tool or the Web Console “Network” tab to observe a request
+for the homepage (http://www.csrflabelgg.com/) before logging in. Give us a screenshot and
+identify any parameters used in this request (if any).
+Q2: Use the “HTTP Header Live” tool or the Web Console “Network” tab to observe a login
+form submission (http://www.csrflabelgg.com/, fill out the form in the right panel, and
+click “Log in”). Give us a screenshot and identify any parameters used in this request (if any).
+
+--- Page 3 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Task 2: CSRF Attack with GET Request
+In this part of the lab you will (as Boby) use a CSRF attack to add Boby to Alice’s friend list.
+Log in as Charlie (http://www.csrflabelgg.com/, username: charlie, pass: seedcharlie).
+Click on “More” → “Members”. Click on Alice’s name.
+Open HTTP Header Live or the Web Console Network tab so that you can see the request you are about
+to make. Click on “Add Friend”.
+Q3: Attach a screenshot of the details of the “Add Friend” request to add Alice as one of
+Charlie’s friends. What parameters are sent in this request?
+What URL is the request being sent to?
+
+--- Page 4 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Parameters= elgg_token elgg_ts
+url = http://www.csrflabelgg.com
+Go back to the “Members” list. Click on “Boby”.
+Open HTTP Header Live or the Web Console Network tab so that you can see the request you are about
+to make. Click on “Add Friend”.
+Q4: Attach a screenshot of the details of the “Add Friend” request to add Boby as one of
+Charlie’s friends. Indicate what parameters are sent in this request, if any.
+
+--- Page 5 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Q5: How might the results of the above experiments help Boby to craft a CSRF request to add
+Alice as a friend even though she doesn’t want to become his friend?
+Boby can pose as someone else, for example, Charlie because the add friend request is the same
+when adding both as a friend from charlie’s account.
+Create an index.html file inside the attacker’s website (www.csrflabattacker.com;
+/var/www/CSRF/attacker folder). Design this page so that anyone with an active Elgg session that
+visits the page will automatically become Boby’s friend whether that person wants to or not.
+Note that this page should achieve the stated goal without using any JavaScript.
+NOTE: This page MUST contain your name somewhere in the visible text. (Hint: the “img” tag
+automatically triggers an HTTP GET request whether the image exists or not).
+NOTE: Create a backup copy of this file because you will need to overwrite and then restore this
+file in later steps.
+
+--- Page 6 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Q6: Attach the source code for the attacker’s index.html file.
+<html>
+<body>
+<h1>This page forges an HTTP POST request.</h1>
+<script type="text/javascript">
+function forge_post()
+{
+var fields;
+// The following are form entries need to be filled out by attackers.
+// The entries are made hidden, so the victim won’t be able to see them.
+fields += "<input type='hidden' name='name' value='Alice'>";
+fields += "<input type='hidden' name='briefdescription'value='Boby and Michael Mendoza are
+FRIENDS!!'>";
+fields += "<input type='hidden' name='accesslevel[briefdescription]' value='2'>";
+fields += "<input type='hidden' name='guid' value='42'>";
+// Create a <form> element.
+var p = document.createElement("form");
+// Construct the form
+p.action = "http://www.csrflabelgg.com/action/profile/edit";
+p.innerHTML = fields;
+p.method = "post";
+// Append the form to the current page.
+document.body.appendChild(p);
+// Submit the form
+p.submit();
+}
+// Invoke forge_post() after the page is loaded.
+window.onload = function() { forge_post();}
+</script>
+</body>
+</html>
+Log in as Boby (http://www.csrflabelgg.com/, username: boby, pass: seedboby).
+Go to the “Members” list. Click on “Alice”.
+Q7: Attach a screenshot proving that Alice is not friends with Boby.
+
+--- Page 7 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Click on “Send a message”.
+Send a message to Alice with your name and a link to the www.csrflabattacker.com website.
+Note: The message subject must be non-empty, otherwise the website will throw an error.
+(This is an unintentional bug in the website implementation.)
+Log in as Alice. Click on the envelope to view your messages.
+Q8: Attach a screenshot of the message that you sent to Alice.
+Make sure that it includes your name and a link to the www.csrflabattacker.com website.
+
+--- Page 8 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Click on the link in Boby’s message.
+Q9: Show a screenshot of how your webpage looks when Alice views it.
+Q10: Go back to www.csrflabelgg.com and give us a screenshot.
+
+--- Page 9 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Task 3: CSRF Attack Using POST Request
+In this part of the lab, you are going to (as Boby) deface Alice’s profile so that Alice’s profile reads
+“Boby and ${YourName} are MY HEROES!!” (replace ${YourName} with your actual name).
+Log in as Alice (http://www.csrflabelgg.com/, username: alice, pass: seedalice).
+Click on “Edit profile”.
+Open HTTP Header Live or the Web Console Network tab so that you can see the request you are about
+to make. Fill out the form and click “Save”.
+Q11: Attach a screenshot of the details of the request to update Alice’s profile.
+
+--- Page 10 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Q12: What parameters will Boby need to pass if he wants to use a CSRF attack to deface Alice’s
+profile to read “Boby and ${YourName} are MY HEROES!!” (Replace ${YourName} with your
+actual name)? How must he pass them?
+Edit the index.html file inside the attacker’s website (www.csrflabattacker.com;
+/var/www/CSRF/attacker folder) so that the page will launch a CSRF attack to deface Alice’s profile
+to read “Boby and ${YourName} are MY HEROES!!”.
+Hint: A sample code that you can modify is given in the original SEED lab.
+NOTE: Create a backup copy of this version of the file because you will need to overwrite and
+then restore this file in later steps.
+Q13: Attach the contents of the attacker’s index.html file.
+Log in as Boby and send another message to Alice with the link to the attacker’s webpage
+that you created above.
+
+--- Page 11 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Log in as Alice and click on “My Profile”.
+Q14: Send a screenshot of Alice’s profile before she clicks on the link.
+Click on the envelope to view the messages.
+Q15: Send a screenshot of the message with the link.
+Make sure it includes your name and a link to the www.csrflabattacker.com website.
+Open HTTP Header Live or the Web Console Network tab so that you can see the request you are about
+to make.
+Then, click on the link in the message to launch the attacker’s webpage.
+Q16: Attach a screenshot of the network traffic and result. Describe what happened.
+Q17: This attack requires Alice’s user ID in order to work. Describe how Boby can find out
+Alice’s user ID.
+Q18: Boby wants to modify the CSRF attack so that he can deface the Elgg profiles of any Elgg
+user that goes to Boby’s site. Can he do this? If so, how? If not, why not?
+Task 4: Implementing a Countermeasure for Elgg
+Enable the Countermeasure
+Go to the /var/www/CSRF/Elgg/vendor/elgg/elgg/engine/classes/Elgg directory.
+In the “ActionsService.php” file, find the “gatekeeper” function.
+Comment out the “return true;” at the top of this function.
+Undo the Previous CSRF Attacks
+Log in as Alice.
+Click on the second-to-the-left icon (“Friends”) on the top (black) bar. If Boby is here, click on Boby
+and click “Remove friend”.
+Click on the leftmost icon (“Profile”) on the top (black) bar.
+Click on “Edit profile” and undo the results of the CSRF attack on the profile.
+Repeat the CSRF Attacks Again
+Restore the attacker’s “index.html” file from Task 2.
+Log in as Alice, go to the message from Boby with the link, and click on the link.
+Then, go back to the www.csrflabelgg.com website.
+
+--- Page 12 ---
+Student Name: Michael Mendoza
+Course: CSCE 3550
+Semester:
+Cross-Site Request Forgery (CSRF) Attack Lab
+Q19: Describe what happens when you try to repeat the attack from Task 2.
+Why does this happen? Provide a screenshot if you can.
+Restore the attacker’s “index.html” file from Task 3.
+Log in as Alice, go to the message from Boby with the link, and click on the link.
+Q20: Describe what happens when you try to repeat the attack from Task 3.
+Why does this happen? Provide a screenshot if you can.

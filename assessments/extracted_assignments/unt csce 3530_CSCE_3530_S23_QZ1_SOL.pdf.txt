@@ -1,0 +1,45 @@
+--- Page 1 ---
+CSCE 3530_4 – Spring 2023 – Intro. to Computer Networks Name: _____________________
+Quiz #1
+20 Points
+Solutions
+1. What is a network protocol? List at least four (4) examples (expand the abbreviations)
+of a network protocol. (6 Points)
+A network protocol is a set of rules or formats that a host computer should follow to
+communicate with another computer. Network protocols are formal standards and policies
+comprised of rules, procedures and formats that define communication between two or more
+devices over a network.
+The list of network protocols is:
+• IP - Internet Protocol
+• SSH - Secure Shell
+• FTP - File Transfer Protocol
+• SMTP - Simple Mail Transfer Protocol.
+(Definition: 2 Points; List of Protocols: 4 Points; Total: (2 + 4) = 6 Points)
+2. Describe bandwidth and data rate. (4 Points)
+Bandwidth is referred as the maximum amount of data transmitted through a network
+connection in given amount of time.
+Data rate is defined as the amount of data transmitted during a specified time period over a
+network.
+(Each explanation: 2 Points each; Total: (2 x 2) = 4 Points)
+3. Describe physical media that is used in networking? List the categories of physical
+media. Give at least one example for each category of physical media. (6 Points)
+Physical Media is the actual physical environment through which data travels as it moves
+from one component to another, and it connects network devices.
+• Guided – Example: Twisted Pair Cable
+• Unguided – Example: Radio Waves
+(Description: 2 points; List of each media: 2 Points; Each example: 1 Points, Total: (2 + 2
++ (2 x 1)) = 6 Points)
+© 2023 Robin Pottathuparambil Page 1 of 2 2/6/2023
+
+--- Page 2 ---
+4. Describe the two key network core functionalities. (4 Points)
+Routing: It is the process of moving packets from source to the destination. It is usually
+performed by dedicated devices called routers. Each intermediary router performs routing by
+passing along the message to the next router.
+Forwarding: It is the process of moving packets from router’s input to appropriate router
+output. The forwarding decision is generally made using one of two processes: routing, which
+uses information encoded in a device's address to infer its location on the network, or
+bridging, which makes no assumptions about where addresses are located and depends
+heavily on broadcasting to locate unknown addresses.
+(Each explanation: 2 Points each; Total: (2 x 2) = 4 Points)
+© 2023 Robin Pottathuparambil Page 2 of 2 2/6/2023

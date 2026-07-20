@@ -1,0 +1,180 @@
+--- Page 1 ---
+6.042/18.062J Mathematics for Computer Science September 14, 2010
+Tom Leighton and Marten van Dijk
+Problem Set 2
+Problem 1. [12 points] Define a 3-chain to be a (not necessarily contiguous) subsequence
+of three integers, which is either monotonically increasing or monotonically decreasing. We
+will show here that any sequence of five distinct integers will contain a 3-chain. Write
+the sequence as a ,a ,a ,a ,a . Note that a monotonically increasing sequences is one in
+1 2 3 4 5
+which each term is greater than or equal to the previous term. Similarly, a monotonically
+decreasing sequence is one in which each term is less than or equal to the previous term.
+Lastly, a subsequence is a sequence derived from the original sequence by deleting some
+elements without changing the location of the remaining elements.
+(a) [4 pts] Assume that a < a . Show that if there is no 3-chain in our sequence, then a
+1 2 3
+must be less than a . (Hint: consider a !)
+1 4
+(b) [2 pts] Using the previous part, show that if a < a and there is no 3-chain in our
+1 2
+sequence, then a < a < a .
+3 4 2
+(c) [2 pts] Assuming that a < a and a < a < a , show that any value of a must result
+1 2 3 4 2 5
+in a 3-chain.
+(d) [4 pts] Using the previous parts, prove by contradiction that any sequence of five distinct
+integers must contain a 3-chain.
+Problem 2. [8 points]
+Prove by either the Well Ordering Principle or induction that for all nonnegative integers,
+n: ( )
+∑n n(n + 1) 2
+i3 = . (1)
+2
+i=0
+Problem 3. [25 points] The following problem is fairly tough until you hear a certain
+one-word clue. The solution is elegant but is slightly tricky, so don’t hesitate to ask for hints!
+During 6.042, the students are sitting in an n × n grid. A sudden outbreak of beaver flu
+(a rare variant of bird flu that lasts forever; symptoms include yearning for problem sets
+and craving for ice cream study sessions) causes some students to get infected. Here is an
+example where n = 6 and infected students are marked ×.
+
+--- Page 2 ---
+2 Problem Set 2
+× ×
+×
+× ×
+×
+× ×
+Now the infection begins to spread every minute (in discrete time-steps). Two students are
+considered adjacent if they share an edge (i.e., front, back, left or right, but NOT diagonal);
+thus, each student is adjacent to 2, 3 or 4 others. A student is infected in the next time step
+if either
+� the student was previously infected (since beaver flu lasts forever), or
+� the student is adjacent to at least two already-infected students.
+In the example, the infection spreads as shown below.
+× × × × × × × × ×
+× × × × × × × ×
+× × × × × × × × ×
+≤ ≤
+× × × ×
+× × × × × ×
+× × × × × × × × × ×
+In this example, over the next few time-steps, all the students in class become infected.
+Theorem. If fewer than n students in class are initially infected, the whole class will never
+be completely infected.
+Prove this theorem.
+Hint: When one wants to understand how a system such as the above “evolves” over time,
+it is usually a good strategy to (1) identify an appropriate property of the system at the
+initial stage, and (2) prove, by induction on the number of time-steps, that the property is
+preserved at every time-step. So look for a property (of the set of infected students) that
+remains invariant as time proceeds.
+If you are stuck, ask your recitation instructor for the one-word clue and even more hints!
+Problem 4. [10 points] Find the flaw in the following bogus proof that an = 1 for all
+nonnegative integers n, whenever a is a nonzero real number.
+Proof. The bogus proof is by induction on n, with hypothesis
+P (n) ::= →k � n.a k = 1,
+
+--- Page 3 ---
+Problem Set 2 3
+where k is a nonnegative integer valued variable.
+Base Case: P (0) is equivalent to a0 = 1, which is true by definition of a0 . (By convention,
+this holds even if a = 0.)
+Inductive Step: By induction hypothesis, ak = 1 for all k ≥ N such that k � n. But then
+an · an 1· 1
+an +1 = = = 1,
+an−1 1
+which implies that P (n + 1) holds. It follows by induction that P (n) holds for all n ≥ N,
+and in particular, an = 1 holds for all n ≥ N.
+Problem 5. [10 points] Let the sequence G ,G ,G ,... be defined recursively as follows:
+0 1 2
+G = 0, G = 1, and G = 5G − 6G , for every n ≥ N,n � 2.
+0 1 n n−1 n−2
+Prove that for all n ≥ N, G = 3n − 2n .
+n
+Problem 6. [20 points]
+In the 15-puzzle, there are 15 lettered tiles and a blank square arranged in a 4 × 4 grid. Any
+lettered tile adjacent to the blank square can be slid into the blank. For example, a sequence
+of two moves is illustrated below:
+A B C D A B C D A B C D
+E F G H E F G H E F G H
+� �
+I J K L I J K L I J L
+M O N M O N M O K N
+In the leftmost configuration shown above, the O and N tiles are out of order. Using only
+legal moves, is it possible to swap the N and the O, while leaving all the other tiles in their
+original position and the blank in the bottom right corner? In this problem, you will prove
+the answer is “no”.
+Theorem. No sequence of moves transforms the board below on the left into the board below
+on the right.
+A B C D A B C D
+E F G H E F G H
+I J K L I J K L
+M O N M N O
+(a) [2 pts] We define the “order” of the tiles in a board to be the sequence of tiles on the
+board reading from the top row to the bottom row and from left to right within a row. For
+example, in the right board depicted in the above theorem, the order of the tiles is A, B, C,
+D, E, etc.
+Can a row move change the order of the tiles? Prove your answer.
+
+--- Page 4 ---
+4 Problem Set 2
+(b) [2 pts] How many pairs of tiles will have their relative order changed by a column move?
+More formally, for how many pairs of letters L and L will L appear earlier in the order
+1 2 1
+of the tiles than L before the column move and later in the order after the column move?
+2
+Prove your answer correct.
+(c) [2 pts] We define an inversion to be a pair of letters L and L for which L precedes
+1 2 1
+L in the alphabet, but L appears after L in the order of the tiles. For example, consider
+2 1 2
+the following configuration:
+A B C E
+D H G F
+I J K L
+M N O
+There are exactly four inversions in the above configuration: E and D, H and G, H and F ,
+and G and F .
+What effect does a row move have on the parity of the number of inversions? Prove your
+answer.
+(d) [4 pts] What effect does a column move have on the parity of the number of inversions?
+Prove your answer.
+(e) [8 pts] The previous problem part implies that we must make an odd number of column
+moves in order to exchange just one pair of tiles (N and O, say). But this is problematic,
+because each column move also knocks the blank square up or down one row. So after an
+odd number of column moves, the blank can not possibly be back in the last row, where it
+belongs! Now we can bundle up all these observations and state an invariant, a property of
+the puzzle that never changes, no matter how you slide the tiles around.
+Lemma. In every configuration reachable from the position shown below, the parity of the
+number of inversions is different from the parity of the row containing the blank square.
+row 1 A B C D
+row 2 E F G H
+row 3 I J K L
+row 4 M O N
+Prove this lemma.
+(f) [2 pts] Prove the theorem that we originally set out to prove.
+Problem 7. [15 points] There are two types of creature on planet Char, Z-lings and B-
+lings. Furthermore, every creature belongs to a particular generation. The creatures in each
+generation reproduce according to certain rules and then die off. The subsequent generation
+consists entirely of their offspring.
+
+--- Page 5 ---
+Problem Set 2 5
+The creatures of Char pair with a mate in order to reproduce. First, as many Z-B pairs as
+possible are formed. The remaining creatures form Z-Z pairs or B-B pairs, depending on
+whether there is an excess of Z-lings or of B-lings. If there are an odd number of creatures,
+then one in the majority species dies without reproducing. The number and type of offspring
+is determined by the types of the parents
+� If both parents are Z-lings, then they have three Z-ling offspring.
+� If both parents are B-lings, then they have two B-ling offspring and one Z-ling offspring.
+� If there is one parent of each type, then they have one offspring of each type.
+There are 200 Z-lings and 800 B-lings in the first generation. Use induction to prove that
+the number of Z-lings will always be at most twice the number of B-lings.
+Hint: You may want to use a stronger hypothesis for the induction.
+
+--- Page 6 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.042J / 18.062J Mathematics for Computer Science
+Fall 2010
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

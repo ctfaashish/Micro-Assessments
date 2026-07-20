@@ -1,0 +1,61 @@
+--- Page 1 ---
+1/24/2020 Codecademy - JavaScript Quiz: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+Codecademy - JavaScript Quiz
+Due Feb 2 at 11:59pm Points 100 Questions 5
+Available until Feb 2 at 11:59pm Time Limit 5 Minutes
+Attempt History
+Attempt Time Score
+LATEST Attempt 1 2 minutes 100 out of 100
+ Correct answers are hidden.
+Score for this quiz: 100 out of 100
+Submitted Jan 24 at 7:51pm
+This attempt took 2 minutes.
+20 / 20 pts
+Question 1
+Pick the one that is NOT helpful when debugging javascript code
+console.log() statements
+code minification
+the browser's inspector console
+a lint tool
+20 / 20 pts
+Question 2
+We need to give variables a type when we create them in javascript
+True
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:44:20 GMT -05:00
+https://unt.instructure.com/courses/26807/quizzes/143558 1/3
+https://www.coursehero.com/file/206190528/Codecademy-JavaScript-Quiz-CSCE-4560-Section-001-Secure-Electronic-Commerce-Spring-2020-1pdf/
+
+--- Page 2 ---
+1/24/2020 Codecademy - JavaScript Quiz: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+False
+20 / 20 pts
+Question 3
+A nice function for displaying the output of a variable in javascript is:
+cout <<
+printf()
+console.log()
+write()
+20 / 20 pts
+Question 4
+I am creating a website. I buy hosting from GoDaddy, and use FTP to transfer
+my html and image files for the website to the server. Moving my javascript code
+to the web server is un-necessary, since javascript is client side.
+True
+False
+20 / 20 pts
+Question 5
+It matters where in an html file (the head tag versus after the body, for example)
+javascript is placed
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:44:20 GMT -05:00
+https://unt.instructure.com/courses/26807/quizzes/143558 2/3
+https://www.coursehero.com/file/206190528/Codecademy-JavaScript-Quiz-CSCE-4560-Section-001-Secure-Electronic-Commerce-Spring-2020-1pdf/
+
+--- Page 3 ---
+1/24/2020 Codecademy - JavaScript Quiz: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+True
+False
+Quiz Score: 100 out of 100
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:44:20 GMT -05:00
+https://unt.instructure.com/courses/26807/quizzes/143558 3/3
+https://www.coursehero.com/file/206190528/Codecademy-JavaScript-Quiz-CSCE-4560-Section-001-Secure-Electronic-Commerce-Spring-2020-1pdf/
+Powered by TCPDF (www.tcpdf.org)

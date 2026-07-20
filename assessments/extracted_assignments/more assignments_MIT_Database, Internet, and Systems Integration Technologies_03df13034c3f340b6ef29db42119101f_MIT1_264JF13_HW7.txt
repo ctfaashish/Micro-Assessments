@@ -1,0 +1,180 @@
+--- Page 1 ---
+Homework 7
+1.264, Fall 2013
+Web site
+Due: Wednesday, November 13
+A. Web site
+This is a two week homework; it is twice as long as usual. You should complete the
+first half of it by November 6.
+Using Visual Web Developer, complete the Web site you began in homework 6:
+• Build pages to display your aircraft parts catalog. You may wish to use the query
+string approach from lecture 20. Split your catalog by MIDO, for example, and
+display parts for each MIDO as a product line. As an alternative, you may create
+links for the first letter (a through z) of aircraft parts and use a LIKE keyword in
+the SQL on the next page to display parts that start with the given letter.
+You should display the replacement part, original part, manufacturer,
+o
+aircraft that it can be used for, PMA holder, price and inventory
+information.
+You may use MIDO as your categories; they average 250 products, which
+o
+is a lot, but this is the simplest way to assign products to a category. It’s
+not a lot of work to add a category column to your product table, but it’s
+not necessary, even if your requirements have a different categorization.
+To be clear: MIDO is not a sensible way to organize your catalog, but it’s
+simple and lets you complete the catalog Web pages in the easiest way,
+which is fine for this homework. You do not need to allow wild card
+searches or other search functions.
+• Build pages to display the name and modes for a carrier. You don’t need to
+display anything else, or allow carriers or modes to be edited.
+• You should allow orders to be input.
+Use the approach outlined in lecture 20 that uses 3 SQL data sources, 2
+o
+grid views and a form view as a starting point.
+Have the user enter the replacement part number and quantity. You don’t
+o
+have to provide dropdowns or an order link from the catalog to place a
+part in the order, although you can do so if you wish for extra credit. Your
+INSERT statement may fail if the user enters an invalid part number; you
+don’t need to handle this error—assume the user will enter correct parts.
+Show the order total price; use the SUM keyword in SQL. You also have
+o
+to compute the extended price (quantity times unit price) for each item in
+the order, and then sum these to get the total order price. Computing order
+price takes several steps select the order line items in this order; compute
+the extended price for each line item; add the extended prices to get the
+total. You do not need to implement SQL transactions (rollback).
+Handle carriers, modes and any other shipment logic very simply.
+o
+You don’t have to handle the time/date of the order or shipment.
+o
+1
+
+--- Page 2 ---
+• Add your new pages into the SiteMapPath control for bread crumb navigation.
+Don’t worry about how it works with any pages with querystring navigation.
+• You may implement more features for extra credit, if you wish. Examples include
+showing all orders placed by a customer, or by all customers; the carriers in each
+state; and so on.
+Things you do not have to do:
+• Do not implement any login or security control. While relatively easy, it requires
+some careful configuration of users and privileges which can take a long time to
+troubleshoot. Your site will be a public site, and will also be used by internal
+distributor staff to enter orders received from customers. Don’t implement any
+more detailed requirements that you may have written for your site.
+• You do not need to display customer information, or any carrier information
+beyond name and modes.
+• You do not need to allow aircraft parts, aircraft, MIDOs, manufacturers, etc. to be
+edited, deleted, or inserted.
+B. Hints
+For homework 7 you will keep building the pages you created for homework 6. At the
+start of homework 7, you should already have the following web pages and features:
+• Home page
+• Company profile and contact information
+• Placeholders for:
+Parts catalog
+o
+Order placement
+o
+Login
+o
+Others, such as carriers, based on your requirements
+o
+• MIT.master page and image folder (or any other master)
+• Web.sitemap to allow navigation between pages
+• Page with link to 2 external sites
+B.1 Parts catalog
+• Split catalog by MIDO and display the details (Reference - Lecture 20)
+• Use the hyperlink example we did in class to create a set of links on the catalog
+page, each of which has a query string to go to a specific MIDO value.
+• The next page will just show a grid view of the products.
+• Use the sales reps 2 and 3 office example from Lecture 20
+• Create 2 pages, one with a list of parts by MIDO.
+• The second page will show the details for parts for the selected MIDO.
+SqlDataSource1: select all from the product table where the MIDO
+o
+(column) is equal (operator) to the query string (source) and the field is
+equal to MIDO. Add.
+GridView1: configure data source; enable paging and sorting.
+o
+2
+
+--- Page 3 ---
+• In the first catalog page, add the hyperlink for each MIDO (e.g. MIDO ATL
+Catalog2.aspx?MIDO=ATL)
+B.2 Place order
+This one is hard and there are lots of variations. This is just an outline for one approach.
+First create about 10 customers in the Customers table using SQL Server Mgt Studio.
+Your Web site does not need to allow new customers to be created.
+In VWD, you can either:
+• Create a page that displays these customers as your login page. You can click on
+a customer to mimic logging in, and you also now have the customer ID, which
+you need for the order process. Or
+• Create a login page where the customer inserts its customer ID and other details.
+Use a FormView; set the DefaultMode property to Insert (<asp:FormView
+DefaultMode=Insert… />).
+Then, in the order page, display the customers and their orders in VWD
+• SQL 1: get the customer certificate number and name
+• Gridview 1: allow selection
+Second, display orders (header) for that customer.
+• SQL 2: select from order headers table where customer = selected customer from
+Gridview 1.
+Select the number, date, determine the subtotal and tax based on the order
+o
+details quantity and price assuming a tax of 7%, the total of the order, the
+purchase order number, carrier’s certification number and mode from the
+order header.
+You will need to use joins and a conditional clause for the customer
+o
+(Control GridView1).
+• GridView2: allow select
+We next allow customers to create new orders (using a FormView), edit or delete an
+existing order header, and select existing order details.
+• SQL3: select all from order header where the order number = selected order
+number from GridView2. You will also need to write statements for the update,
+insert and delete
+Example: UPDATE [Table] SET [column1]=@column1,.. This will take
+o
+the value entered in the form view (below) and update the table. (Note: the
+syntax for insert and delete is different)
+• FormView 1, associated with SQL 3:
+Allow edit, delete, new (insert & cancel)
+o
+3
+
+--- Page 4 ---
+If you have trouble with the IDENTITY property on order numbers, you
+o
+may allow the customer to enter the order number. Change the table
+definition in SQL Server Mgt Studio.
+Go to the Events button (lightning bolt) in Properties Window and add the
+o
+code for item deleted and item inserted, as in the lecture notes.
+• SQL 4: Select from order details, and determine the subtotal of the order (price
+and quantity) where the order number = order number from grid view 2.
+• GridView3: Shows the existing order details of an order; allow edit and select
+Go to the events button and add the code for item update.
+o
+• SQL 5: Select from order detail where the order number = order number selected
+by the customer; fill in the statements for update, insert, and delete.
+• FormView2: This will allow for changes to the order detail
+Go to the events button and add code for item deleted, inserted, and
+o
+updated.
+Other hints:
+• Always remember to use the events button to include the insert, update, and delete
+code (DataBinding) whenever you are allowing these.
+• You will need to go over lecture, the book, and other resource (Google is
+amazing!) to get things running smoothly. You might find other ways of making
+your Web site work; this may not go hand in hand to your requirements.
+C. Hand in
+Each group only needs to submit one Web site. Please zip the entire site and upload it to the
+course Web site. The TA may ask you to come to office hours to review your site.
+4
+
+--- Page 5 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+1.264J / ESD.264J Database, Internet, and Systems Integration Technologies
+Fall 2013
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

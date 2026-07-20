@@ -1,0 +1,113 @@
+--- Page 1 ---
+CSCE 5560 Secure Electronic Commerce Spring 2018
+Homework 1
+Due: 11:59 PM on Thursday, February 1, 2018.
+Please answer in your own words.
+1. (10 points) Discuss how e-commerce can be used to reduce a company’s operating costs.
+ E – commerce involves the online purchase of inventory which reduces the
+regular store maintenance expenses.
+ The packet switching in the e commerce has made it scalable, which means it
+is easy to expand your network.
+ E commerce provides new channels for the global marketing of goods and
+gives opportunities to create new businesses.
+ E commerce provides a common platform for the establishment of business,
+instead of getting a new platform every single time, which results in
+reduction of operating costs.
+2. (10 points) Why do we need a port number in addition to an IP address?
+ IP address takes the client to specific router.
+ To attain a specific remote access, we need to have a port number.
+ Port address can be given as a Local Address whereas the IP address is given
+as the Global Address.
+ We cannot have the remote access with the help of IP address.
+3. (10 points) What is DNS and what role does it play in the Internet and E-Commerce? On
+October 21, 2016, Dyn, Inc., an Internet infrastructure company that provides DNS and
+other services, sustained a distributed denial of service (DDoS) attack that took down a
+significant portion of the Internet on the U.S. East Coast. What would be the effect if all
+DNS servers were taken offline by a DDoS attack?
+DNS refers to Domain Name System which acts as the internet’s phone book. It
+makes the users of client computers to use names rather than numeric IP addresses
+to identify remote hosts. In general, client computer sends the name of remote host
+to a DNS server, which responds with corresponding IP address. DNS plays a key
+role in providing the requests to specific pages. If the servers are taken offline, then
+any major service provider would go blind and no services are offered to any clients.
+4. (10 points) What is the difference between non-persistent and persistent HTTP?
+ Persistent HTTP requires only single connection to send and receive multiple
+HTTP responses or requests.
+ Non-persistent HTTP must create a new connection for every request or
+response.
+1 of 3
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:11 GMT -05:00
+https://www.coursehero.com/file/28668982/Homework-1docx/
+
+--- Page 2 ---
+CSCE 5560 Secure Electronic Commerce Spring 2018
+5. (20 points) Internet growth has boomed without disruption because of
+a. the client/server computing model. State some of the properties of a client and server
+in this model and then contrast this model with peer-to-peer communication to show
+why P2P would not work.
+The client-server model is a distributed communication framework of network
+processes among service requestors, clients and service providers. Clients
+include Web browsers, chat applications, and email software, among others.
+Servers include Web, database, application, chat and email, etc. The client-
+server model differs from a peer-to-peer (P2P) model where communicating
+systems are the client or server, each with equal status and responsibilities. The
+P2P model is decentralized networking. The client-server model is centralized
+networking.
+b. the hourglass, layered architecture. In your own words, what does this mean and why
+is it important? Your answer should be specific, stating one or two clear reasons for
+this.
+In the natural world, species that share the same ecosystem often compete for
+resources, resulting in the extinction of weaker competitors. A new computer
+model that describes the evolution of the Internet’s architecture suggests
+something similar has happened among the layers of protocols that have
+survived and become extinct on the worldwide network.
+Understanding this evolutionary process may help computer scientists as
+they develop protocols to help the Internet accommodate new uses and protect it
+from a wide range of threats. But the model suggests that unless the new Internet
+avoids such competition, it will evolve an hourglass shape much like today’s
+Internet.
+6. (10 points) As a key Internet technology, describe the importance of packet switching to
+the Internet, which has in turn benefited the growth of e-commerce. As a hint, you may
+want to compare packet switching to circuit switching and describe why packet switching
+is more beneficial to support the growth of e-commerce.
+The circuit switching system of network where the devices establish a dedicated
+communication line to send a stream of data where as the packet switching avoids
+the problem by allowing each packet to find its own path to destination, with no
+dedicated connection required. This advantage of packet switching has reflected in
+the reduction of cost and increased the network efficiency which benefited in the
+growth of e-commerce.
+2 of 3
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:11 GMT -05:00
+https://www.coursehero.com/file/28668982/Homework-1docx/
+
+--- Page 3 ---
+CSCE 5560 Secure Electronic Commerce Spring 2018
+7. (10 points) Discuss why smartphones are considered to be a disruptive technology.
+Smartphones are a disruptive technology because they have almost made many
+items obsolete. The items include landline phones, pagers, digital cameras etc. Even
+the print media is being replaced. Traditional media like TV, radio is longer of
+importance as they used to be. By replacing many of the electrical devices at once,
+Smartphones are given as a disruptive technology.
+8. (10 points) What is meant by a static web page? Briefly describe at least two
+disadvantages of building a web site using static pages. Are there any advantages? If so,
+list them.
+Static Web Page is a webpage that is built using the HTML code and features the
+same content and presentation. Disadvantages of building the website using static
+pages are:
+ Until the web designer edits the changes to the page, one should wait.
+ Functionality of the static pages are limited.
+ It may become expensive in the long run.
+9. (10 points) Consider a TCP/IP model system (the one discussed in class) that has a 4-
+layer protocol hierarchy such that applications generate messages of length M bytes and
+at each layer, an s-byte header is added. Determine the fraction (or percentage) of the
+network bandwidth that is filled, or wasted, with this header overhead. Note that your
+answer may be in the form of an expression.
+ You have 4 layers of protocol, and at each layer s bytes are added, so the total
+number of header bytes is 4s.
+ Your payload is M bytes, so the total packet size is M + 4s.
+4s
+ The fraction of each packet used by protocol headers is therefore M+4s
+3 of 3
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:11 GMT -05:00
+https://www.coursehero.com/file/28668982/Homework-1docx/
+Powered by TCPDF (www.tcpdf.org)

@@ -1,0 +1,27 @@
+CSCE 3560 & 5562 – Cloud Security
+
+Question 1. Classify each of the following as a violation of confidentiality, or
+integrity, or availability and explain why/how:
+1. Eve runs TCP SYN attack against Alice’s email server.
+2. Eve is the system admin and misconfigures the company’s email server in a way that all
+the received emails are broadcasted to all.
+3. Eve discloses Bob’s health records.
+4. Eve overwrites the files under /var/log of a protected server with empty files.
+Question 2 (40 points): Find two big cyberattacks targeted to cloud computing occurred after
+2020 (i.e., 2020-2023). For each of them, answer the following questions to apply threat
+modeling framework:
+- Who applied the attack? What was the purpose?
+- When we apply STRIDE, which issue was targeted by the attackers?
+- How was the attack mitigated?
+- Apply DREAD for both of them and compare which one would have the higher priority.
+Question 4 Find three IDS/IPS and compare them in terms of
+- What are they focusing on?
+- What are they monitoring and how?
+- Are they signature based or anomaly based?
+- Give an example of their rule (one rule for each IDS/IPS) and explain what it does.
+Question 5 Assume that you are creating a service that includes a web server and a
+database server, which are located on different computers. The clients are accessing the
+web server using HTTPS protocol. The web server communicates with the database server using
+PostgreSQL. The admin should be able to have access to both computers using SSH. And, there
+should be no further access to these machines. Create the required custom firewall rules (for
+simplification you can use UFW).

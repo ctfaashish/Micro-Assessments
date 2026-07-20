@@ -1,0 +1,116 @@
+--- Page 1 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.854J / 18.415J Advanced Algorithms
+�� Fall 2008
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.
+
+--- Page 2 ---
+18.415/6.864 Advanced Algorithms
+Problem Set 1
+1. CdderP=(z:Az< b+>0),whmeAismxn. Showtha~ifaisavertex
+ofP thed we crtn 5 dm t1~and J wit31 tbe fo11mbg pmp&ies.
+(a) 1s{l,...lrn), J & ( 1 ,..., n} and II)=IJI.
+(b) A$ is invertible where A$ isthesubmatrix of A c o r m s pt~o t~he POW
+in1 a n d & e m 1 ~ i nJ.
+(c) zj =O f a j # J md XJ =(A:)-'@ nhm??denotes the m&ri&ion of b
+to thi~ldics in I.
++ >
+(Aint: Consider Q ={(z,s):& le =b,s 0, s2 O).)
+2. Inhis paper in FOCS 92, Tbrnasz RBdaLneeds ad t of the faII+ iorm
+(Page 662 of the hcmdiqp):
+Lamma1 Let c E EP and vk E (0,l)" !OF k = 1,...,q such thd 2 1 ~ ~51 4
+,...,
+l~elfo.rk=I q-1. Ahmrmethdyqc=l. Thsnqs f(n).
+h other nrords, given any set ofn tposgibbnepkim) numbers, onecamat find
+m m t han f(n)~ubsumsofthaw nnmbera which chmamine66Jolpted u eb v
+& factar of at Xm2.
+RadsiL pr- the d t fnr f(n)=O(nPlogn) and conjectures. that f(n)=
+W(n]where Y€ deaotes the omisaicm of lo@-c t-. Uelng b w pro-
+gnmtmhg3p are asked taimprove hisWtto f(n)=O(nlogn).
+(a) O m a wetor c and a set oS p thi hypothesis afthe
+...
+Lemma,write &set ofineqmlitieainths~abJ,w2x~L,i=l n,mch
+that zi = 1 ~ is 1 a feasible vector, and for asrg Mbl~vmti3~z' thm $
+a ctmesponding vector d sslti&kg the hpothwis ofthe Lemmafor ths
+a mse t of mbsm,
+(b) P m th st &are mast exlst svector d satisfying the hypotheah of the
+..
+L m with c' ofthe forin (dl/d,&/d,. , &/d) fagame intqpm Id[,idll,
+*..* =2O(nlw.)
+*
+(Hint: ase Problem 1.)
+.
+(c) Deduce that 1(n)=0(nlogn)
+
+--- Page 3 ---
+(d) (Not part of the problem set; only for those who like challenges. .. A
+guaranteed A+ for anyone getting this part without outside help.) Show
+that f(n) = n(n1ogn).
+3. The maximum flow problem on the directed graph G = (V,E) with capacity
+function u (and lower bounds 0) can be formulated by the following linear
+program:
+subject to
+(xij represents the flow on edge (2, j); the flow has to be less or equal to the
+capacity on any edge and flow conservation must be satisfied at every vertex
+except the source s, where we try to maximize the flow, and the sink t.)
+(a) Show that its dual is equivalent to:
+subject to
+(b) A cut is a set of edges of the form {(i,j) E E : i E S,j $! S) for some
+S c V and its value is
+It separates s from t if s E S and t $! S.
+Show that a cut of value W separating s from t corresponds to a feasible
+solution y, x of the dual program such that
+
+--- Page 4 ---
+(c) Given any (not necessarily integral) optimal solution y*, z* of the dual
+linear program and an optimal solution x* of the primal linear program,
+show how to construct from z* a cut separating s from t of value equal to
+the maximum flow.
+(Hint: Consider the cut defined by S = {i : 5 0) and use complementary
+slackness conditions.)
+(d) Deduce the max-flow-min-cut theorem: the value of the maximum flow
+from s to t is equal to the value of the minimum cut separating s from t.
+4. Consider the following property of vector sums.
+Theorem 2 Let ul, . . . , un be d- dimensional vectors such that llvi 11 5 1for
+i = 1,. . . , n (where 11 .I1 denotes any norm) and
+Then there exists a permutation of (1,. . . , n) such that
+?r
+for k = 1,.. . ,n.
+In this problem, you are supposed to prove this theorem by using linear pro-
+gramming techniques.
+(a) Suppose we have a nested sequence of sets
+where lVk 1 = k for k = d, d + 1,. . . , n. Suppose further that we have
+numbers Xki satisfying:
+for k = d, . . . , n. Define a permutation n- as follows: set n-(1)., . . , a(d) to
+be elements of Vd in any order, and set a(k) to be the unique element in
+Vk \VkP1 for k = d+ 1,.. .,n.
+Show that this permutation satisfies the conditions of Theorem 2.
+
+--- Page 5 ---
+(b) Show that there exist Xni, i = 1... n, satisfying (I),(2) and (3) for k = n.
+(c) Suppose we have constructed Vn,. .. , and Xji for j = k + 1,.. . , n and
++
+i E 1/3 satisfying (I), (2) and (3) for k 1,.. .,n (where k 2 d). Prove
++
+that the following system of d 1 equalities ((4) contains d equalities),
++ +
+k 1inequalities and k 1nonnegativity constraints has a solution with
+pi
+at least one = 0:
+Deduce the existence of the nested sequence and the X's as described in
+(4.
+5. Consider the following optimization problem with "robust conditions":
+min{cTx : x E Rn;A x 2 b for any A E F),
+where b E Rm and F is a set of m x n matrices:
+F = {A: Vi, j;aFn < - aij 5 azax}.
+(a) Considering F as a polytope in WXnw,hat are the vertices of F?
+(b) Show that instead of the conditions for all A E F, it is enough to consider
+the vertices of F. Write the resulting linear program. What is its size? Is
+athis rpolynomial in the size of the input, namely m, n and the sizes of b, c,
+and a y 7
+(c) Derive a more efficient description of the linear program: Write the condi-
+tion on x given by one row of A, for all choices of A. Formulate this condi-
+tion as a linear program. Use duality and formulate the original problem
+as a linear program. What is the size of this one? Is this polynomial in
+the size of the input?

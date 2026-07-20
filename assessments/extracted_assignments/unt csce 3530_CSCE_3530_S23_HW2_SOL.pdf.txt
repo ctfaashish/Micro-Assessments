@@ -1,0 +1,260 @@
+--- Page 1 ---
+CSCE 3530 – Introduction to Computer Networks
+Spring 2023
+Homework #2 Solution
+1. How long does it take a packet of size 8 KB to travel over two links (connection) with a
+transmission rate of 10 Mbps? These two links are connected by a router. Assume there
+are no other delays. Clearly derive the end-to-end delay equation and show all the steps
+to calculate the end-to-end delay. (5 Points)
+Packet Length (L) = 8KB = 8 ×1024 bytes = 8,192 × 8 bits = 65,536 bits
+Transmission rate (R) = 10 Mbps = 107 bps
+we have two links connected by router, N=2
+Since there are no other delays, we need to calculate transmission delay.
+Transmission delay = L/R
+= 65,536/ 107
+= 0.0065536 seconds
+End -to-end delay = N× = 2× ( )
+𝐿𝐿 𝐿𝐿
+= 2 × (0.0065536)
+𝑅𝑅
+𝑅𝑅
+= 0.0131072 seconds
+= 13.107 ms
+(End to end equation: 1 Points, Correct calculation, and steps: 3 Points; Final
+answer: 1 Point; Total: (2 + 2 + 1) = 5 Points)
+2. How long does it take for a packet of size 18 KB to travel from source host (S) to
+destination host (D) over three links (connection) connected by two routers (S1
+and S2) as shown in Figure 1. Assume there are no other delays. Clearly derive the end-
+to-end delay equation and show all the steps to calculate the end-to-end delay. (7
+Points)
+Page 1 of 8
+
+--- Page 2 ---
+Packet Length (L) = 18 KB =18 × 1024 bytes = 18,432 × 8 bits = 147,456 bits
+Transmission rate at S (R ) = 3 Mbps = 3 × 106 bps
+1
+Transmission rate at S (R ) = 6 Mbps = 6 × 106 bps
+1 2
+Transmission rate at S (R ) = 9 Mbps = 9 × 106 bps
+2 3
+Since there are no other delays, we need to calculate transmission delay at each source.
+End -to-end delay = + +
+𝐿𝐿 𝐿𝐿 𝐿𝐿
+R1 R2 R3
+= + +
+147,456 147,456 147,456
+6 6 6
+3 ×10 6×10 9×10
+= 0.049152 + 0.024576 + 0.016384
+= 0.090112 seconds
+End -to-end delay = 0.090112 seconds = 90.112 ms
+(End to end equation: 1.5 Points, Correct calculation, and steps: 4.5 Points; Final
+answer: 1 Point; Total: (1.5 + 4.5 + 1) = 7 Points)
+3. Differentiate (at least four differences) between packet switching and circuit
+switching. (8 Points)
+Packet Switching Circuit Switching
+Packet switching does not require any Circuit switching requires a dedicated path
+dedicated path to send data from source before sending data from source to
+to destination. destination.
+It can follow any path throughout the Same path is followed throughout the
+session. session.
+Data is processed and transmitted at the Data to be transmitted is processed at the
+source as well as at each switching source itself.
+station.
+It supports store and forward It does not do store and forward
+transmission. transmission.
+Packet switching is less reliable. Circuit switching is more reliable.
+(Each difference: 2 points; total: (4 * 2) = 8 points)
+Page 2 of 8
+
+--- Page 3 ---
+4. Differentiate (at least two differences) between FDM and TDM. (4 Points)
+FDM TDM
+(Frequency Division Multiplexing) (Time Division Multiplexing)
+In this technique, the channel is divided In this technique, the time is divided
+between multiple users. between multiple users.
+In FDM, each signal uses a small portion In TDM, each signal uses all the bandwidth
+of the bandwidth all the time. some of the time.
+FDM works with only analog signals. TDM works with digital signals as well as
+analog signals.
+(Each difference: 2 points; total: (2 * 2) = 4 points)
+5. What is an internet exchange points (IXPs) and a peering link? (4 Points)
+A physical location where Internet infrastructure organizations such as Internet Service
+Providers (ISPs) and Content Delivery Networks (CDNs) connect with one another is known
+as an Internet exchange point (IXP). These locations are on several networks’ edges, allowing
+network providers to share transit outside of their own. By establishing a presence inside an
+IXP site, companies may decrease their path to transit from other participating networks,
+cutting latency, improving round-trip time, and perhaps saving costs.
+The practice of connecting and exchanging traffic between two Internet networks is known as
+peering. It allows them to send traffic across each other's customers without having to pay a
+third party to do so on their behalf through the Internet.
+(Explanation about IXP: 2 Points, Explanation about peering link: 2 Points;
+Total: (2+2) = 4 Points)
+6. What are the four sources of packet delay? Describe each packet delay with the
+associated formula if any. (10 Points)
+Processing delay ( ): It is the time required to process a packet to check for bit errors, to
+proc
+determine output links, etc. It occurs at any intermediate router, and they are on the order of
+10−6 seconds or less𝒅𝒅 often negligible.
+Queuing delay ( ): It is the time spent waiting in a queue at any point along the Route. It
+queue
+depends on intensity and nature of traffic arriving at queue(s). They are in the order of 10−6
+seconds to 10−3 s 𝒅𝒅 econds.
+Page 3 of 8
+
+--- Page 4 ---
+Transmission delay ( ): It is the time to send out all the packet bits. They are on the order
+trans
+of 10−6 seconds to 10−3 seconds. These delays are negligible for transmission rates ≥10 Mbps;
+𝒅𝒅
+significant for large packets sent over low-speed links.
+= L/R
+trans
+𝑑𝑑
+Where, L: packet length (bits), R: link bandwidth (bps)
+Propagation delay ( ): It is the time for one bit to propagate from source to destination at
+prop
+propagation speed of the link. It depends on physical medium of the link. They are on the order
+of 10−6 seconds. It 𝒅𝒅 is negligible for two routers on the same LAN: significant for two
+geostationary satellites.
+= d/s
+prop
+𝑑𝑑 Where, d: length of physical link in meters, s: propagation speed in medium in m/s (~2x108
+m/sec)
+(Each delay description: 2 Points; Formula: 2 Points; Total: (4*2 + 2) = 10 Points)
+7. How long does it take for a packet of size 16 KB to travel over two links (connection) with
+a transmission rate of 2 Mbps? These two links are connected by a router. The length of
+each link is 200 KM. The packets travel at a propagation speed of 2 x 108 m/s over these
+links. Assume the router’s processing delay is 1 ms and each router’s queuing delay is 2
+ms. Clearly derive the end-to-end delay equation and show all the steps to calculate the
+end-to-end delay. (13 Points)
+Packet Length (L) = 16 KB = 16 × 1024 bytes = 16,384 × 8 bits = 131,072 bits
+Transmission rate (R) = 2 Mbps = 2,000,000 bps
+Speed (s) = 2 × 108 m/s
+Distance (d1, d2) = 200 km = 200 × 103 meters
+Processing delay (d ) = 1 ms
+proc
+Queuing delay (d ) = 2 ms
+queue
+end-to-end delay = + + d + d + +
+proc queue
+𝐿𝐿 𝑑𝑑1 𝐿𝐿 𝑑𝑑2
+𝑅𝑅 𝑠𝑠 𝑅𝑅 𝑠𝑠
+= + + 1 ms + 2 ms + +
+3 3
+13 1,072 2 00 × 10 131,072 200 × 10
+8 8
+= 2 0 0 .0 0 6 0 5 0 5 00 3 6 s +2 0 ×.0 1001 s + 0.001 s + 0.0022 s0 0+0 00.0006 55362 s× + 1 00.001 s
+= 0.136072 seconds = 136.072 ms
+(Total end-end delay equation: 3 Points; Correct calculation and steps: 9 Points; Final
+answer: 1 Point; Total: (3 + 9 + 1) = 13 Points)
+Page 4 of 8
+
+--- Page 5 ---
+8. How long does it take for a packet of size 45 KB to travel from source host
+(S) to destination host (D) over three links (connection) connected by two
+routers (S1 and S2) as shown in Figure 2. The packets travel at a propagation speed
+of 2.5 x 108 m/s over these links. Assume each router’s processing delay is 1.5 ms and
+each router’s queuing delay is 1 ms. Clearly derive the end-to-end delay equation and
+show all the steps to calculate the end-to-end delay. (21 Points)
+Packet Length (L) = 45 KB = 45 × 1024 bytes = 46080 × 8 bits = 368,640 bits
+Transmission rate (R1) = 1.5 Mbps = 1500000 bps
+Transmission rate (R2) = 4.5 Mbps = 4500000 bps
+Transmission rate (R3) = 3 Mbps = 3000000 bps
+Speed (s) = 2.5 × 108 m/s
+Distance (d1) = 500 km = 500 * 103 m
+Distance (d2) = 250 km = 250 * 103 m
+Distance (d3) = 750 km = 750 * 103 m
+Processing delay (d ) = 1.5 ms
+proc
+Queuing delay (d ) = 1 ms
+queue
+Sender (S) to 1st router (S ): = +
+1
+𝐿𝐿 𝑑𝑑1
+= s + s 𝑅𝑅1 𝑠𝑠
+3
+368,640 500 ×10
+8
+1500000 2.5 × 10
+= 0.24576 + 0.002
+= 0.24776 s …... (1)
+1st router (S ) to 2nd router (S ): = proc + queue + +
+1 2
+𝐿𝐿 𝑑𝑑2
+𝑑𝑑 𝑑𝑑
+𝑅𝑅2 𝑠𝑠
+= 1.5 ms + 1 ms + s + s
+3
+368,640 250 ×10
+8
+4500000 2.5 × 10
+= 0.0015 s + 0.001 s + 0.08192 s + 0.001 s
+Page 5 of 8
+
+--- Page 6 ---
+= 0.08542 s …… (2)
+2nd router (S ) to Destination (D): = proc + queue + +
+2
+𝐿𝐿 𝑑𝑑3
+𝑑𝑑 𝑑𝑑
+𝑅𝑅3 𝑠𝑠
+= 1.5 ms + 1 ms + s +
+3
+368,640 750 ×10
+8
+3000000 2.5 × 10
+= 0.0015 s + 0.001 + 0.12288 + 0.003
+= 0.12838 s …... (3)
+Total = (1) + (2) + (3)
+= 0.24776 s + 0.08542 s + 0.12838 s
+= 0.46156 s = 461.56 ms
+(Total delay equation: 5 Points, Correct calculation, and steps: 15 Points; Final answer: 1
+Point; Total: (5 + 15 + 1) = 21 Points)
+9. What is traffic intensity? Describe the equation used to measure traffic intensity? How
+is the traffic intensity characterized as small, large, or infinite? (7 Points)
+The average occupancy of a server or resource for a specific period, usually a busy hour, is
+referred to as traffic intensity which happens in telecommunications. Telecommunications
+companies are keenly interested in traffic intensity since it determines how much equipment
+they need to control the traffic.
+It is measured with the help of Link bandwidth (R), Packet length (L), average packet arrival
+rate(a). Therefore,
+Traffic intensity = La/R.
+If La/R is approximately equal to 0 then traffic intensity is considered small.
+If La/R is less than or equals to 1 then traffic intensity is considered large.
+If La/R is greater than 1 then traffic intensity is considered infinite.
+(What is traffic intensity: 2 Point; Formula: 2 Point; Characterization: 3 Points; Total
+= (2 + 2 + 3) = 7 Points)
+Page 6 of 8
+
+--- Page 7 ---
+10. What does the traceroute program do? Visit www.traceroute.org and run a traceroute
+from at least one city in Europe to www.unt.edu and copy paste the output in your
+homework. Identify the trans-oceanic link(s). (11 Points)
+Traceroute is a utility that records the route (the specific gateway computers at each hop)
+through the Internet between your computer and a specified destination computer. It also
+calculates and displays the amount of time each hop took.
+Traceroute from Athens University of Economics and Business was performed. In the
+screenshot above for hop 10, geo location of the router is in UK whereas for the hop 11 the
+geo location of the router is in USA. This is an example of a trans-oceanic link.
+(Definition: 3 Points; Traceroute Output: 5 Points; Identification on trans-oceanic
+link: 3 Points Total: (3 + 5 + 3) = 11 Points)
+Page 7 of 8
+
+--- Page 8 ---
+11. Define latency, throughput, instantaneous throughput, and average throughput. In
+what scenario (at least one example) is instantaneous throughput and average
+throughput important? (10 Points)
+Latency is defined as the time it takes for a packet to get from source to destination. It is
+measured in units of time. (s, ms).
+Throughput is defined as actual rate at which bits are transferred between sender and receiver.
+Throughput is measured in kilobits per second, megabits per second, or gigabits per second.
+Instantaneous throughput defined as the rate at which the bits are transferred at given point
+of time between sender and receiver.
+Average throughput is defined as the rate at which the bits are transferred over longer period
+of time between sender and receiver.
+Example for instantaneous throughput is streaming application and for average throughput it
+is downloading the files.
+(Each definition: 2 points; example explaining the scenario: 2 points; Total = ((4 * 2) + 2
+= 10 points)
+Page 8 of 8

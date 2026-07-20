@@ -1,0 +1,15 @@
+--- Page 1 ---
+Homework: ticket locks
+Homework: Spin Lock Alternatives
+Read the assigned paper and answer the question below.
+Hand-In Procedure
+Submit: The ticket lock is slightly different than the spinlock in in JOS and xv6. Assuming an invalidation-based
+coherence scheme as described in the paper, does a ticket lock introduce less inter-CPU communication than a
+JOS/xv6 spinlock?
+
+--- Page 2 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.828 Operating System Engineering
+Fall 2012
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

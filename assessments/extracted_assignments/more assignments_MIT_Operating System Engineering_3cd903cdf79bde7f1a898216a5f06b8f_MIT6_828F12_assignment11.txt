@@ -1,0 +1,15 @@
+--- Page 1 ---
+Homework: Journaling
+Homework: Journaling
+Read: Journaling the Linux ext2fs Filesystem
+Hand-In Procedure
+Submit: Mid-way down the left column on page 6, the Journaling paper says "However, until we have finished
+syncing those buffers, we cannot delete the copy of the data in the journal." Give a concrete example in which
+removing this rule would lead to disaster.
+
+--- Page 2 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.828 Operating System Engineering
+Fall 2012
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

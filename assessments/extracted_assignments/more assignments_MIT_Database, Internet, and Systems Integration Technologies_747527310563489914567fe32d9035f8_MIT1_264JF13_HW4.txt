@@ -1,0 +1,140 @@
+--- Page 1 ---
+Homework 4
+1.264, Fall 2013
+Data model for the aircraft parts distributor
+Due: Monday, October 7
+This is an almost-two week homework; it is almost twice as long as usual. You should
+complete the first half of it by October 2.
+A. Overview
+In this homework, you will build the data model that will support your Web application.
+The dataset is on the course Web site; we will cover how to examine it briefly in class or office
+hours. Refer to problem set 2 and your requirements for data definitions and a description of the
+features that must be supported by your data.
+B. Data model
+The assignment is to build the data model for the aircraft parts distributor. A recommended set of
+steps is given but you are free to approach this differently if you wish. You must use Visual
+Paradigm; select the Entity Relationship Diagram.
+You are allowed to make the following assumptions:
+a. You do not need to define the data type of any attribute: it will default to Visual
+Paradigm’s default setting.
+b. You do not need to model which parts can be handled by which modes.
+1. Define an entity for MIDO (the FAA manufacturing inspection district offices):
+a. Select an appropriate primary key
+b. Include only data that depends on the entire key, e.g. MIDO-specific data.
+2. Define an entity for PMA Holder (parts manufacturer approval), or the manufacturers of
+the replacement parts. Use the same steps as for the MIDO entity.
+3. Define an entity for ApprovalMeans. Same steps. This is a domain (validation) entity to
+store the valid values of approval means.
+4. Define an entity for Customer. The customer is the airline or individual buying parts from
+you. You may wish to distinguish between aircraft and balloon parts customers. Same
+steps.
+5. Define an entity for Aircraft Manufacturer.
+a. Select an appropriate primary key.
+1
+
+--- Page 2 ---
+b. You may add facts about address, contact information, etc. even though we have
+no data on those attributes right now. You may want to indicate its type: jet
+aircraft or balloon.
+6. Define an entity for the Aircraft Models:
+a. Use a composite key as the primary key: aircraft manufacturer and aircraft model
+together define a unique aircraft
+b. Validate manufacturer; create a foreign key relationship with the Manufacturer
+table.
+7. Define an entity for Original Aircraft Part. This is the ‘replacement for’ data element.
+a. Use a composite primary key, since a combination of aircraft manufacturer and
+part number is necessary to uniquely define a part.
+b. There is only a single part name in the source data; you may use it both for the
+original and replacement part name.
+c. Validate the portion of the primary key that must be present in another table to be
+valid, as a foreign key.
+8. Define an entity for Replacement Parts: This is the first really complex entity.
+a. Use a composite key as the primary key: PMA holder and part number. This
+defines a unique aircraft replacement part.
+b. Add appropriate facts about the replacement aircraft part to this entity. Remember
+that an attribute must be a function of the key, the entire key and nothing but the
+key.
+c. Establish the validation or foreign key relationships that define this entity.
+Validate PMAHolder, MIDO, the original part (called ReplacementFor) and its
+manufacturer as a compound foreign key (both from the OriginalPart entity), and
+ApprovalMeans.
+9. Define the relationship between Aircraft Models and Replacement Parts. If it is many-to-
+many, define the intermediate entity necessary, along with the appropriate relationships
+between it and Aircraft Models and Replacement Parts.
+a. Can an Aircraft Model have more than one replacement part?
+b. Can a replacement part replace more than one Aircraft Model?
+c. If the answer to both of these questions is ‘yes’, you have a many-to-many
+relationship. Define the intermediate (associative) entity and the relationships,
+using foreign keys.
+10. Define an entity for Transportation Carrier and related items. You will need entities for
+mode, and an entity that stores which carriers provide which modes. (No detailed hints
+provided, but you’ll need a Modes entity and an entity to relate carriers and modes.)
+11. Define an entity for Orders.
+2
+
+--- Page 3 ---
+a. This contains data specific to the entire order, such as the customer, shipping
+address, date, payment, and the like.
+b. Don’t call the entity Order, since that is an SQL keyword! Call it OrderHeader or
+similar.
+c. Treat purchase order versus credit card as simply as you wish. It is ok in this
+homework, for simplicity, to just have a single attribute that hold the credit card
+or purchase order number, since we’re not modeling payment in detail.
+12. Define an entity for Order Details.
+a. This contains line item details for the order: it stores the individual parts and the
+related data in the order. Note that you should store the price of each part, since
+prices may change and the price in the parts catalog at a later time may not be the
+price in effect when the order was placed.
+b. Similarly, keep other data, such as the approval means, for the same reason.
+c. You may need to keep quantity ordered and quantity shipped attributes, if you
+handle partial shipments or back orders. The details depend on your group’s
+requirements.
+13. Define any additional entities that your requirements call for. Include any domain
+entities necessary.
+a. You do not need to define domain (validation) entity(s) for state, city and zip
+code.
+b. You may need to define entities for valid order status, manufacturer or customer
+type (aircraft or balloon), etc. These depend on your own requirements.
+c. You may need entities for payment type (credit cards versus purchase orders),
+depending on your requirements.
+14. Define the relationships among all entities where hints were not given.
+a. For all entities in the data model, define all attributes, the primary key, and
+foreign keys (if any). The keys may be composite.
+15. A few more details to complete your model:
+a. Each replacement part is inspected by a MIDO office.
+b. Replacement parts from the same PMA holder can be inspected by different
+MIDOs.
+c. An approval is for the replacement part. It may be issued by any one of
+the MIDOs.
+d. You don't have to model a relationship from MIDO to PMA Holder. The
+relationship is between MIDO and replacement part.
+16. For all entities: define the primary key, foreign keys (if any), all attributes and all
+relationships. You do not have to choose a data type for each attribute (integer, etc.)
+You do not have to worry about which attributes can be null or must be unique
+(other than primary keys).
+3
+
+--- Page 4 ---
+You should have about 15 entities as your final result. Your model should be in fifth-normal
+form; if you follow the suggestions in the homework, it will be, with the exception of the state,
+city and zip code data. (State and city are weak functions of zip code, so this is technically a
+violation of third normal form.)
+C. Assignment
+1. Hand in the data model electronically on the course Web site.
+a. You must use the Visual Paradigm drawing tool.
+b. Please make your model fit on one page if possible, no more than two pages
+otherwise.
+c. Please lay out your model so that it is clear: avoid relationship lines crossing each
+other, place related entities near each other, etc., as much as possible.
+2. The data model must include all entities, keys (primary and foreign), attributes, and
+relationships (including their types, such as one-to-many). Indicate keys explicitly for
+each entity. Include domain relations (validation entities). You do not need to be careful
+about null, unique or data type for attributes.
+4
+
+--- Page 5 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+1.264J / ESD.264J Database, Internet, and Systems Integration Technologies
+Fall 2013
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

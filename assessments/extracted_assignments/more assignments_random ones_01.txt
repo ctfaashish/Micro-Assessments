@@ -1,0 +1,71 @@
+--- Page 1 ---
+handout #1
+Computer Science & Engineering 142
+Computer Programming I
+Instructor: Stuart Reges Course Administrator
+Email: reges@cs.washington.edu Pim Lustig
+Phone: 685-9138 Email: cse142@uw.edu
+Office: Gates Center (CSE2), room 305 (email for registration issues)
+Office hours: Tuesdays 1-3 pm
+Lecture Times
+A: MWF 3:30-4:20
+B: MWF 11:30-12:20
+Textbook
+Building Java Programs, 5th edition, Reges & Stepp, required.
+Course Overview
+This course provides an introduction to computer science using the Java programming language. CSE142 is
+primarily a programming course, but the focus is on the problem solving techniques common in computer
+science. No prior programming experience is assumed, although students should know the basics of using a
+computer (e.g., using a web browser and word processing program) and should be competent with math through
+Algebra I. Students with significant prior programming experience should consider skipping cse142 and taking
+cse143 (we allow students to do so without any special permission).
+Discussion Sections
+You will be expected to participate in a weekly 50-minute discussion section. We will be using Zoom software
+to set up a chat room for each section. The TA who runs your section will grade your homework assignments.
+In section we will answer questions, go over common errors in homework solutions and discuss sample
+problems in more detail than we can in lecture. You will receive 3 points for each section you participate in, up
+to a maximum of 20 points, which means that your participation score acts like an extra homework assignment.
+Course Web Page
+Information about the course will be kept https://cs.uw.edu/142.
+Course Registration
+To add the class or switch sections, email cse142@uw.edu.
+Grading
+Because the course will be offered online this quarter, there will be no midterm or final. Instead your grade will
+be determined by scores on weekly programming assignments and the section participation score.
+For each student we will compute the percent of points received relative to the total points possible. This will
+be turned into a grade as follows:
+90% at least 3.5 70% at least 1.5
+80% at least 2.5 60% at least 0.7
+Assignments are graded on a 20-point scale, although a few early assignments may be worth fewer points.
+
+--- Page 2 ---
+Late Policy
+Each assignment will list its due date. Most will be due on Tuesdays at 11 pm. Each student will have a total of
+ten “free” late days (a late day is 24 hours of lateness). There are no partial days, so assignments are either on
+time, 1 day late, 2 days late, etc. Because of this generous policy, students will not be granted extensions for
+assignments unless they have highly extenuating circumstances. Once a student has used up all free late days,
+each successive late day will result in a loss of 1 point. No assignment will be accepted more than 3 days after
+its due-date. No assignment can be submitted after 11 pm of the last day of class (Friday, June 5th).
+We will grade only one version of any given program. If you make multiple submissions for an assignment, we
+will grade the last version submitted. If you submit a version that you later decide you do not want to have
+graded, you must warn your TA not to grade that version and to wait for a later submission from you.
+Policy on Collaboration
+You are to complete programming assignments individually. You may discuss the assignment in general terms
+with other students including a discussion of how to approach the problem, but the code you write must be your
+own. The intent is to allow you to get some help when you are stuck, but this help should be limited and should
+never involve details of how to code a solution. You must abide by the following:
+• You may not work as a partner with another student on an assignment.
+• You may not show another student your solution to an assignment.
+• You may not have another person (current student, former student, tutor, friend, anyone) “walk you
+through” how to solve an assignment.
+• You may not post your homework solution code online to ask others for help. This includes public
+message boards, forums, file sharing sites and services, or any other online system
+• You are not to examine online solutions that you might find on the web.
+Under our policy, a student who gives inappropriate help is equally guilty with one who receives it. Instead of
+providing such help, refer other students to class resources (lecture examples, the textbook, the IPL, or emailing
+a TA or instructor). You must not share your solution and ideas with others. You must also ensure that your
+work is not copied by others by not leaving it in public places, emailing it others, posting it on the web, etc.
+If you are taking the course a second time, you are allowed to submit a previous solution that you authored
+unless that program was involved in a case of academic misconduct. For any assignment where academic
+misconduct was involved, you have to write a new version of the program. We enforce this policy by running
+similarity-detection software over all submitted student programs, including programs from past quarters.

@@ -1,0 +1,87 @@
+--- Page 1 ---
+1. The paper is called “Whispers in the Hyper-Space: High-Bandwidth and Reliable Covert Channel
+Attacks Inside the Cloud” by Zhenyu Wu, Zhang Xu, and Haining Wang. It was published in
+IEEE/ACM Transactions on Networking, Volume 23 Number 2, in April 2015. The architecture uses
+virtual machines and a cloud environment. They created the covert-channel by using a memory bus
+as a high-bandwidth covert channel by exploiting the atomic instructions and their induced cache-
+memory bus interactions on x86 platforms. In theory, it could be used on any virtualized x86 system
+because of how the bus locking mechanism bypasses the main issues in uncertainty, scheduling
+uncertainty, and cache physical limitations. An advantage of this is that since this covert-channel
+attack has been discovered to be general, a solution for this issue is bound to have higher priority
+and thus a solution would be found quicker. On the flip side, because this issue is so common, it
+could strike any system that isn’t prepared for it.
+Reference:
+Wu. Z., Zhang. Z., Wang. H. (2015, April). Whispers in the Hyper-Space: High-Bandwidth and
+Reliable Covert Channel Attacks Inside the Cloud. IEEE/ACM Transactions on Networking, 23(2).
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6744676
+3. XaaS stands for Anything as a Service. It’s a term that is generally used regarding anything cloud
+computing related. So, terms that we already know such as SaaS, PaaS, and IaaS fall under XaaS.
+SaaS (software as a service) is where software is purchased and licensed online, an example of
+which would be HubSpot, a marketing software. PaaS (platform as a service) is a cloud-based
+solution that allows users to make software with tools that they purchased a license for, an
+example of which would be various types of AWS products. IaaS (infrastructure as a service) is
+where companies provide the infrastructure and servers for companies to build products, usually
+from scratch. An example of an IaaS would be Microsoft Azure. An additional example of XaaS
+would be Desktop as a Service (DaaS), in which company could use this service as a secure way to
+perform remote work by having their employees go through the service. An example of a DaaS
+would be Citrix, a remote workplace product.
+References:
+Duo. M. (2023, May 15). XaaS: The Anything as a Service Model (With 10 Example Categories).
+Kinsta. https://kinsta.com/blog/xaas/
+NetApp. (2024). What is XaaS (Anything as a Service)? NetApp. https://www.netapp.com/cloud-
+services/what-is-anything-as-a-service-xaas/
+4. Xen is an open-source type-1 hypervisor that uses paravirtualization and hardware virtualization
+to scale in size. It’s able to support multiple different guest operating systems and cloud platforms,
+is one of the more secure hypervisors as it is built with security in mind, its modularity allows the
+user to adjust it to how they like it, and it has a very flexible architecture. One advantage of Xen is its
+lower virtualization overhead and reduced attack surface.
+Reference:
+
+--- Page 2 ---
+XenProject. (2023). Why Xen Project? Xen Project. https://xenproject.org/users/why-xen/
+5. OpenStack Glance is an image service that allows users to copy and share Virtual Machine and
+container images. It’s made up of four components, Glance-API, database, storage repository for
+image files, and metadata definition service. Glance-API accepts Image API calls for image
+discovery, retrieval, and storage. The database stores image metadata with the options for users to
+choose what database they prefer. The storage repository for image files supports normal file
+systems, object storage, RADOS block devices, VMWare datastore, and HTTP. Metadata definition
+service is a common API for users to meaningfully define their own custom metadata which can be
+used on different types of resources and different definitions.
+References:
+OpenMetal. (2024, March 6). What is OpenStack Glance? Openmetal.
+https://openmetal.io/docs/glossary/what-is-openstack-glance/
+Openstack. (2024, April 25). Image service overview. Openstack.
+https://docs.openstack.org/glance/latest/install/get-started.html
+6. Live Migration is the process of relocating virtual machines from one physical server to another
+without service disruption. First, both the source and the target virtual machines are created,
+usually with the same hardware configurations, have access to the same storage system, and are
+connected to the same network. Then the source host virtual machine copies its own guest
+memory, VM image, and state. Then, the target host machine starts up and the image and memory
+are transferred from source to target host. After all the guest memory and CPU state is sent from
+source to target host, the target host then cleans out the source host data, with the source host
+usually being deleted.
+When applying live migration, we can achieve minimum down-time by having better quality
+hardware to reduce the time it takes for the guest memory and other things to be downloaded. We
+can also have the VM still run on the source machine while the data is being copied and sending
+what the necessary data for the target VM to run first, thus allowing us to start the target VM up
+faster.
+If the destination host fails before live migration is completed, as long as we didn’t delete the data
+from the source host, we should still be able to troubleshoot why the destination host failed and
+attempt it again (since we have the source data still intact).
+References:
+Google Cloud. (2024, April 16). Live migration process during maintenance events. Google Cloud.
+https://cloud.google.com/compute/docs/instances/live-migration-process
+Maczka. P. (2024). VM Live Migration. Storware. https://storware.eu/blog/vm-live-migration/
+Martin. E. P. (2024, February 21). Virtio live migration technical deep dive. Red Hat Developer.
+https://developers.redhat.com/articles/2024/02/21/virtio-live-migration-technical-deep-dive#
+
+--- Page 3 ---
+7. Facilities Resources include heating, ventilation, power, air conditioning, communications, and
+other parts of the physical building.
+Hardware resources include computers (CPU and Memory), networks (routers, firewalls, switches,
+network links, and interfaces), storage components (hard disks), and other physical computing
+infrastructure elements.
+Reference:
+NIST Cloud Computing Standards Roadmap Working Group. (2011, July). NIST Special Publication
+(SP) 500-291 v1.0, pg. 22. National Institute of Standards and Technology.
+https://www.nist.gov/system/files/documents/itl/cloud/NIST_SP-500-291_Jul5A.pdf

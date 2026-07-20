@@ -1,0 +1,161 @@
+--- Page 1 ---
+IntroductiontoAlgorithms: 6.006
+MassachusettsInstituteofTechnology 7October,2011
+ProfessorsErikDemaineandSriniDevadas ProblemSet4
+Problem Set 4
+Both theory and programming questions are due Friday, 14 October at 11:59PM.
+Rememberthatforthewrittenresponsequestion,yourgoalistocommunicate. Fullcreditwill
+be given only to a correct solution which is described clearly. Convoluted and obtuse descriptions
+might receive low marks, even when they are correct. Also, aim for concise solutions, as it will
+saveyoutimespentonwrite-ups,andalsohelpyouconceptualizethekeyideaoftheproblem.
+We will provide the solutions to the problem set 10 hours after the problem set is due, which
+you will use to find any errors in the proof that you submitted. You will need to submit a critique
+of your solutions by Thursday, October 20th, 11:59PM. Your grade will be based on both your
+solutionsandyourcritiqueofthesolutions.
+Problem4-1. [35points] HashFunctionsandLoad
+(a) Imagine that an algorithm requires us to hash strings containing English phrases.
+Knowing that strings are stored as sequences of characters, Alyssa P. Hacker decides
+to simply use the sum of those character values (modulo the size of her hash table)
+as the string’s hash. Will the performance of her implementation match the expected
+valueshowninlecture?
+1. Yes,thesumoperationwillspacestringsoutnicelybylength.
+2. Yes,thesumoperationwillspacestringsoutnicelybythecharacterstheycontain.
+3. No,becausereorderingthewordsinastringwillnotproduceadifferenthash.
+4. No, because the independence condition of the simple uniform hashing assump-
+tionisviolated.
+(b) Alyssa decides to implement both collision resolution and dynamic resizing for her
+hashtable. However,shedoesn’twanttodomoreworkthannecessary,soshewonders
+if she needs both to maintain the correctness and performance she expects. After all,
+ifshehasdynamicresizing,shecanresizetoavoidcollisions;andifshehascollision
+resolution,collisionsdon’tcausecorrectnessissues. Whichstatementaboutthesetwo
+propertiestrue?
+1. Dynamicresizingalonewillpreservebothproperties.
+2. Dynamicresizingalonewillpreservecorrectness,butnotperformance.
+3. Collisionresolutionalonewillpreserveperformance,butnotcorrectness.
+4. Botharenecessarytomaintainperformanceandcorrectness.
+1
+
+--- Page 2 ---
+ProblemSet4
+(c) Suppose that Alyssa decides to implement resizing. If Alyssa is enlarging a table of
+size m into a table of size m, and the table contains n elements, what is the best time
+complexityshecanachieve?
+1. Θ(m)
+2. Θ(m(cid:48))
+3. Θ(n)
+4. Θ(nm(cid:48))
+5. Θ(m+m(cid:48))
+6. Θ(m+n)
+7. Θ(m(cid:48) +n)
+(d) In lecture, we discussed doubling the size of our hash table. Ivy H. Crimson begins
+to implement this approach (that is, she lets m(cid:48) = 2m) but stops when it occurs to
+her that she might be able to avoid wasting half of the memory the table occupies on
+emptyspacebylettingm(cid:48) = m+kinstead,wherekissomeconstant. Doesthiswork?
+If so, why do you think we don’t do it? There is a good theoretical reason as well as
+severaladditionalpracticalconcerns;acompleteanswerwilltouchonbothpoints.
+Problem4-2. [10points] PythonDictionaries
+We’regoingtogetstartedbycheckingoutafilefromPython’sSubversionrepositoryatsvn.python.org.
+The Python project operates a web frontend to their version control system, so we’ll be able to do
+thisusingabrowser.
+Visithttp://svn.python.org/projects/python/trunk/Objects/dictnotes.txt.
+TheseareactualnotespreparedbycontributorstothePythonproject,astheycurrentlyexistinthe
+Python source tree. (Cool! Actually, this document is a fascinating read—and you should be able
+tounderstandmostofit.) Readoverthesevenusecasesidentifiedatthetopofthisdocument.
+(a) Let’s examine the “membership testing” use case. Which statement accurately de-
+scribesthisusecase?
+1. Manyinsertionsrightaftercreation,andthenmostlylookups.
+2. Manyinsertionsrightaftercreation,andthenonlylookups.
+3. Aworkloadofevenly-mixedinsertions/deletionsandlookups.
+4. Alternatingroundsofinsertions/deletionsandlookups.
+(b) Nowimaginethatyouhavetopickahashfunction,size,collisionresolutionstrategy,
+and so forth (all of the characteristics of a hash table we’ve seen so far) in order to
+make a hash table perfectly suited to this use case alone. Pick the statement that best
+describesthechoicesyoumightmake.
+1. Alargeminimumsizeandagrowthrateof2.
+2. Asmallminimumsizeandagrowthrateof2.
+2
+
+--- Page 3 ---
+ProblemSet4
+3. Alargeminimumsizeandagrowthrateof4.
+4. Asmallminimumsizeandagrowthrateof4.
+Problem4-3. [55points] MatchingDNASequences
+The code and data used in this problem are available on the course website. Please take a peek at
+theREADME.txtforsomeinstructions.
+Ben Bitdiddle has recently moved into the Kendall Square area, which is full of biotechnology
+companies and their shiny, window-laden office buildings. While mocking their dorky lab coats
+makes him feel slightly better about himself, he is secretly jealous, and so he sets out to earn one
+ofhisveryown. Topickupthenecessarygeekcred,hebeginsexperimentingwithDNA-matching
+technologies.
+Benwouldliketocreatemutantstodohisbidding,andtogetstarted,he’dliketoknowhowclosely
+related the creatures he’s collected are. If two sequences contain mostly the same subsequences
+in mostly the same places, then they’re likely closely related; if they don’t, they probably aren’t.
+(Thisis,ofcourse,agrossoversimplification.)
+Forourpurposes,we’llrepresentaDNAsampleasasequenceofcharacters. (Thesecharacterswill
+all be upper-case. You can look at the Wikipedia page on nucleotides for a list of code characters
+and their meanings.) These sequences are very long, so comparing subsequences of them quickly
+isimportant. We’veprovidedcodeinkfasta.pythatreadsthe.fafilesstoringthisdata.
+(a) Let’s start with subsequenceHashes, which returns all length-k subsequences
+and their hashes (and perhaps other information, if there’s anything else you might
+finduseful).
+Hint: Therewilllikelybemanyofthesematches;theDNAsequencesaretensofmil-
+lions of nucleotides long. To avoid keeping them all in memory at once, implement
+yourfunctionasagenerator. SeethePythonreferencematerialsavailableonlinefor
+detailsifyouaren’tfamiliarwiththisimportantlanguageconstruct.
+(b) ImplementMultidictandverifythatyourworkpassesthesimplesanitytestspro-
+vided.
+MultidictshouldbehavejustlikeaPythondictionary,exceptthatitcanstoremul-
+tiple values per key. If no values exist for a key, it returns an empty list; otherwise, it
+returns the list of associated values. You may (and probably should) use the Python
+dictionaryinyourimplementation.
+(c) Now it’s time to implement getExactSubmatches. Ignore the parameter m for
+thetimebeing;we’llgettothatinthenextpart. Again,implementingthisfunctionas
+a generator is probably a good idea. (You will probably have many, many matches–
+think about the combinatorics of the situation briefly.) As a hint, consider that much
+of the work has already been done by Multidict and subsequenceHashes;
+also take a peek at the RollingHash implementation we’ve given you. With these
+3
+
+--- Page 4 ---
+ProblemSet4
+building blocks, your solution probably does not need to be very complex (or more
+thanafewlines).
+This function should return pairs of offsets into the inputs. A tuple (x,y) being re-
+turned indicates that the k-length subsequence at position x in the first input matches
+thesubsequenceatpositiony inthesecondinput.
+We’veprovidedasimplesanitytest;yoursolutionshouldbecorrectatthispoint(that
+is, dnaseq.py will produce the right output) but it’ll probably be too slow to be
+useful. If you like, you can try running it on the first portion of two inputs; we’ve
+providedtwosuchprefixes(theshortfilesinthedatadirectory)thatmightbehelpful.
+(d) The most significant reason why your solution is presently too slow to be useful is
+that you are hashing and inserting into your hash table tens of millions of elements,
+and then performing tens of millions of lookups into that hash table. Implement
+intervalSubsequenceHashes,whichreturnsthesamethingassubsequenceHashes
+exceptthatithashesonlyoneinmsubsequences. (Agoodimplementationwillnotdo
+moreworkthanisnecessary.) ModifyyourimplementationofgetExactSubmatches
+to honor m only for sequence A. Consider why we still see approximately the same
+result, and why we can’t further improve performance by applying this technique to
+sequenceB aswell.
+(e) Run comparisons between the two human samples (paternal and maternal) and be-
+tweenthepaternalsampleandeachoftheanimalsamples.
+Feel free to take a peek at how the image-generation code works. Conceptually, what
+it’s doing is keeping track of how many of your (x,y) match tuples land in each of
+a two-dimensional grid of bins, each of which corresponds to a pixel in the output
+image. At the end, it normalizes the counts so that the highest count observed is
+totallyblackandanemptybiniswhite.
+Think for a second about what a perfect match (e.g., comparing a sequence to itself)
+should look like. Try comparing the two human samples you have (maternal and pa-
+ternal),oneofthehumansagainstthechimpsample,andthenagainstthedogsample.
+Makesureyourresultsmakesense!
+We’vepostedwhatourreferencesolutionproducedforthehuman-humancomparison,
+thehuman-chimpcomparison,andthehuman-dogcomparison.
+Pleasesubmitthecodethatyouwrote. (Youshouldonlyhavehadtomodifydnaseq.py,
+sothat’sallyouneedtosubmit.)
+4
+
+--- Page 5 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.006 In troduction to Algorithms
+Fall 2011
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

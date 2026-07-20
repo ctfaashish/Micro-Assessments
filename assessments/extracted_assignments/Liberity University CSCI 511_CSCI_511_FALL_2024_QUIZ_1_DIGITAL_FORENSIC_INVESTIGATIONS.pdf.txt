@@ -1,0 +1,88 @@
+--- Page 1 ---
+CSCI 511 FALL 2024
+Quiz: Digital Forensic Investigations
+• Due Oct 27 at 11:59pm
+• Points 10
+• Questions 10
+• Time Limit 40 Minutes
+Score for this quiz: 10 out of 10
+Question 1 1 / 1 pts
+In a criminal or public case, if you have enough information to support a search warrant, the
+prosecuting attorney might direct you to submit a(n) ____.
+blotter
+exhibit report
+litigation report
+affidavit
+Question 2 1 / 1 pts
+____ involves recovering information from a computer that was deleted by mistake or lost during a
+power surge or server crash, for example.
+Data recovery
+Network forensics
+Computer forensics
+Disaster recovery
+Question 3 1 / 1 pts
+In general, a criminal case follows three stages: the complaint, the investigation, and the ____.
+litigation
+allegation
+blotter
+prosecution
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-21-2025 17:36:22 GMT -05:00
+https://www.coursehero.com/file/242760934/CSCI-511-FALL-2024-QUIZ-1-DIGITAL-FORENSIC-INVESTIGATIONSpdf/
+
+--- Page 2 ---
+Question 4 1 / 1 pts
+Computing components are designed to last 18 to ____ months in normal business operations.
+24
+30
+36
+42
+Question 5 1 / 1 pts
+In addition to performing routine backups, record all the updates you make to your workstation by
+using a process called ____ when planning for disaster recovery.
+configuration management
+risk assessment
+recovery logging
+change management
+Question 6 1 / 1 pts
+What HTCN certification level requires candidates have three years of experience in computing
+investigations for law enforcement or corporate cases?
+Certified Computer Crime Investigator, Basic Level
+Certified Computer Crime Investigator, Advanced Level
+Certified Computer Forensic Technician, Basic
+Certified Computer Forensic Technician, Advanced
+Question 7 1 / 1 pts
+Computer investigations and forensics fall into the same category: public investigations.
+True False
+Question 8 1 / 1 pts
+A good working practice is to use less powerful workstations for mundane tasks and multipurpose
+workstations for the higher-end analysis tasks.
+True False
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-21-2025 17:36:22 GMT -05:00
+https://www.coursehero.com/file/242760934/CSCI-511-FALL-2024-QUIZ-1-DIGITAL-FORENSIC-INVESTIGATIONSpdf/
+
+--- Page 3 ---
+Question 9 1 / 1 pts
+What are some of the most common types of private-sector computer crime?
+Your Answer:
+According to Nelson et al. (2024), common types of private-sector computer crime include data
+breaches, intellectual property theft, unauthorized access to confidential information, embezzlement,
+email harassment, gender and age discrimination, and insider threats where employees misuse
+access to company systems for personal gain.
+Reference:
+Nelson, B., Phillips, A., Steuart, C., & Wilson, R. (2024). Guide to Computer Forensics and
+Investigations (7th ed.). Cengage.
+Question 10 1 / 1 pts
+Give a brief explanation of a computer forensics lab auditing process.
+Your Answer:
+Nelson et al. (2024) describe the computer forensics lab auditing process as a systematic review to
+ensure compliance with industry standards and legal guidelines. The audit examines evidence
+handling protocols, security measures to protect evidence integrity, and operational procedures to
+maintain accuracy and reliability in forensic analysis. This process also evaluates staff qualifications
+and ensures that lab practices align with best practices in forensic investigations.
+Reference:
+Nelson, B., Phillips, A., Steuart, C., & Wilson, R. (2024). Guide to Computer Forensics and
+Investigations (7th ed.). Cengage.
+Quiz Score: 10 out of 10
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-21-2025 17:36:22 GMT -05:00
+https://www.coursehero.com/file/242760934/CSCI-511-FALL-2024-QUIZ-1-DIGITAL-FORENSIC-INVESTIGATIONSpdf/
+Powered by TCPDF (www.tcpdf.org)

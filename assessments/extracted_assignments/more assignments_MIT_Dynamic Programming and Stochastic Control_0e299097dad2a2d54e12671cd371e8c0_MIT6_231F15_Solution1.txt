@@ -1,0 +1,331 @@
+--- Page 1 ---
+Exercise 2.7
+a) The proof of termination for this algorithm follows exactly that for the original algorithm. Each time a
+node j enters the OPEN list, its label is decreased and becomes equal to the length of some path from s
+to j. Although arc lengths are no longer necessarily nonnegative, cycles lengths are. Therefore, since each
+path can be decomposed into a path with no repeated nodes (there is a finite number of distinct such
+paths) plus a (possibly empty) set of cycles (which have a nonnegative length), the number of distinct
+lengths of paths from s to j that are smaller than any given number is finite. Therefore, there can be
+only a finite number of label reductions and the algorithm must terminate.
+Let (s, j ,j ,...,j ,t) be a shortest path from s to t and let d∗ be the corresponding shortest distance.
+1 2 k
+We will show that the value of UPPER upon termination must be equal to d∗ . Indeed, each subpath
+(s, j ,...,j ), m = 1,...,k, of the shortest path must be a shortest path from s to j . Let d∗ be the
+1 m m jm
+corresponding shortest distance from s to j , m = 1,...,k. If the value of UPPER is larger than d∗ at
+m
+termination, the same must be true throughout the algorithm, and therefore UPPER will also be larger
+than the length of all the paths (s, j ,...,j ) plus the underestimate u , m =1,...,k, throughout the
+1 m jm
+algorithm, i.e.,
+d∗ < UPPER − u , m =1, . . . , k. (∗)
+jm jm
+Using this relation for m = k, it follows that j , the last node prior to t on the shortest path, will never
+k
+enter the OPEN list with d equal to the shortest distance d∗ , since when this happens UPPER would
+jk j k
+be set to d∗ = d∗ + a in step 2 immediately following the next time node j is examined by the
+j k jk t k
+algorithm in step 2. Going backwards one step and using Eq. (*), node j will never enter the OPEN
+k−1
+list with d equal to the shortest distance d∗ . Proceeding backward similarly, we conclude that j
+jk−1 jk −1 1
+never enters the OPEN list with d equal to the shortest distance d∗ [which is equal to the length of the
+j1 j1
+arc (s, j )]. This happens, however, at the first iteration of the algorithm, obtaining a contradiction. It
+1
+follows that at termination, UPPER will be equal to the shortest distance from s to t. Q.E.D.
+b) In the case where all arcs have nonnegative lengths, an underestimate of the shortest distance from any
+node to the destination node is clearly 0. Letting u = 0 from all nodes j, we see that the algorithm
+j
+described reduces to the algorithm of Section 2.3.1.
+1
+
+--- Page 2 ---
+Exercise 1.2
+The algorithm takes the form:
+J k (x k ) = min E {u k +(x k + u k − w k )2+ J k+1 (max(0,x k + u k − w k ))}.
+0≤uk ≤2−xk wk
+uk =0,1,2
+For the initial state x = 1, we have
+0
+J 0 (1) = min E {u 0 + (1 + u 0 − w 0 )2+ J 1 (max(0, 1+ u 0 − w 0 ))},
+u0=0,1 w0
+u =0: E{·} =0.1(1 + J (1)) + 0.7 · J (0) + 0.2(1 + J (0)) = 2.7
+0 1 1 1
+u =1: E{·} =1+0.1(4 + J (2)) + 0.7(1 + J (1)) + 0.2 · J (0) = 3.818
+0 1 1 1
+J (1) = 2.7, µ∗ (1) = 0
+0 0
+For the initial state x = 2, the only admissible control is u = 0, and we have
+0 0
+J 0 (2) = E {(2 − w 0 )2 + J 1 (max(0, 2 − w 0 ))}
+w0
+=0.1(4 + J (2)) + 0.7(1 + J (1)) + 0.2 · J (0)
+1 1 1
+=2.818
+J (2) = 2.818, µ∗ (2) = 0.
+0 0
+2
+
+--- Page 3 ---
+Exercise 1.3
+Except for the first week, there are only two permissible states R (= running) and B (= broken down).
+For x = R, there are only two permissible control values, namely m (= perform maintenance) and n (= no
+k
+maintenance). For x = B, there are two different permissible control values, namely r (= repair), and £ (=
+k
+replace). For the first week, we’re in state N (new machine, and the machine is guaranteed to run through
+its first week of operation. Number the weeks from 0 to 3. Using the given probabilities we have:
+Week 3: For {
+for u = m, expected profit = 0.6 · 100 − 20 = 40
+x = R 3
+3 for u = n, expected profit = 0.3 · 100 = 30
+3
+Thus, J (R) = max{40, 30} = 40 and µ∗ (R)= m. For
+3 3
+{
+for u = r, expected profit = 0.6 · 100 − 40 = 20
+x = B 3
+3 for u = £, expected profit = 100 − 150 = −50
+3
+Thus, J (B) = max{20, −50} = 20 and µ∗ (B)= r.
+3 3
+Week 2: For
+{
+for u = m, expected profit = 0.6[100 + J (R)] + 0.4 · J (B) − 20 = 72
+x = R 2 3 3
+2 for u = n, expected profit = 0.3[100 + J (R)] + 0.7 · J (B) = 56
+2 3 3
+Thus, J (R) = max{72, 56} = 72 and µ∗(R)= m. For
+2 2
+{
+for u = r, expected profit = 0.6[100 + J (R)] + 0.4J (B) − 40 = 52
+x = B 2 3 3
+2 for u = £, expected profit = 100 + J (R) − 150 = −10
+2 3
+Thus, J (B) = max{52, −10} = 52 and µ∗ (B)= r.
+2 2
+Week 1: For
+{
+for u = m, expected profit = 0.6[100 + J (R)] + 0.4 · J (B) − 20 = 104
+x = R 1 2 2
+2 for u = n, expected profit = 0.3[100 + J (R)] + 0.7J (B) = 88
+1 2 2
+Thus, J (R) = max{104, 88} = 104 and µ∗ (R)= m. For
+1 1
+{
+for u = r, expected profit = 0.6[100 + J (R)] + 0.4 · J (B) − 40 = 84
+x = B 2 2 2
+1 for u = £, expected profit = 100 + J (R) − 150 = 22
+1 2
+Thus, J (B) = max{84, 22} = 84 and µ∗(B)= r.
+1 1
+Week 0: We start with a new machine, which is guaranteed to run through its first week of operation.
+Thus J (N) = 100+ J (R) = 204.
+0 1
+Conclusion: The profit-maximizing policy is to always maintain a running machine and always repair a
+broken one. The corresponding expected profit is $204.
+3
+
+--- Page 4 ---
+Exercise 1.22
+We consider the problem of placing N points on a circle, so that the resulting polygon has maximal perimeter. As
+the circle is traversed in the clockwise direction, we number sequentially the encountered points as x ,x ,...,x .
+1 2 N
+Without loss of generality, we assume that x is at 12 o’ clock on the circle. For any point x on the circle, we
+1
+denote by φ ∈ [0, 2π] the angle between x and x (measured clockwise), and we let x = x(φ) (in other words,
+1
+we parameterize every point on the circle with the angle φ). We denote by J (φ) the maximal sum of chords
+k
+with first vertex x(φ), last vertex x and N − k additional points on the subarc that lies (clockwise) between x
+1
+and x (thus, we have N − k + 1 chords). Finally, without loss of generality, we assume that the radius of the
+1
+circle is 1, so that the length of a chord that has as vertices two points on the circle is 2 sin(u/2), where u is the
+angle with respect to the center.
+By viewing as state the angle φ between x and x (notice that, by definition, 0 ≤ φ ≤ 2π), and as control
+k 1 k k
+the angle u between x and x , we obtain the following DP algorithm
+k k k+1
+J (φ ) = max [2 sin(u /2) + J (φ + u )] , k =1,...,N − 1. (1)
+k k k k+1 k k
+0≤uk≤2π−φk
+J (φ ) = max H (u ,φ ), (4)
+k k k k k
+0≤uk≤2π−φk
+where ( )
+u 2π − φ − u
+H (u ,φ )=2sin k +2(N − k) sin k k . (5)
+k k k
+2 2(N − k)
+It can be verified that for a fixed φ and in the range 0 ≤ u ≤ 2π − φ , the function H (·,φ ) is concave
+k k k k k
+(its second derivative is negative) and its derivative is 0 at the point u ∗ = (2π − φ )/(N − k + 1) which must
+k k
+therefore be its unique maximum. Substituting this value of u ∗ in Eqs. (4) and (5), we obtain
+k
+( ) ( )
+J (φ )=2sin 2π − φ k +2(N − k) sin 2π − φ k − N 2π − − k φ + k 1 = 2(N − k + 1) sin 2π − φ k ,
+k k
+2(N − k + 1) 2(N − k) 2(N − k + 1)
+and the induction is complete.
+Thus, given an optimally placed point x with corresponding angle φ , the next point x is obtained by
+k k k+1
+advancing clockwise by (2π − φ )/(N − k + 1). This process, when started at x , yields as the optimal solution
+k 1
+an equally spaced placement of the points on the circle.
+4
+
+--- Page 5 ---
+Exercise 2.1
+The DP algorithm is:
+J (i)= a
+N −1 it
+� �
+J (i) = min a + J (j) k =0, 1,...,N − 2
+k ij k+1
+j=1,...,N
+where for this problem t = 6 and N = 5.
+4th Stage:
+J (1) = a = 8 path = {1 → 6}
+4 16
+J (2) = a = ∞ path = {2 → 6}
+4 26
+J (3) = a = 9 path = {3 → 6}
+4 36
+J (4) = a = 2 path = {4 → 6}
+4 46
+J (5) = a = 5 path = {5 → 6}
+4 56
+3th Stage:
+J (1) = min{a + J (1),a + J (2),a + J (3),a + J (4),a + J (5)}
+3 11 4 12 4 13 4 14 4 15 4
+= min{0+8, ∞, 1+9, 5+2, ∞} = 7 path = {1 → 4 → 6}
+J (2) = min{a + J (1),a + J (2),a + J (3),a + J (4),a + J (5)}
+3 21 4 22 4 23 4 24 4 25 4
+= min{∞, ∞, ∞, 1+2, ∞} = 3 path = {2 → 4 → 6}
+J (3) = min{a + J (1),a + J (2),a + J (3),a + J (4),a + J (5)}
+3 31 4 32 4 33 4 34 4 35 4
+= min{∞, ∞, 0+9, ∞, 5+5} = 9 path = {3 → 6}
+J (4) = min{a + J (1),a + J (2),a + J (3),a + J (4),a + J (5)}
+3 41 4 42 4 43 4 44 4 45 4
+= min{∞, ∞, ∞, 0+2, ∞} = 2 path = {4 → 6}
+J (5) = min{a + J (1),a + J (2),a + J (3),a + J (4),a + J (5)}
+3 51 4 52 4 53 4 54 4 55 4
+= min{∞, ∞, 0+9, ∞, 0+5} = 5 path = {5 → 6}
+2nd Stage:
+J (1) = min{a + J (1),a + J (2),a + J (3),a + J (4),a + J (5)}
+2 11 3 12 3 13 3 14 3 15 3
+= min{0+7, 4+3, 1+9, 5+2, ∞} = 7 path = {1 → 4 → 6 or 1 → 2 → 4 → 6}
+J (2) = min{a + J (1),a + J (2),a + J (3),a + J (4),a + J (5)}
+2 21 3 22 3 23 3 24 3 25 3
+= min{∞, 0+3, ∞, 1+2, ∞} = 3 path = {2 → 4 → 6}
+J (3) = min{a + J (1),a + J (2),a + J (3),a + J (4),a + J (5)}
+2 31 3 32 3 33 3 34 3 35 3
+= min{∞, ∞, 0+9, ∞, 5+5} = 9 path = {3 → 6}
+J (4) = min{a + J (1),a + J (2),a + J (3),a + J (4),a + J (5)}
+2 41 3 42 3 43 3 44 3 45 3
+= min{∞, ∞, ∞, 0+2, ∞} = 2 path = {4 → 6}
+J (5) = min{a + J (1),a + J (2),a + J (3),a + J (4),a + J (5)}
+2 51 3 52 3 53 3 54 3 55 3
+= min{∞, ∞, 0+9, ∞, 0+5} = 5 path = {5 → 6}
+Since the shortest distances of paths with 2 arcs are the same as those of paths with 3 arcs, additional
+arcs will not create shorter paths. The shortest paths are therefore those found in the second stage.
+5
+
+--- Page 6 ---
+Exercise 2.7
+a) The proof of termination for this algorithm follows exactly that for the original algorithm. Each time a
+node j enters the OPEN list, its label is decreased and becomes equal to the length of some path from s
+to j. Although arc lengths are no longer necessarily nonnegative, cycles lengths are. Therefore, since each
+path can be decomposed into a path with no repeated nodes (there is a finite number of distinct such
+paths) plus a (possibly empty) set of cycles (which have a nonnegative length), the number of distinct
+lengths of paths from s to j that are smaller than any given number is finite. Therefore, there can be
+only a finite number of label reductions and the algorithm must terminate.
+b) In the case where all arcs have nonnegative lengths, an underestimate of the shortest distance from any
+node to the destination node is clearly 0. Letting u = 0 from all nodes j, we see that the algorithm
+j
+described reduces to the algorithm of Section 2.3.1.
+6
+
+--- Page 7 ---
+Exercise 2.9
+We will transform the problem to a (standard) shortest path problem in an expanded graph that is con­
+structed from the given graph. Let I be the set of nodes of the original graph. The expanded graph has nodes
+(i, 0), (i, 1),..., (i, N), where i ranges over the node set I of the original graph. The meaning of being in node
+(i, m), m =1,...,N, is that we are at node i and have already successively visited the sets T ,...,T , but not
+1 m
+the sets T ,...,T . The meaning of being in node (i, 0) is that we are at node i and have not yet visited
+m+1 N
+any node in the set T .
+1
+The arcs of the expanded graph are constructed as follows: For each arc (i, j) of the original graph, with
+length a , introduce for m =0,...,N − 1, in the expanded graph an arc of length a that goes from (i, m) to
+ij ij
+(j, m) if j ∈/ T , and goes from (i, m) to (j, m + 1) if j ∈ T . Also, for each arc (i, j) of length a of the
+m+1 m+1 ij
+original graph, introduce in the expanded graph an arc of length a that goes from (i, N) to (j, N).
+ij
+It is seen that the problem is equivalent to finding a shortest path from (s, 0) to (t, N) in the expanded graph.
+Let Dk+1(i, m), m = 0, 1,...,N, be the shortest distance from (i, m) to the destination (t, N) using k arcs
+or less. The DP iteration is
+{ �
+�(cid:169) (cid:170)� (cid:169)� (cid:170)�
+Dk+1(i, m) = min min a + Dk(j, m) , min a + D k(j, m + 1) ,
+ij ij
+{j | (i,j) is an arc} j∈/Tm+1 j∈Tm+1
+m =0,...,N − 1,
+{ (cid:169)� (cid:170)�
+min a + D k(j, N) if i (cid:54)= t,
+Dk+1(i, N)= {j | (i,j) is an arc} ij
+0 if i = t.
+The initial condition is {
+∞ if (i, m)(cid:54)= (t, N),
+D0(i, m)=
+0 if (i, m)=(t, N).
+This algorithm is not very efficient because it requires as many as N ·|I| iterations, where |I| is the number of
+nodes in the original graph. The algorithm can be made more efficient by observing that to calculate D(i, k) for
+all i, we do not need to know D(i, k − 1),...,D(i, 0); it is sufficient to know just D(j, k + 1) for j ∈ T . Thus,
+k+1
+we may calculate first D(i, N) using a standard shortest path computation, then calculate D(i, N − 1), then
+D(i, N − 2), etc. This more efficient calculation process may also be viewed as a DP algorithm that involves the
+solution of N (standard) shortest path problems involving several origins and a single destination. The origins
+are the nodes in T and the destination is an artificial node to which the nodes j ∈ T are connected with an
+k k+1
+arc of length D(j, k + 1).
+7
+
+--- Page 8 ---
+Common Problems in Homework 1
+1.3:
+(1) Some students make an assumption that the machine makes a profit of $100 in the beginning of the
+period, but this is not reasonable.
+(2) Some students compute the optimal cost to go from backward for five weeks (including the first
+running week). The problem statement actually means in total four weeks, not the beginning week plus
+four weeks.
+1.22
+(1) Some students only perform the mathematical induction at the N-2 stages, where the sub-problem
+has two variables to optimize. This is not complete. A complete solution should include a general case
+from N-k stage to N-k-1 stage.
+2.1
+(1) From 1 to 6, it should have two different shortest paths, one is 1->4->6 and the other is 1->2->4->6.
+(2) Please write out the shortest path (optimal policy) explicitly.
+2.7
+(1) Even though this problem carry out a similar proof workflow as the label correcting algorithm in the
+textbook, in the write up, it should be still written down in details. Some students only include the part
+of proving termination and existence. These pieces are just the preliminary proof.
+2.9
+(1) Lots of students misinterpret the problem statement and consider that after the path pass through
+T_k, it can never go back to T_1, … T_{k-1}. This is not true.
+(2) Notice that part b requires a sequence of ordinary shortest path problems involving a single origin
+and multiple destination, not any type of shortest path problems.
+8
+
+--- Page 9 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.231 Dynamic Programming and Stochastic Control
+Fall 2015
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

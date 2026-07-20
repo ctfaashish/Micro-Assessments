@@ -1,0 +1,103 @@
+
+Question 1 (20 points): Classify each of the following as a violation of confidentiality, or
+integrity, or availability and explain why/how:
+1. Eve runs TCP SYN attack against Alice’s email server. This is a violation of activity
+since a TCP SYN attack is a type of DoS attack that aims to disrupt the service by
+flooding it with many TCP SYN requests which in this instance is the email server.
+2. Eve is the system admin and misconfigures the company’s email server in a way that all
+the received emails are broadcasted to all. This is a violation of confidentiality since
+misconfiguring the email server in a way that all received emails are to all puts the
+privacy of the emails at risk because it is the information is available to unintended
+users.
+3. Eve discloses Bob’s health records. This is a violation of confidentiality because
+disclosing someone’s records without authorization is a breach of confidentiality.
+Especially when it is personal and sensitive information like health records.
+4. Eve overwrites the files under /var/log of a protected server with empty files. This is a
+violation of integrity, the log files help track events and declare security issues, and
+overwriting them with empty files will ruin the system’s reliability.
+Question 2 (40 points): Find two big cyberattacks targeted to cloud computing occurred after
+2020 (i.e., 2020-2023). For each of them, answer the following questions to apply threat
+modeling framework:
+Example 1: Twitter July 2020
+- Who applied the attack? What was the purpose? The attack was applied by 3
+attackers and the leader of the attack was a 17-year-old called Graham Ivan Clark.
+They intended to steal cryptocurrencies and they managed to steal $118,000 worth
+of bitcoin.
+- When we apply STRIDE, which issue was targeted by the attackers? The 3 attackers
+targeted the confidentiality and integrity of employees and gained access to
+Twitter’s internal management system.
+- How was the attack mitigated? Twitter managed to lock down hacked accounts and
+prevent further unauthorized access. The company enhanced its security by
+restricting access to internal tools and more.
+- Apply DREAD for both and compare which one would have the higher priority. The
+damage potential, affected users, and discoverability were high, but reproducibility
+and exploitability were moderate. So, the DREAD score should have been high.
+
+--- Page 2 ---
+Example 2: Microsoft Exchange Server Attack 2021
+- Who applied the attack? What was the purpose? The attack was done by a Chinese
+state-sponsored hacker group called Hafnium. They intended to attack sensitive
+data from government agencies and private companies worldwide.
+- When we apply STRIDE, which issue was targeted by the attackers? They targeted
+the confidentiality and integrity of email systems and sensitive data, and they
+exploited a zero-day vulnerability in Microsoft Exchange servers.
+- How was the attack mitigated? Microsoft asked users to apply patches immediately
+and they also guided their users to detect potential compromises.
+- Apply DREAD for both of them and compare which one would have the higher priority.
+Damage, Reproducibility, exploitability, affected users and discoverability were all
+high hence the DREAD score was high.
+Question 4 (20 points): Find three IDS/IPS and compare them in terms of
+Example 1: Snort
+- What are they focusing on? Snort focuses on detecting and preventing network-
+based attacks.
+- What are they monitoring and how? It analyzes the flow of data in a network by
+looking at the packets. It also analyzes the headers and contents of these packets to
+identify if there might be a cyber-attack.
+- Are they signature based or anomaly based? It is signature based since it uses preset
+rules to find attack patterns.
+- Give an example of their rule (one rule for each IDS/IPS) and explain what it does.
+Rule: string: alert tcp any any -> any 80 (msg: "Suspicious user-agent"; content:
+"User-Agent: EvilBot";) . This rule is used to detect suspicious user-agent.
+Example 2: Suricata
+- What are they focusing on? It focuses on monitoring network security by spotting
+and preventing breaches.
+- What are they monitoring and how? It is works like snort, but it is faster and more
+efficient
+- Are they signature based or anomaly based? It uses preset rules but it can also use
+protocols to detect anomalous behaviors hence it is both signature and anomaly
+based.
+- Give an example of their rule (one rule for each IDS/IPS) and explain what it does.
+alert http any any -> any any (msg:"SURICATA FILE plaintext PEM certificate
+request"; filemagic:"PEM certificate request"; sid:2500016; rev:1;). This rule is
+used to alert om HTTP traffic that contains a plaintext PEM-certified request
+based on the file specified.
+
+--- Page 3 ---
+Example 3: ZEEK or bro
+- What are they focusing on? focuses on keeping the networks secure by using
+protocols to identify potential issues.
+- What are they monitoring and how? It analyzes network traffic by focusing on key
+details from packets to create logs. It utilizes protocol analysis to identify unusual
+activity.
+- Are they signature based or anomaly based? It is anomaly-based since it only uses
+protocol analysis and scripts.
+- Give an example of their rule (one rule for each IDS/IPS) and explain what it does.
+event http_header(c: connection, field: string, value: string):
+{
+if (field == "User-Agent" && value == "EvilBot") {
+print "Suspicious User-Agent detected!";
+}
+}
+This cript is used to alert a message whenever it detects an HTTP header with field
+== "User-Agent" AND value == "EvilBot" in the network traffic. It helps detect
+suspicious user agent.
+Question 5 (20 points): Assume that you are creating a service that includes a webserver and a
+database server, which are located on different computers. The clients are accessing the
+webserver using HTTPS protocol. The webserver communicates with the database server using
+PostgreSQL. The admin should be able to have access to both computers using SSH. And, there
+should be no further access to these machines. Create the required custom firewall rules (for
+simplification you can use UFW).
+Sudo ufw allow 443
+Sudo ufw default deny incoming
+Sudo ufw default allow outgoing
+Sudo ufw sllow from (admin IP address) to port 22

@@ -1,0 +1,66 @@
+--- Page 1 ---
+CSCI 411 / 511 Homework 2
+Due: October 13, 2021
+Points: 35
+Problem B
+Implement as stored procedures the following. Implementation is to be done using your
+Oracle account:
+Both parts of this problem involve the following schema:
+Veterinarians (vid: Integer, vetName: String);
+Examine (vid: Integer, did: Integer, lid: Integer, fee: Real);
+Dogs (did: Integer, dogName: String);
+Location (lid: Integer, locName: String);
+Use the following instances:
+Veterinarians:
+vetName vid
+Alice 112
+Mary 211
+Jim 111
+Dogs:
+dogName did
+Spot 324
+Fido 582
+Tiger 731
+Examine:
+vid did lid fee
+111 324 1001 10
+111 731 1003 20
+112 324 1001 30
+112 582 1001 50
+112 731 1002 35
+211 324 1001 25
+211 582 1002 35
+211 731 1001 20
+211 582 1001 25
+211 582 1003 55
+Location:
+lid locName
+1001 St. Cloud
+1002 Minneapolis
+1003 Duluth
+CSCI 411 / 511 Homework 2 1 Fall 2021
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-21-2025 17:36:20 GMT -05:00
+https://www.coursehero.com/file/136139941/CSCI-511-HW-2-Questionspdf/
+
+--- Page 2 ---
+a. (10 Points) Write a stored procedure to display the number of distinct locations at
+which the dog identified by DID was examined. DID is to be an input parameter
+to the stored procedure. It is expected that your stored procedure will work for
+any instances of the above schema. Demonstrate that the stored procedure works
+by trying it on the above tables using each valid DID value.
+b. (10 Points) Write a stored procedure to display the names and ids (vids) of the
+veterinarians who have charged the highest fee. It is expected that your stored
+procedure will work for any instances of the above schema. Demonstrate that the
+stored procedure works by trying it on the above tables.
+Do the following problems:
+5.2 (15 Points Total) Only do the following selected subparts. For each part, show the query
+and demonstrate that it works correctly on the sample Parts/Suppliers/Catalog tables at
+the following URL:
+http://pages.cs.wisc.edu/~dbbook/openAccess/thirdEdition/supporting_material.htm
+The Parts lists the colors with capital letters; so, your queries involving green or red need
+to use Red or Green, respectively.
+Selected subparts: (4), (8), (9)
+CSCI 411 / 511 Homework 2 2 Fall 2021
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-21-2025 17:36:20 GMT -05:00
+https://www.coursehero.com/file/136139941/CSCI-511-HW-2-Questionspdf/
+Powered by TCPDF (www.tcpdf.org)

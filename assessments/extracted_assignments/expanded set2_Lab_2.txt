@@ -1,0 +1,48 @@
+--- Page 1 ---
+LAB 2
+Section 1:
+Wireshark:
+Using Wireshark, we can capture inbound and outbound traffic. It is used by the security analysts
+to check the network traffic. Whereas NetWitness Investigator provides the overview of the
+captures packets.
+Figure#01
+Figure#02
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:22:34 GMT -05:00
+https://www.coursehero.com/file/77545806/Lab-2pdf/
+
+--- Page 2 ---
+We can filter out the required traffic from the captured packets by the Wireshark.
+Figure#03
+Figure#04 (Only TCP Traffic from captured packets.)
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:22:34 GMT -05:00
+https://www.coursehero.com/file/77545806/Lab-2pdf/
+
+--- Page 3 ---
+NetWitness Investigator:
+Figure#01
+Figure#02
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:22:34 GMT -05:00
+https://www.coursehero.com/file/77545806/Lab-2pdf/
+
+--- Page 4 ---
+Section 2:
+The difference between Wireshark and NetWitness Investigator is, wireshark is an open source tool to
+capture and deeply Analyse the network packets. Whereas, NetWitness Investigator translate the
+captured packets into readable data.
+Wireshark in recommended by the network security specialists. And it is easy to operate and different
+tools are available to Analyse the traffic.
+I/O Graph
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:22:34 GMT -05:00
+https://www.coursehero.com/file/77545806/Lab-2pdf/
+
+--- Page 5 ---
+Detailed information for Warnings, Note and Chat in network Wi-Fi traffic
+Load Distribution
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:22:34 GMT -05:00
+https://www.coursehero.com/file/77545806/Lab-2pdf/
+
+--- Page 6 ---
+Imported the same wireshark captured traffic to NetWitness Investigator to summarized.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:22:34 GMT -05:00
+https://www.coursehero.com/file/77545806/Lab-2pdf/
+Powered by TCPDF (www.tcpdf.org)

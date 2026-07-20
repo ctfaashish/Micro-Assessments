@@ -1,0 +1,278 @@
+--- Page 1 ---
+Introduction to Algorithms November 28-December 2, 2005
+Massachusetts Institute of Technology 6.046J/18.410J
+Professors Erik D. Demaine and Charles E. Leiserson Quiz 2
+Quiz 2
+This take-home quiz contains 6 problems worth 25 points each, for a total of 150 points. Your
+quiz solutions are due between 9:30 and 11:00 A.M. on Friday, December 2, 2005, in the
+Stata lobby (the homework lab). Late quizzes will not be accepted unless you obtain a Dean’s
+Excuse or make prior arrangements with your recitation instructor. You must hand in your own
+quiz solutions in person.
+The quiz should take you about 12 hours to do, but you have four days in which to do it. Plan
+your time wisely. Do not overwork, and get enough sleep. Ample partial credit will be given for
+good solutions, especially if they are well written. Of course, the better your asymptotic bounds,
+the higher your score. If the bounds are the same, a worst-case bound will generally receive a few
+more points than an expected or amortized bound. Bonus points will be awarded for exceptionally
+efficient or elegant solutions.
+Policy on academic honesty: The rules for this take-home quiz are like those for an in-class
+quiz, except that you may take the quiz home with you. As during an in-class quiz, you may
+not communicate with any person except members of the 6.046 staff about any aspect of the quiz
+during the exam period, even if you have already handed in your quiz solutions. The official end
+of the exam period is 12:00 noon on Friday, December 2, even though you must hand in your quiz
+earlier.
+This take-home quiz is “limited open book.” You may use your course notes, the CLRS text­
+book, basic reference materials such as dictionaries, and any of the materials posted on the course
+web page, but no other sources whatsoever may be consulted. For example, you may not use notes
+or solutions to problem sets, exams, etc. from other times that this course or other related courses
+have been taught. You may not use materials on the World-Wide Web. These materials will not
+help you, but you may not use them anyhow.
+If at any time you feel that you may have violated this policy, it is imperative that you contact
+the course staff immediately. If you have any questions about what resources may or may not be
+used during the quiz, please send email to 6.046 staff.
+Write-ups: Answer each problem on a separate sheet (or sheets) of 3-hole punched paper. Mark
+the top of each problem with
+1. your name,
+2. 6.046J/18.410J,
+3. the problem number,
+4. your recitation time,
+5. your TA’s name.
+
+--- Page 2 ---
+6.046J/18.410J Quiz 2 2
+Your write-up for a problem should start with a topic paragraph that provides an executive summary
+of your solution. This executive summary should describe
+1. the problem you are solving,
+2. the techniques you use to solve it,
+3. any important assumptions you make,
+4. the asymptotic bounds on the running time your algorithm achieves, including whether they
+are worst-case, expected, or amortized.
+Write your solutions cleanly and concisely to maximize the chance that we understand them.
+When describing an algorithm, give an English description of the main idea of the algorithm.
+Adopt suitable notation. Use pseudocode if necessary to clarify your solution. Give examples,
+draw figures, and state invariants. A long-winded description of an algorithm’s execution should
+not replace a succinct description of the algorithm itself.
+Provide short and convincing arguments for the correctness of your solutions. Do not regurgi­
+tate material presented in class. Cite algorithms and theorems from CLRS, lecture, and recitation
+to simplify your solutions. Do not waste effort proving facts that can simply be cited.
+�
+Be explicit about running time and algorithms. For example, don’t just say that you sort
+�
+numbers, state that you are using heapsort, which sorts the numbers in  
+�   �
+time in the
+worst case. If the problem contains multiple variables, analyze your algorithm in terms of all the
+variables, to the extent possible.
+Part of the goal of this quiz is to test your engineering common sense. If you find that a question
+is unclear or ambiguous, make reasonable assumptions in order to solve the problem, and state
+clearly in your write-up what assumptions you have made. Be careful what you assume, however,
+because you will receive little credit if you make a strong assumption that renders a problem trivial.
+Bugs, etc.: If you think that you’ve found a bug, send email to 6.046 staff.Correct-
+ions and clarifications will be sent to the class via email and posted on the class website. Check
+your email and the class website daily to avoid missing potentially important announcements. If
+you did not receive an email last week reminding you about Quiz 2, then you are not on the class
+email list and you should let your recitation instructor know immediately.
+Survey: Attached to this quiz is a survey on your experiences with the quiz, especially as they
+relate to academic honesty. Please detach the survey, fill it out, and hand it in when you hand in
+your quiz solutions. The information you provide will be anonymous. No attempt will be made to
+identify individuals from their comments. This information will be used to gauge the usefulness
+of the quiz. Summary statistics and quoted responses will be provided to this and future classes.
+PLEASE REREAD THESE INSTRUCTIONS ONCE A DAY DURING THE EXAM.
+GOOD LUCK, AND HAVE FUN!
+
+--- Page 3 ---
+6.046J/18.410J Quiz 2 3
+Problem 1. Ups and downs
+Moonlighting from his normal job at the National University of Technology, Professor Silver-
+meadow performs magic in nightclubs. The professor is developing the following card trick. A
+� �
+deck of cards, labeled
+�       
+, is arranged face up on a table. An audience member calls out
+a range
+  
+, and the professor flips over every card
+
+such that
+   
+. This action is repeated
+many times, and during the sequence of actions, audience members also query the professor about
+whether particular cards are face up or face down. The trick is that there are no actual cards: the
+�
+professor performs these manipulations in his head, and is huge.
+Unbeknownst to the audience, the professor uses a computational device to perform the manip­
+ulations, but the current implementation is too slow to work in real time. Help the professor by
+�
+designing an efficient data structure that supports the following operations on cards:
+
+ FLIP
+
+: Flip over every card in the interval
+    
+.
+ IS-FACE-UP  : Return TRUE if card is face up and FALSE if card is face down.
+
+--- Page 4 ---
+6.046J/18.410J Quiz 2 4
+Problem 2. The Data Center
+The world-famous architect Gary O’Frank has been commissioned to design a new building, called
+the Data Center. Gary wants his top architectural prote´ge´ to design a scale model of the Data Center
+using precision-cut sticks, but he wants to preclude the model from inadvertently containing any
+� �
+right angles. Gary fabricates a set of sticks, labeled
+�       
+, where stick has length   .
+Before giving the sticks to the prote´ge´, he shows them to you and asks you whether it is possible
+to create a right triangle using any three of the sticks. Give an efficient algorithm for determining
+ whether there exist three sticks
+
+, , and
+
+such that the triangle formed from them — having sides
+    of lengths ).   ,  , and  — is a right triangle (that is,  
+
+--- Page 5 ---
+6.046J/18.410JQuiz2 5
+Problem3. Nonnegativizing amatrix bypivoting
+A matrix
+(cid:0) (cid:9) (cid:0)(cid:19) (cid:6)(cid:7) (cid:6)
+(cid:0)
+(cid:1)(cid:7) (cid:0)(cid:19) (cid:6)(cid:7) (cid:6)
+(cid:0)
+(cid:15)
+contains entries drawn from
+(cid:1)(cid:3) (cid:2)(cid:5) (cid:4)(cid:7) (cid:6)(cid:9) (cid:8)
+. Each row contains at most
+(cid:0)(cid:11) (cid:10)
+finite values, some of which may be negative. The goal of the problem is to transform
+(cid:0)
+so that
+everyentry isnonnegativeby usingonlypivotoperations:
+PIVOT (cid:2)
+(cid:0)(cid:20) (cid:1) (cid:10)(cid:26) (cid:1)
+(cid:1)
+(cid:9)
+1 for
+(cid:13)(cid:13) (cid:12) (cid:0)
+to
+(cid:0)
+2 do
+(cid:0) (cid:9)(cid:11)(cid:10)(cid:12) (cid:1)(cid:24) (cid:13)(cid:2) (cid:15)(cid:14) (cid:12) (cid:0) (cid:9)(cid:25)(cid:10)(cid:26) (cid:1)(cid:24) (cid:13)(cid:2) (cid:15)
+(cid:13) (cid:1)
+3
+(cid:0) (cid:9)(cid:13)(cid:2) (cid:1) (cid:10) (cid:15)(cid:15) (cid:12) (cid:0) (cid:9)(cid:13)(cid:2) (cid:1)(cid:12) (cid:10) (cid:15)(cid:17) (cid:16)
+(cid:1)
+Give an efficient algorithm to determine whether there exists a sequence of pivot operations with
+variousvaluesfor
+(cid:10)
+and (cid:1) suchthat,attheendofthesequence,
+(cid:0) (cid:9)(cid:11)(cid:10)(cid:12) (cid:1)(cid:24) (cid:13)(cid:2) (cid:15)(cid:19) (cid:18)(cid:20) (cid:10)
+forall
+(cid:10)(cid:26) (cid:1)(cid:24) (cid:13)
+(cid:15)
+(cid:0)(cid:2) (cid:1)(cid:4) (cid:3) (cid:1)(cid:7) (cid:6) (cid:6)(cid:7) (cid:6)(cid:8) (cid:1)
+(cid:0) .
+
+--- Page 6 ---
+6.046J/18.410J Quiz 2 6
+Problem 4. Augmenting the QueueinatorTM
+By applying his research in warm fission, Professor Uriah’s company is now manufacturing and
+selling the QueueinatorTM, a priority-queue hardware device which can be connected to an ordinary
+computer and which effectively supports the priority-queue operations INSERT and EXTRACT-MIN
+  in
+�
+time per operation. The professor’s company has a customer, however, who actually needs
+a “double-ended” priority queue that supports not only the operations INSERT and EXTRACT-MIN,
+but also EXTRACT-MAX. Redesigning the QueueinatorTM hardware to support the extra operation
+will take the professor’s company a year of development. Help the professor by designing an
+efficient double-ended priority queue using software and one or more QueueinatorTM devices.
+
+--- Page 7 ---
+6.046J/18.410J Quiz 2 7
+Problem 5. Spam distribution
+Professor Hormel is designing a spam distribution network. The network is represented by a rooted
+  tree
+�
+
+
+ 
+with root
+ 
+ and nonnegative edge-weight function
+  
+. Each vertex
+
+
+represents a server with one million email addresses, and each edge
+  
+represents
+ a communication channel that costs
+
+
+
+dollars to purchase. A server
+
+ receives spam
+precisely if the entire path from the root
+
+to
+
+is purchased. The professor wants to send spam
+ from the root
+
+to
+   
+servers (including the root) by spending as little money as possible.
+Help the professor by designing an algorithm that finds a minimum-weight connected subtree of
+�
+ with
+
+vertices including the root. (For partial credit, solve the problem when each vertex
+
+
+has at most
+
+children in
+�
+.)
+
+--- Page 8 ---
+6.046J/18.410J Quiz 2 8
+Problem 6. A tomato a day
+Professor Kerry loves tomatoes! The professor eats one tomato every day, because she is obsessed
+with the health benefits of the potent antioxidant lycopene and because she just happens to like
+them very much, thank you. The price of tomatoes rises and falls during the year, and when the
+price of tomatoes is low, the professor would naturally like to buy as many tomatoes as she can.
+Because tomatoes have a shelf-life of only
+�
+days, however, she must eat a tomato bought on day
+on some day in the range
+   �
+, or else the tomato will spoil and be wasted. Thus,
+although the professor can buy as many tomatoes as she wants on any given day, because she
+consumes only one tomato per day, she must be circumspect about purchasing too many, even if
+the price is low.
+The professor’s obsession has led her to worry about whether she is spending too much money
+�
+on tomatoes. She has obtained historical pricing data for days, and she knows how much she
+�
+actually spent on those days. The historical data consists of an array
+ �   
+, where
+  
+is the
+price of a tomato on day . She would like to analyze the historical data to determine what is the
+minimum amount she could possibly have spent in order to satisfy her tomato-a-day habit, and
+then she will compare that value to what she actually spent.
+Give an efficient algorithm to determine the optimal offline (20/20 hindsight) purchasing strategy
+� �
+on the historical data. Given
+�
+,
+�
+, and
+ �   
+, your algorithm should output
+ �   
+, where
+ 
+is the number of tomatoes to buy on day .

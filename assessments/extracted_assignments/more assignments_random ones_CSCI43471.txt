@@ -1,0 +1,187 @@
+--- Page 1 ---
+CSC 4347 - 001
+CYBER SECURITY CONCEPTS AND PRINCIPLES
+Spring 2021
+Dr. Christopher Ivancic
+Department of Computer Science
+ivanciccp@sfasu.edu
+312F Cole STEM
+468-2508
+PREREQUISITE: CSCI 3302
+CLASS INFO: Meeting time: 11:00 am – 12:15 pm T,Th
+Location: McKibben 316
+OFFICE HOURS: All office hours will be held by ZOOM. I will be in my office during the normal office hours times (except for
+Friday) and if you need to meet in person CONTACT ME THROUGH EMAIL first.
+M,W 8:00 am - 10:00 am
+T,Th 12:30 pm – 2:00 pm
+F 1:00 pm - 2:00 pm (online only)
+I will gladly make appointments for other times.
+COURSE
+DESCRIPTION: Study of computer and Internet security concepts and practices. Introduction to cryptography and information
+security. Understanding the different types of malware and how to prevent them. Cloud computing and emerging
+technologies security risks and practices.
+COURSE INTENT: Introduces students to concepts common in the computer security field. Students will learn about threats and
+attacks to computer systems and how these threats are mitigated. The students will be introduced to cryptography
+through the topics of privacy and authentication. Students will use information security concepts to study policy
+that drives current cloud based and networked systems. The students will be capable of discussing historical
+perspectives in security and how it is relevant to current technologies.
+More:
+REQUIRED TEXTS: Security in Computing, Fifth Edition, Pfleeger, 2015, ISBN: 9780134085043, Pearson Publishing, 2015.
+EXAMINATIONS: The grades in the course will be points totaling to 1000. 800 – short answer, problems, programs – all exams are
+comprehensive
+Test 1 200
+Test 2 200
+Test 3 200
+Final Examination – Comprehensive 200
+NOTE: There are no exemptions from the final examination and no changes in taking the final examination. Check the
+final exam time. If the final exam time is a problem, you need to drop this course.
+ASSIGNMENTS: 200
+Class assignments (labs, homework assignments, and quizzes) will total 20% of the course grade. Class
+assignments will be of unequal weight. Some of the class assignments may be required to be completed in class.
+Not all class assignments will be graded. You may not make up class assignments.
+Research Paper: (Optional)-A research paper can be completed on emerging topics in security. Milestones will be given during the
+semester for progression. Papers have a chance to be sent for possible publication. Completion of the paper will
+give bonus points to your exam grades. You MUST complete this paper if you wish to get honors credit, although
+you still get the bonus points from the paper.
+ATTENDANCE: Attendance and constructive class participation – expected
+
+--- Page 2 ---
+COURSE
+CALENDAR: Tentative course outline:
+Week Topic(s) Due
+1 Introduction
+Threats and
+2 vulnerabilities Homework 1
+3 Security toolbox
+4 Security toolbox Homework 2
+5 Coding problems
+WEP flaws and
+wireless Exam 1 and
+6 communication Homework 3
+7 Cloud Computing
+8 Cloud Computing Homework 4
+9 Privacy
+Exam 2
+10 Web Attacks Homework 5
+11 Ethics
+12 Forensics Homework 6
+13 Forensics
+14 Other topics
+Final Exam will be: Tuesday 4 May at 10:30 am.
+EDUCATIONAL
+OBJECTIVES: Upon successful completion of the course, students should be able to:
+1. Describe, discuss, and apply security principles to solve problems.
+2. Create security policies for different organizational scenarios.
+3. Understand and apply cryptography to applications.
+4. Detect malicious software and know how to remove it from an infected system.
+5. Discuss and build policies for cloud based systems.
+6. Apply privacy practices and policies.
+CONTENT: The following topics with estimated hours spent on each is listed below:
+ Security Overview (3)
+ Authentication (6)
+ Malicious Software (6)
+ Client Side Web Security (6)
+ Operating Systems (6)
+ Cloud Computing (6)
+ Privacy (9)
+ Exams (3)
+
+--- Page 3 ---
+PROGRAM LEARNING OUTCOMES:
+Program learning outcomes define the knowledge, skills, and abilities students are expected to demonstrate upon completion of an
+academic program. These learning outcomes are regularly assessed to determine student learning and to evaluate overall program
+effectiveness.
+ Students majoring in the Department of Computer Science may access program learning outcomes at http://cs.sfasu.edu/cs/plo/
+ Students majoring in the College of Business may access program learning outcomes at http://www.sfasu.edu/cob/ug-plo.asp.
+C L A S S I N F O R M A T I O N A N D P O L I C I E S
+Department of Computer Science, McKibben 304, 468-2508
+Attendance: Seating assignments will be made and roll will be taken regularly. Attendance may be taken into consideration for your final
+grade. If you come to class, you are expected to be present and awake the entire class period unless you have been given permission to leave
+early. If you are absent from class, please make sure to get notes from a classmate. There will be no smoking, no chewing of tobacco, no
+eating or drinking, no bare feet, and no cell phone use during class. Cell phones and other electronic communication devices must be turned
+off during class. Possession of a cell phone or other electronic communication device during an exam will result in an examination grade of
+zero. No disruptive behavior including offensive language will be tolerated in a computer science facility or related activity. Such behavior
+may result in administrative removal from class. Only students officially registered for the course and approved assistants may attend class.
+Please do not walk across the front of the room after the class has started. Students entering the classroom after the lecture has started should
+take a seat in the back of the room.
+At the beginning of the semester, each student will be asked if they will be attending class in person or via livestream (Zoom). If a student
+opts for Zoom/Livestream, then they forfeit their option to show up to class in person for the entire semester. However, if a student decides to
+attend class in person, they may change their modality to Zoom. Our classroom can only fit 11 students, so if more than 11 students opt for
+the face-to-face option, they will be put on a rotation. Students who opt in for face-to-face lectures are expected to show up to class and abide
+by social distancing policies.
+Masks (cloth face coverings) must be worn over the nose and mouth at all times in this class and appropriate physical distancing must be
+observed. Students not wearing a mask and/or not observing appropriate physical distancing will be asked to leave the class. All incidents of
+not wearing a mask and/or not observing appropriate physical distancing will be reported to the Office of Student Rights and Responsibilities.
+Students who are reported for multiple infractions of not wearing a mask and/or not observing appropriate physical distancing may be subject
+to disciplinary actions.
+https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/cloth-face-cover-guidance.html
+https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/social-distancing.html
+Examination Policy: All class examinations are considered to be a major part of the course work upon which a large part of the course grade
+depends. There are NO make-up exams! Class examinations will be announced at least two classes prior to the examination. If you have a
+conflict with another university event, you must contact me well in advance of the examination. In case of an extreme emergency, contact me
+before the scheduled examination. Failure to do so may result in an examination grade of zero. There are no exemptions for the final
+examination and no changes in taking the final examination. All students must take the final exam. A zero on the final exam will result
+in an F in the course. Check the final examination time. If the final examination time is a problem, you need to drop this course. Once the
+first person has left the room on the day of an examination, no one else will be permitted to begin the exam.
+Assignment Policy: All assignments are due at the announced time on the specified due date. Assignments will not be accepted late. If you
+have a conflict, please contact me in advance. You should turn in your homework assignments done neatly, clearly, and to the best of your
+ability. Follow all the instructions given. You will lose points for failure to follow instructions. Any work turned in to my box should be dated
+and timed by the CSC department staff. Please ask nicely. DO NOT slide any work under my office door or under the door to the Computer
+Science offices. PLEASE NOTE: You may be given assignments during the last five class days of the semester.
+Software Policy: Disciplinary action will be taken against individuals who perform unauthorized duplication of software or who are involved
+in the unauthorized use of duplicated software. Such action may make it impossible for you to successfully complete this course.
+Computer Laboratory Usage: Students utilizing equipment in university computing laboratories are expected to read and abide by all
+posted policies for the laboratories. Please note that no children and no pets are permitted in university computing laboratories.
+Drop Policy (Univ.): The official university add/drop policy is located at: http://www.sfasu.edu/policies/add_drop.asp. If you have
+questions concerning registration, add/drop or the withdraw process, contact the Registrar at (936) 468-2501 or E-mail:
+REGISTRAR@SFASU.EDU. The Registrar is located on the 2nd floor of the Rusk building.
+Special Accommodation Requests: To obtain disability related accommodations, alternate formats and/or auxiliary aids, students with
+disabilities must contact the Office of Disability Services (ODS), Human Services Building, and Room 325, 468-3004 / 468-1004 (TDD) as
+early as possible in the semester. Once verified, ODS will notify the course instructor and outline the accommodation and/or auxiliary aids to
+be provided. Failure to request services in a timely manner may delay your accommodations. For additional information, go to
+Hhttp://www.sfasu.edu/disabilityservices/H.
+
+--- Page 4 ---
+Students with special accommodation requests have the responsibility to immediately initiate a meeting with the instructor to discuss how the
+special accommodations will be provided. Students who are aware of these special needs at the beginning of the semester must inform the
+instructor in person before the twelfth class day about any class activity, which will require special accommodations.
+Computer Account Policy: All assignments that require the use of the University Computer must be done under the computer account that is
+assigned to you in this class. You should NOT do other class assignments in this account, and you should NOT do assignments from this
+class in other accounts. Failure to abide by the above statements will mean that you will received a grade of F in this course.
+Academic Integrity: Academic integrity is a responsibility of all university faculty and students. Faculty members promote academic
+integrity in multiple ways including instruction on the components of academic honesty, as well as abiding by university policy on penalties
+for cheating and plagiarism.
+Academic dishonesty includes both cheating and plagiarism. Cheating includes but is not limited to (1) using or attempting to use
+unauthorized materials to aid in achieving a better grade on a component of a class; (2) the falsification or invention of any information,
+including citations, on an assigned exercise; and/or (3) helping or attempting to help another in an act of cheating or plagiarism. Plagiarism is
+presenting the words or ideas of another person as if they were your own. Examples of plagiarism are (1) submitting an assignment as if it
+were one’s own work when, in fact, it is at least partly the work of another; (2) submitting a work that has been purchased or otherwise
+obtained from an Internet source or another source; and (3) incorporating the words or ideas of an author into one’s paper without giving the
+author due credit. All instances of academic dishonesty will be reported to Office of the Dean of the student’s major. This report shall be
+made part of the student’s record and shall remain on file with the Dean’s office for at least four years. Instances of academic dishonesty may
+also be reported to the University Committee on Academic Integrity. A student who wishes to appeal decisions related to academic integrity
+follows procedures outlined in University policy A-9.1. Please read the complete policy at
+Hhttp://www.sfasu.edu/policies/academic_integrity.aspH.
+If in my judgment an instance of academic dishonesty on an examination has occurred, a grade of zero will be assigned as the examination
+grade and a minimum of one (1) letter grade will be lost in the course grade. Possession of a cell phone or other electronic
+communication device during an exam will result in an examination grade of zero. A course grade of F may be assigned depending on
+the situation. A student found cheating on an examination may not drop the course. If in my judgment a student is found cheating on any
+part of a homework assignment or quiz, the student will receive negative points equal to the value of the entire homework/quiz. A negative
+grade will not be replaced by any possible bonus assignment. I consider the person who did the work (homework, quiz, test) and the
+person copying the work as both cheating. A recurrence of this by any individual will result in a grade of F in the course. DO YOUR OWN
+WORK!!!!! Do NOT show your code to other students!!!
+Withheld Grades Semester Grades Policy (A-54)
+Ordinarily, at the discretion of the instructor of record and with the approval of the academic chair/director, a grade of WH will be assigned
+only if the student cannot complete the course work because of unavoidable circumstances. Students must complete the work within one
+calendar year from the end of the semester in which they receive a WH, or the grade automatically becomes an F. If students register for the
+same course in future terms the WH will automatically become an F and will be counted as a repeated course for the purpose of computing
+the grade point average.
+Acceptable Student Behavior
+Classroom behavior should not interfere with the instructor’s ability to conduct the class or the ability of other students to learn from the
+instructional program (see the Student Conduct Code, policy D-34.1). Unacceptable or disruptive behavior will not be tolerated. Students who
+disrupt the learning environment may be asked to leave class and may be subject to judicial, academic, or other penalties. This prohibition
+applies to all instructional forums, including electronic, classroom, labs, discussion groups, field trips, etc. The instructor shall have full
+discretion over what behavior is appropriate/inappropriate in the classroom. Students who do not attend class regularly or who perform poorly
+on class projects/exams may be referred to the Early Alert Program. This program provides students with recommendations for resources or
+other assistance that is available to help SFA students succeed.
+Identification: Valid student I.D. cards must be presented on each examination day. (No I.D...No exam...Grade of zero)

@@ -1,0 +1,350 @@
+--- Page 1 ---
+1. What is Digital Forensics (DF) and what are the main questions to answer in DF?
+a. Digital Forensics is a branch of forensic science encompassing the recovery and
+investigation of material found in digital devices. The main questions to answer
+are:
+i. What information is here?
+ii. What is the sequence of events responsible for the present situation?
+iii. How/when/where did it happen?
+iv. Who was involved?
+2. Describe a legal case (other than those from class) that was solved using
+Digital/Computer Forensics techniques in the recent years. Your answer should try to
+cover the background of the case, digital evidence found (time, media, and how
+evidence was retrieved, examined, analyzed and reported), tools used, and how digital
+evidence is helpful in solving the case. All resources used must be listed as reference.
+a. In 2010, Paul Ceglia, a wood pellet salesman from Wellsville, New York, sued
+both Facebook and CEO Mark Zuckerberg, alleging that a 2003 contract he wrote
+to hire Zuckerberg to do computer programming for his company, Street Fax,
+entitled him to 50% of Facebook. Zuckerberg, a student at Harvard at the time,
+had responded to an ad on Craigslist published by Ceglia. Zuckerberg was paid
+$1000 for his work. The copy of the contract filed by Ceglia in his lawsuit showed
+that he made also a $1000 investment in “The Page Book,” and Ceglia’s suit
+claimed that that seed investment entitled him to a 50% share of the company.
+Ceglia’s team produced a series of emails between the two that appeared to
+show the agreement to the 50/50 share. A key turning point in the case
+happened when the courts allowed Facebook to conduct forensic testing on
+Ceglia’s computer, against Ceglia’s wishes. During testing, Facebook found the
+original contract document embedded in the electronic data on Ceglia’s hard
+drive from 2004. While observers had started to believe in Ceglia’s case, the
+original contract never mentions Facebook or “The Page Book,” but instead only
+mentions Ceglia’s company Street Fax. The forensic data also showed evidence of
+the use of six USB devices — claimed to be lost by Ceglia — and found in at least
+one of the devices was a folder called “Facebook Files” and an image called
+“Zuckerberg Contract page1.tif,” which matched the page of the contract Ceglia
+used in his suit. Facebook argued that that particular contract page was forged to
+support Ceglia’s claim. Forensic experts also analyzed Zuckerberg’s email account
+from his time at Harvard, and found no signs of the email chain Ceglia produced
+alleging an agreement between him and Zuckerberg to share the company
+50/50. The files ended up serving as a “smoking gun,” leading to the case against
+Facebook being dismissed. It also led federal authorities to arrest Ceglia on
+charges that he had been attempting to defraud Facebook for billions of dollars.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:05 GMT -05:00
+https://www.coursehero.com/file/51681784/Assignment-1docx/
+
+--- Page 2 ---
+3. What are the five main goals of Information Assurance (IA)? Briefly discuss these goals in
+the real world environment such as campus network or communications between
+Internet web clients and server.
+a. The five main goals of Information Assurance are:
+i. Goal 1 – Confidentiality. Ex: An example could be encrypting an email with a
+client or customer
+ii. Goal 2 – Integrity. Ex: A doctor’s office not making customer information
+available to the public
+iii. Goal 3 – Availability Ex: Use remote servers to access Sam Houston profile
+iv. Goal 4 – Authentication and Authorization Ex: In order to log into a University
+machine, you need a username and password
+v. Goal 5 – Non-repudiation Ex: Opening an email and a server log shows the email
+has been opened by the person who received it
+4. What are the three types of non-repudiation in email systems?
+a. Non-repudiation of origin
+i. One cannot deny he sent a message
+b. Non-repudiation of submission
+i. Message transit point cannot deny it submitted a message for delivery
+c. Non-repudiation of delivery
+i. Recipient cannot deny receiving a message
+5. Choose five different types of malware discussed in class, for each type first give the
+definition then describe a real example in recent years.
+a. Virus – a computer program that can copy itself and infect another computer
+i. Ex: The Concept Virus – In 1995, Microsoft accidentally shipped CDs with the
+concept virus and was the first virus to infect Word documents. It took
+advantage of computer users using emails to share documents
+b. Worms – exploit security holes in network server programs and start itself running as a
+separate process
+i. Ex: The Morris Worm – A college student in 1998 used a worm that infected 10%
+of the computers connected to the internet, basically shutting them down.
+c. Trojan horse - a malicious program disguised as something desirable or harmless
+i. Ex: OSX/RSPlug Trojan – In 2007, a financially motivated malware for Macs was
+discovered. When installed, the systems DNS settings were changed to redirect
+the web browser to phishing web sites
+d. Key Logger - intercepts the user's keystrokes when entering a password, credit card
+number, etc.
+i. Ex: There was a case where a man (Miles Slack) having troubles in his marriage
+installed a key logging software on his wife’s work computer to see if she was
+being faithful. He was caught and fined $1,000 for the incident.
+e. Spyware - installed on computers and collects little bits of information at a time about
+users without their knowledge
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:05 GMT -05:00
+https://www.coursehero.com/file/51681784/Assignment-1docx/
+
+--- Page 3 ---
+i. Ex: A man from Virgins plead guilty for selling an app called StealthGenie and
+had to pay a fine of $500,000. His spyware application could remotely monitor
+calls, texts, videos and other communications on mobile devices without
+detection. It was the first conviction for advertising and selling a mobile device
+spyware app.
+f.
+6. Give the Base-10 Positional Notation for the decimal number 146 and convert it to
+binary number.
+a. 146 = 1*10^2 + 4*10^1 + 6*10^0 10010010 (B)
+7. Give the Base-2 Positional Notation for binary number 110101 (B) and convert it to
+decimal.
+a. 110101 = 1*2^5 + 1*2^4 + 0*2^3 + 1*2^2 + 0*2^1 +1*2^0 53 (D)
+8. Give the Base-16 Positional Notation for Hexadecimal number 10D and covert it to a
+decimal and binary.
+a. 1*16^2 + 0*16^1 + D*16^0 269 (B) 100001101 (D)
+9. List three types of digital media storage and briefly discuss each of them. Specify
+whether each of them is volatile or non-volatile.
+a. Magnetic Hard Drives and Tapes: primary storage devices used for digital info and
+disk store data in binary form. Data is non-volatile.
+b. RAM: Central memory ore of most computers is binary based system. Memory
+cells fill selectively with electrical charges. It is volatile.
+c. Solid State Drive: old as magnetic disks but faster, lighter, and more robust. Holds
+250 gb to sometimes 16 terabytes but has a shorter lifespan that magnetic. This
+is non-volatile.
+10.Give the name and brief descriptions of A ~ D in the figure showing the structure of a
+hard disk
+a. The track – a circular path on the surface of a disk or diskette on which
+information is magnetically recorded and from which record informaiton is read.
+b. The disk sector – subdivision of a track on a magnetic disk or optical disk
+c. The track sector – sector of the track
+d. The cluster – a fixed number of contiguous sectors
+11.In a file system that uses 4 KB clusters, a file has a size of 8.3 KB
+a. How many continuous clusters does this file occupy?
+i. 3 (4, 4, 0.3)
+b. What is slack space?
+i. Slack space is the space between the end of a file and the end of the last
+cluster assigned for this file
+c. How much slack space was created due to this file?
+i. 3.7 (3 x 4- 8.3)
+12.Answer the following questions about FTK Imager
+a. Is FTK Imager capable of making an image of the RAM?
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:05 GMT -05:00
+https://www.coursehero.com/file/51681784/Assignment-1docx/
+
+--- Page 4 ---
+i. The FTK Imager is capable of making an image of the RAM.
+b. What is the purpose of defining fragment size of a destination image?
+i. To chop an image into multiple continuous image segments for easy
+storage. Fragment size is when you chop the image into multiple
+continuous segments. This can be helpful if the image is very large or will
+be transported or archived on CDs or DVDs. If a value is entered in this
+field larger than the size of the data to be imaged only one file will be
+created and it will be the size of the data.
+13.What is MBR and what is its function?
+a. The MBR is the Master Boot Record. The MBR holds the informaiton on how the
+logical partitions, containing file systems. The MBR also contains executable code
+to function as a loader for the installed operating system.
+14.What is metadata of a file? Briefly explain how it is useful in Digital Forensics to solve
+real cases.
+a. Metadata (MetaContent) is defined as data providing information about one or
+more aspects of the data, such as: means of creating of the data, purpose of the
+data, time and date of creation, creator or author of data, placement on a
+computer network where the data was created, standards used, the basic
+informaiton of a piece of music.
+i. Roles in Digital Forensics:
+ Provide corroborating informaiton about the document data itself;
+ Reveal informaiton that someone tried to hide, delete, or obscure;
+ Automatically correlate documents from different sources
+15.Please briefly describe the file system category, file name category and metadata
+category, and the applications in digital forensics.
+a. File System Category - A method for storing and organizing computer file and
+the data they contain to make it easy to find and access them.
+b. Filename Category - The specific extension of certain files such as .doc, .docx,
+.pdf, .JPEG, etc.
+c. Metadata Category - Specific elements of the metadata such as title, abstract,
+author, and keywords.
+d. Applications in DF:
+i. FTK - data preview and imaging tool that allows you to examine files and
+folders on local hard drives, network drives, CDs/DVDs, and review the
+content of forensic images or memory dumps
+ii. Ghost - Another imaging tool that allows you to examine files, folders,
+local hard drives, etc.
+iii. Caine - Features include a user-friendly GUI, semi-automated report
+creation and tools for Mobile Forensics, Network Forensics, Data
+Recovery
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:05 GMT -05:00
+https://www.coursehero.com/file/51681784/Assignment-1docx/
+
+--- Page 5 ---
+16.Which profiles or files may be used to reveal user’s activities in Windows systems?
+a. User profiles: data created by a user or that specifically pertains to that user.
+b. Program files: applications installed on the computer.
+c. Temporary files (temp files): files created by applications to hold data
+temporarily, and not automatically deleted.
+d. Special application-level files: Files such as Internet history and email.
+17.Which data and artifacts may be generated by the operating system?
+a. Metadata
+b. Windows system registry
+c. Event logs or log files
+d. Swap files
+e. Printer spool
+f. Recycle Bin
+18.Please briefly describe FAT and NTFS file systems
+a. File Allocation Table (FAT) is a file system developed by Microsoft for MS-DOS and
+was the primary file system for consumer versions of Microsoft Windows up to
+and including Windows Me.
+i. The FAT file system is relatively uncomplicated, and is supported by
+virtually all existing operating systems for personal computers. This
+ubiquity makes it an ideal format for floppy disks and solid-state memory
+cards, and a convenient way of sharing data between disparate operating
+systems installed on the same computer (a dual boot environment).
+ii. The default file system for removable media (with the exception of CDs
+and DVDs) and as such are commonly found on floppy disks, super-
+floppies, memory and flash memory cards or USB flash drives and are
+supported by most portable devices such as PDAs, digital cameras,
+camcorders, media players, or mobile phones.
+iii. The index table contains entries for each cluster, a contiguous area of disk
+storage. Each entry contains either the number of the next cluster in the
+file, or else a marker indicating end of file, unused disk space, or special
+reserved areas of the disk.
+iv. The root directory of the disk contains the number of the first cluster of
+each file in that directory.
+v. FAT includes FAT8, FAT12, FAT16, and FAT32, named after the number of
+table element bits.
+vi. The most common implementations have a serious drawback in that
+when files are deleted and new files written to the media, directory
+fragments tend to become scattered over the entire media, making
+reading and writing a slow process.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:05 GMT -05:00
+https://www.coursehero.com/file/51681784/Assignment-1docx/
+
+--- Page 6 ---
+vii. Defragmentation is one solution to this, but is often a lengthy process in
+itself and has to be performed regularly to keep the FAT file system clean.
+viii. Maximum possible size for a file on a FAT32 volume is 4GB minus 1 byte
+or (2^32-1) bytes.
+ix. Data and user authentication weaknesses of FAT
+ User ids are not required
+ Only attributes are associated with files or folders
+b. NTFS (New Technology File System) is more advanced than the Win9x/DOS File
+Allocation Table (FAT) System. It natively provides file and directory object
+security, compress, encryption, logging, and user quota capabilities, all of which
+FAT did not have the capabilities of providing (must use second or third level
+utilities such as STACKER or DriveSpace).
+i. NTFS can address much larger partitions than FAT16 (2GB) and equivalent
+partition sizes as FAT32 (2TB)
+ii. File names can consist of any UNICODE (multi-national) characters, while
+FAT only consists of ASCII (English/American)
+iii. File sizes are limited only by volume size, and not 4GB (FAT32) and 2GB
+(FAT16)
+iv. Despite popular rumor, NTFS, like FAT, gets fragmented over time.
+19.Where is the location of the user root folder in Windows NT, Windows XP, Windows 7,
+and Windows 8? What data are stored in the user root folder? Which subfolders are
+placed in the user root folder?
+a. Documents and settings folder contain the user root folder for each user account
+created on the computer
+b. Data stored in the user root folder:
+i. Desktop settings, such as wallpaper, screensavers, color schemes, and
+themes
+ii. Internet customizations, such as the homepage, favorites, and history
+iii. Application parameters and data, such as e-mail and upgrades
+iv. Personal files and folders, such as My Documents, My Pictures, and so on
+c. Subfolders in the user root folder:
+i. Application data (hidden)
+ii. Cookies
+iii. Desktop
+iv. Favorites
+v. Local Settings (hidden)
+vi. My Documents
+vii. NetHood (hidden)
+20.What are alternate data streams?
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:05 GMT -05:00
+https://www.coursehero.com/file/51681784/Assignment-1docx/
+
+--- Page 7 ---
+a. Alternate data streams allow more than one data stream to be associated with a
+filename, using the filename format "filename:streamname" (e.g.,
+"text.txt:extrastream").
+b. Alternate streams are not listed in Windows Explorer, and their size is not
+included in the file's size. Only the mainstream of a file is preserved when it is
+copied to a FAT-formatted USB drive, attached to an e-mail, or uploaded to a
+website.
+c. Malware has used alternate data streams to hide its code; some malware
+scanners and other special tools now check for data in alternate streams.
+21.What kinds of data (including user’s activities and system artifacts) may be revealed by
+registry, event logs, and swap file?
+a. Registry
+i. Can reveal current and past applications, as well as programs that start
+automatically at bootup
+ii. Viewing the registry requires a registry editor
+b. Event logs track system events (“eventvwr.msc”)
+i. Application log tracks application events
+ii. Security log shows logon attempts
+iii. System log tracks events such as driver failures
+c. Swap file/page file
+i. Used by the system as virtual memory
+ii. Can provide the investigator with a snapshot of volatile memory
+22.What is steganography? What is the purpose by employing steganography?
+a. Steganography is a form of data hiding in which a message is hidden within
+another file. Data is hidden in the carrier medium. Steganography is difficult to
+detect; the following clues may indicate stego use:
+i. Technical capabilities or sophistication of the computer’s owner
+ii. Software clues on the computer
+iii. Other program files that indicate familiarity with data-hiding methods
+iv. Multimedia files
+v. Types of crimes being investigated.
+23. Please give the locations of recently opened files from Windows Explorer, network
+shortcuts, items recently ran from “Run” bar, recent documents, Internet Explorer
+History, IE cookies, IE Cache, Firefox Cached pages, Firefox password file, Firefox form
+history file, files recently accessed by Windows Media Player, and Flash cookies location?
+(60 points, 5 points for each. Hint: you may access the webpage on the link given by
+page 46 in our lecture, that is, http://www.irongeek.com/i.php?page=security/windows-
+forensics-registry-and-filesystem-spots)
+a. Recently opened files from Windows Explorer
+Location: C:\Users\<username>\AppData\Roaming\Microsoft\Windows\Recent
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:05 GMT -05:00
+https://www.coursehero.com/file/51681784/Assignment-1docx/
+
+--- Page 8 ---
+b. Network Shortcuts
+Location: C:\Users\<username>\AppData\Roaming\Microsoft\Windows\Networ
+k Shortcuts
+c. Items recently ran from the "Run" bar
+Location:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\E
+xplorer\RunMRU
+d. ComDlg32 recently opened/saved files
+Location: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\E
+xplorer\ComDlg32\OpenSavePidlMRU
+e. Recent Docs
+Location: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\E
+xplorer\RecentDocs
+f. EXE to main window title cache
+Location: HKEY_CURRENT_USER\Software\Classes\Local
+Settings\Software\Microsoft\Windows\Shell\MuiCache
+g. Internet Explorer History
+Location: C:\Users\<user name>\AppData\Local\Microsoft\Windows\History
+h. IE Cookies
+Location: C:\Users\<user name>\AppData\Roaming\Microsoft\Windows\Cookies
+i. Internet Explorer Temp Folder (IE Cache)
+Location: C:\Users\<user name>\AppData\Local\Microsoft\Windows\Temporary
+Internet Files
+j. Firefox Cached Pages
+Location: C:\Users\<user name>\AppData\Local\Mozilla\Firefox\Profiles\<some
+profile number>.default\Cache
+k. Firefox Passwords File
+Location: C:\Users\<user
+name>\AppData\Roaming\Mozilla\Firefox\Profiles\<some profile
+number>.default\signons.sqlite
+l. Firefox Form History File
+Location: C:\Users\<user
+name>\AppData\Roaming\Mozilla\Firefox\Profiles\<some profile
+number>.default\formhistory.sqlite
+m. Files recently accessed by Windows Media Player
+Location: HKEY_CURRENT_USER\Software\Microsoft\MediaPlayer\Player\Recent
+FileList
+n. Flash Cookies Location
+Location: C:\Users\<user name>\AppData\Roaming\Macromedia\Flash
+Player\#SharedObjects\<random value>\
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:05 GMT -05:00
+https://www.coursehero.com/file/51681784/Assignment-1docx/
+Powered by TCPDF (www.tcpdf.org)

@@ -1,0 +1,41 @@
+--- Page 1 ---
+6.875/18.425J Cryptography and Cryptanalysis February 7, 2 005
+Handout 4: Problem Set #1
+This problem set is due on: Wednesday, February 16, 2005. Note that Problem
+5 is optional. If you turn in a solution to Problem 5, your lowest score among the five
+problems will be dropped when determining your grade for this problem set.
+Problem 1
+Suppose p is a prime and g and h are both generators of Z∗ . Prove or disprove the
+p
+following statements about equality of probability distributions:
+A: {x ← Z∗ : g x mod p} = {x ← Z∗ ; y ← Z∗ : gxy mod p}
+p p p
+B: {x ← Z∗ : gx mod p} = {x ← Z∗ : hx mod p}
+p p
+C: {x ← Z∗ : gx mod p} = {x ← Z∗ : xg mod p}
+p p
+D: {x ← Z∗ : xg mod p} = {x ← Z∗ : xgh mod p}
+p p
+Problem 2
+Suppose that the Prime Discrete Logarithm Problem is easy. That is, suppose that there
+exists a probabilistic, polynomial time algorithm A that, on inputs p, g and gx mod p,
+outputs x if p is a prime, g is a generator of Z∗ and g x mod p is prime. Show that there
+p
+exists a probabilistic polynomial­time algorithm, B, that solves the Discrete Logarithm
+Problem.
+Problem 3
+We define the Lily problem as: given two integers n and S determine whether S is
+relatively prime to φ(n). Prove that if it is hard to determine on inputs two integers n
+and e whether e is relatively prime with φ(n), then the RSA function is hard to invert.
+4­1
+
+--- Page 2 ---
+Problem 4: Factoring
+Let O be an oracle that on input x returns a square root of x mod n, if one exists, and
+n
+⊥ otherwise. Prove that there exists a probabilistic polynomial­time algorithm that on
+input an integer n and access to O outputs n’s factorization.
+n
+Problem 5: Factoring and OWF (OPTIONAL)
+Prove that if factoring is hard, then one­way functions (as defined in class) exist.
+4­2

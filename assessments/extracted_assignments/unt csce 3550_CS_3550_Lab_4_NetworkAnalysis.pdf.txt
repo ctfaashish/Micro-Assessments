@@ -1,0 +1,228 @@
+--- Page 1 ---
+CSCE 3550 – Intro to Comp Security
+Spring 2021
+University of North Texas
+Lab 4
+Deadline: March 31, 2021 11:59PM
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:17 GMT -05:00
+https://www.coursehero.com/file/113958240/CS-3550-Lab-4-NetworkAnalysispdf/
+
+--- Page 2 ---
+In this lab, you will be using the same VM you have created in the previous lab. You will be
+providing screenshots to show your work and explanation when needed. In this lab, we will be
+focusing on the networking. More specifically, you will be working on Network Scanning and
+Packet Sniffing.
+Step 1: Network Scanning
+We have studied network scanning. Scanning is the first phase of an active attack, which is to
+gather information regarding the network structure and its individual hosts. The information to be
+searched for includes IP addresses, operating systems, services, and installed applications. More
+specifically, scanning is the process of locating systems that are alive and responding on the
+network.
+There are various types of scanning, but in this lab, we will focus on port scanning and network
+scanning. Port scanning is the process of identifying open and available TCP/IP ports on a system.
+Port-scanning tools enable one to learn about the services available on a given system. Each service
+or application on a machine is associated with a specific port number. Port numbers are divided
+into three ranges:
+• “Well-known ports”: 0-1023
+• “Registered ports”: 1024-49151
+• “Dynamic ports”: 49152-65535
+Network scanning is a procedure for identifying active hosts on a network (either to attack them
+or to perform a network security assessment). Hosts are identified by their individual IP addresses.
+Network-scanning tools attempt to identify all the live or responding hosts in the network and their
+corresponding IP addresses. For this procedure, it is crucial to know major ports and what services
+run on them.
+Ping
+Ping sweep techniques start with checking for systems that are live on the network, meaning that
+they respond to probes or connection requests. This is the simplest, although not the most accurate
+way to determine whether systems are live. A ping sweep is also known as Internet Control
+Message Protocol (ICMP) scanning, as ICMP is the protocol used by the “ping” command. ICMP
+scanning is the process of sending an ICMP request or ping to all hosts on the network to determine
+which ones are up and responding to pings. It is a quick test to see if two hosts have connectivity
+and it is used extensively for troubleshooting. A benefit of ping is that it can run in parallel,
+meaning that all systems are scanned at the same time, and hence it can be done quickly. A
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:17 GMT -05:00
+https://www.coursehero.com/file/113958240/CS-3550-Lab-4-NetworkAnalysispdf/
+
+--- Page 3 ---
+downside of this approach is that systems can disable ICMP, thus it may not give accurate
+information about the network. Windows, Mac OS X and Linux all have built-in ping commands.
+To run it, type the command “ping” from your VM terminal and then the domain or IP address
+that you wish to check.
+Question 1: run ping to check www.google.com and www.unt.edu such as ‘ping
+www.google.com’
+After getting 2-3 answers or if no answers for 2-3 seconds, use CTRL-C to stop the command.
+Provide a screenshot.
+Questions 2: How many replies have you received and how much is the average time for each of
+domain? Explain your observations.
+There exist more advanced tools for network scanning such as “hping3”. This tool has a lot of
+extra abilities on top of the basic ping. The most useful of them are crafting your own packets, for
+instance, to get a response from a host that does not accept ICMP packets. As you can see, there
+was no response from www.unt.edu because it shows your packets transmitted and 0 received with
+a 100% packet loss. Now, stay in your terminal and use hping3 to launch a successful ping request.
+Question 3: Install hping3 (if not installed) and show a screenshot.
+Question 4: Run “hping3 -S www.google.com -p 80” after a few seconds hit CTRL-C to cancel
+the command. Attach a screenshot and explain your observations. Repeat the same command for
+www.unt.edu
+Question 5: Explain what this hping3 command did and how it worked. What was different
+compared to ping? Even though ping did not reply back, how did hping3 based command receive
+reply back?(Specifically for UNT domain)
+Traceroute
+Traceroute is a computer network diagnostic tool for displaying the route and measuring transit
+delays of packets across an Internet Protocol network. Traceroute is very useful for learning the
+routes that your packets are taking to a particular target. This tool uses the Time-To-Live (TTL)
+flag for packets. This is a flag to let networking devices know how long a packet should live on
+the network, every time after it reaches a device, the TTL is dropped by one. For example, most
+Windows devices use a TTL of 128 and Unix of 64 – this allows 128 (respectively, 64) total hops
+once the packet leaves your machine. This is a crucial mechanism for allowing packets that get
+lost to be dropped instead of endlessly traversing the network and hereby overloading it.
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:17 GMT -05:00
+https://www.coursehero.com/file/113958240/CS-3550-Lab-4-NetworkAnalysispdf/
+
+--- Page 4 ---
+Traceroute uses TTL in the following manner: Your first packet will start with a TTL of 1,
+therefore the first message gets dropped at the first router it hits and the router sends back an ICMP
+error message for a time exceeded. In the second packet, the TTL will be set to 2, so that the first
+router will forward the packet, but the next one will drop it. Traceroute uses the returned ICMP
+Time Exceeded messages to build a list of routers that packets traverse until the destination is
+reached and returns an ICMP Echo Reply message. This information is used to learn the route to
+a particular destination. If one knows what to look for, one can identify firewalls, routers,
+honeypots, proxy servers, and sometimes, even hosts performing the man-in-the-middle attack.
+Question 6: Type: “traceroute www.google.com” and “traceroute www.unt.edu” (attach a
+screenshot of the result). In addition, summarize your observations, and also explain why the
+symbol “*” is shown? (You are allowed to do the Internet search, when looking for answers to this
+question.)
+The traceroute functionality is included in “hping3” (activated using “-T” option), and also the
+network information is shown in a clearer format as compared to the standard “traceroute” tool.
+Question 7: Use the command “hping3 -S www.google.com -p 80 -T”. Attach a screenshot and
+summarize your observations.
+Remark: If tracing gets stuck at a certain hop, you may press “Ctrl + Z” for skipping to the next
+hop or “Ctrl + C” to stop the traceroute.
+For more information on the “hping3” tool, check the manual by typing “hping3 -help” in
+the command line.
+NMAP
+Nmap is a free, open-source tool that quickly and efficiently performs ping sweeps, port scanning,
+service identification, IP address detection, and operating system detection. Nmap
+has the benefit of scanning a large number of machines in a single session. It is
+supported by various operating systems, including Unix, Windows, and Linux.
+The state of a port, as determined by an Nmap scan, can be “open”, “filtered”, or “unfiltered”.
+“Open” means that the target machine accepts incoming requests on that port. “Filtered” means
+that a firewall or network filter is screening the port and preventing Nmap from discovering
+whether it is open. “Unfiltered” mean the port is determined to be closed, and no firewall or filter
+is interfering with the Nmap results.
+Types of Nmap scans
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:17 GMT -05:00
+https://www.coursehero.com/file/113958240/CS-3550-Lab-4-NetworkAnalysispdf/
+
+--- Page 5 ---
+TCP Connect: The user makes a full TCP connection to the target system. This types of scan is the
+most reliable but also the most detectable. Open ports reply with an SYN/ACK while closed ports
+reply with an RST/ACK packet. TCP connect scans can be slow since a full connection is
+attempted.
+XMAS Tree: The scanner checks for TCP services by sending XMAS-tree packets, which are so
+named because all the “lights” are on, meaning that the FIN, URG, and PSH flags are set. These
+flags are bits that signify various connection settings for TCP packets. Closed ports reply with an
+RST flag.
+SYN Stealth Scan: This is also known as half-open scanning. The hacker sends a SYN packet and
+receives a SYN/ACK back from the server. It is considered stealthy because a full TCP connection
+is not opened. Open ports reply with a SYN/ACK while closed ports reply with an RST/ACK.
+Null Scan: This is an advanced scan that may be able to pass through firewalls undetected or
+modified. Null scan has all flags off or not set. It only works on Unix systems. Closed ports will
+return an RST flag.
+Windows Scan: This type of scan is similar to the ACK scan (described next) and can also detect
+open ports.
+ACK scan: This type of scan is used to map out firewall rules. ACK scan only works on Unix. The
+port is considered filtered by firewall rules if an “ICMP destination unreachable” message is
+received as a result of the ACK scan.
+Now that we discussed some of the types of scans, which are available in Nmap, let us go over
+some of the command option that allow us to enable them. Similarly to “hping3”, Nmap is a
+command-line based tool. The syntax is similar to the standard Linux commands: Type “nmap”,
+the options, specific ports if any, and then the target IP. The options can be used in a wide variety
+of combinations; the popular ones are listed below.
+TCP connect scan: -sT
+SYN scan: -sS
+XMAS scan: -sX
+Ping scan: -sP
+UDP scan: -sU
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:17 GMT -05:00
+https://www.coursehero.com/file/113958240/CS-3550-Lab-4-NetworkAnalysispdf/
+
+--- Page 6 ---
+Windows scan: -sW
+RPC scan: -sR
+List DNS: -sL
+TCP ping: -PT
+SYN ping: -PS
+ICMP ping: -PI
+Force: -PN (i.e., force scanning of IP address(es) without pinging them first)
+OS discovery: -a
+By default, Nmap scans the top 1000 most common ports for each protocol.
+You can specify ports using the option “-p [ports]”, to scan all ports use “-p-”.
+Next, let us discuss how to all the live hosts on the same network. Note that some of the scans
+might take a few minutes to run.
+Question 8: Run the command “nmap -sP www.unt.edu” (attach a screenshot.)
+Explain your observations.
+Question 9: Run the command “nmap -sS -PN -A www.unt.edu” (wait some time for it to
+complete). Attach a screenshot.
+Remark: Let us review the options that we use: “-sS” will switch on a SYN scan in a stealth mode,
+“-PN” will force scanning of the host without pinging it first, and “-A” will switch on OS detection.
+Based on the output of the above command, answer the following questions:
+• What ports are open?
+• What are the TLS/SSL certificate details?
+• What is the traceroute information?
+From the above information, we can conclude that this is a router or a firewall. We may use this
+observation in the later steps.
+(It is a load balancer BIG IP F5)
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:17 GMT -05:00
+https://www.coursehero.com/file/113958240/CS-3550-Lab-4-NetworkAnalysispdf/
+
+--- Page 7 ---
+We see that all 1000 ports are filtered – this shows that there is an active firewall. The above
+example shows why running multiple types of scans on a target system is beneficial. And to add
+why -sS is such a good command.
+Question 10: Other options are nmapping by hostname, for that run “nmap -sS -PN www.unt.edu”.
+(Attach a screenshot.)
+When scanning a website, it is very likely that only ports 80, 443, and maybe a few other ones are
+open. This is the reason why it is important to know common port assignments. For scanning
+specific ports or port ranges use the “-p” option.
+Question 11: Run “nmap -sS -p 22 www.unt.edu” (Attach a screenshot.)
+Here, we scan for port 22, typically assigned to SSH. Seeing that it is filtered, we conclude that
+some firewall is blocking it.
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:17 GMT -05:00
+https://www.coursehero.com/file/113958240/CS-3550-Lab-4-NetworkAnalysispdf/
+
+--- Page 8 ---
+Step 2: Packet Sniffing
+On your VM, install wireshark, openssh-server, and telnetd using apt command. Run Wireshark
+as a root and from the given list of the interfaces, select Any – we will be monitoring all the traffic
+coming from the same VM and it will most probably go through loopback. First step will be
+monitoring basic traffic, but before that let’s find out which IP to connect to:
+Question 1: use dig command to find out www.google.com IP as follows: dig www.google.com
++short and provide a screenshot. You will be using the IP in the following step(s).
+Question 2: Open a browser and visit google.com using its IP while Wireshark is running at the
+background. From Wireshark, you should be seeing many traffic packets. Now, let’s filter them
+out by providing ip.src and ip.dst options such as ip.src == GOOGLE_IP || ip.dst == GOOGLE_IP
+where you will use GOOGLE_IP based on dig command. Now, the packets should have been
+filtered out. Provide your screenshot. Explain your findings (you can look at the Packet Details
+section for more detailed information when needed):
+a. What are the source and destination IPs?
+b. What protocols are being used?
+c. Why do you see different lengths?
+d. Under the Info region, you will find a packet with GET command. What does it do? When
+you click on the packet, at the bottom of the packets list, you will find details section for
+the selected packet. You can get further information from there.
+Now we will be experimenting more detailed packet inspection. First, we will be creating a Telnet
+connection (make sure that telnetd is installed). We will observe/investigate the individual packets
+and find out the username transmitted.
+Question 3: You can create a new Wireshark session to reduce the load at this point. On Wireshark,
+apply filtering for telnet and explain your filtering.
+Question 4: While Wireshark is running with telnet filter, open a terminal on the same terminal
+and write ‘telnet 127.0.0.1’ and it will ask your username and your password. While entering them,
+observe Wireshark; i.e., with every keyboard stroke, you should see more packets. Meanwhile
+check one of these packets and identify if you can find out username and password characters.
+Please note that Telnet is unencrypted and it sends each character with a packet using TCP;
+therefore, an adversary with the access to the network packets can easily understand what is going
+on and can copy your credentials. Therefore, instead, we use SSH.
+Question 5: Apply Step 4 using SSH instead of Telnet. Justify your observations.
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:17 GMT -05:00
+https://www.coursehero.com/file/113958240/CS-3550-Lab-4-NetworkAnalysispdf/
+Powered by TCPDF (www.tcpdf.org)

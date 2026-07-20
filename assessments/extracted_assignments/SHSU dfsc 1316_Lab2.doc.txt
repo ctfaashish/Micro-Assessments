@@ -1,0 +1,62 @@
+--- Page 1 ---
+DFSC 1316 Lab 2 ― Metadata
+Submission due: Wednesday September 19, 2018@11:59PM
+Where to submit: Blackboard
+This lab has three parts, a total of 100 points. The first part covers the usage of PhotoMe, Exif
+Pilot and/or EXIF viewer and editor tools to extract Meta data and modify Meta data of images.
+The second part is about the extraction of metadata by using metadata analyzer. The third part
+enforces you to obtain an open source pdf metadata tool by yourself and retrieve the metadata by
+using the tool.
+Part 1. PowerEXIF, Exif Pilot and/or PhotoMe (60 points)
+This practice involve the usage of PhotoMe, Exif Pilot, EXIF viewer and/or JPEGSnoop
+to extract Meta data and modify Meta data of images. You may not limit to the above
+toolkits. If you are using Mac OS or Unix/Linux Operating System, please search on the
+Internet and obtain relevant software/toolkits for your computer operating systems. You
+may refer to the following webpage on the toolkits:
+http://en.wikipedia.org/wiki/Comparison_of_metadata_editors
+Please submit your experimental results blackboard.
+Step 1. To complete this practice, first, obtain photo metadata viewer and editor. You may
+have a choice on PowerEXIF, PhotoMe, Exif Pilot or JPEGSnoop for this experiment.
+1) Go to http://www.opanda.com/en/index.html, download Opanda PowerExif, and
+install the software to your computer, or
+2) Go to http://www.photome.de/, download PhotoMe, and install the software to your
+computer.
+3) Go to http://www.colorpilot.com/exif.html, download Exif Pilot, and install the
+software to your computer.
+4) JPEGSNOOP is available at http://www.impulseadventure.com/photo/jpeg-
+snoop.html
+Step 2. Next, go to the SHSU CS department webpage,
+http://cs.shsu.edu/about/people.html, download two professors/instructors’ photos. You
+may be also allowed to test other photos on your interest.
+Retrieve the metadata of the photos and provide screenshots on the metadata and the
+answers on the creation date, last modification date, digital camera used, and the encoder
+(20 pts).
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:10 GMT -05:00
+https://www.coursehero.com/file/37298293/Lab2doc/
+
+--- Page 2 ---
+A photo is enclosed in this assignment. Apply your photo metadata tool to scan the
+enclosed photo, and provide the answers on the creation date, last modification date,
+digital camera used, and the encoder of this photo (10 points).
+Download the same photo at the SHSU webpage,
+http://www.shsu.edu/today@sam/T@S/article/2017/annual-academic-dinner, exam the
+photo, and provide the answers on the creation date, last modification date, digital camera
+used, and the encoder (10 points).
+Are these answers in 2 and 3 are the same? If not, why? How do you explain the
+difference? Which conclusions will you reach (20 points)?
+The answers are not the same. The original time of the photos taken are about 20
+minutes apart, and the modified times are different. The pictures were taken at different
+times and the pictures were modified at different times. Time elapsed between the
+original photos taken and the pictures modified and created times.
+Part 2. Metadata analyzer (20 points)
+1. Go to http://metadata-analyzer.software.informer.com/download/, or http://metadata-
+analyzer.software.informer.com/2.0/, download metadata analyzer.
+2. Test our “Lab2_Fall2018.doc”. Retrieve the metadata and provide your findings.
+Part 3. PDF Metadata (20 points)
+1. Search on the Internet and find a suitable pdf metadata examination tool.
+2. Test our “Lab2_Fall2018.pdf” file. Retrieve the metadata and provide the name of the
+pdf metadata examination tool and your findings in the examination.
+PdfStreamDumper
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:26:10 GMT -05:00
+https://www.coursehero.com/file/37298293/Lab2doc/
+Powered by TCPDF (www.tcpdf.org)

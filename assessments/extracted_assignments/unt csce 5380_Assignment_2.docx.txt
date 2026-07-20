@@ -1,0 +1,82 @@
+--- Page 1 ---
+Assignment 1
+This assignment was locked Feb 10 at 5pm.
+Go to the Anaconda download page (Links to an external site.) and
+download the correct version for your OS (Windows/macOS). Follow the
+installation prompts until Anaconda is installed successfully. From the
+Anaconda Navigator, launch JupyterLab or Jupyter Notebook.
+Write the following programs in the Jupyter Notebook. Kaggle.com (Links
+to an external site.) is an excellent resource for learning python. Save your
+completed notebook as a .ipynb file as well as a .pdf file and submit
+them to
+Canvas->Assignments->Assignment 2: OOP and 2D Plots
+Part 1: Object Oriented Programming
+1. Replace pass with the appropriate code in the Line class
+methods to accept coordinates as a pair of lists and return the
+slope and distance of the line.
+class Line(object):
+def __init__(self,coor1,coor2):
+pass
+def distance(self):
+pass
+def slope(self):
+pass
+Example output:
+coordinate1 = [3,2]
+coordinate2 = [8,10]
+li = Line(coordinate1,coordinate2)
+li.distance() # 9.433981132056603
+li.slope() # 1.6
+1. Replace pass with the appropriate code in the Cylinder class
+methods to return the volume and the surface area of the
+cylinder.
+class Cylinder(object):
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-21-2025 17:38:10 GMT -05:00
+https://www.coursehero.com/file/156436463/Assignment-2docx/
+
+--- Page 2 ---
+def __init__(self,height=1,radius=1):
+pass
+def volume(self):
+pass
+def surface_area(self):
+pass
+Example output:
+c = Cylinder(2,3)
+c.volume() # 56.52
+c.surface_area() # 94.2
+Part 2: 2D Plots
+1. Line Plot:
+Create a line plot of sin(x) and cos(x + π/2) for -2π < x < 2π where x
+increases at intervals of π/4.
+1. Make the sin(x) graph red and make the cos(x+π/2) graph green
+1. Put both lines onto the same plot
+2. Using the same info as above, make a subplot with 2 different
+graphs-
+1. one graph for sin(x) and
+2. one graph for cos(x+π/2)
+x = -6.283, -5.498, -4.712, -3.927, -3.142, -2.356, -1.571, -.7854, 0, .7854,
+1.571, 2.356, 3.142, 3.927, 4.712, 5.498, 6.283
+sin(x) = 0, .70711, 1, .70711, 0, -.70711, -1, -.70711, 0, .70711, 1, .
+70711, 0, -.70711, -1, -.70711, 0
+cos(x + π/2) = 0, -.70711, -1, -.70711, 0, .70711, 1, .70711, 0, -.70711,
+-1, -.70711, 0, .70711, 1, .70711, 0
+1. Scatter Plot:
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-21-2025 17:38:10 GMT -05:00
+https://www.coursehero.com/file/156436463/Assignment-2docx/
+
+--- Page 3 ---
+Using the following data about winter temperatures affecting the number
+of days for lake ice at Lake Superior, construct a scatter plot to display the
+data. Include a line of best fit.
+Mean Temperature (in Fahrenheit): 22.94, 23.02, 25.68, 19.96, 24.80,
+23.98, 22.10, 20.30, 24.20, 22.74, 24.16, 24.94, 22.40, 22.14, 20.84,
+25.66, 21.73, 24.49, 24.13, 22.17, 21.73, 20.41, 24.41, 23.95, 20.95,
+26.71, 22.81, 23.11, 23.33, 28.83, 23.11, 21.47, 23.97, 24.75, 23.61,
+23.08, 21.24, 26.63, 23.88
+Days of Ice: 87, 137, 106, 97, 105, 118, 118, 136, 91, 107, 96, 114, 125,
+115, 118, 82, 115, 97, 104, 146, 126, 141, 111, 123, 118, 83, 48, 118,
+116, 81, 116, 123, 112, 99, 102, 118, 63, 62, 132
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-21-2025 17:38:10 GMT -05:00
+https://www.coursehero.com/file/156436463/Assignment-2docx/
+Powered by TCPDF (www.tcpdf.org)

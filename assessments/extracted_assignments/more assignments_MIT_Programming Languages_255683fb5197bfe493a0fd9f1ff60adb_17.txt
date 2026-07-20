@@ -1,0 +1,267 @@
+--- Page 1 ---
+6.821 Programming Languages Handout
+Fall 2002
+MASSACHVSETTS INSTITVTE OF TECHNOLOGY
+Department of Electrical Engineering and Compvter Science
+1999 Midterm & Solutions
+Problem 1: Short Answer Questions [15 points]
+a. Let D and E be the following CPOs:
+z b c
+� �
+� �
+� �
+⊥ ⊥
+D E
+How many elements are in the set of
+(i) [3 points] total functions from D to E?
+(ii) [4 points] continuous functions from D to E?
+(i) There are 32 or 9 total functions from D to E.
+(ii) For finite CPOs, the set of continuous functions is equal to the set of monotonic functions. The
+entire domain D is a chain. This means any monotonic function must map the domain D to a
+chain in E. There are three chains in E: {⊥}, {a, ⊥} and {b, ⊥}. There is one way to monotonically
+map to the first chain, and there are two ways to monotonically map to the other two. This means
+there are five monotonic functions from D to E, or five continuous functions from D to E.
+b. Evaluate each of the following expressions with the appropriate model.
+(i) [2 points] Static Scoping, call by value
+(let ((a 1))
+(let ((f (lambda (x y) (/ x a))))
+(let ((a 0))
+(f 4 3))))
+Solution:
+4
+(ii) [2 points] Dynamic Scoping, call by value
+(let ((a 1))
+(let ((f (lambda (x y) (/ x a))))
+(let ((a 0))
+(f 4 3))))
+Solution:
+Error, Division by 0
+
+--- Page 2 ---
+(iii) [2 points] Dynamic Scoping, call by name
+(let ((a 1))
+(let ((f (lambda (x y) (/ x a))))
+(let ((a 2))
+(f 4 (let ((a 0)) (f 2 2))))))
+Solution:
+2
+(iv) [2 points] Static Scoping, call by value
+(let ((a 1))
+(let ((f (lambda (x y) (/ x a))))
+(let ((a 2))
+(f 4 (let ((a 0)) (f 2 2))))))
+Solution:
+4
+2
+
+--- Page 3 ---
+Problem 2: Operational Semantics [35 points]
+After completing 6.821, you get a job working for Ben Bitdiddle, whose company sells commercial imple­
+mentations of PostFix (without dup). After several focus-group studies, Ben has decided that PostFix needs
+a macro facility. Below is Ben’s sketch of the informal semantics of the facility.
+Macros are specified as part of a PostFix program, as follows:
+(program ((I_1 V_1) ... (I_n V_n)) Q)
+I through I are identifiers. Each macro (I V ) creates a command, I , that pushes the value V (which
+1 n i i i i
+can be an integer or a command sequence) onto the stack. It is illegal to give macros the names of existing
+PostFix commands, or to use an identifier more than once in a list of macros. The behavior of programs that
+do so is undefined.
+Here are some examples Ben has come up with:
+(program ((inc (1 add))) (0 inc exec inc exec)) ⇒ 2
+(program ((A 1) (B (2 mul))) (A B exec)) ⇒ 2
+(program ((A 1) (B (2 mul))) (A C exec)) ⇒ error (undefined macro C)
+(program ((A 1) (B (C mul)) (C 2)) (A B exec)) ⇒ 2
+(program ((A pop)) (1 A)) ; Ill-formed program (The body of a macro must be a value, it cannot be a com­
+mand.)
+Ben started writing an SOS for PostFix with macros, but had to go make a presentation for some venture
+capitalists. It is your job to complete the SOS.
+New (or modified) domains:
+I ∈ Identifier
+M ∈ Macro-list = (Identifier × Value)∗
+C ∈ Command = Command + Identifier
+PostFix+macros PostFix
+P ∈ Program = Commands × Macro-list
+Definition = Value
+Value = Intlit + Commands
+Ben’s notes describe a helper function, lookup, that you can use to figure out what identifiers have been
+defined as. The function has the signature:
+lookup : Identifier × Macro-list → Definition
+If lookup is given an identifier and a macro list, it returns a value if the identifier is defined to be that
+value in the macro list. Otherwise lookup gets stuck.
+a. [10 points] Ben’s notes begin the SOS for PostFix+macros as follows:
+C = Commands × Stack × Macro-list
+�Q, S�⇒ �Q�, S��
+⇒ : P
+�Q, S, M�⇒�Q�, S�, M�
+where ⇒ is the original transition relation for PostFix
+P
+Complete the transition relation for PostFix+macros. Your completed SOS should handle the first
+four of Ben’s examples. It should not handle the ill-formed program. Model errors in the SOS as stuck
+states (and do not handle them explicitly).
+Solution:
+⇒ :
+�I.Q, S, M� ⇒ �Q, V.S, M�
+where V =(lookup I M )
+3
+
+--- Page 4 ---
+b. [10 points] Louis Reasoner finds out that you have completed an SOS for PostFix+macros. He sees
+that your SOS handles macros that depend on other macros. He wants to launch a new advertising
+campaign with the slogan: “Guaranteed to terminate: PostFix with mutually recursive macros!” Show
+that Louis’ new campaign is a bad idea by writing a nonterminating program in PostFix+macros
+(without dup).
+Solution: A simple nonterminating program is:
+(program ((I (I exec))) (I exec))
+c. When Ben returns from his presentation, he finds out you’ve written a nonterminating program in
+PostFix+macros. He decides to restrict the language so nonterminating programs are no longer pos­
+sible. Ben’s restriction is that the body (or value) of a macro cannot use any macros. Ben wants you
+to prove that this restricted language terminates.
+(i) [10 points] Extend the PostFix energy function so that it assigns an energy to configurations that
+include macros. Fill in the definitions of the functions E [[C,M ]], E [[Q,M ]] and E [[S,M ]]
+com seq stack
+and use these functions to define your extended energy function. (Hint: If a command pushes a
+value, V, onto the stack, how does the energy of the configuration change?)
+E [[C,M ]] = 1 (C is not an identifier or an executable sequence)
+com
+E [[I,M ]] =
+com
+E [[[] ,M ]] = 0
+seq Command
+E [[C.Q,M ]] =
+seq
+E [[[] ,M ]] = 0
+stack Value
+E [[V.S,M ]] =
+stack
+Solution: Completing the energy function we have:
+E [[I,M ]] = E [[V,M ]]
+com com
+where V =(lookup I M )
+This is all that is necessary because if an undefined I is ever encountered,
+the program will immediately get stuck (and terminate).
+E [[C.Q,M ]] = 1+ E [[C,M ]]+ E [[Q,M ]]
+seq com seq
+E [[V.S,M ]] = E [[V,M ]]+ E [[S,M ]]
+stack com stack
+E [[�Q, S, M�] ] = E [[Q,M ]]+ E [[S,M ]]
+config seq stack
+(ii) [5 points] Use the extended energy function (for the restricted form of PostFix+macros) to show
+that executing a macro decreases the energy of a configuration. Since it is possible to show all the
+other commands decrease the energy of a configuration (by adapting the termination proof for
+PostFix without macros), this will show that the restricted form of PostFix+macros terminates.
+Solution:
+�I.Q, S, M� ⇒ �Q, V.S, M�
+where V =(lookup I M )
+E [[�I.Q, S, M�] ] = E [[I.Q,M ]]+ E [[S,M ]]
+config seq stack
+4
+
+--- Page 5 ---
+= 1+ E [[I,M ]]+ E [[Q,M ]]+ E [[S,M ]]
+com seq stack
+= 1+ E [[V,M ]]+ E [[Q,M ]]+ E [[S,M ]]
+com seq stack
+= 1+ E [[Q,M ]]+ E [[V.S,M ]]
+seq stack
+= 1+ E [[�Q, V.S, M�] ]
+config
+Thus, after executing a macro, the energy of a configuration decreases by one unit, proving Post-
+Fix with macros terminates.
+5
+
+--- Page 6 ---
+Problem 3: Control [50 points]
+Ben Bitdiddle, whose company also sells FLK!, has decided to improve FLK! with new facilities for excep­
+tion handling. Ben’s idea is to allow users to store exceptions in variables. Other exception facilities are also
+included, in the form of handle and exception. Ben also adds let-x to allow either an exception or a value
+to be bound to an identifier:
+(exception E) ; creates an exception with value E
+(handle E1 E2) ; handler procedure E1 handles exceptions
+; from E2. If E2 does not raise an exception,
+; E2 is the value of the HANDLE. If E2 raises
+; an exception, the value of the HANDLE is the
+; result of calling the handler procedure E1 on
+; the value of the exception.
+(let-x I E1 E2) ; binds an exception or value from E1
+; to I in E2.
+For example:
+(handle (lambda (x) (+ 1 x))
+(let-x a (exception 4)
+(let ((b 2))
+(+ a b))))
+⇒ 5
+Any attempt to reference a variable that is bound to an exception will result in the immediate raising of
+the exception. Thus, the above example will evaluate to 5 because the reference to a in (+ a b) will cause
+an exception to be raised.
+Ben had begun to develop a new semantics for FLK!, but was called away to work for a new Internet
+startup that was about to have an IPO event. You find on Ben’s desk the following sheet of paper:
+E : Exp → Environment → Computation
+Computation = ExceptionCont → ExpCont → CmdCont
+CmdCont = Store → Answer
+k ∈ ExpCont = Value → CmdCont
+w ∈ ExceptionCont = ExpCont
+Procedure = Value → Computation
+δ ∈ Denotable = Value + Exception
+Exception = Value
+E [[L ]] = λewk . (k L[ [L]])
+E [[(handle E1 E2) ]] = λewk . (E [[E1] ] e w (test-procedure λp . (E [[E2] ] e (λv . (p v w k)) k)))
+E [[(proc I E)] ] = λewk . (k (Procedure �→Value (λvw�k� . (E [[E] ] [I :(Value �→Denotable v)]e w� k�))))
+E [[(call E1 E2) ]] = λewk. E [[E1 ]] ew (test-procedure λp . E [[E2 ]]ew (λv . (p v w k)))
+a. [10 points] Ben wants to add a new kernel form (exception? I) that tests whether or not an identifier
+I is bound to an exception and returns a boolean. Alyssa insists that the form can be desugared into
+the other exception-handling forms, but does not have time to provide the desugaring. Prove Alyssa
+correct by writing a desugaring for (exception? I).
+D [[(exception? I) ]] =
+Solution:
+D [[(exception? I) ]] = (handle (lambda (x) #t) (begin I #f))
+6
+
+--- Page 7 ---
+b. [10 points] Write the meaning function clause for (exception E).
+Solution:
+E [[(exception E) ]] = λewk . (E [[E] ] e w w)
+c. [10 points] Write the meaning function clause for I.
+Solution:
+E [[I ]] = λewk . matching (lookup e I)
+� (Denotable�→Binding d)[] matching d
+� (Value�→Denotable v)[](k v)
+� (Exception�→Denotable v)[](w v)
+endmatching
+� else [] λs . (Error�→Answer error)
+endmatching
+d. [10 points] Write the meaning function clause for (let-x I E1 E2).
+Solution:
+E [[(let-x I E1 E2)] ] =
+λewk . ( E [[E1 ]] e (λv . (E [[E2 ]] [I : (Exception�→Denotable v)]e w k))
+(λv . (E [[E2] ] [I : (Value�→Denotable v)]e w k)))
+While scrounging through Ben’s notes, you noticed Bolt Cola spilled all over a very important doc­
+ument. After sponging off most of the goop, you notice it’s a memo from Alyssa P. Hacker about a
+brand new command called rec-handle. It reads the following:
+Dear Ben,
+I figured out how you can get ahead of the competition. All you need is a
+recursive handler. Something like:
+(rec-handle E1 E2) ; handler procedure E1 handles exceptions
+; from E2. If E2 does not raise an exception,
+; E2 is the value of REC-HANDLE. In addition, any
+; exceptions raised during execution of E1
+; are HANDLED by E1.
+Here’s an example:
+(rec-handle (lambda (x)
+(if (= x 0) 1
+(exception (- x 1))))
+(exception 5))
+⇒1
+7
+
+--- Page 8 ---
+Here, I whipped up the meaning function for you.
+E [[(handle E1 E2)] ] = λew k.
+1
+(E [[E1 ]] e w (test-procedure λp . let w be BOLTCOLA in (E [[E2 ]] e (λv . (p v w k) k))))
+1 2 2
+Unfortunately, the critical part of the function was too smeared with Cola. It’s your job to help Ben by
+fixing Alyssa’s memo.
+e. [10 points] Fill in the BOLTCOLA splotch for rec-handle.
+Solution: fix λw .λv . (p v w k)
+ExceptionCont 3 3
+8

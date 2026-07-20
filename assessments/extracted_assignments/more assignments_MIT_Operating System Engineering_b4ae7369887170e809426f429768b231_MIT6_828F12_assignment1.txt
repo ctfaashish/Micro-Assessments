@@ -1,0 +1,64 @@
+--- Page 1 ---
+In-class assignment: shell
+This assignment will make you more familiar with the Unix system call interface and the shell by implementing several
+features in a small shell. You can do this assignment on any operating system that supports the Unix API (a Linux
+Athena machine, your laptop with Linux or MacOS, etc.).
+Download the skeleton of the xv6 shell, and look it over. The skeleton shell contains two main parts: parsing shell
+commands and implementing them. The parser recognizes only simple shell commands such as the following:
+ls > y
+cat < y | sort | uniq | wc > y1
+cat y1
+rm y1
+ls | sort | uniq | wc
+rm y
+Cut and paste these commands into a file You can compile the skeleton shell as follows:
+t.sh
+$ gcc sh.c
+which produce an file, which you can run:
+a.out
+$ ./a.out < t.sh
+This execution will panic because you have not implemented several features. In the rest of this assignment you will
+implement those features.
+Executing simple commands
+Implement simple commands, such as:
+$ ls
+The parser already builds an for you, so the only code you have to write is for the ' ' case in . To test
+execcmd runcmd
+that you can run "ls". You might find it useful to look at the manual page for exec; type "man 3 exec".
+I/O redirection
+Implement I/O redirection commands so that you can run:
+echo "6.828 is cool" > x.txt
+cat < x.txt
+The parser already recognizes ">" and "<", and builds a for you, so your job is just filling out the missing
+redircmd
+code in for those symbols. Make sure your implementation runs correctly with the above test input. You might
+runcmd
+find the man pages for open and close useful.
+Implement pipes
+Implement pipes so that you can run command pipelines such as:
+$ ls | sort | uniq | wc
+The parser already recognizes "|", and builds a for you, so the only code you must write is for the '|' case in
+pipecmd
+. Test that you can run the above pipeline. You might find the man pages for pipe, fork, close, and dup useful.
+runcmd
+Now you should be able the following command correctly:
+(cid:3)(cid:55)(cid:75)(cid:76)(cid:86)(cid:3)(cid:70)(cid:82)(cid:88)(cid:85)(cid:86)(cid:72)(cid:3)(cid:80)(cid:68)(cid:78)(cid:72)(cid:86)(cid:3)(cid:88)(cid:86)(cid:72)(cid:3)(cid:82)(cid:73)(cid:3)(cid:36)(cid:87)(cid:75)(cid:72)(cid:81)(cid:68)(cid:15)(cid:3)(cid:48)(cid:44)(cid:55)(cid:10)(cid:86)(cid:3)(cid:56)(cid:49)(cid:44)(cid:59)(cid:16)(cid:69)(cid:68)(cid:86)(cid:72)(cid:71)(cid:3)(cid:70)(cid:82)(cid:80)(cid:83)(cid:88)(cid:87)(cid:76)(cid:81)(cid:74)(cid:3)(cid:72)(cid:81)(cid:89)(cid:76)(cid:85)(cid:82)(cid:81)(cid:80)(cid:72)(cid:81)(cid:87)(cid:17)(cid:3)(cid:50)(cid:38)(cid:58)(cid:3)(cid:71)(cid:82)(cid:72)(cid:86)(cid:3)(cid:81)(cid:82)(cid:87)(cid:3)(cid:83)(cid:85)(cid:82)(cid:89)(cid:76)(cid:71)(cid:72)(cid:3)(cid:68)(cid:70)(cid:70)(cid:72)(cid:86)(cid:86)(cid:3)(cid:87)(cid:82)(cid:3)(cid:87)(cid:75)(cid:76)(cid:86)(cid:3)(cid:72)(cid:81)(cid:89)(cid:76)(cid:85)(cid:82)(cid:81)(cid:80)(cid:72)(cid:81)(cid:87)(cid:17)
+1
+
+--- Page 2 ---
+$ a.out < t.sh
+Challenge exercises
+You can add any feature of your choice to your shell. But, you may want consider the following as a start:
+Implement lists of commands, separated by ";"
+Implement sub shells by implementing "(" and ")"
+Implement running commands in the background by supporting "&" and "wait"
+All of these require making changing to the parser and the function.
+runcmd
+2
+
+--- Page 3 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.828 Operating System Engineering
+Fall 2012
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

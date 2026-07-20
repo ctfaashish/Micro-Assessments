@@ -1,0 +1,130 @@
+--- Page 1 ---
+6.042/18.062J Mathematics for Computer Science October 14, 2008
+Tom Leighton and Marten van Dijk
+Problem Set 7
+Problem 1. [15 points] Express
+n
+�
+i2 x i
+i=0
+as a closed-form function of n.
+Problem 2. [20 points]
+n
+(a) [5 pts] What is the product of the first n odd powers of two: � 22k−1?
+k=1
+(b) [5 pts] Find a closed expression for
+n m
+��
+3i+j
+i=0 j=0
+(c) [5 pts] Find a closed expression for
+n n
+��
+(i + j)
+i=1 j=1
+(d) [5 pts] Find a closed expression for
+n n
+��
+2i · 3j
+i=1 j=1
+Problem 3. [10 points]
+(a) [6 pts] Use integration to find upper and lower bounds that differ by at most 0.1 for the
+following sum. (You may need to add the first few terms explicitly and then use integrals to
+bound the sum of the remaining terms.)
+∞
+� 1
+(2i + 1)2
+i=1
+
+--- Page 2 ---
+2.5
+2 Problem Set 7
+y = ln(x+1)
+2
+y = ln(x+2)
+1.5
+1
+0.5
+0
+0 1 2 3 4 5 6 7 8
+Image by MIT OpenCourseWare.
+(b) [4 pts] Assume n is an integer larger than 1. Which of the following inequalities, if any,
+hold. You may find the graph helpful.
+n � n
+�
+1. ln(i + 1) ≤ ln(x + 2)dx
+i=1
+0
+n � n
+�
+2. ln(i + 1) ≤ ln2+ ln(x + 1)dx
+1
+i=1
+Problem 4. [15 points] There is a bug on the edge of a 1-meter rug. The bug wants to
+cross to the other side of the rug. It crawls at 1 cm per second. However, at the end of
+each second, a malicious first-grader named Mildred Anderson stretches the rug by 1 meter.
+Assume that her action is instantaneous and the rug stretches uniformly. Thus, here’s what
+happens in the first few seconds:
+�
+The bug walks 1 cm in the first second, so 99 cm remain ahead.
+�
+Mildred stretches the rug by 1 meter, which doubles its length. So now there are 2 cm
+behind the bug and 198 cm ahead.
+�
+The bug walks another 1 cm in the next second, leaving 3 cm behind and 197 cm
+ahead.
+�
+Then Mildred strikes, stretching the rug from 2 meters to 3 meters. So there are now
+3 ·(3/2) = 4.5 cm behind the bug and 197 · (3/2) = 295.5 cm ahead.
+�
+The bug walks another 1 cm in the third second, and so on.
+Your job is to determine this poor bug’s fate.
+(a) [5 pts] During second i, what fraction of the rug does the bug cross?
+
+--- Page 3 ---
+Problem Set 7 3
+(b) [5 pts] Over the first n seconds, what fraction of the rug does the bug cross altogether?
+Express your answer in terms of the Harmonic number H .
+n
+(c) [5 pts] Approximately how many seconds does the bug need to cross the entire rug?
+Problem 5. [20 points] For each of the following six pairs of functions f and g (parts (a)
+through (f)), state which of these order-of-growth relations hold (more than one may hold,
+or none may hold):
+f = o(g) f = O(g) f = ω(g) f = Ω(g) f = Θ(g) f ∼ g
+(a) f(n) = log n g(n) = log n
+2 10
+(b) f(n) = 2n g(n) = 10n
+(c) f(n) = 0 g(n) = 17
+�πn � �πn �
+(d) f(n) = 1+cos g(n) = 1+sin
+2 2
+(e) f(n) = 1.0000000001n g(n) = n1 0000000000
+Problem 6. [15 points] This problem continues the study of the asymptotics of factori­
+als.
+(a) [5pts]
+Either prove or disprove each of the following statements.
+�
+n! = O((n + 1)!)
+�
+n! = Ω((n + 1)!)
+�
+n! = Θ((n + 1)!)
+�
+n! = ω((n + 1)!)
+�
+n! = o((n + 1)!)
+� �
+(b) [5 pts] Show that n! = ω
+�
+n
+�n+e
+.
+3
+(c) [5 pts] Show that n! = Ω(2n)
+
+--- Page 4 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.042J / 18.062J Mathematics for Computer Science
+Fall 2010
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

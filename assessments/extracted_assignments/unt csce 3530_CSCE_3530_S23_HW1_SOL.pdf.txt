@@ -1,0 +1,14 @@
+
+1. What is a network protocol? List at least five network protocols (expand the
+abbreviations). What do these listed protocols do? 
+
+2. Describe network edge, access network, and network core. 
+
+3. Describe bandwidth and data rate. 
+
+4. Describe physical media that is used in networking. List the categories physical media
+and explain each category. Give at least three examples of physical media in each
+category. What are the unique characteristics (at least two) of the listed examples of
+physical media? 
+
+5. Describe the two key network core functionalities. 

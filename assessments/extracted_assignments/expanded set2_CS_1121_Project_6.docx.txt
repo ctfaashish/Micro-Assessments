@@ -1,0 +1,80 @@
+--- Page 1 ---
+CS-1121 Visual Basic
+Project 6 Report
+Title: Barclay Solution
+Author: Olajumobi Akeeb
+I certify that this project is the product of my own intellectual labor.
+_________________________________________________________
+(Author’s signature)
+Date: 3/8/2017
+Lab: 11:00-11:50am
+Grading:
+______ Project Execution (0-10)
+3 Lesson A
+3 Lesson B
+4 Lesson C
+______ Program Documentation (0-5)
+3 TOE Chart
+1 Code
+1 Screen Captures
+______ Total
+1
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:56 GMT -05:00
+https://www.coursehero.com/file/30615221/CS-1121-Project-6docx/
+
+--- Page 2 ---
+TOE CHART
+Task Object Event
+User clicks the calculate button: an input box comes up btnCalc Click
+User enters the prices in the input box
+The prices accumulate in the listPrice list box
+When all the prices have been entered the user clicks
+the ok button
+The total price plus 5% tax is shown in the lblTotaldue
+label
+Output: Displays the total price lblTotaldue None
+Exit the application btnExit Click
+PROJECT CODE
+Option Infer Of
+Option Explicit On
+Option Strict On
+Public Class Form1
+'Author; olajumobi Akeeb
+'Title; Barclay Solution
+'Purpose; Calculates the prices of candy purchased
+'Date; 3/8/2017
+2
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:56 GMT -05:00
+https://www.coursehero.com/file/30615221/CS-1121-Project-6docx/
+
+--- Page 3 ---
+Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles btnCalc.Click
+Dim str1stpricecontrol As String
+Dim dblPrice As Double
+Dim dblTotaldue As Double
+lblTotaldue.Text = String.Empty
+lstPrices.Items.Clear()
+str1stpricecontrol = InputBox("Enter item's PRICE(0 to end):", "")
+Double.TryParse(str1stpricecontrol.ToString, dblPrice)
+Do While str1stpricecontrol <> String.Empty
+lstPrices.Items.Add(dblPrice)
+dblTotaldue += dblPrice
+str1stpricecontrol = InputBox("Enter item's PRICE(0 to end):", "")
+Double.TryParse(str1stpricecontrol.ToString, dblPrice)
+Loop
+lblTotaldue.Text = (dblTotaldue * 1.05).ToString("C2")
+End Sub
+Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+Me.Close()
+End Sub
+End Class
+SCREEN CAPTURES
+3
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:56 GMT -05:00
+https://www.coursehero.com/file/30615221/CS-1121-Project-6docx/
+
+--- Page 4 ---
+4
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:56 GMT -05:00
+https://www.coursehero.com/file/30615221/CS-1121-Project-6docx/
+Powered by TCPDF (www.tcpdf.org)

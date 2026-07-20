@@ -1,0 +1,100 @@
+{"raw_text": "Which of the following is not a capability of network-based IDS?"}
+{"raw_text": "What are the two main types of IDS signatures?"}
+{"raw_text": "What is the term for the basic software on a computer that handles input and output?"}
+{"raw_text": "What is the process of establishing a system's security state?"}
+{"raw_text": "What can be done to abuse the TCP handshake in an effort to overuse server resources?"}
+{"raw_text": "What is a sandbox program designed to analyze malicious software, separating the software from direct connection to the OS?"}
+{"raw_text": "What does chmod do?"}
+{"raw_text": "Why is an open e-mail relay bad?"}
+{"raw_text": "What is the use of code signing?"}
+{"raw_text": "What term is used to describe the offering of a computing platform in the cloud?"}
+{"raw_text": "Which cloud deployment model has the fewest security controls?"}
+{"raw_text": "Input validation is important to prevent what?"}
+{"raw_text": "What is not a commonly used endpoint security technique?"}
+{"raw_text": "What is a password manager and why is it useful?"}
+{"raw_text": "Does the Qwest VPLS (MPLS) service encrypt your traffic?"}
+{"raw_text": "How long does it take for a packet of size KB to travel over two links (connection) with a transmission rate of Mbps?"}
+{"raw_text": "What is traffic intensity?"}
+{"raw_text": "Describe the equation used to measure traffic intensity?"}
+{"raw_text": "How is the traffic intensity characterized as small, large, or infinite?"}
+{"raw_text": "What does the traceroute program do?"}
+{"raw_text": "Define latency, throughput, instantaneous throughput, and average throughput."}
+{"raw_text": "What security risks are associated with password managers?"}
+{"raw_text": "What is the relationship between an access control matrix and the integrity of the objects to which access is being controlled?"}
+{"raw_text": "Explain OpenStack service glance and how it would work."}
+{"raw_text": "Explain each component in detail."}
+{"raw_text": "How can we have minimum down-time when we are applying live migration?"}
+{"raw_text": "What would happen if the destination host fails before live migration is completed?"}
+{"raw_text": "Find three IDS/IPS and compare them."}
+{"raw_text": "Why do we need a port number in addition to an IP address?"}
+{"raw_text": "What is DNS and what role does it play in the Internet and E-Commerce?"}
+{"raw_text": "What is meant by a static web?"} 
+{"raw_text": "Briefly describe at least two disadvantages of building a web site using static pages. Are there any advantages?"}
+{"raw_text": "What is the maximum window size in bytes that this TCP connection can achieve?"}
+{"raw_text": "Describe the three different types of switching fabrics used in a router."}
+{"raw_text": "Describe FIFO scheduling."}
+{"raw_text": "Differentiate between Priority Scheduling, Round Robin (RR) Scheduling, and Weighted Fair Queuing (WFQ)"}
+{"raw_text": "What is a socket?"}
+{"raw_text": "Describe GET, POST, HEAD, PUT and DELETE methods of the HTTP protocol."}
+{"raw_text": "What does HTTP response codes 200, 400, 404, 500, and 502 tell?"}
+{"raw_text": "What are HTTP cookies?"} 
+{"raw_text": "Mention any three uses of HTTP cookies?"}
+{"raw_text": "Describe web caching using proxy servers."}
+{"raw_text": "Describe how does web caching improve access link utilization?"}
+{"raw_text": "Describe how does the proxy server update the cached web pages to the latest version?"}
+{"raw_text": "What is regular expression?"}
+{"raw_text": "What is TCP fast retransmit?"}
+{"raw_text": "Explain in detail how TCP flow control is done?"}
+{"raw_text": "What are the steps involved in opening and closing a TCP connection?"}
+{"raw_text": "What is Reliable Data Transfer?"}
+{"raw_text": "Clearly state what information is exchanged between the client and the server during the opening and closing a TCP connection."}
+{"raw_text": "Explain why genetic diversity is a good principle for secure development."}
+{"raw_text": "Identify at least one potential buffer overflow vulnerability."}
+{"raw_text": "Explain how buffer overflow can be exploited."}
+{"raw_text": "Do you think attempting to break in to a computing system without authorization should be illegal?"}
+{"raw_text": "State one valid reason why an owner of a web site might not want to have a web crawler access his/her web site."}
+{"raw_text": "Explain the difference(s) between XML and HTML."}
+{"raw_text": "why XML is important for e-commerce?"}
+{"raw_text": "Based on the OSI or TCP/IP model, why would it not be sufficient to provide security at the lowest layer only."}
+{"raw_text": "Why can a malicious SIP not trick the kernel into examining a user stack frame when the kernel performs garbage collection?"}
+{"raw_text": "Why does ESX use ballooning instead of a scheme in which the guest kernel explicitly tells the VMM about how it uses physical pages?"}
+{"raw_text": "Explain why the security goals are important."}
+{"raw_text": "Would using a scalable lock instead of a spinlock allow for better scalability?"}
+{"raw_text": "Discuss why smartphones are considered to be a disruptive technology."}
+{"raw_text": "Explain why a KERNBASE higher or lower than your answer would reduce the maximum allocatable environment size?"}
+{"raw_text": "Use an example and explain the working principle of TCP fast retransmit."}
+{"raw_text": "What is the maximum window size and average window size in segments if the TCP segment size is 2,000 bytes?"}
+{"raw_text": "What are some of the tools to perform man-in-the-middle attacks on SSL connections?"}
+{"raw_text": "Using john the ripper an Online or an Offline dictionary attack?"}
+{"raw_text": "Using john the ripper a breach of attack on Confidentiality, Integrity, or Availability? Justify your answer."}
+{"raw_text": "Does DSL connect Green Bay and Chicago with Syracuse, or is it an access technology?"}
+{"raw_text": "If DSL is an access technology, what wide area technology do you think it connects to?"}
+{"raw_text": "If DSL is a wide area technology, explain its distance limits, if any."}
+{"raw_text": "Does VPN run over the open Internet?"}
+{"raw_text": "In Lotus Notes, how many 1MB documents can be shared (replicated) per minute with 20 Mbps of bandwidth? Assume 70% maximum utilization."}
+{"raw_text": "How many ways can ten boys and flve girls stand in a row with no two girls standing beside each other?"}
+{"raw_text": "How many ways can ten boys and flve girls stand in a circle with no two girls standing beside each other?"}
+{"raw_text": "What data pages will the system modify during the REDO pass of recovery?"}
+{"raw_text": "What data pages will the system modify during the UNDO pass of recovery?"}
+{"raw_text": "Show that the problem of finding a minimum weight vertex cover in a bipartite graph can be solved by a minimum cut computation or a maximum flow computation in a related graph."}
+{"raw_text": "What is the difference between stack and queue?"}
+{"raw_text": "What is the difference between SQL and NoSQL databases?"}
+{"raw_text": "What is virtual memory? Explain paging and segmentation."}
+{"raw_text": "Explain the different CPU scheduling algorithms. Compare preemptive vs non-preemptive."}
+{"raw_text": "What is the difference between process and thread?"}
+{"raw_text": "What is the difference between BFS and DFS? When to use which?"}
+{"raw_text": "What is Cache?"}
+{"raw_text": "What is Deadlock?"}
+{"raw_text": "What is a Critical Section?"}
+{"raw_text": "Explain firewalls?"}
+{"raw_text": "What is normalization in a Database?"}
+{"raw_text": "What is the difference between compiler and interpreter?"} 
+{"raw_text": "What is the difference between monolithic and microservices architecture?"}
+{"raw_text": "What is Indexing in DBMS?"}
+{"raw_text": "What are access modifiers?"}
+{"raw_text": "What is Black Box Testing in software Development?"}
+{"raw_text": "What is a Feasibility Study in software Development?"}
+{"raw_text": "What is Cohesion and Coupling?"}
+{"raw_text": "What is Reverse Engineering?"}
+{"raw_text": "What is Confidentiality, Integrity & Availability?"}
+{"raw_text": "Define Digital Signatures?"}

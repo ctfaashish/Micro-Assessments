@@ -1,0 +1,33 @@
+--- Page 1 ---
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+15.082J/6.855J/ESD.78J – Network Optimization (Fall 2010)
+Problem Set 2
+Due Session 7
+at the beginning of class
+Hand in the exercises labeled 1, 2, 3 and 4.
+READINGS in AMO.
+• Section 3.5 in Chapter 3, “Algorithm Design and Analysis,”, pages 79 to 84
+• Chapter 4, “Shortest Paths: Label‐Setting Algorithms,” pages 93 to 122
+HOMEWORK EXERCISES.
+Chapter 3 of AMO
+Exercise3.49
+Exercise 3.53
+1. Exercise 3.54
+Chapter 4 of AMO
+Exercise 4.1
+Exercise 4.5
+2. Exercise 4.6
+Exercise 4.15
+3. Exercise 4.16 (should be started after Ses #6).
+Exercise 4.21
+Exercise 4.23
+Exercise 4.29
+Exercise 4.37
+4. Exercise 4.40
+
+--- Page 2 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+15.082J / 6.855J / ESD.78J Network Optimization
+Fall 2010
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

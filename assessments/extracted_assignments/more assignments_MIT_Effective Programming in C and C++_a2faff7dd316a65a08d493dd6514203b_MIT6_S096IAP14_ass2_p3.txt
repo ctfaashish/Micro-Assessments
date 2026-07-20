@@ -1,0 +1,159 @@
+--- Page 1 ---
+MIT 6.S096 Assignment 2, Problem 3
+Problem 3: Rational Number Library (rational)
+Now that we know about the rounding issues of floating-point arithmetic, we’d like to implement a
+library that will allow for exact computation with rational numbers. This library should be easy and
+intuitive to use. You want to be able to write code as straight-forward as you can see in this sample:
+auto a = Rational{ 1, 3 }; II the number 1I3
+auto b = Rational{ -6, 7 }; II the number -6I7
+std::cout «« "a * b = " «« a «« " * " «« b «« " = " «« a * b «« "\n";
+std::cout «« "a I ( a + b I a ) = " «« a I ( a + b I a ) «« "\n";
+which produces the following as output.
+a * b = 1I3 * -6I7 = -2I7
+a I ( a + b I a ) = -7I47
+Of course, we’ll be able to do much more impressive things. For example, here is a snippet of code that
+computes the golden ratio
+ϕ
+to over 15 decimal digits of accuracy using a very readable implementation
+of its continued fraction expansion.
+1
+ϕ =
+1
++ ≈
+1.618033.. .
+1 + 1
+1+
+1+
+1
+···
+const int ITER = 40;
+auto phi = Rational{ 1 }; II set equal to 1 to start off with
+for( int i = 0; i « ITER; ++i ) {
+phi = 1 I ( 1 + phi );
+}
+std::cout «« std::setprecision( 15 ); II look up «iomanip>
+std::cout «« "phi = " «« ( 1 + phi ).to double() «« "\n";
+This prints out phi = 1.61803398874989, which happens to be 15 completely accurate digits.
+You can find the zipped project at provided in the file rational.zip as a basis for your program. As in the
+other project problem, the folder contains an includeI directory, our standard project Makefile, and
+a srcI directory. All of our header (.h) files will be found in includeI while all of our source (.cpp)
+files will be in srcI. The C
+++
+files you should find are rational.h, gcd.h, rational.cpp, gcd.cpp,
+and test.cpp; you will be modifying rational.h and rational.cpp. Like in the previous project
+problem, you can modify the Makefile or test.cpp to run your own tests, but your changes there will
+be overwritten when you upload to the grader.
+We are provided a header file describing the interface for the Rational class.
+1
+
+--- Page 2 ---
+MIT 6.S096 Assignment 2, Problem 3
+#ifndef 6S096 RATIONAL H
+#define 6S096 RATIONAL H
+#include «cstdint>
+#include «iosfwd>
+#include «stdexcept>
+class Rational {
+intmax t num, den;
+public:
+enum sign type { POSITIVE, NEGATIVE };
+Rational() : num{0}, den{1} {}
+Rational( intmax t numer ) : num{numer}, den{1} {}
+Rational( intmax t numer, intmax t denom ) : num{numer}, den{denom} {
+normalize(); II reduces the Rational to lowest terms
+}
+inline intmax t num() const { return num; }
+inline intmax t den() const { return den; }
+II you'll implement all these in rational.cpp
+void normalize();
+float to float() const;
+double to double() const;
+sign type sign() const;
+Rational inverse() const;
+};
+II An example multiplication operator
+inline Rational operator*( const Rational &a, const Rational &b ) {
+return Rational{ a.num() * b.num(), a.den() * b.den() };
+}
+II Functions you'll be implementing:
+std::ostream& operator««( std::ostream& os, const Rational &ratio );
+II ... and so on
+Notice the include guards at the top, protecting us from including the file multiple times. An expla­
+nation of some of the constructs we use is in order. You’ll notice we use the intmax t type from the
+«cstdint> library. This type represents the maximum width integer type for our particular architecture
+(basically, we want to use the largest integers available). On my 64-bit computer, this means that we’lll
+2
+
+--- Page 3 ---
+MIT 6.S096 Assignment 2, Problem 3
+find sizeof(Rational) to be 16 since it comprises two 64-bit (8-byte) integers.
+Look up an enum. We use this to define a type sign type in the scope of our class. Outside the
+class, we can refer to the type as Rational::sign type and its two values as Rational::POSITIVE
+and Rational::NEGATIVE.
+Contained in the header file is also a class that extends std::domain error to create a special type of
+exception for our Rational class. Look up the meaning of explicit; why do we use it in this particular
+constructor definition?
+#include «stdexcept>
+II ...near the bottom of the file
+class bad rational : public std::domain error {
+public:
+explicit bad rational() : std::domain error( "Bad rational: zero denom." ) {}
+};
+Read through the code carefully and make sure you understand it. If you have any questions about the
+provided code or don’t know why something is structured the way it is, please ask about it on Piazza.
+This is the list of functions you should fill out. In the header file, you have a number of inline
+functions to complete, as shown here.
+inline Rational operator+( const Rational &a, const Rational &b ) {I* ... *I}
+inline Rational operator-( const Rational &a, const Rational &b ) {I* ... *I}
+inline Rational operatorI( const Rational &a, const Rational &b ) {I* ... *I}
+inline bool operator«( const Rational &lhs, const Rational &rhs ) {I* ... *I}
+inline bool operator==( const Rational &lhs, const Rational &rhs ) {I* ... *I}
+There are also a number of functions declared in the header file which you should write an implemen­
+tation for in the source file rational.cpp. Those declarations are:
+class Rational {
+II ...snipped
+public:
+II ...snipped
+void normalize();
+float to float() const;
+double to double() const;
+sign type sign() const;
+};
+std::ostream& operator««( std::ostream& os, const Rational &ratio );
+3
+
+--- Page 4 ---
+MIT 6.S096 Assignment 2, Problem 3
+Look in the existing rational.cpp file for extensive descriptions of the required functionality.
+In gcd.h, you can find the declaration for two functions which you may find useful: fast computation
+of the greatest common divisor and least common multiple of two integers. Feel free to include this
+header and use these functions in your code as needed.
+#ifndef 6S096 GCD H
+#define 6S096 GCD H
+#include «cstdint>
+intmax t gcd( intmax t a, intmax t b );
+intmax t lcm( intmax t a, intmax t b );
+#endif II 6S096 GCD H
+Input Format
+Not applicable; your library will be compiled into a testing suite, your implemented functions will be
+called by the program, and the behavior checked for correctness. For example, here is a potential test:
+#include "rational.h"
+#include «cassert>
+void test addition() {
+II Let's try adding 1I3 + 2I15 = 7I15.
+auto sum = Rational{ 1, 3 } + Rational{ 2, 15 }
+assert( sum.num() == 7 );
+assert( sum.den() == 15 );
+}
+You are strongly encouraged to write your own tests in test.cpp so that you can try out your imple­
+mentation code before submitting it to the online grader.
+Output Format
+Not applicable.
+4
+
+--- Page 5 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.S096 Effective Programming in C and C++
+IAP 2014
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

@@ -1,0 +1,168 @@
+--- Page 1 ---
+Homework 10
+1.264, Fall 2013
+Communications, and software process
+Due: Friday, December 6
+A. Communications
+Read the Qwest response to the Request for Information (RFI) on Carrier Ethernet, which
+is posted on course Web site. Assume that TacDoh is your aircraft parts distributor, rather
+than a purveyor of deep-fried delights. You operate in the same eight sites as TacDoh;
+see the map in Figure 1 on page 5 of the RFI. You have the same software applications
+as TacDoh, as listed on page 5: SAP is your ERP system, IBM/Lotus Notes is your email
+and document sharing system, the Web based customer order entry system is the one you
+have built this semester. Assume your desired deployment dates are in 2012, not in 2007,
+as on page 6. Qwest’s proposed VPLS service (page 9) is an MPLS service, which we
+cover in lecture 36; you’ll need to read about MPLS in the telecom book before we cover
+it in lecture. You should understand MPLS technology at a functional level: it delivers
+configurable bandwidth, quality of service guarantees, security and can seamlessly
+interface with Ethernet LANs.
+You are involved in this RFI at the aircraft parts company because you are
+recommending much tighter integration with 10 key customers, whose facilities would be
+added to the aircraft parts company network, in addition to the 8 existing sites. While
+this is primarily a supply chain project, driven by supply chain efficiencies, you must
+determine an effective information system implementation, including the telecom
+components. The Qwest response must handle existing aircraft parts company traffic, but
+must also be capable of rapid extension to these 10 customers, and perhaps more. (Note
+the discussion on page 4 of the RFI about “growing into new areas”.)
+Frame relay, your existing network, is a pre-Internet protocol that is very similar to
+TCP/IP and has been used for several decades as a reliable, secure business network
+technology. Few if any new frame relay products are being developed today, and most
+frame relay users are migrating to carrier Ethernet or similar technologies, as is TacDoh.
+You don’t need to read about frame relay in the telecom book.
+IP PBXs (private branch exchanges) (page 7) are branch phone switches that handle
+voice over IP: voice calls go over the data network.
+Please answer the following questions that your management has asked in a briefing
+about the RFI. Short answers, no more than a paragraph, are sufficient for each.
+1. VPN
+a. What bandwidth is provided over the IPsec VPN DSL links from Green
+Bay, WI and Chicago IL? Look up the typical DSL bandwidth in the
+telecom book. Then look at the bandwidth needed at these sites on page
+24. Propose a way to use DSL to provide this amount of bandwidth. If
+DSL can’t provide this bandwidth, describe strategies to meet the needs of
+these two offices.
+1
+
+--- Page 2 ---
+b. Does DSL connect Green Bay and Chicago with Syracuse, or is it an
+access technology? If DSL is an access technology, what wide area
+technology do you think it connects to? If DSL is a wide area technology,
+explain its distance limits, if any.
+c. Is the VPN running over the open Internet?
+d. Why would TacDoh use DSL links and a VPN for these offices instead of
+a T1, T3 or OC3 link?
+2. Carrier Ethernet
+a. Why would TacDoh explicitly prefer carrier Ethernet over other
+alternatives, such as a VPN for all sites, or T3 (OC1) or OC3 links running
+SONET?
+b. Last mile: Qwest provides Ethernet local access via native Ethernet (MAN
+Carrier Ethernet) or SONET. Compare the configurability of MAN carrier
+Ethernet versus SONET: which one can provide more bandwidth options?
+c. Does the Qwest VPLS (MPLS) service encrypt your traffic? If not, is this
+satisfactory?
+d. Compare the redundancy of the Qwest proposal with your current
+network.
+3. Cost. The Qwest proposal costs $142,000 per month.
+a. What is the cost of your current network, as shown in Figure 1? Typical
+monthly costs are $45,000 for OC-3, $15,000 for T-3, and $1,000 for 7
+Mbps business DSL.
+b. Does the Qwest proposal offer a cost savings over your current network?
+c. Your CEO asks what network changes can be made, and savings obtained,
+if video is eliminated. Provide a brief analysis.
+4. Metro area network (MAN)
+a. Which of your sites, if any, can be connected by a metropolitan area
+network (MAN)? Assume MANs are available in all the metro areas in
+which your company has facilities. Briefly explain your answer. If the
+MAN is feasible and it is inexpensive, briefly explain how the aircraft
+parts company might use it.
+5. Bandwidth
+a. How many phone conversations can be carried in 50 Mbps of bandwidth,
+as the headquarters sites require? Assume maximum utilization is 70%
+and that the average bandwidth used in a voice call is 32 kbps.
+b. In Lotus Notes, how many 1MB documents can be shared (replicated) per
+minute with 20 Mbps of bandwidth? Assume 70% maximum utilization.
+6. Bandwidth to external sites
+a. Your biggest customer requires you to send all their documents in a single
+daily batch transmission that must start after 5pm and must be complete by
+6pm. They are currently in Syracuse, NY, adjacent to your facility and
+connected via a shared LAN, but are moving to Atlanta, GA. The size of
+2
+
+--- Page 3 ---
+the files to be sent daily is approximately 300 MB. Describe and briefly
+discuss at least 3 options you have.
+b. Your aircraft parts company has a manufacturing subsidiary in a remote
+area, connected only by a VSAT satellite link. You have a choice of
+9.6kbps or 64kbps service. The site has the following traffic in a 10 hour
+day:
+i. Lotus Notes documents: 500 messages per day, averaging 1MB
+ii. Web/Internet access: 25 users, requiring general Web browsing
+capabilities as part of their jobs. Assume 2MB/hr/user.
+iii. ERP (SAP) XML data: purchases, invoices, shipments, payroll,
+etc. 500 messages per day, averaging 250 KB per message
+iv. Voice is handled via landline phones; it is not carried over the
+VSAT link, and there is no video.
+Could you use 9.6kbps? Could you use 64kbps? Or is neither sufficient?
+What if you spread ERP and Notes traffic over 24 hours instead of 10?
+7. Two railroads, UP and CSX, offer you the use of their fiber optic networks, which
+serve all your locations, as an incentive for you to sign a contract for using their
+intermodal services for inbound shipments to your distribution center. Assume
+that the transportation economics are favorable, that the railroad fiber network can
+handle your data traffic, and that the telecom cost is half of Qwest’s bid. You
+would have to get to the railroad network point of presence. Assume a MAN is
+available in all cities in which you have facilities, and that the MAN costs would
+be $20,000 per month for all 8 sites and would provide the same bandwidth as the
+Qwest proposal. Would you move your data traffic onto the railroad’s private
+network? If so, what conditions would you require? Discuss briefly.
+B. Review of Development Cycle 1
+Take out your homework 2 solutions and revise them to reflect the knowledge gained
+from doing the first cycle of development. Don't rewrite the document; just make
+changes, additions or deletions to reflect what you've learned. They can be brief; they
+can refer to homework sets 3-9 as needed.
+Please put in revised screen shots from your Web site to replace the initial Web pages in
+your homework 2 solution. Also, revise your estimate of the number and complexity of
+Web pages to implement your requirements.
+Hand in the revised requirements narrative document. Keep it the same length and
+organization as your original document. Update the user interface, process descriptions,
+resource estimates, etc. Change the error bounds on the resource estimates to reflect the
+later stage of development. This will be the starting point for spiral 2.
+While you would normally include the UML models, data model, sample database and
+prototype Web application in the revised requirements (and/or design documents),
+assume that they are available and will be delivered to the management as separate
+documents, to which you may refer. Thus, you should assume that homework sets 3-9
+3
+
+--- Page 4 ---
+are being handed in to the management as well, and that they have been appropriately
+edited. Again, revise only homework 2.
+Add one or two pages of comments at the beginning of your revised requirements,
+addressing the following questions:
+• What do you believe the outcomes of development efforts would be in the
+following two cases:
+• Contracting development of your system to a vendor based on your
+original homework 2
+• Contracting development of your system to a vendor based on a
+package containing your homework sets 3-9 and revised homework 2
+• Do you believe the error bounds? Do they reflect the uncertainty that has
+been removed by the first cycle of the spiral model?
+• Do you feel the current requirements can be translated into a design and
+system with low risk, or are there still substantial elements of uncertainty? If
+so, identify some of the substantial elements of uncertainty.
+Hand in
+Hand in the communications question answer and the revised requirements document as
+two Word documents in a single zip file to the course Web site.
+Extra credit (extra 50% credit on homework 10)
+Assemble homework solutions 2-9, plus the first part of 10, into a single document that
+represents the entire first spiral of your system. Use screen shots to document the Web
+pages that you created in homework 6, 7 and 8. Create a table of contents for the
+document. Edit the document so that it’s generally consistent in style. Hand this in
+instead of the revised requirement document to the course Web site.
+This can be a useful project portfolio for you, and it may be a useful guide for future
+projects. This is completely optional; it is for extra credit only.
+4
+
+--- Page 5 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+1.264J / ESD.264J Database, Internet, and Systems Integration Technologies
+Fall 2013
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

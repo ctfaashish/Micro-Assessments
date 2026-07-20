@@ -1,0 +1,55 @@
+--- Page 1 ---
+CSSE 340: Foundations of Cybersecurity Homework 4
+Winter 2022-2023 Due: 10 Jan 2023
+SCORE: / 50
+Start on this assignment early, it may take a while.
+Complete this in your own word-processed document. Include the following data at the top: the
+class ID (CSSE 340), the homework number, your name, and the due date.
+The SSL video is about 50 minutes long, so budget for at least that amount of time for the SSL
+and PKI questions.
+SSL and PKI: Watch Moxie Marlinspike’s talk on SSL
+(https://www.youtube.com/watch?v=Z7Wl2FW2TcA) and answer the following questions:
+1. (3pts) What is the name of the tool Moxie created to perform man-in-the-middle attacks
+on SSL connections?
+2. (5pts) Explain how the tool in problem 1 works.
+You may need to find additional information not available in the video to answer this.
+3. (5pts) How can you modify or configure a web site to prevent Moxie’s tool (problem 1)
+from working on that site?
+4. (6pts) What are the two properties of Trust Agility?
+5. (5pts) Describe one limitation of Moxie’s proposed “Convergence” system.
+(continues on next page)
+
+--- Page 2 ---
+PASSWORD Exercises:
+6. (15pts) Use John the Ripper to crack the password to the “Q6” PDF linked from the
+course schedule page. Use the “pdf2john” and “john” command line tools (or similar
+programs). The answer to this question is in the PDF (requires password to read it).
+Decrypt that PDF and follow the instructions it contains to earn points on this ques-
+tion.
+To decrypt the PDF, you must install two tools: “John the Ripper” (a.k.a., “john”) and
+“pdf2john” to guess the password. The john tool requires hashes as input, so first you
+will need to extract the hash from the PDF using pdf2john.
+RECOMMENDED METHOD: Download and use the Parrot OS VM.
+1. Download the Parrot VM from moodle and open it in Virtual Box. We recommend
+you use the image we provide since it will be useful for future exercises in this class.
+2. Inside the vm, load a web browser, navigate to the course website, and download the
+encrypted PDF into your VM.
+3. Open a terminal and navigate to the directory where you downloaded the PDF
+4. Extract the hash from the PDF into a text file. Use pdf2john (which is in
+/usr/share/john) to do this. Your command will look something like this:
+/usr/share/john/pdf2john.pl Q6.pdf > myhash.txt
+5. Use john to crack the hashed password. You may want to tell john where to find a
+list of words to use. There’s a pretty good list in Parrot:
+/usr/share/dict/american-english
+Other option (you should really use Parrot instead):
+You can download John here: http://www.openwall.com/john/ Download and extract
+version or newer. You MUST use a jumbo version of john or you
+1.9.0-jumbo-1
+will have trouble cracking the password. If you can, download the pre-built binaries (it is
+easier) or use the version distributed with the Parrot VM.
+(Note: you’ll need John later in this class, so keep it – or Parrot – installed!)
+7. (2pts) Was the “john” activity an Online or an Offline dictionary attack?
+8. (3pts) Was the “john” activity a breach of attack on Confidentiality, Integrity, or Availa-
+bility? Justify your answer.
+9. (6pts) Describe two tools, procedures, or software features the owner of that encrypted
+PDF could use to make it significantly more difficult to attack.

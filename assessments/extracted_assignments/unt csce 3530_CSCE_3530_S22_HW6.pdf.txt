@@ -1,0 +1,162 @@
+--- Page 1 ---
+Homework #6
+CSCE 3530 – Introduction to Computer Networks
+Spring 2022
+100 Points
+Due: 05/02/2022, 11:55 PM
+Instructions: Clearly show all the steps and complete the homework either typed in word
+or handwritten. Do not copy and paste figures or text from the lecture notes. Please type
+all the software code(s) in the homework document. Convert the typed document into a
+single PDF. In case of handwritten document, scan it and convert it into PDF. Do not
+handwrite code. Do not create an archive (zip, tar, or rar) file for your submission. Not
+following the above instructions could result up to 50% deduction from your
+homework score. Upload all the materials to Canvas on or before the due date and time.
+Late submissions are not allowed.
+1. Briefly explain TCP’s additive increase multiplicative decrease (AIMD) approach to
+congestion. (4 Points)
+It is a algorithm that is used in the control of congestion where it allows a
+sender to increase transmission rate to test for the amount of bandwidth
+available until loss occurs. That process mentioned is called an additive
+increase of the congestion window until congestion occurs where the window
+size will then be decreased in half in a multiplicative manner.
+2. Differentiate (at least two differences) between TCP Reno and TCP Tahoe. (4
+Points)
+TCP Reno TCP Tahoe
+Bad at multiple packet loss recovery Better at multiple packet loss recovery
+Recovers faster from packet loss Recovers slowly from packet loss
+3. A 100 Mbps (about to be congested) non-buffered link is used to send a huge file
+between two hosts. The receiving host has a large buffer than the congestion
+window. Assume the turnaround time is 3.2 ms, and the TCP Reno connection is in
+congestion avoidance phase. Answer the following questions.
+a. What is the maximum window size (cwnd) in bytes that this TCP connection
+can achieve? (4 Points)
+b. What is the maximum window size (cwnd) in segments, average window size
+in segments, and average throughput in Mbps if the TCP segment size is 2,000
+bytes? (6 Points)
+
+--- Page 2 ---
+4. Plot a single graph with congestion window on y-axis and transmission rounds on
+x-axis for TCP Tahoe and TCP Reno. On the plot, show TCP Tahoe’s and TCP
+Reno’s congestion window for 15 transmission rounds. Assume ssthresh is initially
+set to 12 segments and the first loss (triple-duplicate-ACK) occurs when 16
+segments are transmitted. (10 Points)
+Round Ssthresh Tahoe Reno
+1 12 1 1
+2 12 2 2
+3 12 4 4
+4 12 8 8
+5 12 10 10
+6 12 11 11
+7 12 12 12
+8 12 13 13
+9 12 14 14
+10 12 15 15
+
+--- Page 3 ---
+11 12 16 16
+12 9 1 9
+13 9 2 10
+14 9 4 11
+15 9 7 12
+18
+16
+14
+12
+10
+8
+6
+4
+2
+0
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+Ssthresh Tahoe Reno
+5. Why is TCP fair? How can TCP and UDP connections fairly coexists in the network?
+(4 Points)
+TCP has a fairness goal which states, if k TCP sessions share same
+bottleneck link of bandwidth R, each should have average rate of R/K.TCP and
+UDP connections fairly coexists in the network by creating multiple
+connections either in UDP or TCP depending on the function the application
+or website requires.
+6. What are the two planes in a router? Differentiate (at least two differences) between
+these planes. (4 Points)
+Data plane: Forwarding function that determines how datagrams that arrive to router
+are forwarded to router output port.
+Control plane: Network logic that determines how a datagram is routed from source
+to destination hosts.
+
+--- Page 4 ---
+Data Plane Control Plane
+Responsible for forwarding packets Responsible for routing table that
+from source to destination determines how a packet is routed
+Main task is dependent on the control Works independently without the data
+plane plane
+7. Draw the router architecture. Label and describe all the blocks in the architecture.
+(15 Points)
+Router input ports: It performs the physical layer of line termination of an
+incoming physical link at a router, also has data link layer which are cognizant
+with ethernet. The lookup forwarding function is also performed at the input
+port where the forwarding table is used to determine where a datagram that
+when traveling through the switch fabric is forwarded to a specific output
+port.
+Router output ports: The output ports stores datagrams in a datagram buffer
+and its scheduling discipline chooses among the queued datagrams for
+transmission.
+Router processor: The routing processor computes the forwarding table and
+pushes them to the input ports and manages and executes routing protocols.
+Switching Fabric: It enables a connection from the routers input port to the
+output port. It is the network found inside a router, completely contained
+within the physical router itself.
+
+--- Page 6 ---
+8. Describe the three different types of switching fabrics used in a router. Draw the
+architecture for each type of switching fabric. (15 Points)
+Memory Switch: The memory switch was a switching fabric commonly found
+in first generation routers where routers were traditional computers with
+switching under direct control of CPU. The packets were written into and read
+from memory, but the speed of this process was limited as it only allowed 2
+bus crossings per datagram/packet.
+Bus: Switching via a bus is where datagrams from input port memory to
+output port memory where the transfer is done directly via a shared bus.
+However, the process is limited because the switching speed is limited by the
+bus bandwidth.
+Interconnection/Crossbar Network: Switching via a crossbar network was
+able to overcome bus bandwidth limitations where its advanced design by
+fragmenting
+datagram into fixed length cells, switch cells through the fabric allowed
+multiple packets to be forwarded in parallel.
+
+--- Page 7 ---
+9. Describe FIFO scheduling, Priority Scheduling, Round Robin (RR) Scheduling, and
+Weighted Fair Queuing (WFQ) for incoming datagrams. (12 Points)
+
+--- Page 8 ---
+FIFO scheduling: Described as the First in First Out scheduling, where
+packets that arrive in link are sent out in the order they arrive to the queue. It
+also has a discard policy that if the queue/buffer is full, the router will discard
+those packets, another policy where packets are dropped or removed based
+on priority basis or randomly drop and remove packets.
+Priority Scheduling: Scheduling where packets with the highest priority and
+low priority are pushed to separate queues, and when they need to be sent
+the packet with the highest priority is processed first.
+Round Robin (RR) Scheduling: The Round Robin Scheduling is where
+packets are classified into multiple classes where it cyclically scans class
+queues and send one complete packet from each class if available. There is
+no priority between packets.
+Weighted Fair Queuing (WFQ): Weighted Fair Queuing is similar to the RR
+scheduling as it also deals in classifiers and cyclically scans class queues.
+The datagrams are sorted into a weighted queue, where each class gets a
+weighted amount of service in each cycle.
+10. List and describe at least five (5) fields in the IP datagram header. (10 Points)
+Source IP address: Source of which datagrams are being sent; their unique
+32-bit IP address is the source IP address.
+Destination IP address: Unique field in which the datagrams being sent to
+directed to this specific 32-bit address.
+Version: It displays the current version of IP used, whether it be 4 or 6.
+Identifier (16 bit): Gives packets a unique number that allows it to be used for
+fragmentation and reassembly.
+Time to Live: Number of hops a datagram can make before dropping, its “life”
+decrements at each router it hops from.
+11. A 4,500-byte datagram is to be sent through a router that has an MTU (Maximum
+Transmission Unit) of 1,640 bytes. How many fragments are generated and what
+are the values of the fields (length, ID, fragment flag, and offset) of the fragmented
+IP datagrams. Assume an ID number 2452 for the actual datagram. (12 Points)

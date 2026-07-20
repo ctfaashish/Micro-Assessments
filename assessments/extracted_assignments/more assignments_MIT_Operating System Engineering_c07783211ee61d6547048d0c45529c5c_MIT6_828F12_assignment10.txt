@@ -1,0 +1,138 @@
+--- Page 1 ---
+In-class: xv6 log
+In-class: xv6 log
+This assignment explores the xv6 log in two parts. First, you'll artificially create a crash which illustrates why logging
+is needed. Second, you'll remove one inefficiency in the xv6 logging system.
+Creating a Problem
+The point of the xv6 log is to cause all the disk updates of a filesystem operation to be atomic with respect to crashes.
+For example, file creation involves both adding a new entry to a directory and marking the new file's inode as in-use.
+A crash that happened after one but before the other would leave the file system in an incorrect state after a reboot, if
+there were no log.
+The following steps will break the logging code in a way that leaves a file partially created.
+First, replace in with this code:
+commit_trans() log.c
+#include "mmu.h"
+#include "proc.h"
+void
+commit_trans(void)
+{
+if (log.lh.n > 0) {
+write_head();
+if(proc->pid > 1) // AAA
+log.lh.sector[0] = 0; // BBB
+install_trans();
+if(proc->pid > 1) // AAA
+panic("commit_trans mimicking crash"); // CCC
+log.lh.n = 0;
+write_head();
+}
+acquire(&log.lock);
+log.busy = 0;
+wakeup(&log);
+release(&log.lock);
+}
+The BBB line causes the first sector in the log to be written to sector zero, rather than wherever it should be written.
+During file creation, the first sector in the log is the new file's inode updated to have non-zero . Line BBB causes
+type
+the block with the updated inode to be written to sector 0 (whence it will never be read), leaving the on-disk inode still
+marked unallocated. The CCC line forces a crash. The AAA lines suppress this buggy behavior for , which creates
+init
+files before the shell starts.
+Second, replace in with this code:
+recover_from_log() log.c
+static void
+recover_from_log(void)
+{
+read_head();
+cprintf("recovery: n=%d but ignoring\n", log.lh.n);
+// install_trans();
+log.lh.n = 0;
+// write_head();
+}
+This modification suppresses the log recovery (which would repair the damage caused by your change to
+).
+commit_trans()
+Finally, remove the option from the definition of in your Makefile so that the disk image will see
+-snapshot QEMUOPTS
+the changes:
+QEMUOPTS = -hdb fs.img xv6.img -smp $(CPUS) -m 512 $(QEMUEXTRA)
+1
+
+--- Page 2 ---
+In-class: xv6 log
+Now remove and run xv6:
+fs.img
+% rm fs.img ; make qemu
+Tell the xv6 shell to create a file:
+$ echo hi > a
+You should see the panic from . So far it is as if a crash occurred in a non-logging system in the
+commit_trans()
+middle of creating a file.
+Now re-start xv6, keeping the same :
+fs.img
+% make qemu
+And look at file :
+a
+$ cat a
+Something should go wrong. Make sure you understand what happened. Which of the file creation's modifications
+were written to the disk before the crash, and which were not?
+Solving the Problem
+Now fix :
+recover_from_log()
+static void
+recover_from_log(void)
+{
+read_head();
+cprintf("recovery: n=%d\n", log.lh.n);
+install_trans();
+log.lh.n = 0;
+write_head();
+}
+Run xv6 (keeping the same ) and read again:
+fs.img a
+$ cat a
+This time there should be no crash. Make sure you understand why the file system now works.
+Why was the file empty, even though you created it with ?
+echo hi > a
+Now remove your modifications to (the if's and the AAA and BBB lines), so that logging works
+commit_trans()
+again, and remove .
+fs.img
+Streamlining Commit
+Suppose the file system code wants to update an inode in block 3. The file system code will call
+bp=bread(sector
+, update the buffer data, then call . will copy the data to a block in the log on disk, for
+3) log_write(bp) log_write()
+example sector 999. When the file system code commits, reads sector 999 from the log, copies its
+install_trans()
+contents into the in-memory buffer for sector 3, and then writes that buffer to sector 3 on the disk.
+However, in , it turns out that the modified sector 3 is guaranteed to be still in the buffer cache,
+install_trans()
+where the file system code left it. Make sure you understand why it would be a mistake for the buffer cache to evict
+sector 3 from the buffer cache before the commit.
+2
+
+--- Page 3 ---
+In-class: xv6 log
+Since the modified sector 3 is guaranteed to already be in the buffer cache, there's no need for to
+install_trans()
+read sector 999 from the log. Your job: modify so that, when is called from ,
+log.c install_trans() commit_trans()
+does not perform the needless read from the log.
+install_trans()
+To test your changes, create a file in xv6, restart, and make sure the file is still there.
+Challenge problem: writes each log sector to disk immediately, and (and
+log_write() commit_trans()
+) always write the file system blocks to the disk right away. Figure out how to improve performance
+install_trans()
+by delaying these writes, and modify xv6 accordingly.
+Challenge problem: allow multiple concurrent transactions.
+Submit: your modified log.c
+3
+
+--- Page 4 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.828 Operating System Engineering
+Fall 2012
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

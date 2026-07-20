@@ -1,0 +1,327 @@
+--- Page 1 ---
+1. Assume you have been assigned to perform the risk management on your project.
+a) Based on Microsoft’s threat modeling process on Slide #14, identify the risks and
+rank them. Identify at least 3 risks. (10 points)
+b) Proposecountermeasuresto therisk you haveidentifiedin the abovesteps(10points)
+You may make suitable assumptions.
+a)
+Some risks found based on Microsoft’s threat modeling are:
+1. XSS
+2. SQL Injection
+3. Buffer Overflow
+DREAD:
+By evaluating, analyzing, and producing risk probabilities, DREAD cyberthreatintelligence
+modeling produces a threat rating framework.
+D(Damage)- Understanding the possible harm to an organization's IT infrastructure that a
+specific threat can cause.
+R(Reproducibility)- Reproducibility, in layman's words, refers tohow quickly athreatcan be
+repeated by other hackers or cyber criminals.
+E(Exploitable)- Analyze the system's vulnerabilities and see how simple an attack will be.
+A(Affected)- Evaluate how many users, both within and outside an organization
+(clients/customers), would be impacted after an attack.
+D(Discoverability)- The process of finding vulnerable points in an organization's device
+infrastructure and IT network.
+Ranking:
+XSS:
+Damage- 7
+Reproducibility- 4
+Exploitable- 10
+Affected- 10
+Discoverability- 10
+Risk rating- 41(Critical)
+SQL Injection:
+Damage- 10
+Reproducibility- 4
+Exploitable- 10
+Affected- 10
+Discoverability- 10
+Risk rating- 44(Critical)
+Buffer Overflow:
+Damage- 10
+Reproducibility- 4
+Exploitable- 10
+Affected- 10
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:19 GMT -05:00
+https://www.coursehero.com/file/105724504/Homework-3-secure-1pdf/
+
+--- Page 2 ---
+Discoverability- 10
+Risk rating- 44(Critical)
+Buffer overflow and SQL Injection are in same ranking.
+XSS is in 2nd position in the above three.
+B) Countermeasures for
+XSS:
+1. Escaping: The first and most important approach for avoiding XSS vulnerabilities in
+your applications is to escape user feedback. When an application receives data, it
+must first ensure that it is safe before rendering it to the end user. By escaping user
+feedback, malicious interpretation of key characters indata obtainedby awebpage is
+avoided.
+2. Validating: Validating input ensures that an application renders the correctdata while
+also preventing malicious data from causing harm to the web, database, and users.
+While whitelisting and input validation are more commonly associated with SQL
+injection, they can also be used to protect against XSS.
+3. Sanitizing: Sanitizing user feedback is a third way to avoid cross-site scripting
+attacks. Data sanitization is an effective defense, but it should not be used alone to
+combat XSS attacks. It's entirely conceivable that you'll need to employ all three
+mitigation strategies in order to construct a more reliable application.
+SQL Injection:
+1. Firewall: To help filter out malicious data, consider using a web application firewall
+(WAF) – either software or an appliance. The best ones will come with a
+comprehensive collection of default rules and make it simple to add new ones as
+needed. A WAF can be especially useful for providing security protection against a
+new vulnerability before a patch is issued.
+2. Reduce your attack surface: Remove any database features that you don't need to
+avoid a hacker exploiting it. The xp cmdshell extended stored procedurein MSSQL,
+for example, launches a Windows command shell and accepts a string for execution,
+which could be extremely useful to a hacker.
+3. Update and Patch: Hackers can exploit SQL injection vulnerabilities in applications
+and databasesonaregular basis,soit'simportant toimplement patchesand updatesas
+soon as possible.
+Buffer Overflow:
+1. Write secure code: Buffer overflows occur when more code is packed into a buffer
+than it can accommodate. Strcpy (), strcat (), sprintf (), and vsprintf () are C library
+functions that operate on null terminated strings and perform no bounds testing.
+Buffer overflows can also occur while using the scanf () family of functions. As a
+result, the only way to deal with buffer overflow issues is to avoid them in the first
+place.
+2. Stack execute invalidation: Malicious code (for example, assembly instructions to
+spawn a root shell) is stored in the stack rather than the code section because it isan
+input argument to the program. To execute some orders, the easiest solution is to
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:19 GMT -05:00
+https://www.coursehero.com/file/105724504/Homework-3-secure-1pdf/
+
+--- Page 3 ---
+invalidate the stack. A segmentation violation can occur if any code in thestacktries
+to execute other code.
+3. Compiler tools: Compilers have become more aggressive in terms of optimizations
+and tests over time. Various compiler tools already provide alerts when unsafe
+constructs like gets (), strcpy (), and others are used.
+2.) Briefly describe how each of the following technology work. Make sure you identify
+the roles of the keys as well as the aspects of security each technology provides.
+(10X4= 40 points)
+a) Symmetric Encryption
+b) Asymmetric Encryption
+c) Hashing
+d) Digital Signature
+Answer:
+a)
+Encryption and decryption through a single key.
+Symmetric encryption is a form of encryption that encrypts and decrypts data with the same
+key. Both the sender and the recipient(client and server) have identical copies of the key,
+which they keep private and never share.
+● To encrypt theirmessage,the senderuses anencryptionkey (usuallyastring ofletters
+and numbers).
+● The ciphertext, or encrypted code, appears as scrambledlettersandcannot bereadby
+anyone along the way.
+● The receiver decrypts the ciphertext into readable text using a decryption key.
+b)
+Uses a public key and private key to encrypt and decrypt data.
+Asymmetric cryptography, also known as public-key cryptography, encrypts and decrypts a
+message and protects it from unauthorized access or use using a pair of related keys — one
+public key and one private key.
+A public key is a cryptographic key that can be used by anyone toencryptamessage sothat
+only the intended recipient can decrypt it using their private key. Only the key's initiator has
+access to a private key, also known as a hidden key.
+For encryption and decryption, asymmetric encryption employs a mathematically connected
+pair of keys: a public key and a private key. If the public key is used for encryption, the
+private key associated with it is used for decryption;if the privatekeyis usedfor encryption,
+the public key associated with it is used for decryption.
+Uses:
+Digital signatures are usually used to authenticate data using asymmetric cryptography. A
+digital signatureisa mathematical techniquefor verifying theintegrity andvalidityof aletter,
+device, or digital document. It'sthe equivalentof ahandwrittensignature or astampedsealin
+digital form.
+C)
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:19 GMT -05:00
+https://www.coursehero.com/file/105724504/Homework-3-secure-1pdf/
+
+--- Page 4 ---
+Hashing is the process of mapping data of anysizetoafixedlength using analgorithm. This
+is known as a hash value (or hash code, hash sums, or even a hash digest if you want to get
+fancy).
+The role of hashing isone-way.Although itis theoreticallypossible toreverse-hashanything,
+the necessary computing power makes it impractical.
+Hashing is one-way.
+The wayit worksisthat eachhashing algorithm producesafixed-lengthoutput. Forexample,
+SHA-256 denotes that the algorithm will generate a hash value of 256 bits, which is usually
+represented by a 64-character hexadecimal string (h/t Matthew Haslett).
+Now, while encryption protects data in transit, hashing verifies that a file or piece of data
+hasn't been tampered with—that it's real. To put it another way, it works as a checksum.
+Every hash value is one-of-a-kind. A collision occurs when two separate files contain the
+same unique hash value, rendering the algorithm effectively useless.
+D) A digital signatureisa mathematical techniquefor checkingthelegitimacyand validityof
+a text, software, or digital document.It'sthedigital equivalentof ahandwrittensignature or a
+stamped seal, but it has a lot more protection built-in.
+Public-key cryptography, also knownas asymmetriccryptography, isused toconstruct digital
+signatures. Two keys are developed using a public key algorithm like RSA
+(Rivest-Shamir-Adleman), resulting in a mathematically linked pair of keys, one private and
+one public.
+● Personal identification number (PINs), passwords, and codes: Used to authenticate
+and validate the identity of a signer, as well as to authorize their signature. Themost
+popular methods are text, username, and password.
+● Asymmetric Cryptography: Employs a public key algorithm that encrypts and
+authenticates both private and public keys.
+● Cyclic Redudancy Check (CRC): An error-detecting code and verification function
+that detects changes to raw data in digital networks and storage devices.
+3. The system administration desires to perform the following activities.
+a) Block all incoming traffic from the network 125.120.0.0/16.
+b) Block all outgoing traffic that does not originate from 136.120.75.0/24.
+c) Block all outgoing ICMP packets.
+a)
+Answer:
+a) This action can be done from the console or by adding a rule to the inbound rules
+section of the firewall settings.
+b) First, we use CIDR to determine the number of IP addresses to be blocked, and then
+we use that range to block the IPs (125.120.0.0 - 125.125.255.255)
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:19 GMT -05:00
+https://www.coursehero.com/file/105724504/Homework-3-secure-1pdf/
+
+--- Page 5 ---
+c) I am assuming the use of Windows and we can use the command.
+d) netsh advfirewall firewall add rule name=”BlockinIP” Dir=In Action =Block
+Remote=125.120.0.0/16.
+e) Or
+f) in Linux machine we can do
+g) Iptables –A INPUT –s 125.120.0.0 -j DROP
+h) Iptables –A INPUT –s 125.120.0.16 -j DROP
+b)
+Answer:
+Deny rules take precedence over allow rules in the built-in Windows firewall, regardless of
+their order. We need to change the "default action" to "bar" if we want to block all traffic.
+First, add in our desired "Allow" rules and delete (or disable) your "Block" rules.
+Open the "Windows Firewall with Advanced Security" snapping, select "Windows Firewall
+Properties", and then change the "Inbound Connections" and/or "Outbound Connections" to
+"Block".
+Detailed instructions:
+Click Start and type MMC then select the MMC from the list.
+Click File -> Add/Remove Snap-In -> Add the IP Security Policy Snap-In and Click Ok
+Right Click on the middle section and click "Create IP Security Policy."
+Follow through the first wizard with the defaults giving the name/description you want.
+With the Windows that opens after the first wizard click "Add..."
+Click "Next" x3 and then click "Add..."
+Give the name of "Block All" or something similar. Click "Add..."
+Run through that wizard keeping all the defaults and click "OK".
+Select "Block All" and click "Next" and then "Add..." again.
+Follow the wizard giving the name of "Block" and select "Block" as the action.
+Repeat Steps 5-10 selecting the proper source/destination/protocol and selecting "Permit" in
+Step 10
+For the given Ip we first calculate the ip range using CIDR that is (136.120.75.0 to
+136.120.75.255)
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:19 GMT -05:00
+https://www.coursehero.com/file/105724504/Homework-3-secure-1pdf/
+
+--- Page 6 ---
+We set this range of ip addresses to action type Allow in the command of the firewall
+configuration.
+c)
+Answer:
+In Linux machines iptables is used to allow or block traffic. When a connection tries to
+establish itself on your system, iptables looks for a rule in its list to match it to. If itdoesn’t
+find one, it resorts to the default action.
+These commands alter the iptables thus by letting the firewallknowwhat istobe droppedor
+accepted.
+Here we are dropping the request:
+iptables -A OUTPUT -p icmp --icmp-type echo-request -j DROP
+4 a) Briefly explain the necessity of the PKI infrastructure.
+b) Explain how it works by highlightingitscomponents suchas trustmodels, certificate
+authorities and certificates.
+c) Both PGP and PKI use web of trust models. Explain how they are similar and how
+they are different.
+a) The Public Key Infrastructure (PKI) is a collection of applications, encryption
+technologies, and services that enable organizations to secure their network communications
+and business transactions. PKI allows a range of other security services, such as data
+confidentiality, data integrity, and non-repudiation, by integrating private (e.g., secret) key
+and public key cryptography. PKI is a network security architecture that combines digital
+certificates, public key cryptography, and certification authorities into a single system.
+A PKI certificate enables anyone to digitally bind their identity and perform any of the
+following functions:
+● It encrypts and authenticate documents and email messages.
+● It performs digitally sign email and documents.
+● Users' authentication and/or authorization to networks and applications, for example,
+PIV credential login
+● A user's permission to use an application gives them the opportunity to perform
+unique tasks.
+People are concerned about the protection of online trades and the privacy of personal
+information such as credit card numbers, so PKI is especially relevant in an e-commerce
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:19 GMT -05:00
+https://www.coursehero.com/file/105724504/Homework-3-secure-1pdf/
+
+--- Page 7 ---
+context.It's especially important in a business-to-business (B2B) setting because B2B
+transactions are often more valuable than consumer purchases.
+b)
+Trust models:
+Trust models provide a framework for establishing and managing trust between the various
+components of a public key infrastructure (PKI). The certification path validation process,
+which includes path discovery, signature verification, and revocation status testing, verifies
+these trust relationships.
+There are 4 types that are used to implement the trust model with PKI:
+● Hierarchical Trust Model
+● Bridge Trust Model
+● Hybrid Trust Model
+● Mesh Trust Model
+Certificate Authority:
+The CA is in responsible for all aspects of certificate administration for a PKI, including
+certificate lifecycle management phases. A certificate issued by a CA is used to verify that
+the subject onthecertificate isthe ownerof thepublic key.Theclientcreatesapublic-private
+key pair in a PKI scheme. The CA receives the public key andthe detailstobe imprintedon
+the certificate.
+Root Certificates and the Certificate Chain:
+When a CA issues a PKI certificate, it begins by validating the individual to which it is
+issuing. After that, it generates a certificate containing the validateddata andsigns it withits
+private key.
+Any PKI certificate that has been signed by a trusted root can be trusted. CAs, on the other
+hand, almost never sign directly from their trusted origins. It's too dangerous and could lead
+to technical difficulties. Instead, CAs create intermediate roots that they sign with their
+confidence roots. End user or leaf certificates are then issued using certain intermediate roots.
+Authenticating PKI certification:
+Handshakes are used in PKI infrastructure for authentication (and, in the case of SSL/TLS,
+for negotiating encryption parameters). When PKI isused, theserver or enduserpresents the
+other party with its certificate and public key at the start of the link or session.
+Types of Public Key Infrastructure certificate:
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:19 GMT -05:00
+https://www.coursehero.com/file/105724504/Homework-3-secure-1pdf/
+
+--- Page 8 ---
+All PKI certificates are X.509 certificates with various key usage configurations. They are:
+● SSL/TLS certificates.
+● Code signing certificates.
+● Email Signing Certificates.
+● Personal Authetication Certtificate.
+● IoT certificate.
+Authentication and identity are managed by all public key infrastructure certificates. Some
+also have encryption capabilities, but authentication is the common thread that runs across
+them all.
+The PKI infrastructure is the backbone thatallows usto conductbusiness overthe internet. It
+is a patchwork of trust and, in some cases, security. And it's done insucha waythatmodern
+machines can complete the task in milliseconds.
+C)
+Answer:
+In the world of PKI, you usually need two certificates: one for signing and one for
+encryption; a PGP Key will hold both keys.
+They are similar in a way that both PKI and PGP use public and privatekeys toencryptand
+decrypt data and how they exchange this between the users over the internet without letting
+anyone else intercept. But they differ in the way they trust if the recipient and sender are
+actually the ones who they portray to be. Lets see how they are different now,
+How can you be sure that the key belongs to the person? - say "john son, son@john.com"?
+In the PKI,
+You have faith inRoot CA (certificateauthority). You havetacit trustinit. VeriSign truststhe
+protocols and policies are in order to ensure that it can never grant john sona certificate that
+never belonged to him in the first place. Many of these Root CAs and Firefox and Chrome,
+etc. have been baked into, and can just trust them.
+In the PGP,
+It's special. It works on the "web-of-trust" model. You determine whetheraPGPkeyis valid
+or not for aparticularindividual, rather thanrelyingona singleall-powerfulconfidentialroot
+(or multiple of thesepoints for differentPKIs). Youmay also chooseto makethe decisionfor
+your peers. You could have a colleague, for example, Kelly, that you trust. If Kelly says,
+"Here's John son’s PGP Key," you will vote to trust Kelly's confirmation, if he says, by
+signing a copy of the key. This way, trust spreads on and on from one to others.
+Reference:
+https://www.reddit.com/r/AskNetsec/comments/16m5ja/difference_between_pgp_and_pki/
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:19 GMT -05:00
+https://www.coursehero.com/file/105724504/Homework-3-secure-1pdf/
+
+--- Page 9 ---
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:45:19 GMT -05:00
+https://www.coursehero.com/file/105724504/Homework-3-secure-1pdf/
+Powered by TCPDF (www.tcpdf.org)

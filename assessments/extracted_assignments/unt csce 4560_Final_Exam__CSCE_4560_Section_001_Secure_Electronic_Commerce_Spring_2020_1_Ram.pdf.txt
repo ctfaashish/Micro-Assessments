@@ -1,0 +1,289 @@
+--- Page 1 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+Final Exam
+Due May 3 at 11:59pm Points 100 Questions 34
+Available until May 3 at 11:59pm Time Limit 25 Minutes
+Instructions
+The final exam is 30 questions, and you have 25 minutes to complete it. Please TAKE IT BY MAY 3!!
+We threw a lot at you this semester, and the final is comprehensive, but it is more heavily weighted
+toward the material after the midterm, so focus your studying efforts there. Thanks and good luck!
+Attempt History
+Attempt Time Score
+LATEST Attempt 1 18 minutes 95.88 out of 100
+ Correct answers are hidden.
+Score for this quiz: 95.88 out of 100
+Submitted Mar 29 at 9am
+This attempt took 18 minutes.
+Question 1 2 / 2 pts
+A common file name for the homepage of a website is:
+home.web
+index.html
+home.txt
+main.css
+https://unt.instructure.com/courses/26807/quizzes/143552 1/14
+
+--- Page 2 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+IInnccoorrrreecctt Question 2 0 / 3 pts
+In Javascript, the DOM would be useful for:
+connecting css to a database
+storing data object methods
+all of these answers are correct
+connecting javascript code to html elements
+Question 3 3 / 3 pts
+I want to remove the 'Justin Beiber' record from the celebs table.
+ALTER TABLE celebs DROP COLUMN 'Justin Beiber';
+True
+False
+3 / 3 pts
+Question 4
+Shopping cart software is attached to a database to store products and
+orders
+True
+https://unt.instructure.com/courses/26807/quizzes/143552 2/14
+
+--- Page 3 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+False
+Question 5 3 / 3 pts
+Someone sees your fancy new site and asks what your CMS is. You
+would reply ________.
+Wordpress
+Question 6 3 / 3 pts
+You can purchase your own SSL certificate
+True
+False
+3 / 3 pts
+Question 7
+Modifying the Wordpress / Woocommerce core files makes your
+installation more secure, since commonly known exploits would not work
+in your custom code
+True
+False
+https://unt.instructure.com/courses/26807/quizzes/143552 3/14
+
+--- Page 4 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+Question 8 3 / 3 pts
+Storing a password in PHP is not allowed since PHP is open source and
+this password would be visible on the client's (user's) computer
+True
+False
+Question 9 3 / 3 pts
+In public-key encryption, you can post your public key on your webpage if
+you like - the public key can be given to anyone
+True
+False
+3 / 3 pts
+Question 10
+Reflected XSS attacks are much more damaging than stored XSS attacks
+True
+False
+3 / 3 pts
+Question 11
+https://unt.instructure.com/courses/26807/quizzes/143552 4/14
+
+--- Page 5 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+This is an example of a potential:
+Privilege Escalation
+Remote File Injection
+SQL injection vulnerability
+XSS vulnerability
+Question 12 3 / 3 pts
+Using a nonce to verify administrative requests is a good idea
+True
+False
+Question 13 3 / 3 pts
+Fixing Cross-Site Scripting vulnerabilities usually lies in:
+validating input and sanitizing output
+filtering all SQL commands with prepare()
+using a firewall
+requiring strong passwords
+https://unt.instructure.com/courses/26807/quizzes/143552 5/14
+
+--- Page 6 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+Question 14 3 / 3 pts
+_____ provides security at the Network Layer and protects a much wider
+range of applications than SSL.
+IPSec
+UDP
+HTTP
+TLS
+Question 15 3 / 3 pts
+IPSec is an application layer security protocol
+True
+False
+3 / 3 pts
+Question 16
+Public Key Infrastructure (PKI) uses a(n) _____ certificate
+IEEE 802.11
+X.509
+X.18
+https://unt.instructure.com/courses/26807/quizzes/143552 6/14
+
+--- Page 7 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+IEEE 802.11g
+3 / 3 pts
+Question 17
+In a hashing algorithm, the higher the collision rate, the better
+True
+False
+Question 18 3 / 3 pts
+If UNT used subdomains for each college, like business.unt.edu,
+engineering.unt.edu, music.unt.edu and they wanted a certificate that covered them all,
+they should get a(n) ________ certificate.
+wildcard
+Question 19 3 / 3 pts
+Pick a reason that an SSL certificate might be revoked
+certificates cannot be revoked - they are just not used any longer
+it is a self-signed certificate
+the private key was compromised
+https://unt.instructure.com/courses/26807/quizzes/143552 7/14
+
+--- Page 8 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+a browser does not recognize the certificate authority (CA)
+Question 20 3 / 3 pts
+The terminal command to create certificates
+cert -new
+openssl
+sudo
+pwd
+3 / 3 pts
+Question 21
+Bitcoin requires all transactions to clear through the central server
+(Bitcoin.org)
+True
+False
+3 / 3 pts
+Question 22
+I want to develop an app that uses blockchain smart contracts. I should
+look into:
+https://unt.instructure.com/courses/26807/quizzes/143552 8/14
+
+--- Page 9 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+Bitcoin
+IOTA
+Ethereum
+Ripple
+Question 23 3 / 3 pts
+Since OAuth requires a secure, encrypted connection with TLS, the Client
+ID is also encrypted when identifying the application to the OAuth service
+provider?.
+false
+true
+PPaarrttiiaall Question 24 1.88 / 3 pts
+Match the statement with whether it pertains to either AuthN or AuthZ or
+Neither.
+A fingerprint scanner with
+Neither
+finger attached
+A poorly light passport
+AuthN
+Enterprise Single-Sign On
+AuthN
+through Active Directory
+https://unt.instructure.com/courses/26807/quizzes/143552 9/14
+
+--- Page 10 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+A Developer role
+AuthZ
+granting access to GitHub
+Someone on the finance
+AuthZ
+floor using the executive
+bathroom
+A user logging in with an
+AuthN
+SSH key instead of their
+username/password
+credentials.
+A repudiated email from a
+AuthN
+coworker.
+A developer generating
+Neither
+artifacts in a repository.
+Question 25 3 / 3 pts
+Pick the statement that is true
+Cookies cannot be encrypted or they won't be usable by the client
+Cookies are required to enable SSL
+Signed cookies help prevent the user from changing the data they contain
+Cookies cannot be signed
+Question 26 3 / 3 pts
+https://unt.instructure.com/courses/26807/quizzes/143552 10/14
+
+--- Page 11 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+What is a reasonable session length (or roughly how much time should
+elapse before a session expires)?
+sessions should never expire for maximum security
+8 hours
+less than one second
+every time the software version is updated
+Question 27 3 / 3 pts
+If it is possible to implement cookies in such a way that your system still
+functions, $httponly = false is a much more secure setting than
+$httponly = true.
+True
+False
+Question 28 3 / 3 pts
+It is more secure to have GET requests to your code be idempotent
+True
+False
+https://unt.instructure.com/courses/26807/quizzes/143552 11/14
+
+--- Page 12 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+Question 29 2 / 2 pts
+WooCommerce uses global variables
+True
+False
+Question 30 3 / 3 pts
+Select the one that PHP can NOT do:
+send and receive cookies
+write and delete files on the server
+encrypt data
+collect form data submitted through an html form
+interact with files on the client machine
+add, delete, and modify data in a database
+Question 31 3 / 3 pts
+PHP always goes in a separate (.php) file and cannot be embedded
+directly in the html document
+True
+https://unt.instructure.com/courses/26807/quizzes/143552 12/14
+
+--- Page 13 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+False
+Question 32 3 / 3 pts
+I want to store data in the server's memory across multiple pages with
+PHP. What should I use?
+a session variable
+the $_POST superglobal
+a filter
+a PHP include file
+Question 33 3 / 3 pts
+Which of the following is true of cookies?
+they should be set to never expire
+they should be unique to each visitor
+PHP uses the write() method to set cookies
+they are stored server-side and matched to a user's email address upon
+login
+https://unt.instructure.com/courses/26807/quizzes/143552 13/14
+
+--- Page 14 ---
+3/29/2020 Final Exam: CSCE 4560 Section 001 - Secure Electronic Commerce (Spring 2020 1)
+Question 34 3 / 3 pts
+PHP uses this function for random number generation
+mt_rand()
+rand()
+random_int()
+all of these answers
+Quiz Score: 95.88 out of 100
+https://unt.instructure.com/courses/26807/quizzes/143552 14/14

@@ -1,0 +1,46 @@
+--- Page 1 ---
+1.
+(a): System low is the lowest security level in the system, so if a virus were to be introduced
+to it, it would not be able to spread to system high. The BLP paradigm states that information
+can only travel one way, from higher to lower levels, and not the other way around. This
+indicates that the virus would be contained in the system's low compartment and would not
+have access to or control over data stored in higher compartments.
+(b): It will have the ability to spread around if the virus were placed on system high. Because
+according to the BLP model data can flow from higher to lower levels.
+2.
+3.
+(a): none
+(b): read and write
+(c): read
+(d): write
+(e): read
+4.
+(a): Can not access United Airlines so none, and read, write for delta since he already has
+access
+(b): Can only access one of them since they are different conflict class, so either read, write
+for Delta or read, write for Holiday inn
+(c): Can not get access to both Delta and United airlines company groups, so none for both
+(d): will get access to both companies(read and write)
+(e):will get access, read and write to double tree company
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:23:44 GMT -05:00
+https://www.coursehero.com/file/202056286/HW3docx/
+
+--- Page 2 ---
+5.
+a. a=s+t, and s is confidential therefore a is has to be confidential because in order to
+read public a has to be confidential (C0
+b. B is set to 1 if q>0. Therefore b has to be equal to what q is set to which is restricted
+(R)
+c. c is set to 1 if both q > 0 and r > 0, since r is Secret so c has at least to be Serect (S)
+d. d is set to 1 if q <= 0, therefore d is at most equal to Restricted (R)
+6.
+The Biba model because, Biba model concentrates on avoiding unwanted data modification,
+which is crucial for high-integrity systems where data must continue to be reliable and
+correct. In accordance with the paradigm, there is a rigid hierarchy of integrity levels, with the
+highest level representing the greatest trustworthiness and the lowest level representing the
+least. Moreover, the model features a "no read-up" rule that prevents lower levels from
+reading information from upper levels. This makes sure that lower-level data cannot change
+higher-level data that is more integrity-conserving.
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:23:44 GMT -05:00
+https://www.coursehero.com/file/202056286/HW3docx/
+Powered by TCPDF (www.tcpdf.org)

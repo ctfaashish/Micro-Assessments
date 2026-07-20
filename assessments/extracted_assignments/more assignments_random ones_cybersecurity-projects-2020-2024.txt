@@ -1,0 +1,154 @@
+--- Page 1 ---
+BYU Cybersecurity Projects 2020-2024
+Projects completed in Engineering Capstone program 2021-2024
+Many of these projects were multidisciplinary projects with cybersecurity needs
+2023-2024
+AUGMENTED REALITY RF SIGNAL VISUALIZATION
+Sponsor: Applied Signal Technology an RTX Business (Raytheon)
+Scanning the radio frequency (RF) spectrum to find and localize the presence of RF transmitters is a
+capability that can be highly valuable to industry and government consumers. This project helps a user
+visualize these signals in the real-world using augmented reality (AR) while also providing relevant
+information about the signals. We have designed an AR solution using a Microsoft HoloLens2 that allows a
+user to visualize RF data collected by an antenna dish in an interactive environment. The primary objective
+is to accurately describe the location and characteristics of signals provided from a radio scan. This is
+achieved by creating icons for each signal and placing them in the correct location in the simulated
+environment. These icons can then be selected to display more data. Additionally, the project is fast, user
+friendly, and makes it easy for the user to see relevant information about the signals. This project has
+applications in many different situations, including industrial and regulatory. Its main purpose is to help a user visualize signals in the real-world so the signal source can be accurately located. This increases deficiency and decreases human error in localizing and characterizing these signals.
+WHITE BOX SWITCH SECURITY TESTBED
+Sponsor: Applied Signal Technology an RTX Business (Raytheon)
+Switches are key components in enterprise network architectures that route all traKic on a network. Currently, most organizations use proprietary switches, meaning that the switch comes pre-installed with vendor software. However, white-box switches—switches that can be customized to run whichever software the customer desires—are rising in popularity due to their lower cost and greater modularity. As more enterprises start to use white box switches, cybersecurity standards demand that white box switch security is more heavily tested. In response to this knowledge gap, the team designed a methodology to assess the security of a generic white box switch to discover, identify, and replicate vulnerabilities in the switch. The findings of the project are of particular interest to the sponsor, Applied Signal Technology
+(AST), which is an RTX Business. As a defense contractor, AST helps defend the nation against
+technological threats. The results of the security assessment will assist AST in developing and maintaining a strong security posture regarding enterprise networking equipment.
+ADAPTABLE CRITICAL INFRASTRUCTURE ICS TRAINING APPARATUS Sponsor: Idaho National Laboratory Idaho National Laboratory (INL) develops cybersecurity trainings for the critical infrastructure workforce. Recent hacks such as the attack on Colonial Pipeline and hacks against Ukraine have highlighted the urgent need for hands-on cybersecurity trainings focused on the energy and communication sectors. The capstone team collaborated with INL cyber experts to develop a mobile industrial controls cybersecurity training kit. The project included designing hardware including routers and PLCs, and creating an instructional manual and curriculum guidebook. Modeled after a real-world incident, the kit was created and tested for effectiveness in teaching key cybersecurity principles. The project will contribute to
+
+--- Page 2 ---
+strengthening cybersecurity preparedness in vital infrastructure sectors in the US and support US national
+security efforts.
+SECURE INDUSTRIAL NETWORK
+Sponsor: Microchip
+Manufacturers make use of assembly lines, which often include some type of sorting mechanisms. It can be complicated to design solutions for this and obtain the parts from various vendors to implement those solutions. The project, sponsored by Microchip, is to design a proof-of-concept industrial sorting line that utilizes their MPUs, capable of implementing high quality protocols and security for an industrial network. The team designed 3 custom PCBs to meet these purposes, implementing Profinet (and industrial, low- latency network protocol) and secure boot using Microchip’s SAMA7G54 MPU as well as several ethernet chips (PHYs, switches, etc.). The PCBs are used to manage a simple cube-sorting line. This solution provides to other companies a one-stop-shop to buy circuit components and follow PCB designs by Microchip, making it more convenient for vendors to find and integrate industrial lines while profiting
+Microchip.
+2022-2023
+TRUSTED AND ASSURED FPGA-BASED CRYPTOGRAPHIC ACCELERATORS
+SPONSOR: Georgia Tech Research Institute
+Cryptography is used around the world to protect business transactions, send secure messages, and ensure the integrity of data through encryption. Georgia Tech Research Institute’s Trusted
+Microelectronics Program OKice researches microelectronic applications, tools, and architectures to evaluate the security and reliability of microelectronics. The team was tasked with implementing an open- source cryptographic core, determining if it met National Institute of Standards and Technology (NIST) standards, and identifying potential security threats. They succeeded in implementing the open-source core using a Xilinx Pynq-Z2 field programmable gate array (FPGA) board. They also verified that the core complies with NIST standards and is formally equivalent according to GTRI’s tools. Finally, the team identified three side channel attack tasks as potential methods of penetrating the security of the
+cryptography engine. This project can be considered preliminary work into showing what kinds of attacks are possible. Future work could include potential countermeasures against side channel attacks.
+ARCHITECTURE FOR VULNERABILITY TESTING
+SPONSOR: Idaho National Laboratory
+Idaho National Laboratory (INL) focuses on research in renewable energy solutions, nuclear energy, and national security. INL asked the Capstone team to create an infrastructure-as-code solution that can be easily accessed and used to test multiple virtual machines against specific exploits. This work will be used by the United States government and its variously aKiliated bodies to test the security of critical industrial control systems to improve national security posture.
+2021- 2022
+INTRUSION DETECTION SYSTEM FOR MALCOLM PLATFORM
+SPONSOR: Idaho National Laboratory
+The Department of Energy’s Idaho National Laboratory (INL) is responsible for providing essential cybersecurity services for various industrial control systems and power plants across the United States. Their projects help to ensure the safety of critical infrastructure nationwide. One prominent tool that is
+
+--- Page 3 ---
+critical to providing these services is Malcolm, an open-source Intrusion Detection System (IDS) and
+cybersecurity analysis software. Currently, Malcolm provides users with various IDS tools for network
+analysis, such as Zeek and Arkime, as well as colorful and robust visual dashboards to give a sense of how
+a network is performing. Despite Malcolm’s current usefulness, however, there have been many
+suggestions made for adding additional software to Malcolm which would help provide more details and
+information concerning network traKic and threats to their users. This Capstone team integrated a
+powerful open-source Intrusion Detection System, Suricata, via docker into the Malcolm Tool Suite for use
+with the rest of the Malcolm Framework. We also modified Malcolm’s existing pipelines to route data to
+and from Suricata properly to ensure proper end-to-end functionality. Suricata will provide users with
+analysis on HTTP/DNS and several other protocols, along with powerful multi-threading and acceleration
+capabilities to help ensure a secure network.
+SECURITY FOR HIGH-END EMBEDDED SYSTEM
+SPONSOR: IMSAR
+IMSAR develops high performance multi-mode radar systems capable of all-weather imaging, monitoring,
+and surface search. Their radars are simple to integrate on manned and unmanned aircraft of all sizes. For
+this project, IMSAR challenged a multi-disciplinary team to provide a robust security system using both
+hardware and software solutions that could be used to protect Intellectual Property on an embedded
+computer system. The Capstone team, consisting of ECE, Cybersecurity, and ME students, achieved
+100% full-disk encryption and robust prevention of physical tampering.
+2020-2021
+MALCOLM ANALYTICS PIPELINE
+SPONSOR: Idaho National Laboratory
+Electronic messages have the potential to be intercepted, altered, or replaced with malicious messages.
+As part of its Homeland Security division, Idaho National Laboratory (INL) has developed and maintains a
+network analysis tool called Malcolm. Malcolm processes machine communication protocols locally to
+look for malicious traKic. This Capstone team helped integrate a sub-tool to parse the Bristol Standard
+Asynchronous/Synchronous Protocol (BSAP) and detect malicious traKic on the line. A graphical interface
+designed by the team clearly displays needed information, including possibly malicious data.
+Projects completed in Cybersecurity Capstone program 2021-2024
+2023-2024
+Countering Residential Proxies
+Sponsor: Sandia National Labs
+Objective: Enable cybersecurity professionals to detect residential proxies with high confidence
+through TCP/TLS RTT and fingerprinting, published to the open source community by April 2024.
+Automated Security Posture Analysis
+Sponsor: Alpine Software Group
+
+--- Page 4 ---
+Objective: Create a security posture assessment and reporting system for the subsidiaries of
+Alpine Software Group at a low operating cost that will measure compliance with data gathered
+from open source vulnerability scanning tools.
+Cyberjousting
+Sponsor: BYU Cybersecurity
+Objective: Create and deploy 5 cybersecurity labs with a cyber range for hands-on training,
+empowering students with practical skills by April 2024, using data-driven assessment for quality
+assurance.
+Cybersecurity for Cubesats
+Sponsor: BYU Electrical and Computer Engineering
+Objective: Ensure security of BYU-MAYANSAT’s systems and future cube satellites by
+implementing security frameworks, providing training to involved teams, and documenting
+processes for future projects.
+2022-2023
+Air Quality Sensor
+Sponsor: BYU Electrical and Computer Engineering
+Objective: Design, build, and test an inexpensive (<$100) household air quality sensor that
+seamlessly transfers data via a smartphone to a shared database.
+TLS-based proxy detection
+Sponsor: Sandia National Laboratories
+Objective: Provide the calculation and retrieval of TLS Round Trip Time in OpenSSL enabling
+Nginx and Apache webservers to have VPN/proxy detection capabilities.
+Caldera adversary emulation
+Sponsor: CES Operations Center
+Objective: By April 2023, develop, implement, test, and document a Caldera instance for the
+CES system with ten custom adversary profiles and accompanying schedule.
+2021-2022
+Team 1990
+Sponsor: Sandia National Laboratories
+Objective: Create an end-to-end encrypted one-way receiving device and software to encrypt
+and decrypt messages.
+Project Omni-Eye
+Sponsor: Splunk
+Objective: Create a tool using open-source materials that will help administrators understand
+what devices are communicating on their network.
+Project Origin
+
+--- Page 5 ---
+Sponsor: BYU Cybersecurity
+Objective: Perform a penetration test on ancestral logs development environment, reporting
+vulnerabilities, and proposing solutions to vulnerabilities.
+DOMO Connect
+Sponsor: DOMO
+Objective: Create a visualization tool to bring together all security related information for the
+company.
+2020-2021
+LoRaWAN Network Management System (Project Laura)
+Sponsor: Utopia Fiber
+Objective: Create a secure and scalable LoRaWAN® infrastructure for connecting, managing,
+and monitoring smart city IoT sensors.
+Fire Detection System - EDWIN Phase II (Edwin Ice)
+Sponsor: Utopia Fiber
+Objective: Create a supervised machine learning model for identifying wildfires and a mobile
+application that will send push notifications when a wildfire is detected.
+Develop Web-based UI for Brigade 2.0 (Project Kayak)
+Sponsor: Microsoft
+Objective: Create a secure, interactive web-based user Interface that oders full functionality for
+the Brigade event-driven scripting platform.
+Integrate Hyperscan into Yara (Team Yara)
+Sponsor: Sandia National Laboratories
+Objective: Replace the existing Yara pattern matching engine with Hyperscan and have the
+changes merged into the odicial repository.
+Armorvine Security Control System Database (Project Ivy)
+Sponsor: Filevine
+Objective: Provide a web application enabling small businesses to comply with security
+frameworks relevant to their industry.
+Introduce New Zeek Packages (Chief 117)
+Sponsor: Sandia National Laboratories
+Objective: Create new packages for the Zeek security platform to perform data extractions and
+detections on the C2 framework Covenant.

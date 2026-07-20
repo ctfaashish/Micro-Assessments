@@ -1,0 +1,55 @@
+--- Page 1 ---
+CS-1121 Visual Basic
+Project 1 Report
+Title:Splash Screen Application
+Author: Olajumobi Akeeb
+I certify that this project is the product of my own intellectual labor.
+_________________________________________________________
+(Author’s signature)
+Date: 22nd January,2017
+Lab: 11:00-11:50
+GRADING:
+______ Project Execution (0-10)
+3 Lesson A
+3 Lesson B
+4 Lesson C
+______ Program Documentation (0-5)
+3 TOE Chart
+1 Code
+1 Screen Captures
+______ Total
+1
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:35 GMT -05:00
+https://www.coursehero.com/file/30615285/CS-1121-Project-1docx/
+
+--- Page 2 ---
+TOE Chart
+Task Object Event
+Input: Entered text; Crighton Zoo lblName None
+Input: Entered text; Come visit our residents lblMsg None
+Processing: tmrExit Tick
+1. Add timer control
+2. Set interval to 6000
+3. Code timer control
+Output: After six seconds the application closes None
+PROJECT CODE
+Public Class frmSplash
+Private Sub tmrExit_Tick(sender As Object, e As EventArgs) Handles tmrExit.Tick
+Me.Close()
+End Sub
+End Class
+2
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:35 GMT -05:00
+https://www.coursehero.com/file/30615285/CS-1121-Project-1docx/
+
+--- Page 3 ---
+SCREEN CAPTURE
+3
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:35 GMT -05:00
+https://www.coursehero.com/file/30615285/CS-1121-Project-1docx/
+
+--- Page 4 ---
+4
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:35 GMT -05:00
+https://www.coursehero.com/file/30615285/CS-1121-Project-1docx/
+Powered by TCPDF (www.tcpdf.org)

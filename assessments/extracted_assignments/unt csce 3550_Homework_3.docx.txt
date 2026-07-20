@@ -1,0 +1,75 @@
+--- Page 1 ---
+Homework 3
+Final Grade 5%
+Topics: Virtualization, Containers, Access Control, Storage
+Homework questions must be answered in your own words. Cut-and-Paste answers from
+any resource are not acceptable and will receive a grade of zero.
+Answer the following questions using class notes & textbook in this word document underneath
+each question. Do not delete the question. Upload this document with your answers to
+Canvas by the due date.
+1. Why do we need Virtualization? State advantages & Disadvantages of Virtualization?
+Virtualization allows multiple systems to run concurrently on the same hardware.
+Virtualization helps manage systems more efficiently to save power, space, and cooling
+costs, while working to meet the needs of the users.
+Pros: hard efficient, available at all times, recover easy, quick setup, cloud migration
+Cons: high initial cost, creates a security risk, and scalability issues.
+2. List different type of virtualizations technologies and give one advantage and
+disadvantage of each.
+Full virtualization- Guest OS is isolated by the virtual machine from the virtualization
+layer and hardware.
+Pro: portable and compatible Cons: less secure and slow
+Para virtualization- Guest OS isn’t completely isolated by the VM from the virtualization
+layer and hardware, provides a different API which is utilized by the OS.
+Pro: fast in operations Cons: less portable and compatible
+OS-level virtualization- operating system create
+multiple, isolated application environments that reference the same
+kernel. Letting users perform different tasks on the same machine from different
+applications.
+Pros: offers near native performance Cons: No work offline
+3. In a Virtualized environment what is the difference between host machine and Guest
+machine?
+In the host machine, it’s the default machine that has the guest OS installed to share
+resources. The guest machine is installed in a virtual software which provides more than
+one OS and allows multiple users compared to only 1 host user.
+4. What is the purpose of the Guest Additions software? Where is it installed?
+Guest additions software improves the guest’s performance and usability in virtualbox. It
+is installed on the guest OS running the VM and allows features such as shared folders
+to be used.
+5. What are Containers? How is it managed?
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:27:38 GMT -05:00
+https://www.coursehero.com/file/82430752/Homework-3docx/
+
+--- Page 2 ---
+Containers standardize software packaging. They are a fusion of existing kernel
+features, filesystem tricks, and networking hacks. It is managed by the container engine
+that manages and pulls it all together. It is isolated to a private root filesystem and
+process namespace.
+6. Which Unix and Linux features does Containers rely on?
+They rely on Kernel support (namespaces, control groups, capabilities, secure
+computing), images (adds read/write layer that the container can update) and networking
+(bridge mode and host mode).
+7. What is the significance of UID 0? Who is allowed to use UID 0 and Why?
+UID 0 is reserved for the root user. UID is used by the root user (superuser) to perform
+any valid operation on any file or process.
+Execute the following commands on Virtualbox Ubuntu Server (Lab2) and analyze the
+output to answer the questions below. Providing output of each command is not enough.
+You need to analyze the output and specify what that output means.
+8. sudo fdisk -l diskname (use the name of your disk here)
+9. sudo cat /etc/fstab
+10. ps aux
+Q8. List all disks on the system.
+Listed all the disks on the system and shows the partitions with how much mb
+each disk takes. Also under the disk /dev/sda it shows each partition of the sda
+showing sda2 having 25gb for the server and sda3 having 15gb for the desktop.
+Q9. Analyze file system table and list all file systems.
+This command shows all the file systems, mount points, type, options. This also
+shows the UUID of the system, and swap partitions.
+Q10. Analyze the output of PS aux command and identify the key system processes.
+Shows all the running processes in the system. In the list, I see lab2 used ps aux,
+which is me using the command. For a key system process, looking at the first
+PID process, the root user is using the /sbin/init maybe-ubiquity which is
+the one true process to start them all.
+When completed, upload your word file by the due date of this Homework.
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:27:38 GMT -05:00
+https://www.coursehero.com/file/82430752/Homework-3docx/
+Powered by TCPDF (www.tcpdf.org)

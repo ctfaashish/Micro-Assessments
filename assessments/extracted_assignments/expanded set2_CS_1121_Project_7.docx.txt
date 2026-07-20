@@ -1,0 +1,229 @@
+--- Page 1 ---
+CS-1121 Visual Basic
+Project 7 Report
+Title: Cerrut Solution
+Author: Olajumobi Akeeb
+I certfy that this project is the product of my own intellectual labor.
+_________________________________________________________
+(Author’s signature)
+Date: 3/8/2017
+Lab: 11:00-11:50am
+Grading:
+______ Project Execution (0-10)
+3 Lesson A
+3 Lesson B
+4 Lesson C
+______ Program Documentation (0-5)
+3 TOE Chart
+1 Code
+1 Screen Captures
+______ Total
+1
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:53 GMT -05:00
+https://www.coursehero.com/file/30615229/CS-1121-Project-7docx/
+
+--- Page 2 ---
+TOE CHART
+TASK OBJECT EVENT
+1. Calculates gross pay, FWT, FICA, and net pay btnCalc Click
+2. Display calculated amounts in appropriate
+labels
+Displays calculated amounts from(btnCalc) lblGross, lblFwt, None
+lblFica, lblNet
+Clear lblGross, lblFwt, lblFica, lblNet txtName, TextChanged
+cboAllowances
+lstHours, SelectedValueChanged
+lstRates
+radMarried, CheckChanged
+radSingle
+Select the existng text txtName Enter
+Allow only numbers and backspace key cboAllowances KeyPress
+Get and display the name, hours worked, pay rate, txtName, None
+marital status, and withholding allowances lstHours,
+lstRates,
+radMarried,
+radSingle,
+cboAllowances
+Fill lstHours, lstRates, and cboAllowances with values, frmMain Load
+and then select a default item
+Exit the applicaton btnExit Click
+Verify that the user wants to close the applicaton, FormClosing
+and take the appropriate acton based on the user’s
+response
+2
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:53 GMT -05:00
+https://www.coursehero.com/file/30615229/CS-1121-Project-7docx/
+
+--- Page 3 ---
+PROJECT CODE
+Option Explicit On
+Option Strict On
+Option Infer Of
+' Name: Cerruti Project
+' Purpose: Displays gross pay, taxes, and net pay
+' Programmer: <Olajumobi Akeeb> on <3/19/2017>
+Imports System.ComponentModel
+Public Class frmMain
+' GetFwt function
+Sub GetFwt(ByVal dblweekpay As Double, ByVal intNumallow As Integer, ByRef dblTax As
+Double)
+'calculates and returns the FWT
+Const dblONE_ALLOW As Double = 76
+Dim dblTaxWages As Double
+'calculates taxable wages
+dblTaxWages = dblweekpay - intNumallow * dblONE_ALLOW
+'determine marital status and then calculate the FWT
+If radSingle.Checked Then
+Select Case dblTaxWages
+Case Is <= 43
+dblTax = 0
+Case Is <= 218
+dblTax = 0.1 * (dblTaxWages - 43)
+Case Is <= 753
+dblTax = 17.5 + 0.15 * (dblTaxWages - 218)
+Case Is <= 1762
+dblTax = 97.75 + 0.25 * (dblTaxWages - 753)
+Case Is <= 3627
+dblTax = 350 + 0.28 * (dblTaxWages - 1762)
+Case Is <= 7834
+dblTax = 872.2 + 0.33 * (dblTaxWages - 3627)
+Case Is <= 7865
+dblTax = 2260.51 + 0.35 * (dblTaxWages - 7834)
+Case Else
+dblTax = 2271.36 + 0.396 * (dblTaxWages - 7865)
+End Select
+Else
+' strMarital = "M"
+Select Case dblTaxWages
+Case Is <= 163
+dblTax = 0
+Case Is <= 512
+dblTax = 0.1 * (dblTaxWages - 163)
+Case Is <= 1582
+dblTax = 34.9 + 0.15 * (dblTaxWages - 512)
+Case Is <= 3025
+dblTax = 195.4 + 0.25 * (dblTaxWages - 1582)
+Case Is <= 4525
+3
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:53 GMT -05:00
+https://www.coursehero.com/file/30615229/CS-1121-Project-7docx/
+
+--- Page 4 ---
+dblTax = 556.15 + 0.28 * (dblTaxWages - 3025)
+Case Is <= 7953
+dblTax = 976.15 + 0.33 * (dblTaxWages - 4525)
+Case Is <= 8963
+dblTax = 2107.39 + 0.35 * (dblTaxWages - 7953)
+Case Else
+dblTax = 2460.89 + 0.396 * (dblTaxWages - 8963)
+End Select
+End If
+End Sub
+Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+Me.Close()
+End Sub
+Private Sub txtName_Enter(sender As Object, e As EventArgs) Handles txtName.Enter
+' select the existing text
+txtName.SelectAll()
+End Sub
+Private Sub cboAllowances_KeyPress(sender As Object, e As KeyPressEventArgs) Handles
+cboAllowances.KeyPress
+' allow only numbers and the Backspace key
+If (e.KeyChar < "0" OrElse e.KeyChar > "9") AndAlso e.KeyChar <> ControlChars.Back Then
+e.Handled = True
+End If
+End Sub
+Private Sub ClearLabels(sender As Object, e As EventArgs) Handles
+lstHours.SelectedValueChanged,
+lstRates.SelectedValueChanged, radSingle.CheckedChanged, radMarried.CheckedChanged,
+txtName.TextChanged, cboAllowances.TextChanged
+lblGross.Text = String.Empty
+lblFwt.Text = String.Empty
+lblFica.Text = String.Empty
+lblNet.Text = String.Empty
+End Sub
+Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+' fill list boxes and combo box with values
+' then select a default value in each
+For dblHours As Double = 0 To 55 Step 0.5
+lstHours.Items.Add(dblHours.ToString("N1"))
+Next dblHours
+For dblRates As Double = 7.5 To 15.5 Step 0.5
+lstRates.Items.Add(dblRates.ToString("N2"))
+Next dblRates
+For intAllow As Integer = 0 To 10
+cboAllowances.Items.Add(intAllow.ToString)
+Next intAllow
+4
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:53 GMT -05:00
+https://www.coursehero.com/file/30615229/CS-1121-Project-7docx/
+
+--- Page 5 ---
+lstHours.SelectedItem = "40.0"
+lstRates.SelectedItem = "9.50"
+cboAllowances.SelectedIndex = 0
+End Sub
+Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+'verify that the user wants to exit the application
+Dim dlgButton As DialogResult
+dlgButton = MessageBox.Show("Do you want to exit?", "Cerruti Company",
+MessageBoxButtons.YesNo,
+MessageBoxIcon.Exclamation)
+'if the No button was selected, don't close the form
+If dlgButton = DialogResult.No Then
+e.Cancel = True
+End If
+End Sub
+Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles btnCalc.Click
+'displays gross pay,taxes, and net pay
+Const dblFICA_RATE As Double = 0.0765
+' Dim strStatus As String
+Dim dblHours As Double
+Dim dblPayRate As Double
+Dim intAllowances As Integer
+Dim dblGross As Double
+Dim dblFwt As Double
+Dim dblFica As Double
+Dim dblNet As Double
+Double.TryParse(lstHours.SelectedItem.ToString, dblHours)
+Double.TryParse(lstRates.SelectedItem.ToString, dblPayRate)
+Integer.TryParse(cboAllowances.Text, intAllowances)
+' If radSingle.Checked Then
+'strStatus = "S"
+' Else
+' strStatus = "M"
+' End If
+'calculate gross pay
+If dblHours <= 40 Then
+dblGross = dblHours * dblPayRate
+Else
+dblGross = 40 * dblPayRate + (dblHours - 40) * dblPayRate * 1.5
+End If
+Call GetFwt(dblGross, intAllowances, dblFwt)
+'get the FWT
+'dblFwt = GetFwt(dblGross, intAllowances)
+'calculate FICA tax
+dblFica = dblGross * dblFICA_RATE
+'round gross pay, FWT and Fica tax
+dblGross = Math.Round(dblGross, 2)
+dblFwt = Math.Round(dblFwt, 2)
+dblFica = Math.Round(dblFica, 2)
+'calculate net pay
+dblNet = dblGross - dblFwt - dblFica
+5
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:53 GMT -05:00
+https://www.coursehero.com/file/30615229/CS-1121-Project-7docx/
+
+--- Page 6 ---
+'display calculated amounts
+lblGross.Text = dblGross.ToString("n2")
+lblFwt.Text = dblFwt.ToString("n2")
+lblFica.Text = dblFica.ToString("n2")
+lblNet.Text = dblNet.ToString("n2")
+End Sub
+End Class
+SCREEN CAPTURES
+6
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:53 GMT -05:00
+https://www.coursehero.com/file/30615229/CS-1121-Project-7docx/
+Powered by TCPDF (www.tcpdf.org)

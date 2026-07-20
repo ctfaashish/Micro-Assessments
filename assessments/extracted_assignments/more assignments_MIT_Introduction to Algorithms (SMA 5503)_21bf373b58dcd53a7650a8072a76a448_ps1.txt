@@ -1,0 +1,227 @@
+--- Page 1 ---
+IntroductiontoAlgorithms September7, 2005
+MassachusettsInstitute ofTechnology 6.046J/18.410J
+ProfessorsErikD. DemaineandCharles E.Leiserson Handout5
+Problem Set 1
+MITstudents: This problem set is due in lecture on Wednesday, September 21, 2005. The
+homeworklabforthisproblemsetwillbeheld2–4 P.M. onSunday,September18,2005.
+Reading: Chapters 1–4 excludingSection 4.4.
+Both exercises and problems should be solved, but only the problems should be turned in.
+Exercisesare intendedtohelpyoumasterthecourse material. Eventhoughyoushouldnotturnin
+the exercisesolutions,youare responsiblefor material coveredinthe exercises.
+Mark the top of each sheet with your name, the course number, the problem number, your
+recitationsection,the date and thenames of anystudentswithwhomyou collaborated.
+Youwilloftenbecalled uponto“giveanalgorithm”tosolvea certain problem. Yourwrite-up
+should take the form of a short essay. A topic paragraph should summarize the problem you are
+solvingand what yourresultsare. Thebody of theessay shouldprovidethe following:
+1. A descriptionof the algorithmin Englishand, ifhelpful, pseudo-code.
+2. Atleastoneworkedexampleordiagramtoshowmorepreciselyhowyouralgorithmworks.
+3. A proof(or indication)of the correctness of thealgorithm.
+4. An analysisof the runningtimeof thealgorithm.
+Remember, your goal is to communicate. Full credit will be given only to correct solutions
+whichare described clearly. Convolutedand obtusedescriptionswillreceive lowmarks.
+Exercise 1-1. Do Exercise2.3-6 onpage37 inCLRS.
+Exercise 1-2. Do Exercise3.1-6 onpage50 inCLRS.
+Exercise 1-3. Do Exercise3.2-4 onpage57 inCLRS.
+Exercise 1-4. Do Problem4.3-4 onpage75 ofCLRS.
+Problem1-1. AsymptoticNotation
+For each of the followingstatements, decidewhether it is always true, never true, or sometimes
+true for asymptotically nonnegativefunctions
+(cid:0)
+and (cid:1) . If it is always true or never true, explain
+why. If itissometimes true, giveoneexampleforwhichit istrue,andoneforwhich itisfalse.
+
+--- Page 2 ---
+2 Handout5:ProblemSet1
+(a)
+(cid:0)(cid:3) (cid:2)(cid:5) (cid:4)(cid:7) (cid:6)(cid:9) (cid:8)(cid:11) (cid:10)(cid:12) (cid:2)(cid:13) (cid:0)(cid:3) (cid:2)(cid:5) (cid:4)(cid:7) (cid:6)(cid:15) (cid:14)(cid:16) (cid:6)
+(b)
+(cid:0)(cid:17) (cid:2)(cid:18) (cid:4)(cid:7) (cid:6)(cid:7) (cid:19)
+(cid:1)
+(cid:2)(cid:18) (cid:4)(cid:7) (cid:6)(cid:20) (cid:8)(cid:22) (cid:21)(cid:23) (cid:2)(cid:18) (cid:24)(cid:26) (cid:25)(cid:28) (cid:27)(cid:29) (cid:2)(cid:13) (cid:0)(cid:17) (cid:2)(cid:18) (cid:4)(cid:7) (cid:6)(cid:16) (cid:30)
+(cid:1)
+(cid:2)(cid:5) (cid:4)(cid:7) (cid:6)(cid:31) (cid:6)(cid:31) (cid:6)
+(c)
+(cid:0)(cid:3) (cid:2)(cid:5) (cid:4)(cid:7) (cid:6)(cid:7) (cid:19) (cid:10)(cid:12) (cid:2)! (cid:0)(cid:17) (cid:2)(cid:5) (cid:4)" (cid:6)# (cid:6)(cid:20) (cid:8)$ (cid:21)% (cid:2)! (cid:0)(cid:17) (cid:2)(cid:5) (cid:4)" (cid:6)# (cid:6)
+(d)
+(cid:0)(cid:17) (cid:2)(cid:18) (cid:4)(cid:7) (cid:6)(cid:9) (cid:8)’ &( (cid:2)
+(cid:1)
+(cid:2)(cid:5) (cid:4)(cid:7) (cid:6)(cid:31) (cid:6)
+and
+(cid:0)(cid:17) (cid:2)(cid:18) (cid:4)(cid:7) (cid:6)(cid:9) (cid:8)$ )* (cid:2)
+(cid:1)
+(cid:2)(cid:5) (cid:4)" (cid:6)# (cid:6)
+(notethe little-
+)
+)
+(e)
+(cid:0)(cid:3) (cid:2)(cid:5) (cid:4)(cid:7) (cid:6)(cid:29) +(cid:8)(cid:11) (cid:10)(cid:12) (cid:2)
+(cid:1)
+(cid:2)(cid:18) (cid:4)(cid:7) (cid:6)# (cid:6)
+and (cid:1)
+(cid:2)(cid:18) (cid:4)(cid:7) (cid:6), +(cid:8)$ (cid:10)- (cid:2)(cid:13) (cid:0)(cid:17) (cid:2)(cid:18) (cid:4)(cid:7) (cid:6)(cid:31) (cid:6)
+Problem1-2. Recurrences
+Give asymptotic upper and lower bounds for .
+(cid:2)(cid:5) (cid:4)" (cid:6)
+in each of the following recurrences. Assume
+that .
+(cid:2)(cid:18) (cid:4)(cid:7) (cid:6)
+isconstantfor
+(cid:4)0 /2 14 3
+. Makeyourboundsastightaspossible,andjustifyyouranswers.
+(a) .
+(cid:2)(cid:18) (cid:4)(cid:7) (cid:6)(cid:9) (cid:8)$ 5
+.
+(cid:2)(cid:18) (cid:4)(cid:7) 68 79 (cid:6): (cid:19) (cid:4)(cid:29) ;= <(cid:9) (cid:4)
+(b) .
+(cid:2)(cid:5) (cid:4)" (cid:6)(cid:9) (cid:8)’ 7
+.
+(cid:2)(cid:5) (cid:4)" 6? >? (cid:6)" (cid:19)@ ;= < (cid:14) (cid:4)
+(c) .
+(cid:2)(cid:18) (cid:4)(cid:7) (cid:6)(cid:9) (cid:8)
+.
+(cid:2)(cid:5) (cid:4)" 6? 5? (cid:6)(cid:7) (cid:19)(cid:23) 5(cid:28) A
+(d) .
+(cid:2)(cid:5) (cid:4)" (cid:6)(cid:9) (cid:8)
+.
+(cid:2)C B (cid:4)(cid:7) (cid:6)(cid:7) (cid:19)D (cid:21)% (cid:2)(cid:18) ;= <(cid:9) ;= <(cid:9) (cid:4)(cid:7) (cid:6)
+(e) .
+(cid:2)(cid:18) (cid:4)(cid:7) (cid:6)(cid:9) (cid:8)E 14 3
+.
+(cid:2)(cid:18) (cid:4)(cid:7) 68 7? (cid:6)" (cid:19)(cid:11) 1G F(cid:28) (cid:4)I HC J(cid:14)
+(f) .
+(cid:2)(cid:5) (cid:4)" (cid:6)(cid:9) (cid:8)$ F
+.
+(cid:2)(cid:5) (cid:4)" 6? 5? (cid:6)" (cid:19)@ (cid:4): K
+(g) .
+(cid:2)(cid:18) (cid:4)(cid:7) (cid:6)(cid:9) (cid:8)
+.
+(cid:2)(cid:5) (cid:4)" 6? 5L (cid:19) B (cid:4)" (cid:6)(cid:7) (cid:19) B M 38 N M
+(h) .
+(cid:2)(cid:5) (cid:4)" (cid:6)(cid:9) (cid:8)
+.
+(cid:2)(cid:5) (cid:4)P O 5? (cid:6)(cid:7) (cid:19)@ ;= <(cid:20) (cid:4)
+(i) .
+(cid:2)(cid:5) (cid:4)" (cid:6)(cid:9) (cid:8)
+.
+(cid:2)(cid:5) (cid:4)" 6? >? (cid:6)(cid:7) (cid:19)
+.
+(cid:2)(cid:18) N? (cid:4)(cid:7) 6? >8 (cid:6)" (cid:19)D (cid:21)% (cid:2)(cid:5) (cid:4)" (cid:6)
+(j) .
+(cid:2)(cid:5) (cid:4)" (cid:6)(cid:9) (cid:8) B (cid:4)
+.
+(cid:2) B (cid:4)" (cid:6)(cid:7) (cid:19)(cid:11) 14 38 38 (cid:4)
+Problem1-3. UnimodalSearch
+An array QS
+1(cid:9)
+R
+TU T# (cid:4)W V
+is unimodal if it consists of an increasing sequence followed by a decreasing
+sequence,ormoreprecisely,if thereis anindex XZ Y\ [
+18 (cid:30)(cid:16) 5* (cid:30)U TU T] T^ (cid:30)_ (cid:4)I ‘
+such that
+a
+QS Rcb
+Ve d
+QS Rcb
+(cid:19)(cid:11) 1] V
+forall
+1f /
+b
+d
+X ,and
+a
+QS Rcb
+Ve g
+QS Rcb
+(cid:19)(cid:11) 1] V
+forall X
+/
+b
+dD (cid:4)
+.
+In particular, QS RcX
+V
+is the maximum element, and it is the unique “locally maximum” element
+surroundedby smallerelements( Qh RiX
+Oj 1] V
+and Qh RiX
+(cid:19)(cid:11) 1] V
+).
+(a) Giveanalgorithmtocomputethemaximumelementofaunimodalinputarray Qh R
+1(cid:9) TU T(cid:31) (cid:4)k V
+in
+(cid:10)- (cid:2)(cid:5) ;= <(cid:20) (cid:4)" (cid:6)
+time. Prove the correctness of your algorithm, and prove the bound on its
+runningtime.
+Apolygonisconvexifallofitsinternalanglesarelessthan
+14 l? 3n m
+(andnoneoftheedgescrosseach
+other). Figure 1 shows an example. We represent a convex polygon as an array o(cid:12) R
+1(cid:9) TU T(cid:31) (cid:4)k V
+where
+eachelementofthearrayrepresentsavertexofthepolygonintheformofacoordinatepair
+(cid:2)q pe (cid:30)_ rs (cid:6)
+.
+We are told that o-
+1]
+R
+V
+is the vertex with the minimum
+p
+coordinate and that the vertices o(cid:12)
+1(cid:9)
+R
+TU T# (cid:4)W V
+are ordered counterclockwise, as in the figure. You may also assume that the
+p
+coordinates of the
+verticesare alldistinct, asare the
+r
+coordinatesofthevertices.
+
+--- Page 3 ---
+Handout5:ProblemSet1 3
+tf u{z# w
+t|
+tf ucy^
+uc}^ w
+w
+tf uc~^
+tf
+w
+ucx^ w
+tf
+tf
+ui(cid:129)(cid:130)
+u(cid:127)U
+w
+w
+tf ucv^
+tf
+w
+uc(cid:128)^ w
+Figure 1: An example of a convex polygon represented by the array o(cid:12)
+1(cid:9)
+R
+TU T_ (cid:131)(cid:28) V
+. o(cid:12)
+1]
+R
+V
+is the vertex
+withthe minimum
+p
+-coordinate,and o(cid:26) R
+1(cid:9) TU T# (cid:131)(cid:132) V
+are orderedcounterclockwise.
+(b) Giveanalgorithmtofindthe vertexwiththe maximum
+p
+coordinatein
+(cid:10)(cid:12) (cid:2)(cid:5) ;(cid:133) <(cid:20) (cid:4)(cid:7) (cid:6)
+time.
+(c) Giveanalgorithmtofindthe vertexwiththe maximum
+r
+coordinatein
+(cid:10)(cid:12) (cid:2)(cid:5) ;(cid:133) <(cid:20) (cid:4)(cid:7) (cid:6)
+time.

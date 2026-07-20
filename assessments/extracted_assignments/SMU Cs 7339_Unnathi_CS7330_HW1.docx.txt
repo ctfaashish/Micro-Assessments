@@ -1,0 +1,150 @@
+--- Page 1 ---
+Assignment 1
+1. Information related to professional basketball teams in the United States.
+a. Created table that stores details of basketball teams and their owners (assumed team
+names are unique) Owner (team_name, ownerssn)
+
+--- Page 2 ---
+Candidate key of Owner table based on Relationship between Owners and Teams.
+i. team_name only:
+If team_name is the only candidate key this would infer that every pair of team names
+indexes a row in the table. In this example, owners have a 1:1 relationship with teams which
+means an owner can only own one team and a team can be owned by one owner only as well.
+ii. ownerssn only:
+If ownerssn is the sole candidate key then each owner's SSN identifies a tuple. In this
+scenario, the category between Owners and Teams is one-to-many (1:N) as an owner can
+have many teams he owns whereas a team belongs to only a single owner.
+iii. team_name or ownerssn:
+If just one of team_name or ownerssn can be a candidate key, then each column is able to
+uniquely identify a record in the table. Here, the owners and teams are still in 1 to 1
+relationship (1:1) i.e., Each team will be owned by one owner and each owner will own only
+a single Team.
+iv. team_name and ownerssn as a combination:
+A candidate key is a combination of columns in a table that accurately identifies each record
+in the table. In this e.g., the relationship between owners and teams is many-to-many (M:N)
+-- each owner can own multiple teams and each team can have many owners as well.
+
+--- Page 3 ---
+b: . Tables that store information about cities and where the teams are;
+City(city_name, state_name, population)
+Team_city(team_name, city_name)
+
+--- Page 4 ---
+i. Few extra attributes can be added for the Team_city table
+Here the Team_city is a bridge table which comes to play as we want to relate team with city.
+Here, we do not require any attributes more in the Team_city table because team_name +
+city_name is able to identify a record uniquely.
+But say we also want to store more information about the team being in the city such as the
+stadium name or address/headquarters of the team, we could insert additional fields into the
+Team_city table. For example:
+ stadium_name: The name of the stadium where the team plays their games at.
+ headquarters_address: The address of the team's headquarters in city
+ start_year: The year the team began playing in the city.
+ end_year: The year when the team stopped playing in the city (if applicable)
+Here is the updated Team_city table with these added attributes:
+
+--- Page 5 ---
+ii. Each Table Candidate Key:
+ City table: city_name and state_name, Each city can be uniquely identified by the
+name of the city along with its state so candidate key for City table is the combination
+of these two attributes together.
+ Team_city table: For team_city the candidate key would be the column team_name
+as each team can be identified uniquely by their name. The city_name is not a
+candidate key, since there are multiple teams from the same city
+But because a team can only be from one city, the city_name column in Team_city, by
+inheritance, is a foreign key that corresponds to the city_name column of City However,
+since city_name is not unique in the City table (as a composite key with state_name), we
+have to use both city_name and state_name as Foreign key in the Team_city table.
+
+--- Page 6 ---
+Corrected candidate key for Team_city table:
+Conflict_table: Primary key of the Team_city table, plays the role of candidate key for the
+conflict.
+Constraint of the foreign key for the Team_city table is:-
+Team_city table:
+city_name & state_name: these two columns are a foreign key with city_name &
+state_name column of City Table
+iii. Referential Integrity Constraints:
+We establish relationships between the tables by creating foreign 5 keys to maintain
+referential integrity. Here are the constraints:
+ Team_city table:
+ city_name and state_name are 2 foreign keys, that reference
+the city_name and state_name columns of City table.
+But we cannot create foreign key constraint for the team_name column since it does not
+belong to a primary key column in City table.
+Here's the SQL code to create the tables with the referential integrity constraints:
+
+--- Page 8 ---
+1. On the Basis of the University schema in the PowerPoint slides (slide 18 on the Relational
+model slide deck), considering the following queries and the corresponding relational
+algebra OR SQL statements if it is Correct or Incorrect.
+
+--- Page 9 ---
+a. Π𝐼𝐷,𝑛𝑎𝑚𝑒(𝜎(𝑡𝑜𝑡_𝑐𝑟𝑒𝑑≥100)(𝑠𝑡𝑢𝑑𝑒𝑛𝑡))
+This query is correct. Let's consider each part of the query:
+i. 𝜎(𝑡𝑜𝑡_𝑐𝑟𝑒𝑑≥100)(𝑠𝑡𝑢𝑑𝑒𝑛𝑡): This is the selection operation, which selects the rows
+where the tot_cred value is greater than or equal to 100 from the student table.
+ii. Π𝐼𝐷,𝑛𝑎𝑚𝑒: This is the projection operation, which projects the ID of each student and
+their name who has sum of credits greater than or equal to 100.
+So, the given query selects all students whose tot_cred value is greater than or equal to 100
+from the student relation and then selects their ID and name. Thus, it is the correct answer.
+b. Π𝐼𝐷(𝜎(𝑐𝑜𝑢𝑟𝑠𝑒_𝑖𝑑≠"𝐶𝑆 5330")(𝑡𝑎𝑘𝑒𝑠))
+This query is incorrect, this loads in all students in the result of taking all tuples from takes
+where course_id does not equal CS 5330.:
+i. 𝜎(𝑐𝑜𝑢𝑟𝑠𝑒_𝑖𝑑≠"𝐶𝑆 5330")(𝑡𝑎𝑘𝑒𝑠): It selects all the rows from the matrix such that the
+course_id value does not equal "CS 5330".
+ii. Π𝐼𝐷: It extracts only the ID column.
+The issue with this one, however, is that it returns the IDs of students who have taken
+any course except CS 5330 without excluding students who have also taken CS 5330.
+Hence, a student taking CS 5330 and other courses will also appear in this result.
+One way that would work is taking a set difference: Π𝐼𝐷(𝑠𝑡𝑢𝑑𝑒𝑛𝑡) -
+Π𝐼𝐷(𝜎(𝑐𝑜𝑢𝑟𝑠𝑒_𝑖𝑑="𝐶𝑆 5330")(𝑡𝑎𝑘𝑒𝑠))
+This would:
+a. Take all student IDs
+b. Take away all IDs for students who sat for CS 5330
+
+--- Page 10 ---
+Incorrect. This query didn't work, as it denied the selection of students who took courses
+different from CS 5330, even though their profiles included candidates who also attended
+CS 5330. It should use set difference subtraction instead of an exclusion to identify
+candidates attending CS 5330.
+c. SELECT ID, name FROM student S, takes T WHERE S.ID = T.ID AND course_id =
+"CS 5330"
+This is a correct SQL query which performs an inner join between the student and takes
+tables.
+1. FROM student S,takes T: This establishes a Cartesian product of the two tables.
+2. WHERE S.ID=T.ID: This transforms the Cartesian product into an inner join making a
+matching of students with their course records.
+3. And course_id ="CS 5330": This filters with respect to course enrollments made only
+for CS 5330.
+4. SELECT ID, name: It returns the ID and name of the matching students.
+Correct. This SQL query joins student and takes tables to find students who have taken
+CS 5330.
+d. SELECT course_id FROM section WHERE year = 2024 AND semester = "Fall"
+AND semester = "Spring"
+This query is incorrect is as follows: the logical form of the WHERE clause listed here
+implies that semester is equal to both "Fall" AND "Spring" within a single row, which
+cannot be. This will always return an empty result.
+To find courses offered in both Fall and Spring 2024, you could write a more complex
+query using either self-join or intersection:
+Incorrect. The WHERE clause employs mutually exclusive conditions: semester = "Fall"
+AND semester = "Spring"; that is impossible for a single row. Thus, this will return an
+empty set always.
+e. Same as part (d), but change AND to OR
+
+--- Page 11 ---
+Changing AND to OR in the previous query, We found that simply replacing AND with
+OR does not address the issue and this query remains incorrect for the intended:
+Changing the running endpoint queries from AND to OR does not solve the problem at its
+base. However cheap it might be in terms of execution, it will bring back courses
+conducted in either Autumn 2024 or Spring 2024, not exclusively those taught through
+both semesters.
+The modified query would look like this:
+This query will return courses offered in Fall 2024 OR Spring 2024, not courses
+offered in both semesters.
+Rather than seeing the first two queries chosen as completely unconnected, it is important
+to analyze the relations among the tables involved and the nature of the answers required
+for each question so that the correct relational algebra or SQL could be formulated.
+Incorrect, Switching AND to OR in the previous query will not fix the real problem here.
+While it may produce results, it will retrieve all courses offered in Fall or Spring 2024-but
+not just the ones offered in both semesters.

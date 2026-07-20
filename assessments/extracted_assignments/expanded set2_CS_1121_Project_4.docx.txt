@@ -1,0 +1,157 @@
+--- Page 1 ---
+CS-1121 Visual Basic
+Project 4 Report
+Title: Concert Solution
+Author: Olajumobi Akeeb
+I certify that this project is the product of my own intellectual labor.
+_________________________________________________________
+(Author’s signature)
+Date: 2/15/2017
+Lab: 11:00-11:50am
+Grading:
+______ Project Execution (0-10)
+3 Lesson A
+3 Lesson B
+4 Lesson C
+______ Program Documentation (0-5)
+3 TOE Chart
+1 Code
+1 Screen Captures
+______ Total
+1
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:39 GMT -05:00
+https://www.coursehero.com/file/30615071/CS-1121-Project-4docx/
+
+--- Page 2 ---
+TOE Chart
+TASK OBJECT EVENT
+Input: User checks the ticket boxes of choice boxTickets Click
+pavilionTickets
+lawnTickets
+Input: User enters the number of tickets wanted boxtextbox None
+pavilionTextbox
+lawnTextbox
+Input: User checks 10% discount box discountbox Click
+Processing: btnCalc Click
+1. Declare variables
+2. Perform input tasks
+Read the number of tickets into intTickets
+If the discount box is checked, the 10% is taken into
+account
+3. Calculations
+Calculate total amount of tickets intTotaltickets
+Calculate total amount due as decTotaldue
+If the discount box is checked, the total due will be
+calculated as; decTotaldue- (decTotaldue*0.1)
+4. Perform output tasks
+Display intTotaltickets
+Display decTotaldue
+Output: Displays the total number of tickets lblTotaltickets None
+purchased
+Output: Displays the total amount due lblTotaldue None
+Exit the interface when calculation is complete btnExit Click
+2
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:39 GMT -05:00
+https://www.coursehero.com/file/30615071/CS-1121-Project-4docx/
+
+--- Page 3 ---
+PROJECT CODE
+Public Class Form1
+'olajumobi akeeb
+'concert solution: calculates the total number of tickets and total price
+'2/15/2017
+Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles btnCalc.Click
+'declare variables and constants
+Const decBoxticket_PRICE As Decimal = 97.5
+Const decPavilionticket_PRICE As Decimal = 55.5
+Const decLawnticket_PRICE As Decimal = 21
+Const decdiscountbox As Decimal = 0.1
+Dim intboxTextbox As Integer
+Dim intpavilionTextbox As Integer
+Dim intlawnTextbox As Integer
+Dim intTotaltickets As Integer
+Dim decTotaldue As Decimal
+Dim decITEM_PRICE As Decimal
+'calculate the total number of tickets sold
+Integer.TryParse(boxTextbox.Text, intboxTextbox)
+Integer.TryParse(pavilionTextbox.Text, intpavilionTextbox)
+Integer.TryParse(lawnTextbox.Text, intlawnTextbox)
+'calculate the total amount of tickets and total due
+intTotaltickets = intboxTextbox + intpavilionTextbox + intlawnTextbox
+decITEM_PRICE = (decLawnticket_PRICE * intlawnTextbox) +
+(decPavilionticket_PRICE * intpavilionTextbox) + (decBoxticket_PRICE * intboxTextbox)
+decTotaldue = decITEM_PRICE
+If discountbox.Checked = True Then
+decTotaldue = decTotaldue - (decITEM_PRICE * decdiscountbox)
+End If
+'display total tickets and amount due
+lblTotaltickets.Text = Convert.ToString(intTotaltickets)
+lblTotaldue.Text = decTotaldue.ToString("C2")
+End Sub
+'click event
+Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+Me.Close()
+End Sub
+'allows only numbers and backspace
+Private Sub boxTextbox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles
+boxTextbox.KeyPress
+If e.KeyChar <> ControlChars.Back Then
+e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = "")
+End If
+End Sub
+3
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:39 GMT -05:00
+https://www.coursehero.com/file/30615071/CS-1121-Project-4docx/
+
+--- Page 4 ---
+Private Sub lawnTextbox_KeyPress(sender As Object, e As KeyPressEventArgs)
+Handles lawnTextbox.KeyPress
+If e.KeyChar <> ControlChars.Back Then
+e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = "")
+End If
+End Sub
+Private Sub pavilionTextbox_KeyPress(sender As Object, e As KeyPressEventArgs)
+Handles pavilionTextbox.KeyPress
+If e.KeyChar <> ControlChars.Back Then
+e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = "")
+End If
+End Sub
+'textboxs remain invisible until the check property changes
+Private Sub boxTickets_CheckedChanged(sender As Object, e As EventArgs) Handles
+boxTickets.CheckedChanged
+If boxTickets.Checked = True Then
+boxTextbox.Visible = True
+Else
+boxTextbox.Visible = False
+End If
+End Sub
+Private Sub lawnTickets_CheckedChanged(sender As Object, e As EventArgs) Handles
+lawnTickets.CheckedChanged
+If lawnTickets.Checked = True Then
+lawnTextbox.Visible = True
+Else lawnTextbox.Visible = False
+End If
+End Sub
+Private Sub pavilionTickets_CheckedChanged(sender As Object, e As EventArgs)
+Handles pavilionTickets.CheckedChanged
+If pavilionTickets.Checked = True Then
+pavilionTextbox.Visible = True
+Else pavilionTextbox.Visible = False
+End If
+End Sub
+End Class
+4
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:39 GMT -05:00
+https://www.coursehero.com/file/30615071/CS-1121-Project-4docx/
+
+--- Page 5 ---
+SCREEN CAPTURES
+5
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:39 GMT -05:00
+https://www.coursehero.com/file/30615071/CS-1121-Project-4docx/
+
+--- Page 6 ---
+6
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:39 GMT -05:00
+https://www.coursehero.com/file/30615071/CS-1121-Project-4docx/
+Powered by TCPDF (www.tcpdf.org)

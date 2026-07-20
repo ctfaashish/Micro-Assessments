@@ -1,0 +1,99 @@
+--- Page 1 ---
+Homework 3
+1.264, Fall 2013
+UML model for the aircraft parts distributor
+Due: Friday, September 27
+A. UML models
+You must have installed Visual Paradigm-Community Edition before starting this homework.
+The Web site and office hours provide support for installing it and using it.
+Based on your requirements narrative from homework 2, create UML diagrams as follows. You
+are using UML as a sketch tool for requirements, so you may use less formally than in design or
+implementation. (You may use UML more precisely in later spirals, but in a first spiral, you use
+it to capture and assess basic requirements.)
+1. Use case diagram. Create a diagram for the use cases associated with items B.2 through
+B.8 from homework 2. Just draw one use case diagram for all these cases.
+a. Create a diagram for items B.2 through B.8 from homework 2.
+b. Indicate the actors/roles involved. Use the actor symbol for both, but distinguish
+people and system by using descriptive names.
+c. Use the ‘includes’ relationship to model variations
+d. Use the ‘generalize’ relationship as needed to relate more specific actors or use
+cases to general ones.
+e. Use the ‘system’ box if appropriate to identify use cases within the software
+system.
+The recommended steps to create the use case diagram are:
+a. Identify major actors by reading your requirements document.
+b. Identify the major use cases. This is done from an external perspective, in this case,
+the customer of the aircraft parts distributor. Use the following information to help
+define the use cases:
+a. What are the main tasks done by each actor (people or system)?
+b. Which actor has the data needed?
+c. What does each actor want to achieve?
+d. What problems must be overcome to do this?
+c. Create the use case diagram as we did in lecture.
+d. Compare the use case diagram to your requirements document for consistency,
+completeness and correctness
+Hints:
+a. Use case diagrams are a communications tool. They should be clear and intuitive.
+b. Focus on the goals and what needs to be done, not on the process of how to do it. Use
+cases are not processes or data flows or activity diagrams.
+c. Good use cases should be observable, using measurable outputs and well defined actors.
+1
+
+--- Page 2 ---
+d. Choose the right level of detail. The diagram should fit on one page.
+2. Component diagram. Create a component diagram. Include the distributor, customers,
+carriers, their Web servers, databases, etc., but focus on the aircraft parts distributor,
+since that’s the entity for which you’re building the system. Use the component and
+association symbols. (If you have programming experience, you may optionally use other
+symbols.)
+3. Activity diagram. Create an activity diagram showing the process for validating an order.
+Focus on the issues of choosing a mode and carrier that can serve the customer, and on
+checking that the quantity is in stock. Model the logic of what happens if an infeasible
+choice is made.
+4. State diagram. Create a state machine diagram showing the possible states that an order
+can have. Focus on how you handle back orders, split shipments (one order in two or
+more shipments), and combined shipments (one shipment with two or more orders). You
+do not have to model order states with invalid payment, changes or cancellations.
+5. Sequence diagram. (Optional-extra credit) Create a diagram capturing the sequence of
+messages between the customer, order, order detail (line items), aircraft part (inventory),
+carrier and other entities, if needed, for your system. Use the exercise we did in class as
+an example. Model:
+a. Whether your warehouse has sufficient product quantities to fulfill the order in
+this diagram
+b. Carrier constraints, based on what modes a customer can accept or what modes
+can handle a given part. (You can’t ship some hazardous parts by air; some very
+large parts must go by rail; etc.)
+You should have made some decisions on how to handle all of these issues in questions 1-5
+above in homework 2. If you change your mind, update your homework 2 solution using
+‘track changes’ mode in MS Word, but don’t resubmit it on course Website (yet).
+Make sure your diagrams are consistent with each other and with your narrative
+requirements. You will duplicate the handling of issues or cases in more than one diagram, in
+part because the system is small and in part so you can see which diagram styles you prefer.
+Make sure that you handle the overall process your Web site must implement: customer
+creation, customer login, customer creation of an order with all checks: back order, valid
+mode and carrier, valid quantities, split shipment rules, etc. Think about how customers will
+browse your product catalog and build an order: can they click on hyperlinks; do they enter
+part numbers or names directly, etc.? Do you check what parts they can handle, based on the
+aircraft types they service, and not display others? When does the customer choose a mode
+and carrier? What does your system do if a part cannot be shipped by that mode or carrier?
+2
+
+--- Page 3 ---
+You do not need to handle certain cases: invalid payment or other payment problems, invalid
+login, password resets or similar error conditions. Focus on the issues having to do with the
+aircraft parts distributor and its customers, not general IT issues.
+B. Assignment
+Hand in the UML diagrams electronically on the course Web site.
+a. Please make each model fit on one page if possible, no more than two pages
+otherwise.
+b. Put all your models in a single Visual Paradigm project.
+Place the Visual Paradigm project and Word document into a single zip file and upload it
+to the course Web site.
+3
+
+--- Page 4 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+1.264J / ESD.264J Database, Internet, and Systems Integration Technologies
+Fall 2013
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

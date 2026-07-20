@@ -1,0 +1,113 @@
+--- Page 1 ---
+6.035 Practice Quiz 1
+1. Give a Regular Expression and DFA for:
+L = {x ∈ {0, 1}∗ | x ends with 1 and does not contain the substring 00}
+2. Give a RE for: L = {0i1j | i is even and j is odd }
+3. Given the NFA for below for 0∗(01)∗0∗, construct a DFA:
+C
+0 1 0 0
+ε
+ε
+A B D
+4. Give a RE and a DFA/NFA for the language of all strings over {0, 1}∗ that do not end
+in 01.
+5. Give a RE and a CFG for:
+L = {x ∈ {0, 1}∗ | x starts and ends with different symbols }
+6. Give a CFG for:
+L = {x ∈ {0, 1}∗ | symbol at position i is same as symbol at position i+2 and | x |≥ 2}
+7. Give a CFG for the language of all non-palindromes over {0, 1}∗.
+8. Give a CFG for:
+L = {0i1j 0k | j > i + k} So, 001111100 is in the string. Hint, the concatenation of two
+(or more) context-free languages is context-free.
+9. Eliminate left recursion from:
+S → Aa | b
+A → Ac | Sd | ε
+10. Give a CFG for L = {aibici | i ≥ 1}.
+11. Is this grammar ambiguous? If so, prove it and construct a non-ambiguous grammar
+that derives the same language.
+S → aS | aSbS | c
+1
+
+--- Page 2 ---
+12. Assume that we have added a pointer type to decaf that can point to integers and
+booleans. We want to extend our type system (our attributed grammar) to handle
+these types. We have added a pointer(t) type to the type system to denote a pointer of
+type t. Complete the semantic action that propagates the type attribute for a pointer
+deference expression: E → ∗E {: E.type = ???? :}
+1
+Answers
+1. (1 | 01)+
+0 0,1
+0
+0
+1
+1
+1
+2. (00)∗1(11)∗
+3. DFA:
+0
+1
+ABCD BD
+0
+0
+1 1
+ABD CD
+0
+1
+1 D
+0
+0,1
+4. ε | 0 | 1 | (0 | 1)∗(11 | 00 | 10)
+2
+
+--- Page 3 ---
+1
+1
+1
+0
+0
+0
+1
+0
+5. [a(a | b)∗b]|[b(a | b)∗a]
+S → aAb | bAa
+A → aA | bA | ε
+6. S → A | B | C | D
+A → 00A | 00
+B → 11B | 11
+C → 10C | 10
+D → 01D | 01
+7. S → 0S0 | 1S1|D
+D → 1A0 | 0A1
+A → ε | 0A | 1A
+8. S → ABC
+A → 0A1 | ε
+B → 1B | 1
+C → 1C0 | ε
+L is a concatenation of L L L where L = {0i1i | i ≥ 0}, L = {1m | m > 0}, and
+1 2 3 1 2
+L = {1k0k | k ≥ 0}.
+3
+9. S → Aa | b
+A → bdA1 | A1
+A1 → cA1 | adA1|ε
+10. Trick question, the language is not context-free. Sorry!
+11. It is ambiguous! aacbc has two parse trees (not pictured, but you have to show the
+two parse trees to prove it is ambiguous).
+3
+
+--- Page 4 ---
+Unambiguous grammar:
+S → T | U
+T → aTbT | c
+U → aS | aT bU
+12. E → ∗E {E.type := if E .type = pointer(t) then t else type error;}
+1 1
+4
+
+--- Page 5 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.035 Computer Language Engineering
+Spring 2010
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

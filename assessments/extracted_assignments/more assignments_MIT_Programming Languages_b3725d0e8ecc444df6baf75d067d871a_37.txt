@@ -1,0 +1,719 @@
+--- Page 1 ---
+6.821 Programming Languages Handout
+Fall 2002
+MASSACHVSETTS INSTITVTE OF TECHNOLOGY
+Department of Electrical Engineering and Compvter Science
+Final Examination 2002
+There are five problems on this examination. Make sure you don’t skip over any of a problem’s parts! They
+are followed by an appendix that contains reference material from the course notes. The appendix contains
+no problems; it is just a handy reference.
+You will have three hours in which to work the problems. Some problems are easier than others: read all
+problems before beginning to work, and use your time wisely!
+This examination is open-book: you may use whatever reference books or papers you have brought to the
+exam. The number of points awarded for each problem is placed in brackets next to the problem number.
+There are 100 points total on the exam.
+Do all written work in your examination booklet – we will not collect the examination handout itself; you
+will only be graded for what appears in your examination booklet. It will be to your advantage to show
+your work – we will award partial credit for incorrect solutions that make use of the right techniques.
+If you feel rushed, be sure to write a brief statement indicating the key idea you expect to use in your
+solutions. We understand time pressure, but we can’t read your mind.
+This examination has text printed on only one side of each page. Rather than flipping back and forth be-
+tween pages, you may find it helpful to rip pages out of the exam so that you can look at more than one
+page at the same time.
+Contents
+Problem1:ShortAnswer[29points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+Problem2:ProbabilisticTypes[12points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+Problem3:StrictnessEffects[17points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+Problem4:NosyFLK![25points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+Problem5:Pragmatics[17points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+AppendixA:StandardSemanticsofFLK! . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+AppendixB:TypingRulesforSCHEME/XSP . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+AppendixC:TypingRulesforSCHEME/R . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+AppendixD:TypeReconstructionAlgorithmforSCHEME/R . . . . . . . . . . . . . . . . . . . . . . 15
+The figures in the Appendix are very similar to the ones in the course notes. Some bugs have been fixed,
+and some figures have been simplified to remove parts inessential for this exam. You will not be marked
+down if you use the corresponding figures in the course notes instead of the appendices.
+
+--- Page 2 ---
+Problem 1: Short Answer [29 points]
+a. [4 points] Give a desugaring from a FLAVAR! program P to a FLAVAR! program P � that has the
+following property: P evaluated with call-by-value semantics has the same behavior as P � when eval­
+uated with call-by-name semantics.
+b. [3 points] Give two domains D and E such that the number of set-theoretic functions from D to E is
+infinite, but the number of continuous functions is finite.
+c. [3 points] Consider a new construct smart-compose to FL/R. (smart-compose f g) has the following
+behavior: it evaluates to whichever of (compose f g) or (compose g f) type checks. If both type-
+check, it chooses one of them arbitrarily. Why could type reconstruction using Appendix D fail even
+when a type for smart-compose is reconstructible?
+d. [2 points] What is a broken heart, and what is it used for?
+e. [2 points] Give the reconstructed type of the following expression.
+(lambda (f g)
+(f (f g 2)
+(g 2)))
+f. [2 points] What is the purpose of closure conversion?
+g. [2 points] Consider the following FLAVAR! expression
+(let ((x 3)
+(foo (lambda (q) (+ x y)))
+(letrec ((y x)
+(z (let ((x 15)) (lambda (q) (z q)))))
+(let ((x 16)
+(y x))
+(foo z))))
+(i) [1 points] What is its value, or what error occurs, under call-by-value static scoping?
+(ii) [1 points] What is its value, or what error occurs, its value under call-by-value dynamic scoping?
+h. [2 points] Give the value of the following expression, or state what error occurs.
+(let ((x (lambda (x) (+ x 1))))
+(let ((y (lambda (y) (y x))))
+(let ((y (let ((y y)) y)))
+(let ((x (y (lambda (x) x))))
+(x 5)))))
+(i) [1 points] When evaluated under call-by-value static scoping.
+(ii) [1 points] When evaluated under call-by-value dynamic scoping.
+i. [3 points] Louis Reasoner has an application in which at least half of memory is garbage each time the
+garbage collector is invoked. He concludes that the use of two spaces is wasteful: he can modify the
+garbage collector to work in place. Explain why Louis’s proposal does not work.
+j. [6 points] Give a type reconstruction algorithm rule for “call with current continuation” (cwcc). You
+may find referring to Appendix D helpful.
+Here is an example of cwcc:
+(+ (cwcc (lambda (exit) 100))
+(cwcc (lambda (exit) (+ 2 (exit 4)))))
+⇒ 104
+2
+
+--- Page 3 ---
+Problem 2: Probabilistic Types [12 points]
+Sensing he won’t have time to finish his SCHEME/R killer app before Christmas, Ben Bitdiddle buys a
+subroutine from Subroutines ‘R’ Us. While Ben’s program was completely deterministic, the subroutine he
+bought is randomized. The fine print states that the subroutine returns the correct answer 99 44 % of the
+100
+time. Ben worries about the correctness of his program, since he uses this subroutine many times. But before
+he gets to answer his own question, his mind wanders off to another subroutine he purchased.
+To deal with this problem, you will create a type/effect system. The new type system has judgments
+like the following:
+A � E : T % P,
+which is pronounced, “in the type environment A, expression E has type T and probability of correctness at
+least P .” The types in this new type system are all inherited from SCHEME/R, with one difference: a function
+type now contains a probability of correctness. We write this as (-> p (T ...T ) T ), which means that
+1 n b
+when this procedure is applied to arguments a ...a , it evaluates to the correct value with probability p.
+1 n
+SCHEME/R always operates correctly and deterministically; however, it is possible to code randomized
+algorithms using it. When you use a randomized algorithm, you add a probabilistic type for it (specified by
+the manufacturer) to the typing environment; then, you use the type/effect system to compute the proba­
+bility that your whole program operates correctly.
+The following type/effect judgments
+� N : int % 1
+� B : bool % 1
+indicate that numeric and boolean literals are guaranteed to be correct. You should assume that if any subex­
+pression evaluates incorrectly, then the whole program evaluates incorrectly: subsequent wrong answers
+never cancel out previous ones.
+a. [3 points] Give a type/effect rule for if.
+b. [3 points] Give a type/effect rule for lambda.
+c. [3 points] Give a type/effect rule for application.
+d. [3 points] Give a subtyping rule for procedures by revising the ->-� rule of Appendix B (page 13).
+3
+
+--- Page 4 ---
+Problem 3: Strictness Effects [17 points]
+As presented in class, effect systems indicate what side effects may result from evaluation of an expression.
+In a lazy language, a natural extension to this notion is whether a particular argument to a procedure is
+ever evaluated.
+In this problem, you will write type reconstruction rules that determine whether a particular expression
+evaluates a given argument. There are three possibilities for each argument: the procedure may always
+evaluate the argument, the procedure may never evaluate the argument, or the procedure may sometimes
+evaluate the argument; we represent these three values as A (for always), N (for never), and M (for maybe).
+Typing judgments have the form
+A � E : T & S ,
+where S maps variables to strictness values. (You may assume that S always contains an entry for every
+variable that is ever used in the program, and furthermore that all variables are uniquely named. In other
+words, you don’t have to worry about scoping and variable capture.)
+For example, a reasonable judgment in a program with 4 variables a, b, c, and d might be
+A � E : T & {a : M,b : A,c : N,d : M } .
+and a reasonable typing rule might be
+A � E : T & S A � E : T & S
+1 1 2 2
+[strange]
+A � (strange E E ): T & S AtoN(S )
+1 2 1 2
+where is taken elementwise and AtoNis defined below.
+Procedure types have the following form: (-> Ids S (T ... T ) T ). “Ids” is a list of the procedure’s
+1 n
+parameter names. S is the strictness of the procedure (over all program variables, as usual).
+Your task is to extend the typing rules of Appendix C to also compute a strictness environment.
+You may find one or more of the following auxiliary procedures to be helpful. However, you are not
+permitted to cascade them (nor do you need to!); don’t write, for example, “AtoM(NtoA(S))”.
+allAreturns a new mapping in which every variable is bound to A.
+allNreturns a new mapping in which every variable is bound to N .
+allMreturns a new mapping in which every variable is bound to M .
+AtoNreturns a new mapping in which bindings to A have been replaced by N .
+AtoMreturns a new mapping in which bindings to A have been replaced by M .
+NtoAreturns a new mapping in which bindings to N have been replaced by A.
+NtoMreturns a new mapping in which bindings to N have been replaced by M .
+MtoAreturns a new mapping in which bindings to M have been replaced by A.
+MtoNreturns a new mapping in which bindings to M have been replaced by N .
+For example,
+MtoN({a : M,b : A,c : N,d : M })= {a : N,b : A,c : N,d : N } .
+a. [2 points] Draw the domain whose elements are {A,N,M }: draw the elements, and draw a line for
+each non-transitive � relationship, with the greater element higher on the page. (Hint: No element is
+greater than A.)
+b. [4 points] Give the typing rule for if.
+c. [4 points] Give the typing rule for lambda.
+d. [4 points] Give the typing rule for application.
+e. [3 points] Give the typing rule for (application of) +.
+4
+
+--- Page 5 ---
+Problem 4: Nosy FLK! [25 points]
+The Department of Homeland Security has adopted FLK! as its official programming language, for two
+reasons. First, FLK! has no foreign function interface, and the DHS disapproves of anything foreign. Second,
+and more importantly, FLK! has no “private” declaration. The DHS reasons that programmers who have
+done nothing wrong should have nothing to hide, and the DHS insists on access to any data at any time for
+any purpose. Imagine the DHS’s disappointment when they realize that shadowing can make a variable
+binding inaccessible! For example, consider the following code that you might wish to execute:
+;; Send a love letter
+(let ((letter "Dear sweetheart, ... With love, Snookums"))
+(let ((mail-agent (mail-sending-program letter)))
+(let ((letter "s")) ; The "s" key sends a message
+;; DHS INSERTS CODE HERE
+(apply-keystroke letter mail-agent))))
+It is a serious problem that, at the specified point in the program, spy agencies cannot read the text of
+your letter. Accordingly, DHS hires Ben Bitdiddle to add a new construct, up-env, to FLK!; the new language
+is called “Nosy FLK!”. up-env permits access to shadowed variables. It takes a number n and an identifier,
+and it looks up the identifier in the nth parent environment of the current one. For example, consider the
+following DHS-inserted code:
+(up-env 0 letter) equivalent to letter; returns "s"
+(up-env 1 letter) returns "Dear sweetheart ...", which is the value of letter
+in the parent environment (in which mail-agent is also bound)
+(up-env 2 letter) also returns "Dear sweetheart ...", which is the value of letter
+in the outermost environment
+(up-env 3 letter) issues an “unbound identifier” error
+With the work only half-finished, DHS’s hidden microphones overhear Ben Bitdiddle talking about
+“sexps,” and he is taken away as a suspected pornographer. In order to demonstrate your patriotism, you
+agree to complete work on this language extension.
+a. [4 points] Consider the following code. (We use syntactic sugar such as let for convenience and
+clarity.)
+(let ((n 11))
+(letrec ((fact (let ((n 9))
+(lambda (n)
+(print (up-env 1 n))
+(print (up-env 2 n))
+(if (= n 0)
+1
+(* n (fact (- n 1))))))))
+(let ((n 7))
+(fact 5))))
+The first two executions of fact print a total of 4 values.
+(i) [2 points] Assuming static scoping, what are the first four values printed?
+(ii) [2 points] Assuming dynamic scoping, what are the first four values printed?
+b. [15 points]
+We modify the denotational semantics of Appendix A to support the new up-env form by adding the
+following new domain:
+5
+
+--- Page 6 ---
+nEnvironment = Environment ×(cid:32)nEnvironment
+⊥
+We also have the following constructor and destructor helper functions:
+make-nenv : Environment ×(cid:32)nEnvironment →(cid:32)nEnvironment
+⊥
+nenv-env : nEnvironment →(cid:32)Environment
+nenv-parent : nEnvironment →(cid:32)nEnvironment
+⊥
+With these domains in hand, one can extend the denotational semantics to handle up-env. Note that
+your new definitions for E(cid:32) will take an nEnvironment instead of an Environment.
+(i) [3 points] Define nlookup, which looks up an identifier:
+nlookup :(nEnvironment →(cid:32)Identifier →(cid:32)Integer) →(cid:32)Binding
+You may use lookup as a subroutine.
+(ii) [3 points] What is E(cid:32)[[I ]]?
+(iii) [3 points] What is E(cid:32)[[(up-env E I)] ]?
+(iv) [3 points] What is E(cid:32)[[(proc I E) ]]?
+(v) [3 points] What is E(cid:32)[[(call E E ) ]]?
+1 2
+Modify the denotational semantics of Appendix A to support the new up-env form. Show any changes
+that you must make to the denotational semantics; do not mention any domains or rules that remain
+unchanged.
+c. [6 points] Before being dragged away, Ben began to work on a desugaring from Nosy FLK! to FLK!.
+Unfortunately, most of Ben’s notes were confiscated; all that remains is one auxiliary function fresh-I-n,
+the rule for D (in terms of a helper desugaring D�), and one rule from the helper desugaring D�:
+fresh-I-n : Identifier ×(cid:32)Integer →(cid:32)Identifier
+fresh-I-n returns the same unique fresh identifier for each invocation with the same arguments.
+D(cid:32)[[E ]] = D� [[E ]]0 for all E
+D� [[I ]] n = I
+Furthermore, you find a comment that his preliminary solution is quite constrained: the numeric ar­
+gument to up-env must be a literal number; the number must indicate an environment that explicitly
+binds the identifier; the desugaring assumes static scoping; and the desugaring fails in the presence
+of side effects. (You may provide a solution better than Ben’s, but you are not required to. You must
+reuse the two existing rules, however.)
+Write the rules for the auxiliary desugaring D� [[E ]]n that helps to convert Nosy FLK! to FLK!. (Don’t
+introduce any additional helper functions.) Omit any rules that merely implement the structural in­
+duction by applying the desugaring to each subexpression, with the same arguments as were used
+for the full expression. Assume that both Nosy FLK! and FLK! use call-by-value semantics.
+6
+
+--- Page 7 ---
+Problem 5: Pragmatics [17 points]
+Space-Savers, Inc., is working on reducing the run-time space requirements of compiled programs written
+in a functional subset of SCHEME. The company is particularly interested an expression with the following
+form:
+(let ((f (lambda (b) E)))
+(primop + (call f 1) (call f 2)))
+where a is the only free variable of (lambda (b) E). (You should assume that a is bound somewhere in the
+surrounding context of this example and all subsequent examples.)
+The company uses a compiler that is composed of a series of source-to-source transforms. The closure
+conversion phase of their compiler generates flat closures for all lambda expressions. Recall that a flat clo­
+sure is a tuple containing a code component and the values of all free variables referenced by the code
+component. Closure conversion produces an expression in which closures are explicitly allocated with the
+closure primop and the values of free variables are explicitly extracted from closures by the closure-ref
+primop:
+(let ((f (%closure (lambda (.closure.73. b) E )
+closed
+a)))
+(primop + (call-closure f 1) (call-closure f 2)))
+Here, E is a version of E in which every reference to a has been replaced by (%closure-ref .closure.73. 1).
+closed
+(Of course, closure conversion also affects calls, lambdas, and other variable references within E .) The
+closed
+call-closure construct applies the code component of a closure to the specified arguments, supplying the
+closure itself as an implicit first argument.
+New employee Bud Lojack, recalling a recent 6.821 problem set on partial evaluation, suggests inlining
+and reducing the calls to f in the original example to yield:
+(primop + [1/b]E [2/b]E)
+Bud says, “Before my nifty transformation, the program had to allocate a closure for f. But the transformed
+program doesn’t even have a definition for f, so no closure for f is ever allocated! So my transformation
+reduces the space used by the program.”
+a. [5 points] Name one way in which Bud’s transformation can increase the space used by the program.
+Seasoned hacker Chloe Jour has an idea for reducing the space used by the program. She transforms the
+sample expression into:
+(let ((f� (lambda (a b) E)))
+(primop + (call f� a 1) (call f� a 2)))
+Chloe has transformed the function f into the function f� , which has the same body as f, but takes the free
+variable a of f as an explicit argument. She has changed each call of f into a call of f� , adding a as an extra
+argument to the call. After closure conversion, this expression becomes:
+(let ((f� (%closure (lambda (.closure.37. a b) E �))))
+closed
+(primop + (call-closure f� a 1) (call-closure f� a 2)))
+She says, “Notice that the variable a is not free in f� , so the closure associated with f� is smaller than the
+closure associated with f. Therefore my transformation reduces the amount of space allocated for closures
+during execution of the program.”
+Bud is excited by Chloe’s suggestion. He decides to transform every subexpression of his program of
+the form:
+7
+
+--- Page 8 ---
+(let ((I (lambda (I ... I ) E )))
+fun 1 n fun
+E )
+let
+into
+(let ((I � (lambda (J ... J I ... I ) E )))
+fun 1 k 1 n fun
+E �)
+let
+where:
+• J ... J are the free variables of (lambda (I ... I ) E ), and
+1 k 1 n fun
+• E � has been obtained from E by transforming each occurrence (call I E ... E ) into
+let let fun 1 n
+(call I � J ... J E ... E ).
+fun 1 k 1 n
+“Of course,” Bud notes, “it may be necessary to rename the bound variables of E in order to avoid capture
+let
+of the variables J ... J .”
+1 k
+He shows his idea to Chloe, who has two objections (even after Bud fixes the potential name capture
+problem). “First,” she says, “this transformation is not semantics-preserving in general.”
+b. [6 points] Give an expression E such that Bud’s transformation does not preserve the semantics of
+let
+the following program. (Recall that the language is functional.)
+(let ((f (lambda (b) (primop + a b))))
+E )
+let
+“Second,” says Chloe, “even when your transformation is semantics-preserving, it may actually increase the
+total amount of memory allocated for closures during the evaluation of a program.”
+c. [6 points] Give an expression E such that:
+let
+• The semantics of the following expression is preserved by Bud’s transformation:
+(let ((f (lambda (b) (primop + a b))))
+E )
+let
+• AND the transformed expression allocates more space for closures than the original expression.
+(Recall that the language is functional.)
+8
+
+--- Page 9 ---
+Appendix A: Standard Semantics of FLK!
+v ∈ Value = Unit + Bool + Int + Sym + Pair + Procedure + Location
+k ∈ Expcont = Value → Cmdcont
+γ ∈ Cmdcont = Store → Expressible
+Expressible = (Value + Error)
+⊥
+Error = Sym
+p ∈ Procedure = Denotable → Expcont → Cmdcont
+d ∈ Denotable = Value
+e ∈ Environment = Identifier → Binding
+β ∈ Binding = (Denotable + Unbound)
+⊥
+Unbound = {unbound}
+s ∈ Store = Location → Assignment
+l ∈ Location = Nat
+α ∈ Assignment = (Storable + Unassigned)
+⊥
+σ ∈ Storable = Value
+Unassigned = {unassigned}
+top-level-cont : Expcont
+= λv . λs . (Value �→Expressible v)
+error-cont : Error → Cmdcont
+= λy . λs . (Error �→Expressible y)
+empty-env : Environment = λI . (Unbound �→Binding unbound)
+test-boolean :(Bool → Cmdcont) → Expcont
+= λf . (λv . matching v
+� (Bool �→Value b)[] (f b)
+� else (error-cont non-boolean)
+endmatching )
+Similarly for:
+test-procedure :(Procedure → Cmdcont) → Expcont
+test-location :(Location → Cmdcont) → Expcont
+etc.
+ensure-bound : Binding → Expcont → Cmdcont
+= λβ k . matching β
+� (Denotable �→Binding v)[] (k v)
+� (Unbound �→Binding unbound)[] (error-cont unbound-variable)
+endmatching
+Similarly for:
+ensure-assigned : Assignment → Expcont → Cmdcont
+Figure 1: Semantic algebras for standard semantics of strict CBV FLK!.
+9
+
+--- Page 10 ---
+same-location? : Location → Location → Bool = λl l . (l = l )
+12 1 Nat 2
+next-location : Location → Location = λl . (l + 1)
+Nat
+empty-store : Store = λl . (Unassigned �→Assignment unassigned)
+fetch : Location → Store → Assignment = λls . (s l)
+assign : Location → Storable → Store → Store
+= λl σ s . λl . if (same-location? l l )
+1 2 1 2
+then (Storable �→Assignment σ)
+else (fetch l s)
+2
+fresh-loc : Store → Location = λs . (first-fresh s 0)
+first-fresh : Store → Location → Location
+= λsl . matching (fetch l s)
+� (Unassigned �→Assignment unassigned)[] l
+� else (first-fresh s (next-location l))
+endmatching
+lookup : Environment → Identifier → Binding = λeI . (eI)
+Figure 2: Store helper functions for standard semantics of strict CBV FLK!.
+10
+
+--- Page 11 ---
+TL : Exp → Expressible
+E : Exp → Environment → Expcont → Cmdcont
+L : Lit → Value ; Defined as usual
+TL [[E ]] = E [[E ]] empty-env top-level-cont empty-store
+E [[L ]] = λek . k L [[L ]]
+E [[I ]] = λek . ensure-bound (lookup e I) k
+E [[(proc I E) ]] = λek . k (Procedure �→Value (λdk � . E [[E ]] [I : d]e k �))
+E [[(call E E ) ]] = λek . E [[E ]] e (test-procedure (λp . E [[E ]] e (λv . p v k)))
+1 2 1 2
+E [[(if E E E )] ] =
+1 2 3
+λek . E [[E ]] e (test-boolean (λb . if b then E [[E ]] e k else E [[E ]] e k))
+1 2 3
+E [[(pair E E )] ] = λek . E [[E ]] e (λv . E [[E ]] e (λv . k (Pair �→Value �v , v �)))
+1 2 1 1 2 2 1 2
+E [[(cell E) ]] = λek . E [[E ]] e (λvs . k (Location �→Value (fresh-loc s))
+(assign (fresh-loc s) v s))
+E [[(begin E E ) ]] = λek . E [[E ]] e (λv . E [[E ]] e k)
+1 2 1 ignore 2
+E [[(primop cell-ref E)] ] = λek . E [[E ]] e (test-location (λls . ensure-assigned (fetch l s) k s))
+E [[(primop cell-set! E E )] ]
+1 2
+= λek . E [[E ]] e (test-location (λl . E [[E ]] e (λvs.k (Unit �→Value unit) (assign l v s))))
+1 2
+E [[(rec I E)] ] = λeks . let f = fix (λa . E [[E ]] [I :(extract-value a)] e top-level-cont s)
+Expressible
+matching f
+� (Value �→Expressible v)[] E [[E ]] [I : v]e ks
+� else f
+endmatching
+extract-value : Expressible → Binding
+= λa . matching a
+� (Value �→Expressible v)[] (Denotable �→Binding v)
+� else ⊥
+Binding
+endmatching
+Figure 3: Valuation clauses for standard semantics of strict CBV FLK!.
+11
+
+--- Page 12 ---
+Appendix B: Typing Rules for SCHEME/XSP
+SCHEME/X Rules
+� N : int [int]
+� B : bool [bool]
+� S : string [string]
+� (symbol I) : sym [sym]
+A[I:T] � I : T [var]
+∀i (A � E : T )
+i i
+[begin]
+A � (begin E ... E ) : T
+1 n n
+A � E : T
+[the]
+A � (the T E) : T
+A � E : bool ; A � E : T ; A � E : T
+1 2 3
+[if ]
+A � (if E E E ) : T
+1 2 3
+A[I :T , ..., I :T ] � E : T
+1 1 n n B B
+[λ]
+A � (lambda ((I T ) ... (I T )) E ) : (-> (T ... T ) T )
+1 1 n n B 1 n B
+A � E : (-> (T ... T ) T )
+P 1 n B
+∀i (A � E : T )
+i i [call]
+A � (E E ... E ) : T
+P 1 n B
+∀i (A � E : T )
+i i
+A[I :T , ..., I :T ] � E : T
+1 1 n n B B [let]
+A � (let ((I E ) ... (I E )) E ) : T
+1 1 n n B B
+A� = A[I :T , ..., I :T ]
+1 1 n n
+∀i (A� � E : T )
+i i
+A� � E : T
+B B [letrec]
+A � (letrec ((I T E ) ... (I T E )) E ) : T
+1 1 1 n 1 n B B
+A � (∀i [T /I ])E : T
+i i body body
+[tlet]
+A � (tlet ((I T ) ... (I T )) E ) : T
+1 1 n n body body
+∀i (A � E : T )
+i i
+[record]
+A � (record (I E ) ... (I E )) : (recordof (I T ) ... (I T ))
+1 1 n n 1 1 n n
+A � E : (recordof ... (I T) ...)
+[select]
+A � (select I E) : T
+A � E : T ; T = (oneof ... (I T ) ...)
+E E
+[one]
+A � (one T I E) : T
+A � E : (oneof (I T ) ... (I T ))
+disc 1 1 n n
+∀i. ∃j. ((I = I ) ∧ (A[I :T ] � E : T))
+i tagj valj i j
+[tagcase1]
+A � (tagcase E (I I E ) ... (I I E )) : T
+disc tag1 val1 1 tagn valn n
+A � E : (oneof (I T ) ... (I T ))
+disc 1 1 n n
+∀i | (∃j. (I = I )) .A[I :T ] � E : T
+i tagj valj i j
+A � E : T
+default [tagcase2]
+A � (tagcase E (I I E ) ... (I I E ) (else E )) : T
+disc tag1 val1 1 tagn valn n default
+12
+
+--- Page 13 ---
+Rules Introduced by SCHEME/XS to Handle Subtyping
+T � T [reflexive-�]
+T � T ; T � T
+1 2 2 3
+[transitive-�]
+T � T
+1 3
+(T � T )
+1 2
+(T � T )
+2 1
+[≡]
+T ≡ T
+1 2
+∀i ∃j ((I = J ) ∧ (S � T ))
+i j j i
+[recordof-�]
+(recordof (J S ) ...(J S )) � (recordof (I T ) ...(I T ))
+1 1 m m 1 1 n n
+∀j ∃i ((J = I ) ∧ (S � S ))
+j i j i
+[oneof-�]
+(oneof (J S ) ...(J S )) � (oneof (I T ) ...(I T ))
+1 1 m m 1 1 n n
+∀i (T � S ) ; S � T
+i i body body
+[->-�]
+(-> (S ...S ) S ) � (-> (T ...T ) T )
+1 n body 1 n body
+∀T ([T/I ]T � [T/I ]T )
+1 1 2 2
+[recof-�]
+(recof I T ) � (recof I T )
+1 1 2 2
+A � E : (-> (T ...T ) T )
+rator 1 n body
+∀i ((A � E : S ) ∧ (S � T ))
+i i i i [call-inclusion]
+A � (E E ...E ) : T
+rator 1 n body
+A � E : S
+S � T
+[the-inclusion]
+A � (the T E) : T
+Rules Introduced by SCHEME/XSP to Handle Polymorphism
+A � E : T;
+∀i (I �∈ (FTV (Free-Ids [[E]])A))
+i [pλ]
+A � (plambda (I ... I ) E) : (poly (I ... I ) T)
+1 n 1 n
+A � E : (poly (I ... I ) T )
+1 n E
+[project]
+A � (proj E T ... T ) :(∀i [T /I ]) T
+1 n i i E
+(∀i [I /J ]) S � T, ∀i (I �∈ Free-Ids [[S]])
+i i i
+[poly-�]
+(poly (J ... J ) S) � (poly (I ... I ) T)
+1 n 1 n
+recof Equivalence
+(recof I T) ≡ [(recof I T)/I]T
+13
+
+--- Page 14 ---
+Appendix C: Typing Rules for SCHEME/R
+� #u : unit [unit]
+� B : bool [bool]
+� N : int [int]
+� (symbol I) : sym [symbol]
+[..., I:T,...] � I : T [var]
+[..., I:(generic (I ... I ) T ),...] � I :(∀i [T /I ])T [genvar]
+1 n body i i body
+A � E : bool ; A � E : T ; A � E : T
+test con alt
+[if ]
+A � (if E E E ) : T
+test con alt
+A[I :T , ..., I :T ] � E : T
+1 1 n n body body
+[λ]
+A � (lambda (I ... I ) E ) : (-> (T ... T ) T )
+1 n body 1 n body
+A � E : (-> (T ... T ) T )
+rator 1 n body
+∀i. (A � E : T )
+i i [apply]
+A � (E E ... E ) : T
+rator 1 n body
+∀i. (A � E : T )
+i i
+A[I :Gen(T , A), ..., I :Gen(T , A)] � E : T
+1 1 n n body body [let]
+A � (let ((I E ) ... (I E )) E ) : T
+1 1 n n body body
+∀i. (A[I :T , ..., I :T ] � E : T )
+1 1 n n i i
+A[I :Gen(T , A), ... I :Gen(T , A)] � E : T
+1 1 n n body body [letrec]
+A � (letrec ((I E ) ... (I E )) E ) : T
+1 1 n n body body
+∀i. (A � E : T )
+i i
+[record]
+A � (record (I E ) ... (I E )) : (recordof (I T ) ... (I T ))
+1 1 n n 1 1 n n
+A � E : (recordof (I T ) ... (I T ))
+r 1 1 n n
+A[I :T , ..., I :T ] � E : T
+1 1 n n b [with]
+A � (with (I ... I ) E E ) : T
+1 n r b
+A � (letrec ((I E ) ... (I E )) E ) : T
+1 1 n n body
+[program]
+A � (program (define I E ) ... (define I E ) E ) : T
+1 1 n n body
+Gen(T,A)= (generic (I ... I ) T), where {I } = FTV (T ) − FTE(A)
+1 n i
+14
+
+--- Page 15 ---
+Appendix D: Type Reconstruction Algorithm for SCHEME/R
+R [[#u ]] AS = �unit,S�
+R [[B ]] AS = �bool,S�
+R [[N ]] AS = �int,S�
+R [[(symbol I) ]] AS = �sym,S�
+R [[I ]] A[I : T ] S = �T,S�
+R [[I ]] A[I : (generic (I ... I ) T )] S = �T [?v /I ],S� (?v are new)
+1 n i i i
+R [[I ]] AS = fail (when I is unbound)
+R [[(if E E E ) ]] AS = let �T ,S � = R [[E ]]AS
+t c a t t t
+in let S� = U (T , bool,S )
+t t t
+in let �T ,S � = R [[E ]]AS�
+c c c t
+in let �T ,S � = R [[E ]]AS
+a a a c
+in let S� = U (T ,T ,S )
+a c a a
+in �T ,S� �
+a a
+R [[(lambda (I ... I ) E ) ]] AS = let �T ,S � = R [[E ]]A[I :?v ] S
+1 n b b b b i i
+in �(-> (?v ... ?v ) T ),S � (?v are new)
+1 n b b i
+R [[(E E ... E ) ]] AS = let �T ,S � = R [[E ]]AS
+0 1 n 0 0 0
+in ...
+let �T ,S � = R [[E ]]AS
+n n n n−1
+in let S = U (T , (-> (T ... T ) ?v ),S )
+f 0 1 n f n
+in �?v ,S � (?v is new)
+f f f
+R [[(let ((I E ) ... (I E )) E ) ]] AS = let �T ,S � = R [[E ]]AS
+1 1 n n b 1 1 1
+in ...
+let �T ,S � = R [[E ]]AS
+n n n n−1
+in R [[E ]]A[I : Rgen(T ,A,S )]S
+b i i n n
+R [[(letrec ((I E ) ... (I E )) E )] ] AS = let A = A[I :?v ] (?v are new)
+1 1 n n b 1 i i i
+in let �T ,S � = R [[E ]]A S
+1 1 1 1
+in ...
+let �T ,S � = R [[E ]]A S
+n n n 1 n−1
+in let S = U (?v ,T ,S )
+b i i n
+in R [[E ]]A[I : Rgen(T ,A,S )] S
+b i i b b
+R [[(record (I E ) ... (I E ))] ] AS = let �T ,S � = R [[E ]]AS
+1 1 n n 1 1 1
+in ...
+let �T ,S � = R [[E ]]AS
+n n n n−1
+in �(recordof (I T ) ... (I T )),S �
+1 1 n n n
+R [[(with (I ... I ) E E )] ] AS = let �T ,S � = R [[E ]]AS
+1 n r b r r r
+in let S = U (T , (recordof (I ?v ) ... (I ?v )),S ) (?v are new)
+b r 1 i n n r i
+in R [[E ]]A[I :?v ] S
+b i i b
+Rgen(T,A,S)= Gen((ST ), (subst-in-type-env SA))
+15

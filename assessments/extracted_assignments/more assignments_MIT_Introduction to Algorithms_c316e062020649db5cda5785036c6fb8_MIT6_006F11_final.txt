@@ -1,0 +1,412 @@
+--- Page 1 ---
+IntroductiontoAlgorithms December16,2011
+MassachusettsInstituteofTechnology 6.006Fall2011
+ProfessorsErikDemaineandSriniDevadas FinalExam
+Final Exam
+• Donotopenthisquizbookletuntildirectedtodoso. Readalltheinstructionsonthispage.
+• Whenthequizbegins,writeyournameoneverypageofthisquizbooklet.
+• Youhave180minutestoearn180points. Donotspendtoomuchtimeonanyoneproblem.
+Readthemallfirst,andattackthemintheorderthatallowsyoutomakethemostprogress.
+• This quiz is closed book. You may use three 81(cid:48)(cid:48) × 11(cid:48)(cid:48) or A4 or 6.006 cushions as crib
+2
+sheets (both sides). No calculators or programmable devices are permitted. No cell phones
+orothercommunicationsdevicesarepermitted.
+• Writeyoursolutionsinthespaceprovided. Ifyouneedmorespace,writeonthebackofthe
+sheetcontainingtheproblem. Pagesmaybeseparatedforgrading.
+• Do not waste time and paper rederiving facts that we have studied. It is sufficient to cite
+knownresults.
+• When writing an algorithm, a clear description in English will suffice. Pseudo-code is
+notrequired.
+• When asked for an algorithm, your algorithm should have the time complexity specified in
+theproblemwithacorrectanalysis. Ifyoucannotfindsuchanalgorithm,youwillgenerally
+receivepartialcreditforasloweralgorithmifyouanalyzeyouralgorithmcorrectly.
+• Show your work, as partial credit will be given. You will be graded not only on the correct-
+nessofyouranswer,butalsoontheclaritywithwhichyouexpressit. Beneat.
+• Goodluck!
+Problem Parts Points Grade Grader Problem Parts Points Grade Grader
+1 18 36 6 2 20
+2 3 9 7 5 15
+3 5 20 8 6 20
+4 3 15 9 1 15
+5 1 10 10 5 20
+Total 180
+Name:
+Wed/Fri Ying Kevin Sarah Yafim Victor
+Recitation: 10, 11AM 11AM 12, 1PM 12PM 2, 3PM
+
+--- Page 2 ---
+6.006FinalExam Name 2
+Problem1. True/False[36points] (18parts)
+Circle(T)rueor(F)alse. Youdon’tneedtojustifyyourchoice.
+(a) T F [2points] Polynomial: good. Exponential: bad.
+(b) T F [2 points] Radix sort runs correctly when using any correct sorting algorithm to
+sorteachdigit.
+(c) T F [2points] GivenanarrayA[1..n]ofintegers,therunningtimeofCountingSort
+ispolynomialintheinputsizen.
+(d) T F [2 points] Given an array A[1..n] of integers, the running time of Heap Sort is
+polynomialintheinputsizen.
+(e) T F [2points] Anyn-nodeunbalancedtreecanbebalancedusingO(logn)rotations.
+(f) T F [2 points] If we augment an n-node AVL tree to store the size of every rooted
+subtree, then in O(logn) we can solve a range query: given two keys x and y,
+howmanykeysareintheinterval[x,y]?
+(g) T F [2 points] AVL trees can be used to implement an optimal comparison-based
+sortingalgorithm.
+(h) T F [2 points] Given a connected graph G = (V,E), if a vertex v ∈ V is visited
+duringlevelk ofabreadth-firstsearchfromsourcevertexs ∈ V,theneverypath
+fromstov haslengthatmostk.
+(i) T F [2points] Depth-firstsearchwilltakeΘ(V2)timeonagraphG = (V,E)repre-
+sentedasanadjacencymatrix.
+
+--- Page 3 ---
+6.006FinalExam Name 3
+(j) T F [2points] Givenanadjacency-listrepresentationofadirectedgraphG = (V,E),
+ittakesO(V)timetocomputethein-degreeofeveryvertex.
+(k) T F [2 points] For a dynamic programming algorithm, computing all values in a
+bottom-upfashionisasymptoticallyfasterthanusingrecursionandmemoization.
+(l) T F [2 points] The running time of a dynamic programming algorithm is always
+Θ(P)whereP isthenumberofsubproblems.
+(m) T F [2 points] When a recurrence relation has a cyclic dependency, it is impossible
+tousethatrecurrencerelation(unmodified)inacorrectdynamicprogram.
+(n) T F [2 points] For every dynamic program, we can assign weights to edges in the
+directed acyclic graph of dependences among subproblems, such that finding a
+shortestpathinthisDAGisequivalenttosolvingthedynamicprogram.
+(o) T F [2points] EveryprobleminNPcanbesolvedinexponentialtime.
+(p) T F [2 points] If a problem X can be reduced to a known NP-hard problem, then X
+mustbeNP-hard.
+(q) T F [2points] IfPequalsNP,thenNPequalsNP-complete.
+(r) T F [2 points] The following problem is in NP: given an integer n = p·q, where p
+andq areN-bitprimenumbers,findporq.
+
+--- Page 4 ---
+6.006FinalExam Name 4
+Problem2. SortingScenarios[9points] (3parts)
+Circle the number next to the sorting algorithm covered in 6.006 that would be the best (i.e., most
+efficient)foreachscenarioinordertoreducetheexpectedrunningtime. Youdonotneedtojustify
+youranswer.
+(a) [3 points] You are running a library catalog. You know that the books in your col-
+lection are almost in sorted ascending order by title, with the exception of one book
+whichisinthewrongplace. Youwantthecatalogtobecompletelysortedinascending
+order.
+1. InsertionSort
+2. MergeSort
+3. RadixSort
+4. HeapSort
+5. CountingSort
+(b) [3 points] You are working on an embedded device (an ATM) that only has 4KB
+(4,096 bytes) of free memory, and you wish to sort the 2,000,000 transactions with-
+drawal history by the amount of money withdrawn (discarding the original order of
+transactions).
+1. InsertionSort
+2. MergeSort
+3. RadixSort
+4. HeapSort
+5. CountingSort
+(c) [3 points] To determine which of your Facebook friends were early adopters, you
+decide to sort them by their Facebook account ids, which are 64-bit integers. (Recall
+thatyouaresuperpopular,soyouhaveverymanyFacebookfriends.)
+1. InsertionSort
+2. MergeSort
+3. RadixSort
+4. HeapSort
+5. CountingSort
+
+--- Page 5 ---
+6.006FinalExam Name 5
+Problem3. HotelCalifornia[20points] (5parts)
+You have decided to run off to Los Angeles for the summer and start a new life as a rockstar.
+However, things aren’t going great, so you’re consulting for a hotel on the side. This hotel has N
+one-bed rooms, and guests check in and out throughout the day. When a guest checks in, they ask
+foraroomwhosenumberisintherange[l,h].1
+Youwanttoimplementadatastructurethatsupportsthefollowingdataoperationsasefficientlyas
+possible.
+1. INIT(N): Initialize the data structure for N empty rooms numbered 1,2,...,N, in polyno-
+mialtime.
+2. COUNT(l,h): Returnthenumberofavailableroomsin[l,h],inO(logN)time.
+3. CHECKIN(l,h): InO(logN)time,returnthefirstemptyroomin[l,h]andmarkitoccupied,
+orreturn NIL ifalltheroomsin[l,h]areoccupied.
+4. CHECKOUT(x): Markroomxasnotoccupied,inO(logN)time.
+(a) [6 points] Describe the data structure that you will use, and any invariants that your
+algorithms need to maintain. You may use any data structure that was described in a
+6.006 lecture, recitation, or problem set. Don’t give algorithms for the operations of
+yourdatastructurehere;writetheminparts(b)–(e)below.
+1Conferences often reserve a contiguous block of rooms, and attendees want to stay next to people with similar
+interests.
+
+--- Page 6 ---
+6.006FinalExam Name 6
+(b) [3 points] Give an algorithm that implements INIT(N). The running time should be
+polynomialinN.
+(c) [3points] Giveanalgorithmthatimplements COUNT(l,h)inO(logN)time.
+
+--- Page 7 ---
+6.006FinalExam Name 7
+(d) [5points] Giveanalgorithmthatimplements CHECKIN(l,h)inO(logN)time.
+(e) [3points] Giveanalgorithmthatimplements CHECKOUT(x)inO(logN)time.
+
+--- Page 8 ---
+6.006FinalExam Name 8
+Problem4. Hashing[15points] (3parts)
+Supposeyoucombineopenaddressingwithalimitedformofchaining. Youbuildanarraywithm
+slots that can store two keys in each slot. Suppose that you have already inserted n keys using the
+followingalgorithm:
+1. Hash(key,probenumber)tooneofthemslots.
+2. Iftheslothaslessthantwokeys,insertitthere.
+3. Otherwise,incrementtheprobenumberandgotostep1.
+Given the resulting table of n keys, we want to insert another key. We wish to compute the prob-
+ability that the first probe will successfully insert this key, i.e., the probability that the first probe
+hitsaslotthatiseithercompletelyempty(nokeysstoredinit)orhalf-empty(onekeystoredinit).
+Youcanmaketheuniformhashingassumptionforallthepartsofthisquestion.
+(a) [5 points] Assume that there are exactly k slots in the table that are completely full.
+What is the probability s(k) that the first probe is successful, given that there are
+exactlyk fullslots?
+(b) [5points] Assumethatp(k)istheprobabilitythatthereareexactlyk slotsinthetable
+that are completely full, given that there are already n keys in the table. What is the
+probabilitythatthefirstprobeissuccessfulintermsofp(k)?
+(c) [5points] Giveaformulaforp(0)intermsofmandn.
+
+--- Page 9 ---
+6.006FinalExam Name 9
+Problem5. TheQuadraticMethod[10points] (1parts)
+Describe how you can use Newton’s method to find a root of x2 + 4x + 1 = 0 to d digits of
+precision. Eitherreducetheproblemtoaproblemyouhavealreadyseenhowtosolveinlectureor
+recitation,orgivetheformulaforonestepofNewton’smethod.
+
+--- Page 10 ---
+6.006FinalExam Name 10
+Problem6. TheWeddingPlanner[20points] (2parts)
+Youareplanningtheseatingarrangementforaweddinggivenalistofguests,V.
+(a) [10 points] Suppose you are also given a lookup table T where T[u] for u ∈ V is
+a list of guests that u knows. If u knows v, then v knows u. You are required to
+arrangetheseatingsuchthatanyguestatatableknowseveryotherguestsittingatthe
+same table either directly or through some other guests sitting at the same table. For
+example, if x knows y, and y knows z, then x,y,z can sit at the same table. Describe
+an efficient algorithm that, given V and T, returns the minimum number of tables
+neededtoachievethisrequirement. Analyzetherunningtimeofyouralgorithm.
+
+--- Page 11 ---
+6.006FinalExam Name 11
+(b) [10 points] Now suppose that there are only two tables, and you are given a different
+lookup table S where S[u] for u ∈ V is a list of guests who are on bad terms with u.
+If v is on bad terms with u, then u is on bad terms with v. Your goal is to arrange the
+seatingsuchthatnopairofguestssittingatthesametableareonbadtermswitheach
+other. Figure 1 below shows two graphs in which we present each guest as a vertex
+and an edge between two vertices means these two guests are on bad terms with each
+other. Figure1(a)isanexamplewherewecanachievethegoalbyhavingA,C sitting
+at one table and B,E,D sitting at another table. Figure 1(b) is an example where we
+cannot achieve the goal. Describe an efficient algorithm that, given V and S, returns
+TRUE if you can achieve the goal or FALSE otherwise. Analyze the running time of
+youralgorithm.
+A B C A B C
+D E D E
+(a) (b)
+Figure1: Examplesofguestrelationshipspresentedasgraphs.
+
+--- Page 12 ---
+6.006FinalExam Name 12
+Problem7. HowFastIsYourDynamicProgram? [15points] (5parts)
+Inthedynamicprogramsbelow,assumetheinputconsistsofanintegerSandasequencex ,x ,...,x
+0 1 n−1
+of integers between 0 and S. Assume that each dynamic program uses subproblems (i,X) for
+0 ≤ i < n and 0 ≤ X ≤ S (just like Knapsack). Assume that the goal is to compute DP(0,S),
+andthatthebasecaseisDP(n,X) = 0forallX. Assumethatthedynamicprogramisamem-
+oized recursive algorithm, so that only needed subproblems get computed. Circle the number
+nexttothecorrectrunningtimeforeachdynamicprogram.
+(cid:26) (cid:27)
+DP(i+1,X)+x ,
+(a) DP(i,X) = max i
+DP(i+1,X −x )+x2 ifX ≥ x
+i i i
+1. Exponential
+2. Polynomial
+3. Pseudo-polynomial
+4. Infinite
+(cid:26) (cid:27)
+DP(i+1,S)+x ,
+(b) DP(i,X) = max i
+DP(0,X −x )+x2 ifX ≥ x
+i i i
+1. Exponential
+2. Polynomial
+3. Pseudo-polynomial
+4. Infinite
+
+--- Page 13 ---
+6.006FinalExam Name 13
+(cid:26) (cid:27)
+DP(i+1,0)+x ,
+(c) DP(i,X) = max i
+DP(0,X −x )+x2 ifX ≥ x
+i i i
+1. Exponential
+2. Polynomial
+3. Pseudo-polynomial
+4. Infinite
+(cid:26) (cid:27)
+DP(i+1,X)+x ,
+(d) DP(i,X) = max i
+DP(i+1,0)+x2
+i
+1. Exponential
+2. Polynomial
+3. Pseudo-polynomial
+4. Infinite
+(cid:26) DP(i+1,X − (cid:80) S)+( (cid:80) S)2 (cid:27)
+(e) DP(i,X) = max
+foreverysubsetS ⊆ {x ,x ,...,x }
+0 1 n−1
+1. Exponential
+2. Polynomial
+3. Pseudo-polynomial
+4. Infinite
+
+--- Page 14 ---
+6.006FinalExam Name 14
+Problem8. LongestAlternatingSubsequence[20points] (6parts)
+Call a sequence y ,y ,...,y alternating if every adjacent triple y ,y ,y has either y <
+1 2 n i i+1 i+2 i
+y > y , or y > y < y . In other words, if the sequence increased between y and y ,
+i+1 i+2 i i+1 i+2 i i+1
+thenitshouldthendecreasebetweeny andy ,andviceversa.
+i+1 i+2
+Ourgoalistodesignadynamicprogramthat,givenasequencex ,x ,...,x ,computesthelength
+1 2 n
+ofthelongestalternatingsubsequenceofx ,x ,...,x . Thesubproblemswewilluseareprefixes,
+1 2 n
+augmented with extra information about whether the longest subsequence ends on a descending
+pair or an ascending pair. In other words, the value DP(i,b) should be the length of the longest
+alternatingsubsequencethatendswithx
+i
+,andendsinanascendingpairifandonlyifbis TRUE.
+For the purposes of this problem, we define a length-one subsequence to be both increasing and
+decreasingattheend.
+Forexample,supposethatwehavethefollowingsequence:
+x = 13 x = 93 x = 86 x = 50 x = 63 x = 4
+1 2 3 4 5 6
+Then DP(5,TRUE) = 4, because the longest possible alternating sequence ending in x
+5
+with an
+increaseattheendisisx
+1
+,x
+2
+,x
+4
+,x
+5
+orx
+1
+,x
+3
+,x
+4
+,x
+5
+. However,DP(5,FALSE) = 3,becauseifthe
+sequencehastodecreaseattheend,thenx cannotbeused.
+4
+(a) [4points] ComputeallvaluesofDP(i,b)fortheabovesequence. Placeyouranswers
+inthefollowingtable:
+i = 1 i = 2 i = 3 i = 4 i = 5 i = 6
+b = TRUE
+b = FALSE
+
+--- Page 15 ---
+6.006FinalExam Name 15
+(b) [4points] GivearecurrencerelationtocomputeDP(i,b).
+(c) [4points] Givethebasecasesofyourrecurrencerelation.
+(d) [3points] Giveavalidorderingofsubproblemsforabottom-upcomputation.
+
+--- Page 16 ---
+6.006FinalExam Name 16
+(e) [3 points] If you were given the values of DP(i,b) for all 1 ≤ i ≤ n and all b ∈
+{TRUE,FALSE},howcouldyouusethosevaluestocomputethelengthofthelongest
+alternatingsubsequenceofx ,x ,...,x ?
+1 2 n
+(f) [2 points] When combined, parts (b) through (e) can be used to write an algorithm
+suchasthefollowing:
+LONGESTALTERNATINGSUBSEQUENCE(x
+1
+,...,x
+n
+)
+1 initializetableT
+2 foreachsubproblem(i,b),intheordergivenbypart(d)
+3 if(i,b)isabasecase
+4 usepart(c)tocomputeDP(i,b)
+5 else
+6 usepart(b)tocomputeDP(i,b)
+7
+8 storethecomputedvalueofDP(i,b)inthetableT
+9
+10 usepart(e)tofindthelengthoftheoveralllongestsubsequence
+Analyzetherunningtimeofthisalgorithm,givenyouranswerstothequestionsabove.
+
+--- Page 17 ---
+6.006FinalExam Name 17
+Problem9. ParenPuzzle[15points]
+Yourlocalschoolnewspaper,TheTEX,hasstartedpublishingpuzzlesofthefollowingform:
+Parenthesize6+0·6 Parenthesize0.1·0.1+0.1
+tomaximizetheoutcome. tomaximizetheoutcome.
+Wronganswer: 6+(0·6) = 6+0 = 6. Wronganswer: 0.1·(0.1+0.1) = 0.1·0.2 = 0.02.
+Rightanswer: (6+0)·6 = 6·6 = 36. Rightanswer: (0.1·0.1)+0.1 = 0.01+0.1 = 0.11.
+Tosaveyourselffromtedium,butstillimpressyourfriends,youdecidetoimplementanalgorithm
+to solve these puzzles. The input to your algorithm is a sequence x ,o ,x ,o ,...,x ,o ,x
+0 0 1 1 n−1 n−1 n
+of n + 1 real numbers x ,x ,...,x and n operators o ,o ,...,o . Each operator o is either
+0 1 n 0 1 n−1 i
+addition(+)ormultiplication(·). Giveapolynomial-timedynamicprogramforfindingtheoptimal
+(maximum-outcome)parenthesizationofthegivenexpression,andanalyzetherunningtime.
+
+--- Page 18 ---
+6.006FinalExam Name 18
+Problem10. SortingFluff[20points] (5parts)
+In your latest dream, you find yourself in a prison in the sky. In order to be released, you must
+orderN ballsoffluffaccordingtotheirweights. Fluffisreallylight,soweighingtheballsrequires
+greatcare. Yourprisoncellhasthefollowinginstruments:
+• A magic balance scale with 3 pans. When given 3 balls of fluff, the scale will point out the
+ball with the median weight. The scale only works reliably when each pan has exactly 1 ball
+of fluff in it. Let MEDIAN(x,y,z) be the result of weighing balls x, y and z, which is the
+ball with the median weight. If MEDIAN(x,y,z) = y, that means that either x < y < z or
+z < y < x.
+• Ahigh-precisionclassicalbalancescale. Thisscaletakes2ballsoffluff,andpointsoutwhich
+ballislighter;however,becausefluffisverylight,thescalecanonlydistinguishbetweenthe
+overall lightest and the overall heaviest balls of fluff. Comparing any other balls will not
+yield reliable results. Let LIGHTEST(a,b) be the result of weighing balls a and b. If a is the
+lightest ball and b is the heaviest ball, LIGHTEST(a,b) = a. Conversely, if a is the heaviest
+ballandbisthelightestball, LIGHTEST(a,b) = b. Otherwise, LIGHTEST(a,b)’sreturnvalue
+isunreliable.
+On the bright side, you can assume that all N balls have different weights. Naturally, you want to
+sort the balls using as few weighings as possible, so you can escape your dream quickly and wake
+upbefore4:30pm!
+To ponder this challenge, you take a nap and enter a second dream within your first dream. In the
+seconddream,afairyshowsyouthelightestandtheheaviestballsoffluff,butshedoesn’ttellyou
+whichiswhich.
+(a) [2 points] Give a quick example to argue that you cannot use MEDIAN alone to
+distinguish between the lightest and the heaviest ball, but that LIGHTEST can let you
+distinguish.
+
+--- Page 19 ---
+6.006FinalExam Name 19
+(b) [4 points] Given l, the lightest ball l pointed out by the fairy, use O(1) calls to
+MEDIAN to implement LIGHTER(a,b), which returns TRUE if ball a is lighter than
+ballb,and FALSE otherwise.
+After waking up from your second dream and returning to the first dream, you realize that there is
+no fairy. Solve the problem parts below without the information that the fairy would have given
+you.
+(c) [6 points] Give an algorithm that uses O(N) calls to MEDIAN to find the heaviest
+and lightest balls of fluff, without identifying which is the heaviest and which is the
+lightest.
+
+--- Page 20 ---
+6.006FinalExam Name 20
+(d) [2 points] Explain how the previous parts should be put together to sort the N balls
+offluffusingO(N logN)callsto MEDIAN andO(1)callsto LIGHTEST.
+(e) [6 points] Argue that you need at least Ω(N logN) calls to MEDIAN to sort the N
+fluffballs.
+
+--- Page 21 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.006 Introduction to Algorithms
+Fall 2011
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

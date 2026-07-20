@@ -1,0 +1,234 @@
+--- Page 1 ---
+CSCE 3530 – Introduction to Computer Networks
+Spring 2022
+Homework #5
+1. Compute the checksum for each of the following data. (10 Points)
+A. 0xDE23 0xEDE0
+B. 0xDE23 0xEDE0
+0xDE23 = 1101 1110 0010 0011
+0xEDE0 =1110 1101 1110 0000
+Addition: 1101 1110 0010 0011
++ 1110 1101 1110 0000
+-------------------------------------------
+1 1100 1100 0000 0011
+1100 1100 0000 0011
++ 1
+--------------------------------------------
+1100 1100 0000 0100
+Checksum: 0011 0011 1111 1011 (0x33FB)
+b. 0x3456 0x23E0 0x23CA 0xA5D4
+0x3456 = 0011 0100 0101 0110
+0x23E0 = 0010 0011 1110 0000
+0x23CA = 0010 0011 1100 1010
+0xA5D4 = 1010 0101 1101 0100
+Addition: 0011 0100 0101 0110 (0x3456)
++0010 0011 1110 0000 (0x23E0)
+-------------------------------------------------
+0101 1000 0011 0110 ---- 1
+Addition: 0010 0011 1100 1010 (0x23CA)
++1010 0101 1101 0100 (0xA5D4)
+-------------------------------------------------
+Page 1 of 8
+
+--- Page 2 ---
+1100 1001 1001 1110 ---- 2
+Adding 1 + 2
+Addition: 0101 1000 0011 0110
++ 1100 1001 1001 1110
+-----------------------------------------------
+1 0010 0001 1101 0100
+0010 0001 1101 0100
++ 1
+---------------------------------------------
+0010 0001 1101 0101
+Check sum: 1101 1110 0010 1010 (0xDE2A)
+(Question 1(a): 4 Points; 1(b): 6 Points; Total: 10 Points)
+2. What is Reliable Data Transfer? List all the functionality and features of RDT 1.0, RDT
+2.0, 2.1, 2.2, and RDT 3.0. (15 Points)
+Reliable Data transfer is to make an unreliable channel reliable by making sure the segments
+or packets will be sent to the destination even if there are losses or errors in transmission.
+RDT 1.0:
+• Underlying channel perfectly reliable: no bit errors and no loss of packets.
+• Packets are sent and received with no errors and no packet loss as the channel is perfectly
+reliable.
+RDT 2.0:
+• Underlying channel may flip bits and hence checksum is added.
+• ACKs and NACKs are added to explicitly to tell the sender that Packet was received ok
+or corrupted.
+RDT 2.1:
+• There is a possibility that the ACKs and NACKs could be corrupted, and the sender will
+resend the packet generating duplicate packets.
+• To remove duplicate packets sequence numbers were added.
+RDT 2.2:
+• NACKs are removed as ACKs are only sent if the packet that was received was error free.
+It’s a NACK free protocol.
+• The receiver includes the sequence number of the packet that is being ACKed.
+Page 2 of 8
+
+--- Page 3 ---
+RDT 3.0:
+• The underlying channel can also lose packets and hence a timer is introduced.
+• The timer will time out after a time interval making the sender to assume the packet is lost
+and then the sender resends the packet.
+(What is RDT? 2 Points, Each RDT details: 2.6 Points; Total: 2 + (5 x 2.6) = 15 Points)
+3. Differentiate (at least two differences) between Go-Back-N (GBN) and Selective Repeat
+(SR) protocols. (4 Points)
+Go-Back-N (GBN) Selective Repeat (SR)
+1. If a segment is lost with in a window, Only the lost segment is re-transmitted
+then all the segments in the window are
+re-transmitted
+2. If error rate is high, it wastes a lot of Comparatively less bandwidth is wasted
+bandwidth. in retransmitting.
+(Each difference: 2 Points; Total: 4 Points)
+4. Describe the TCP segment fields with the segment structure diagram. (20 Points)
+Source Port: It indicates the Source Port Number (Sending Computer's TCP Port)
+Destination Port: It indicates the Destination Port Number (Receiving Port)
+Sequence Number: This number used for byte level numbering of TCP segments.
+Acknowledgement number: 32 Bit number field which indicates the next sequence number
+that the sending device is expecting from the other device.
+Flags: The flag field contains 6 bits. The ACK bit is used to indicate that the value carried
+in the acknowledgement for a segment that has been successfully received. The RST, SYN,
+and FIN bits are used for connection setup and teardown. Setting the PSH bit indicates that
+Page 3 of 8
+
+--- Page 4 ---
+the receiver should pass the data to the upper layer immediately. Finally, the URG bit is used
+to indicate that there is data in this segment that the sending-side upper-layer entity has
+marked as “urgent”.
+Header Length: It is the field which shows the number of 32-bit words in the header.
+Window size Values: It indicates the size of the receive window, which specifies the number
+of bytes beyond the sequence number in the acknowledgment field that the receiver is
+currently willing to receive.
+Checksum: The checksum field is used for error-checking of the header and data.
+Urgent Pointer: Shows the end of the urgent data so that interrupted data streams can
+continue. When the URG bit is set, the data is given priority over other data streams (Size 16
+bits).
+Options: The options field has information about the maximum segment size and details
+about the timestamp and acknowledgements.
+Data: This is the payload or data that is transmitted from source to destination.
+(Each field description: 1.5; 10 * 1.5 = 15 Points; Diagram: 5 Points; Total: 20
+Points)
+5. Assume that the timeout values for GBN, SR, and TCP protocols are sufficiently long
+such that 10 consecutive data segments (assume the payload is 1 byte) can be received (if
+not lost in the channel) by the receiving host (Host B) and their corresponding ACKs can
+received by the sending host (Host A). Suppose Host A sends 10 data segments to Host
+B, and the 6th segment (sent from A) is lost. In the end, all the 10 data segments are
+correctly received by Host B. For GBN, SR, and TCP (no delayed ACK and no fast
+retransmit) protocols how many segments has Host A sent in total and how many ACKs
+has Host B sent in total? What are their sequence numbers and ack numbers? Assume
+the sequence numbers and ack numbers start from 1. (15 Points)
+GBN: Host A sends 15 segments to host B. Host A initially sends segments 1, 2, 3 ,4, 5, 6, 7,
+8, 9, 10 and then retransmits segments 6, 7, 8, 9, 10
+Host B sends 14 ACKs to Host A. First it sends ACK 1, 2, 3, 4, 5, 5, 5, 5, 5 then sends ACK
+6, 7, 8, 9, 10
+SR: Host A sends 11 segments to Host B. Host A initially sends segments 1, 2, 3, 4, 5, 6, 7,
+8, 9, 10 and later resends segment 6.
+Host B sends 10 ACKs to Host A. First it sends 9 ACKs with sequence number 1, 2, 3, 4, 5,
+7, 8, 9, 10 and later sends one ACK with sequence number 6.
+Page 4 of 8
+
+--- Page 5 ---
+TCP: Host A sends 11 segments to Host B. Host A initially sends segments 1, 2, 3, 4, 5, 6, 7,
+8, 9, 10 and later retransmits segment 6.
+Host B sends 10 ACKs to Host A. First it sends ACK with sequence number 2,3, 4, 5 and 6.
+Since 6th segment is lost it sends ACKs with sequence number 6, 6, 6, 6 for the 7, 8, 9, 10
+segments, respectively. Finally, when 6th segment is retransmitted it sends ACK with sequence
+number 11.
+(Each Protocol: 5 Points; Total: 15 Points)
+6. Five values of SampleRTT are 5 ms, 15 ms, 10 ms, 20 ms, and 10 ms. Compute the
+EstimatedRTT, DevRTT, and Timeoutinterval after each of these SampleRTT values are
+obtained. Assume α = 0.125 and β = 0.25. Initial value of EstimatedRTT was 10 ms and
+initial value of DevRTT was 5 ms just before the first of these five samples were obtained.
+(15 Points)
+Answer:
+Given,
+α = 0.125 and β = 0.25.
+a) For sampleRTT = 5 ms,
+EstimatedRTT = (1- α) *EstimatedRTT + α*SampleRTT
+= (1-0.125) *10+0.125*5 = 9.375 ms
+DevRTT = (1-β) *DevRTT + β*|SampleRTT-EstimatedRTT| = (1-0.25) *5+0.25*|5-9.375| =
+4.843 ms
+Timeout Interval = EstimatedRTT + 4*DevRTT = 9.375 +4* 4.843 = 28.747 ms
+b) For sampleRTT = 15 ms,
+EstimatedRTT = (1- α) *EstimatedRTT + α*SampleRTT
+= (1-0.125) * 9.375+0.125*15 = 10.078 ms
+DevRTT = (1-β) *DevRTT + β*|SampleRTT-EstimatedRTT| = (1-0.25) * 4.843 +0.25*|15-
+10.078| = 4.863 ms
+Timeout Interval = EstimatedRTT + 4*DevRTT = 10.078+4* 4.863 = 29.53 ms
+c) For sampleRTT = 10 ms,
+Page 5 of 8
+
+--- Page 6 ---
+EstimatedRTT = (1- α) *EstimatedRTT + α*SampleRTT
+= (1-0.125) * 10.078 +0.125*10 = 10.068 ms
+DevRTT = (1-β) *DevRTT + β*|SampleRTT-EstimatedRTT| = (1-0.25) *4.863+0.25*|10-
+10.068| = 3.664 ms
+Timeout Interval = EstimatedRTT + 4*DevRTT = 10.068 +4*3.664 = 24.724 ms
+d) For sampleRTT = 20 ms,
+EstimatedRTT = (1- α) *EstimatedRTT + α*SampleRTT
+= (1-0.125) *10.068+0.125*20 = 11.309 ms
+DevRTT = (1-β) *DevRTT + β*|SampleRTT-EstimatedRTT| = (1-0.25) *3.664+0.25*|20-
+11.309| = 4.920 ms
+Timeout Interval = EstimatedRTT + 4*DevRTT = 11.309 +4*4.920 = 30.989 ms
+e) For sampleRTT = 10 ms,
+EstimatedRTT = (1- α) *EstimatedRTT + α*SampleRTT
+= (1-0.125) *11.31+0.125*10 = 11.146 ms
+DevRTT = (1-β) *DevRTT + β*|SampleRTT-EstimatedRTT|
+= (1-0.25) * 4.92+0.25*|10-11.146| = 3.976 ms
+Timeout Interval = EstimatedRTT + 4*DevRTT = 11.146 +4*3.976 = 27.05 ms
+(Each Sample: 3 Points; Total: 15 Points)
+7. What is TCP fast retransmit? Use an example and describe the working of TCP fast
+retransmit. (6 Points)
+Fast retransmit is a modification to the congestion avoidance algorithm. When the sender
+receives 3rd duplicate ACK, it assumes that the packet is lost and retransmit that packet without
+waiting for a retransmission timer to expire. When a TCP receiver receives a segment with a
+sequence number that is larger than the next, expected, in-order sequence number, it detects a
+gap in the data stream that is, a missing segment. This gap could be the result of lost or
+reordered segments within the network. it simply re-acknowledges (that is, generates a
+duplicate ACK for) the last in-order byte of data it has received. In the case that three duplicate
+ACKs are received, the sender assumes that the segment following the one that has been
+acknowledge thrice had been lost. Thus, the TCP sender performs a fast retransmit.
+Page 6 of 8
+
+--- Page 7 ---
+(Definition: 2 Points; Description with figure: 4 Points; Total: 6 Points)
+8. Explain in detail how TCP flow control is done? (5 Points)
+Suppose the sender wants to send data to the receiver. How much data will the sender send?
+TCP offers a service called flow-control, where the sender will make sure not to overflow the
+receiver’s buffer. Let us assume sender wants to send a large file. The large file is split into
+segments. When the sender establishes connection with the receiver, the receiver creates a
+receive buffer. When the segment is sent to the receiver, the receiver sends back an
+acknowledgement. This acknowledgment is a TCP segment that contains the rwnd field. The
+rwnd field tells the sender about the remaining buffer at the receiver side. With the rwnd value,
+the sender can keep track of the data it can potentially send to the receiver. The sender ensures
+that the last byte sent minus last byte acknowledged is always less that the remaining size of the
+receiver’s buffer (rwnd). The below video discusses about TCP flow control.
+(Description: 5 points)
+9. What are the steps involved in opening and closing a TCP connection? Clearly state what
+information is exchanged between the client and the server during the opening and closing a
+TCP connection. (10 Points)
+Opening a TCP Connection:
+When a host wants to connect to a TCP server, first it needs to do a negotiation with the server
+using the “Three-way handshake”.
+Step 1: The host sends a segment with SYN flag set with a random sequence number x
+Page 7 of 8
+
+--- Page 8 ---
+Step 2: When TCP server receives a "SYN" segment which carries no acknowledgment after
+it has sent a "SYN". Server responds by setting "ACK" and "SYN" flags. The server sequence
+is a random sequence number y and the acknowledgment number is x + 1
+Step 3: Client responds to the received segment by setting "ACK" flag and by appending the
+available data to the segment. The sequence number is x + 1 and the acknowledgment number
+is y + 1.
+Closing TCP connection:
+TCP Connection termination is achieved as shown below.
+Step 1: When the host wants to terminate the connection, it sends a segment with FIN flag set
+to 1. The sequence number is set of x
+Step 2: The server responds back with an ACK with an acknowledgment number x + 1
+Step 3: When the server does not have any data for transmission, it sends again a segment
+with FIN flag set to 1 and sequence number y
+Step 4: The host responds back with an ACK, and the server-side connection is terminated.
+The acknowledgment number is y + 1. The client will wait for 2*max segment lifetime and
+closes the connection on the client side.
+(Each explanation: 5 Points; Total: 10 Points)
+Page 8 of 8

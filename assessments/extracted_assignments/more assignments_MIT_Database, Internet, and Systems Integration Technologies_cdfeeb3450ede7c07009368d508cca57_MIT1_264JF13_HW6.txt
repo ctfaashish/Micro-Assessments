@@ -1,0 +1,80 @@
+--- Page 1 ---
+Homework 6
+1.264, Fall 2013
+Web site for aircraft parts distributor, part 1: static pages
+Due: Wednesday, October 30
+A. Web site
+You will build the Web site for the aircraft parts distributor in homework sets 6 and 7.
+(In homework 7 and, for extra credit in homework 8, you will build pages linked to your
+SQL Server database. You will allow users to display aircraft parts and your own staff to
+edit aircraft pasts.) Use Visual Web Designer and ASP.NET as covered in lecture.
+In homework 6, you will lay out your Web site without using any database connections.
+Create a few static (XHTML) pages as needed, create other XHTML pages as
+placeholders where you will put dynamic content in homework 7, design and implement
+hyperlink navigation among all your pages, design and implement a simple look and feel
+for your site, and include some graphics and external hyperlinks. This is a ‘mini first
+spiral’ for the Web site.
+The details of this assignment are:
+1. Set up a connection to your database. Use the database from the homework 5
+solutions or your own, as you prefer.
+2. Use a master page to provide a consistent look and feel. You may use the one
+given in lecture; modify the navigation links on the left as needed. Use the
+breadcrumb navigation (SiteMapPath) if you wish; it does not handle pages with
+querystring parameters (lecture 20) as well as it should—don’t worry about that.
+(If you have the time and interest, we can give you a better SiteMapPath control.)
+3. Create a home page for your site and other pages, consistent with your
+requirements. If some pages contain dynamic content obtained from a database,
+create ‘placeholder’ pages for them containing a brief text description of their
+function. You do not need to create more than 10 pages; you can have one static
+page describe the function of several dynamic pages that you would build in the
+next steps.
+4. From each page, a user must be able to navigate, by using hyperlinks, to other
+pages. Make the navigation logical and easy for the user. Every page does not
+need to navigate to every other page, but logical navigation steps must be present.
+5. Create at least the following pages:
+a. Descriptions of your company, product lines, contact information, etc.
+b. Links to at least two relevant external sites (e.g., aircraft parts industry
+association, regulatory agency) from a page with background information.
+c. Product catalog overview page.
+(1) Don’t implement any catalog Web pages; they will be generated
+dynamically from your database in homework 7. Leave a placeholder
+page, which can be empty other than a title and header, for the catalog.
+(2) Implement the design based on your requirements: Can all Web visitors
+see the catalog, or just those who have an account and have logged in?
+1
+
+--- Page 2 ---
+Can everyone see all information, or is price information, for example,
+available only to logged in users? Don’t implement login controls; those
+are beyond the scope of this class, but do implement the correct design. If
+a user clicks on a login link, take him or her to the user pages. If a user is
+not logged in, only allow him or her to access the public pages.
+d. Carrier information pages. These are just placeholders; use one or two pages
+as placeholders for the dynamic pages you will implement in homework 7.
+e. A login page, from which users can place an order. Again, don’t implement
+the login or order page; just create a placeholder that you will complete for
+extra credit if you wish in homework 8. The ASP.NET login feature also
+supports creating and managing accounts; assume you will use that feature.
+f. Order entry. Again, just use a one or two pages as placeholders for dynamic
+pages you will build in homework 7.
+6. You must use XHTML and CSS, not HTML. You must have at least one internal
+and one external CSS style sheet. Use at least one class style and one tag style on
+your site. Please maintain a consistent style for all the pages on your site.
+a. Your master page will have CSS formatting. Mimic this in the internal and
+external style sheets you create. In a real Web site, you would just use the
+master page. In this homework, we want you to have some practice creating
+and using style sheets on other pages.
+7. You must have a few images on your site. You should use a few XHTML
+features, such as lists, on your pages.
+8. Create your Web site on your notebook computer. See the course Web site for
+naming conventions that the TA asks you to follow.
+Hand in
+Hand in a zipped file that contains your Web site; upload it to the Web site.
+2
+
+--- Page 3 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+1.264J / ESD.264J Database, Internet, and Systems Integration Technologies
+Fall 2013
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

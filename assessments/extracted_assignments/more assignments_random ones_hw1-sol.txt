@@ -1,0 +1,409 @@
+--- Page 1 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+Homework 1: Crypto Party
+Due: Friday,February23@11:59pmEST
+Overview and instructions
+Thishomeworkhas6problems:
+• Problems1–4arerequiredforallstudents
+• Problems5isrequiredforCS1620/CS2660studentsonly
+Noteoncollaboration
+Youarewelcome(andencouraged!) tocollaboratewithyourpeers,butthesolutionsyouwritedownmust
+beyourownwork(ie,writtenbyyou). Youareresponsibleforindependentlyunderstandingallworkthat
+yousubmit—afterdiscussingaproblemasagroup,youshouldensurethatyouareabletoproduceyour
+ownanswersindependentlytoensurethatyouunderstandtheproblem. Formoreinformation,pleasesee
+thecourseCollaborationPolicy.
+Inyoursubmission,weaskthatyouincludeabriefcollaborationstatementdescribinghowyoucollaborated
+withothersoneachproblem—seethenextsectionfordetails.
+Howtosubmit
+YouwillsubmityourworkinPDFformonGradesope. YourPDFshouldconformtothefollowingrequire-
+ments:
+• Donotincludeanyidentifyinginformation(name,CSusername,BannerID,etc.) inyourPDF,since
+allhomeworksaregradedanonymously
+• Eachproblem(where“problem”isoneoftheProblems1–4or1–5)shouldstartonaseparatepage.
+WhenyousubmitonGradescope,youwillbeaskedtomarkwhichpagescorrespondtowhichprob-
+lem
+• Atthestartofeachproblem,writeabriefcollaborationstatementthatliststhenamesandCSusernames
+ofanyoneyoucollaboratedwithandwhatideasyoudiscussedtogether
+• Ifyouconsultedanyoutsideresourceswhileansweringanyquestion,youshouldcitethemwithyour
+answer
+TherearetwoseparateGradescopesubmissionsforthisassignment:
+• AllstudentsshouldsubmitProblems1–4totheassignmentlabeled“Homework1: Problems1–4”
+• CS1620/CS2660 students must also submit Problems 5–6 to the assignment labeled “Homework 1:
+Problem5”. Forthispart,youcaneithermakeaseparatePDFwithproblems5,orjusthaveonePDF
+andthenmarkthepagesfortheseproblems.
+• SubmissionsforProblems5fromCS1660-onlystudentswillnotbegraded(ie,thereisnoextracredit)
+1
+
+--- Page 2 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+Problem1: Paperthreatmodels
+Consider the following system: In some classes at Blue University, students demonstrate their program-
+ming assignments to a TA in person for grading. The TA then writes their evaluation and feedback on a
+paperrubric,whichisthenreturnedtothestudent.
+Aftertheirgradingmeeting,studentswriteupareportabouttheirwork(eg. aREADME),printitout,and
+thenphysicallyturninbothdocumentsduringthenextlecture. Wewillcallthestudent’sturned-inworka
+submission,wheresubmission = {report,rubric}. Whengrading,TAsreadthepapersubmissionsanduse
+theevaluationfeedbackfromtherubricaspartofthestudent’sgrade.1
+Questiona) Howisthissysteminsecure? Specifically,describethefollowing(2-3sentenceseach):
+i. Describeatleastoneadversaryinthesystemwhomightwanttomisuseit
+ii. Describeatleasttwoattackstheadversarymightwanttoperform.Whendescribingyour
+attacks,trytobespecificabouttheactionsperformedanduseterminologywe’veusedin
+class
+Lotsofpossibleanswers. Someexamples:
+• Studentmaywanttoaltertheirgradeorrubric(attackonintegrity)
+• Studentmaytrytoaltersomeoneelse’sgradeorrubric,preventitfrombeingsubmitted
+(integrity,availability)
+• Onestudentmayimpersonateanotherstudent
+• StudentmayforgeTAevaluationoutright,orsubmitacopyofsomeoneelse’srubric
+• Grader may alter marked rubric at grading time (independent of in-person TA evalua-
+tion)
+• Gradermayalterreportatgradingtime
+• Gradingrubric: 4ptstotalforeachattack(8ptstotalforparta). Pointsforeachattack
+distributedasfollows:
+– 4/4: Fullcredit: describeswhotheadversaryis,theoperationsthey’dperform,and
+it’s clear how this action connects to a security goal (they don’t necessarily need to
+saythewords“confidentiality”or“integrity”ifit’sobvious)
+– 3/4: Minordetailisincorrectormissing(wrongattacktype,etc.)
+– 2/4: Significantmissingcomponents
+– 1/4: Incorrectly defined, missing significant components, not clear how this is an
+attack
+– 0/4: Missing/nocredit
+Questionb) Imagine that it’s feasible for the people in the system to do cryptographic functions on the
+paperdocumentsinvolved(ie. studentencryptssubmissionSwithsomekeyk). Howwould
+youaddcryptographictechniques(encryption,signing,hashing,etc.) tothecurrentsystem?
+Describe at least two operations you could add to the system. For each one, consider the
+following:
+i. How does the operation (encryption, signing, etc) prevent one of the attacks you de-
+scribedinpart(a)? (It’sfineifyourtwooperationstargetthesameattack,ortargetcom-
+pletelydifferentattacks.)
+1Funfact: ThisishowprogrammingassignmentsworkedformanyofNick’sundergraduateclasses(incomputerengineering).
+WhenNickfirststartedTAing,hegradedlotsofcodeonpaper.
+2
+
+--- Page 3 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+ii. Makesureyouarespecificontheinputsandoutputsofeachoperation: forexample,it’s
+notsufficienttosay“usedigitalsignatures.” Instead: whatdocumentshouldbesigned,
+andwithwhatkey? (Andwhoknowskey(s)?)
+Onceagain,lotsofpossibleanswers:
+• Toprotectagainstforgery/alterationbystudent
+– EachTAsignsrubric(orhashofrubric)withaprivatekey;publickeysknowntoall
+staffmembers
+– EachTAMACsrubricwithasharedkey,withkeyknowntostaff
+– Toprotectagainstreuseofanexistingrubric,signedversionmustincludesomeinfo
+aboutthestudent
+– (Good,butnotsolelysufficientforintegrityprotection)TAencryptsrubricandstu-
+dentsubmitsciphertext
+• Toprotectagainstalterationbygrader:
+– Studentsignsrubric(orhashofrubric)withpublickeyknowntostaff
+Gradingrubric: 6ptsperoperationdescribed(so12ptstotalforpartb). Foreachoperation:
+• Describewhatoperationdoes(3pts)
+– 3/3: Fullcredit: describesrelevantcryptomechanic,ie,whatkeyisused,whatdoc-
+umentitoperateson,andwhodoesit,suchthatit’sclearwhatishappening–should
+leavesmallcommentaboutwhat’smissing
+– 2/3: Minordetailmissingorunclear
+– 1/3: Multipledetailsmissingorunclear
+– 0/3: Missing/nocredit
+• Describehowoperationpreventsanattack(3pts)(checkallthatapply)
+– +3: Fullcredit(meetscriteriafornexttwoitems)
+– +1: Describeswhichattackthisispreventing
+– +2:Describeshowcryptooperationpreventsattack(ie,attackercan’tforgesignature
+X)
+– +1: Halfcreditforaboveitem(missingsomesignificantdetail)
+– +0Missing/nocredit
+Note: This problem is quite open-ended and there are a lot of possible designs! Feel free to make
+assumptionsaboutthepartiesinvolved(eg. “assumeyoucangiveeachstudenta<type of key>”),
+aslongasyoustatetheminyouranswer.
+Youwillbegradedbasedonthethoroughnessofthedesignyouproposeandyourexplanationofhow
+ithelpssecurethesystemagainstthethreatsyoudescribeinpart(a).
+3
+
+--- Page 4 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+Problem2: MessagingwithPublicKeys
+AliceandBobuseamessagingappthatencryptsmessagesusingpublickeycryptography.
+In the app, Alice and Bob both have their own public-private key pair, (PK ,SK ) and (PK ,SK ),
+A A B B
+respectively. WhenAlicewantstosendamessagem,toBob,Alice’sappencryptsmusingBob’spublickey
+andsendstheresultingciphertext,c=Enc(PK ,m),toBob. WhenBob’sappreceivesthemessage,itcan
+B
+decryptitusingBob’ssecretkey,m = Dec(SK ,c). BobcansendmessagestoAliceinasimilarway(eg.
+B
+BobencryptsusingPK ,AlicedecryptsusingSK ).
+A A
+The exact asymmetric encryption algorithm used (eg. RSA, ECDSA, etc.) is not relevant to this problem,
+butyoucanassumethatitisdeterministic. Inotherwords,multipleencryptionsofagivenplaintextalways
+producethesameciphertext.
+Answerthefollowingquestionsbasedonthisscenario. Yourresponsestoeachquestionshouldbenomore
+than1–2sentenceseach.
+Questiona) SupposethatAliceandBobexchangeshortmessagesabouttimesandplacestomeetonBlue
+University’scampus. Theirmessagesalwayshavethesameformatanduseconsistentnames
+torefertoplaces,likethis:
+CIT, 7:00pm
+Yes
+Alice Bob
+GCB, 8:30pm
+No
+SupposethatEvecanobservetheencryptedmessagessentbyAliceandBob,butcan’tmodify
+or decrypt them (we call this type of attacker a “passive eavesdropper”). If Eve knows the
+message format and observes a large number of encrypted messages, what could Eve learn
+aboutAliceandBob’smeetings?
+Sincetheencryptionschemeisdeterministic,thesameplaintextalwaysencryptstothesame
+ciphertext. After observing a large number of messages, Even can take note of the repeated
+ciphertexts and learn when Alice and Bob revisit a location they have visited previously, or
+know when a Yes/No answer is given. If Eve is also on the Blue University campus, or has
+othersignalsastowhereAliceandBobmeetupafterthefact,Evecouldcorrelatethecipher-
+text with real-world observations and then use this info to determine the locations of future
+meetings.
+• 3ptstotal
+• 3/3: Full credit: Demonstrates that Eve can recognize repeated messages or correlate
+theminsomeway,eventhoughEvecan’tdecrypt.
+• 2/3: Missingsomeimportantdetail,oraddssomeincorrectdetail
+• 1/3: Answerdoesnotreasonaboutdeterministicencryptionordoesnotmatchproblem
+• 0/3: Missing/nocredit
+• +0 (Add to rubric and mark, but no points for now): Mentions that Eve could use out-
+of-bandinfo(in-personoronlinestalking)tofigureoutwhereAliceandBobareactually
+meeting
+Questionb) Themessagingapphasawaytosearchforusersandobtaintheirpublickeys.Evemanagesto
+findAliceontheappanddownloadsherpublickey,PK . DoesthishelpEverevealanynew
+A
+informationaboutAliceandBob’smessages? Explainyourreasoningandwhat(ifanything)
+isrevealed.
+4
+
+--- Page 5 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+Eve can encrypt arbitrary messages to Alice using PK and observe the ciphertext. This
+A
+would allow Eve to learn the ciphertext of any chosen plaintext. Assuming Eve knows the
+messageformatandthenamesforthebuildings,Evecouldfigureouttheciphertextsforthe
+“yes”or“no”messages. Evecannotfigureoutthetimesandplaces,however,unlessEvealso
+learnsBob’spublickey.
+• 4ptstotal
+• 4/4: Full credit: recognizes that (1) Even can determine arbitrary ciphertexts, and (2)
+Evecanusethistofigureoutwhichciphertextshavea“yes”or“no”responsefromBob
+becauseEveknowstheformat.
+• 3/4: Missingsmalldetail, ormentionsthatEvecouldalsofigureoutthelocationswith
+Alice’skey
+• 2/4: Missing(1)or(2)
+• 1/4: Answerdoesnotrelatetoproblem
+• 0/4: Missing/nocredit
+Questionc) Imagine you are a developer for the messaging app. How could you modify the protocol
+to prevent the attacks described in parts (a) and (b)? Assume that you can’t send any extra
+messages,orchangewhichcryptographicfunctionsareused.(Hint:youdon’tneedtochange
+alot!)
+Couldaddarandomnonce,arandomnumberusedonlyonce,tothebeginningorendofthe
+messagebeforeencrypting. Assumingthenumberischosenatrandomandnotrepeated,this
+ensuresthateverymessageencryptstoadifferentciphertext.
+Alternatesolution(usedinpreviousyears’solutions): ahigh-precisiontimestampcouldalso
+work,butmayalsobepossibletopredict.
+• 4ptstotal
+• 4/4: Fullcredit: reasonablesolutioninvolvinganonce,precisetimestamp,orsomething
+elsethatbehavessimilarly
+• 3/4: Answer is close but missing small detail (eg. precision for timestamp not men-
+tioned)
+• 2/4: Answerisintherightdirectionbutmissingmajordetail
+• 2/4: Answerisexcessivelycomplicatedoraddsextracrypto
+• 1/4: Answerdoesnotrelatetoproblem
+• 0/4: Missing/nocredit
+Questiond) (Independentofyouranswerforpart(c))Trueorfalse: Sincethisprotocolusespublickeycryp-
+tography,auser(eg.Alice)canauthenticatemessagestheyreceivefromanotheruser(eg.Bob).
+Explainyourreasoning.
+False. Authenticationmeansthatwehaveawaytoverifythatamessagewereceiveactually
+originatedfromthesender. Thisprotocolonlyprovidesconfidentiality: anyusercanencrypt
+amessageusingAlice’spublickey. Theappmightcommunicatewhosentthemessage, but
+cryptographicallythere’snowaytoverifythesender.
+• 4ptstotal
+• 4/4:Fullcredit:Answer(1)demonstratesacorrectunderstandingofwhatauthentication
+means,(2)explainshowthecurrentprotocoldoesnotprovideauthentication.(2ptseach,
+markpartialcreditonscaleasappropriate)
+5
+
+--- Page 6 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+• 3/4: Answerisintherightdirectionbutmissingasmalldetail
+• 2/4: Missing(1)or(2)
+• 1/4: Missingsignificantdetails
+• 0/4: Missing/nocredit,oranswerstrueorfalsewithoutjustification
+6
+
+--- Page 7 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+Problem3: ExceptionalAccess
+Eversincestrongcryptographybecameaccessibletoconsumers,lawenforcementagencieshavebeenad-
+vocatingfor“exceptionalaccess”tosecuresystems,ormechanismsbuilt-intocryptographicprotocolsthat
+allowlaw-enforcementtogainaccesstoencrypteddataincertaincircumstances(eg. searchwarrants,pub-
+lic safety, etc.). This has been a matter of public debate, as many cybersecurity experts have argued that
+enabling exceptional access would reduce overall security and challenge users’ fundamental right to pri-
+vacy.
+Toprovideonehigh-profileexample,in2015,Applerefusedtocreateasoftwareupdatethatwouldallow
+theFBItounlockaniPhonethatwaspartofacriminalinvestigation2.
+TwocryptographersfromGCHQ(theUK’sequivalentoftheNSA)haveproposedamethodofexceptional
+accessthattheybelievedoesnotcompromisetheintegrityofencryptioninthefollowingarticle:
+https://www.lawfareblog.com/principles-more-informed-exceptional-access-debate.
+Pleasereadoverthisarticleandthenconsiderthefollowingquestions.
+Theseareopenquestionsandwillbegradedforcompletenessoryourresponsesandjustificationofyour
+claims. Youranswersshouldbeatmost3–4sentences.
+Questiona) Thearticlediscussesseveralprinciplesthatcanbeusedtoevaluateexceptionalaccessmeth-
+ods. Whatstandardswouldneedtobefollowedforyoutofindanexceptionalaccessreason-
+able? Ifyoubelieveexceptionalaccessisneveracceptable,pleasejustifywhy. Howdoesyour
+answerdifferfromtheGCHQprinciples(fromthearticleabove),ifatall?
+Questionb) Itisarguedthatifcompaniesdon’tprovideamechanismforthegovernmenttoaccesscom-
+munications between users, then the only option left for government agencies is hacking,
+eg. finding or exploiting known vulnerabilities in a system until they get what they want.
+However, relying on vulnerabilities for this purpose can incentivize governments to avoid
+disclosingthemtothepublicsotheyremainusefultolawenforcement. Doyoufindhacking
+acompellingmechanismforprovidingexceptionalaccess? Explainyourreasoning.
+SampleTASolution
+Gradedoncompletion,5ptsperpart. Answersmayvary.
+(a) Therearetwoapproachesthatcanbetakenbystudents: arguingthatexceptionalaccessisneverjusti-
+fied,andlistingprinciplesthattheybelievewouldmakeanexceptionalaccessmethodacceptable.
+Typically, arguing exceptional access is never justified would be done by claiming that any method
+thatallowsunintendedrecipientstoaccessencrypteddatanecessarilyconstitutesacybersecurityvul-
+nerability,andthatvulnerabilitieshaveworseconsequences(i.e.,potentialforsignificantcyberattacks,
+espionage,lossoftrustinsoftwareservices,potentialcompromiseofjournalists’abilitytocommunicate
+withsources)thananinabilitytoaccessencrypteddata(failuretopreventandprosecutecrimes).
+Seehttps://dspace.mit.edu/bitstream/handle/1721.1/97690/MIT-CSAIL-TR-2015-026.
+pdfforajustificationofwhyexceptionalaccessmechanismsnecessarilycreatevulnerabilities,https:
+//www.washingtonpost.com/world/national-security/former-national-security-officials-urge-government-to-embrace-rise-of-encryption/
+2015/12/15/3164eae6-a27d-11e5-9c4e-be37f66848bb_story.htmlforbackgroundonna-
+tionalsecurityvs.lawenforcementdisagreementsonexceptionalaccess,andhttps://www.thirdway.
+org/report/weakened-encryption-the-threat-to-americas-national-securityfora
+purenationalsecurityargumentagainstexceptionalaccess.
+For the second approach, below are three examples of standards that might be suggested, although
+therearemanymorethatstudentscouldreasonablysuggest. Foradditionalexamples,seepages13-14
+ofhttps://carnegieendowment.org/files/EWG__Encryption_Policy.pdf(intendedforon-
+devicekeyescrowbutnonethelessbroadlyapplicable).
+2https://en.wikipedia.org/wiki/Apple%E2%80%93FBI_encryption_dispute
+7
+
+--- Page 8 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+1. Softwareproviderscannotberequiredtodesigntheirsystemsinpreparationforexceptionalaccess.
+Whileone-offexceptionalaccessassistancecancreatetemporaryvulnerabilities,designingsystems
+inawaythatcompromisesconfidentialityorintegrityupfrontcreatespersistentvulnerabilities. Ad-
+ditionally, this is antithetical to security by design. Although this may lead to firms redesigning
+their systems to make exceptional access methods impossible (i.e., by allowing the client to verify
+whetheranykeyshavebeenchangedoradded,whichtheghostproposalrequires),thesedecisions
+would necessarily improve the overall security of these systems. For context, system redesigns to
+enablepersistentmethodsofexceptionalaccesscanberequiredbyAustralia’sexceptionalaccessleg-
+islation(theTelecommunicationsandOtherLegislationAmendment(AssistanceandAccess)Act)through
+Technical Capability Notices. This standard is in conflict with the view expressed by former FBI
+Director James Comey, who argued that ”it makes more sense to address any security risks by de-
+velopinginterceptsolutionsduringthedesignphase,ratherthanresortingtoapatchworksolution
+whenlawenforcementcomesknockingafterthefact”https://www.fbi.gov/news/speeches/
+going-dark-are-technology-privacy-and-public-safety-on-a-collision-course.
+2. Ajudge,indeterminingwhethertoallowaparticularformofexceptionalaccess,mustbepresented
+withareportonthesecurityconsequencesoftheproposedmethodbyanindependentcybersecurity
+expert. Theconclusionsofthereportmustbemadepublic.
+Although it is possible for firms to protest exceptional access orders, it is likely that they will con-
+sistently claim that methods are too risky while governments are likely to consistently claim that
+theriskisminimal. Thismaytoleadtosituationsinwhichjudgesareforcedtoweighwell-defined
+nationalsecurityconsequencesagainstcontestedcybersecurityrisks. Whenthejudgecannotevalu-
+atethecybersecurityrisks, theycouldinadvertentlyallowexceptionalaccessorderswherethereis
+significant risk, or vice versa. An independent expert would provide the judge with unbiased ad-
+viceontheconsequencesoftheorder,allowingthemtoevaluateitsproportionalitymoreeffectively.
+Additionally,publicisingtheexpert’sfinderswouldhelptoeitherassuagepublicconcernsaboutthe
+securityoftheproductstheyuse(iftheordersarereasonable)orputpressureongovernmentagen-
+cies to proactively suggest methods that maintain the cybersecurity of these systems (if the orders
+arereckless).
+3. Requestsforexceptionalaccessmustallowsufficienttimeforsecuremethodsofretrievingtheinfor-
+mationtobedeveloped.
+Thiswouldpreventaccessmethodsfrombeingrushed,limitingthelikelihoodofseriousvulnerabil-
+itiesbeingintroduced. Althoughtherhetoricalexamplestypicallyusedwhenjustifyingexceptional
+accessaretime-sensitive(i.e.,abombwillgooffandthelocationisonanencryptedharddrive),sit-
+uationslikethisareunlikely(eventhecaseexamplesprovidedbyComeyinthearticlecitedearlier
+areallafterthefactevidencegathering)andtheriskcausedbyrushingexceptionalaccessistremen-
+dous. Giventhatalargepartoftheconcernaboutexceptionalaccessisthatvulnerabilitiesmaybe
+created by developer error, shortening the timespan for implementation greatly increases the risk
+that serious vulnerabilities are introduced. Additionally, rushed implementation may compromise
+thevalidityofreviewprocessesbothinternallyandbyindependentevaluators(suchasinstandard
+1).
+ThekeyareaofcontentionbetweenthesestandardsandtheGCHQprinciplesisthattheGCHQprin-
+ciplesleavethedooropentochangingthedesignofsystemstomakeexceptionalaccesseasier. Infact,
+theirghostproposalisonlypossibleifcompaniescanbeforcedtoactivelychangethedesignofexisting
+messagingapps(includingSignalandWhatsApp).
+(b) I do not think that this is a valid argument. As seen with the Cisco-Webex vulnerability discussed
+inthesecondreading,thereareindependentsecurityresearchersworkingtofindvulnerabilitieswith
+motivation of finding these first to receive a bounty. Although the government could find hacks into
+software and devices allowing them access to important user-data, it would only be a matter of time
+until another security researcher finds the same vulnerability used by the government and discloses
+thistothecompanywhowillthenfixthebug. Therefore,itisnotviableforthegovernmenttoassume
+8
+
+--- Page 9 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+thathackingwillalwayswork. (4sentences)
+9
+
+--- Page 10 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+Problem4: Lab: BurpSuite
+Thisproblemisashort“lab”designedtogiveyoupracticeusingBurpSuite,asetoftoolsfortestingweb
+applications,whichyoumayfindusefulforthenextproject.
+Tocompletethelab,followtheinstructionshere:https://hackmd.io/@cs1660/burp-suite-lab
+At the end of the lab, you’ll be asked to take a screenshot showing you completed the final task, which
+involvessendingarequestthatcausesaspecificchangeinawebsite. Toreceivecreditforthisproblem,just
+includethisscreenshotinyoursubmission.
+Gradedoncompletion,+5forincludingascreenshotthatlooksreasonable.
+10
+
+--- Page 11 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+Problem5: (CS1620/CS2660only)BetterPasswordsviaaBrowserExtension
+OnlyCS1620/CS2660studentsarerequiredtocompletethisproblem.
+PwdHash(https://crypto.stanford.edu/PwdHash/)isabrowserextensionthattransparentlycon-
+vertsauser’spasswordintodomain-specificvalues. Forexample,ifauservisitsbank.comandtypesin
+theplaintextpasswordiampassword,whentheusersubmitstheloginform,PwdHashinsteadcausesthe
+browser to send hash(iampassword++bank.com) as the password, where ++ is the string concatena-
+tionoperatorandhashissomecryptographichashfunction. (PwdHashknowsthedomainthattheuseris
+visitingonbecause,asabrowserextension,ithasdirectaccesstotheURLsauservisits.)
+Considerthefollowingquestions. Foreachpart,youranswersshouldbearound50wordseach.
+Questiona) (4 pts) Alice, a user with the PwdHash extension installed, likes using the same password
+“balloons” for every single website. Does PwdHash prevent Alice’s password from being
+brokenbyadictionaryattack? Explain.
+Questionb) (4pts)Aliceusesbank.comfortheironlinebankingoperations.Supposebank.com’sdatabase
+isstolen. DoesPwdHashprotectAlice’spasswordfrombeingcrackedbyabrute-forceattack?
+Explain.
+Questionc) (4pts)SupposeAlicevisitsafakewebsitesetupbyEve,awebattackerthatcontrolsawebsite
+thatlooksidenticaltobank.combutisactuallyhostedatbank.co. However,Alicedoesn’t
+noticethedifferenceand,submitstheirrealpasswordforbank.comtothefakewebsite.Does
+PwdHashprotectAlice’spasswordfrombeingstolenandusedbyEve? Explain.
+Questiond) HowdoesPwdHashaffecttheoverallentropyofitsusers’passwords?
+SampleTASolution
+a) (4pts)Inadictionaryattack,anattackertriespasswordpossibilitiesthatarelikelytosucceed(suchas
+common words or short sequences of letters). PwdHash combines an easy password with a domain-
+specific string and then hashes it; this generates a pseudorandom string that is difficult to guess. If
+the attacker doesn’t know about PwdHash, then this would be hard to guess. However, due to the
+opendesignprinciple, thisisnotavalidassumptiontomake. Iftheattackerknowsthattheuseruses
+PwdHash, then a dictionary attack would be possible (since the hash function is public, the attacker
+knowsthedomain,and”balloons”iseasy).
+• 4/4 pts: Recognizes that this makes dictionary attacks harder, unless the attacker knows Alice is
+usingPwdHash.
+• 3/4points: Correctintuition,butsomethingimportantmissing
+• 2/4points: Correctintuition,butmultipleimportantthingsmissing
+• 1/4points: Incorrectintuition,majorcomponentsmisssing
+• 0/4points: Nocredit/missing
+b) (4pts)IftheattackerdoesnotknowthatAliceisusingPwdHash, thentheattackerwillhavetobrute
+forcelong,randomstrings(assumingtheoutputfromPwdHashislong)whichwillbedifficult. How-
+ever, iftheattackerdoesknowsthatAliceisusingPwdHash, alltheyhavetodoiscomputethebrute
+forceattackbyrunningpasswordsthroughPwdHashbeforepassingthemtothedatabasehashfunction,
+whichwillreducethelengthofpasswordsneededtobrute-forceasmallpasswordlike“balloons”.
+• Same grading scale as above. For full credit, must mention that attack is hard if attacker doesn’t
+knowAliceisusingPwdHash,buteasyiftheydo.
+c) (4pts)PwdHashisdomain-specific,soitwillgenerateadifferenthashofthepasswordonthebank.co
+website;thus,bank.cowillnotgetAlice’sbank.compassword.
+11
+
+--- Page 12 ---
+CS1660/CS2660 ComputerSystemsSecurity Spring2024
+• Samegradingscaleasabove. Forfullcredit,mustmentionthatthehashforbank.coisdifferent
+becauseadifferentdomainisused.
+d) (4pts)
+Users’passwordswouldhavethesameorlessentropyiftheyareusingPwdHash.Thisisbecauseahash
+functionisdeterministic: eachpasswordisonlygoingtohaveoneoutput,whichhasthesameentropy.
+Ifuser’spasswordhappenedtohaveahigherentropythantheoutputspaceofthehashfunction, the
+PwdHashcouldevenreduceentropy.
+• Samegradingscaleasabove. Forfullcredit,mustmentionthattheentropyofthepassworddoes
+notincreasebecausetheinputthespaceisstillthesame.
+12

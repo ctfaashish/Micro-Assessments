@@ -1,0 +1,19 @@
+--- Page 1 ---
+Homework: OS Organization
+Homework: OS Organization
+This lecture will provide an introduction to operating system organizations, monolythic, microkernel, etc. The assigned
+paper describes the exokernel organization. The JOS operating system you are building in the labs is organized like an
+exokernel.
+Submit: In lab 4 you completed building the core of an exokernel-based operating system. In class you studied xv6, a
+monolithic operating systems. Both are intend to support the UNIX API, but their internal organizations are different.
+A good example is the virtual memory implementation: JOS implements many virtual-memory-related functions (such
+as ) in its library operating system, while xv6 implements them in the kernel. Give an concrete example of what a
+fork
+user program could do in JOS that a user-level program on xv6 is unable to do and why it is useful.
+
+--- Page 2 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.828 Operating System Engineering
+Fall 2012
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

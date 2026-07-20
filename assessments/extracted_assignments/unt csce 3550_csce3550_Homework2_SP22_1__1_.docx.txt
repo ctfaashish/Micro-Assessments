@@ -1,0 +1,133 @@
+--- Page 1 ---
+CSCE 3550 – Foundations of Cybersecurity Spring 2022
+Homework 2
+Due: 11:59 PM on Sunday, February 20, 2022
+Form of submission: Word, Text, or PDF Document in Canvas
+Chapter 3 – Programs and Programming (Security in Computing, 5/e)
+1. (12 Points) A program is written to compute the sum of the integers from 1 to 10. The
+programmer, well trained in reusability and maintainability, writes the program so that it
+computes the sum of the numbers from k to n. However, a team of security specialists
+scrutinizes the high-level code. The team certifies that this program properly sets k to 1
+and n to 10; therefore, the program is certified as being properly restricted in that it
+always operates on precisely the range 1 to 10. List at least two different ways that this
+program can be sabotaged so that during execution it computes a different sum, for
+example, 3 to 20.
+One way a program can be sabotaged is that a hacker can change the variables k and n
+into different values. For example, a hacker can change variable k from 1 to 3 and/or
+change variable n from 10 to 20. Another way a program can be sabotaged is that a
+hacker can change the number of items the array can hold using buffer overflow. For
+example, a hacker can change the number of items in an array from 10 to 5 to cause the
+array to calculate a different sum and create a buffer overflow of an array.
+2. (12 Points) Without your knowledge, a malicious Trojan horse has been planted in your
+default web browser that you frequently use to access your bank account online. The
+attacker that planted the Trojan horse already set up the backdoor to silently capture
+your account number and password, but he/she needs a way to get this information off
+of your computer and sent across the network to himself/herself.
+List two covert channels that the attacker can use to leak information about your bank
+accounts to himself/herself somewhere in the network. You may assume that the
+attacker can arrange to host a web site that you will visit or even sniff HTTP GET
+requests. There are lots of possibilities – be creative, but be specific to this scenario!
+The attacker can use a hard drive to leak information about the bank account to himself
+somewhere in the network because hard drives can alter or add more content and data
+to the computer itself. Therefore, in this case, the hard drive itself could be a form of
+Trojan horse that will leak information about the bank account. Another way the
+attacker can leak information is that he or she can “hide” sensitive information behind
+the weekly report with non-sensitive information. That way, the attacker can create a
+1 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:20 GMT -05:00
+https://www.coursehero.com/file/177502626/csce3550-Homework2-SP22-1-1docx/
+
+--- Page 2 ---
+CSCE 3550 – Foundations of Cybersecurity Spring 2022
+software or an app that contains all the sensitive information needed that was supposed
+to be “hidden” in private.
+3. (12 Points) List three controls that could be applied to detect or prevent off-by-one
+errors.
+1) Penetration testing would work because it is an important method to use when it
+comes to preventing faults and errors of a program.
+2) Hiding information can also prevent off-by-one errors because this is so that the
+program won’t be reading information that won’t be needed and would cause buffer
+overflow. It will also prevent malicious behaviors, accidents, and actions.
+3) Mutual suspicion can prevent off-by-one errors by checking their inputs for reliability
+before entering them and defending against flaws and malicious behaviors.
+4. (12 Points) Explain in what circumstances penetrate-and-patch is a useful program
+maintenance strategy.
+Penetrate-and-patch is a useful program to fix any faults and errors found in a program.
+However, penetrate-and-patch can sometimes make things worse by causing newer
+faults, more failures, more inconsistencies, and more problems.
+5. (12 Points) Explain why genetic diversity is a good principle for secure development. Cite
+an example of lack of diversity that has had or can have a negative impact on security.
+Generic diversity is a good principle for secure development because people should be
+aware that too many vulnerable programs can cause viruses and worms to take over
+many programs easily. For example, too many HTTP servers that are the same can
+increase a higher risk of flaws, faults, and errors.
+6. (6 Points) (a) You receive an e-mail message that purports to come from your bank. It
+asks you to click a link for some reasonable-sounding administrative purpose. How can
+you verify that the message did come from your bank?
+2 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:20 GMT -05:00
+https://www.coursehero.com/file/177502626/csce3550-Homework2-SP22-1-1docx/
+
+--- Page 3 ---
+CSCE 3550 – Foundations of Cybersecurity Spring 2022
+I can verify that the message did come from my bank by looking at the tone and
+grammar of this message because the tone and grammar of the message can indicate
+whether the message is legitimate enough to come from the bank or not.
+(6 Points) (b) Now play the role of an attacker. Suppose you are able to obtain the
+mailing list for a certain bank. Describe what is needed to convert the e-mail message to
+your purposes, while still making both the bank and the customer think the message is
+authentic and trustworthy? Be sure to address perspectives that include both the
+message and the bank’s web site.
+I would need a keyboard logger to keep track of all the e-mails and passwords typed in
+any computer or device because this would help me convert e-mail messages to my
+purposes. I can still make both the bank and the customer think the message is
+authentic and trustworthy by hiding my secret information to make the e-mail messages
+look professional, reliable, and trustworthy.
+7. (12 Points) Open design would seem to favor the attacker, because it certainly opens the
+implementation and perhaps also the design for the attacker to study. Justify that open
+design overrides this seeming advantage and actually leads to solid security.
+Open design can sometimes be an advantage because some people want to show the source
+codes and programs in public so that the attackers can study the source codes and
+programs to give them a good idea on how to program and hack a system, a skill that
+attackers need to maintain a secure system.
+8. (16 Points) Consider the following code snippet in C:
+char *base_url = malloc(11 * sizeof(char));
+printf("Enter an 11 character URL: ");
+scanf("%s", base_url);
+char src[11];
+char dst[11];
+// copies base_url to src
+strncpy(src, base_url, 11);
+3 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:20 GMT -05:00
+https://www.coursehero.com/file/177502626/csce3550-Homework2-SP22-1-1docx/
+
+--- Page 4 ---
+CSCE 3550 – Foundations of Cybersecurity Spring 2022
+// copies src to dest
+strcpy(dst, src);
+printf("src: %s dst: %s\n", src, dst);
+a. Identify at least one potential buffer overflow vulnerability and explain why/how it
+can be exploited (i.e., not just that it’s a buffer overflow, but where the problem will
+manifest itself).
+One of the buffer overflows is that the program cannot initialize a variable of type
+‘char*’ with an rvalue of type ‘void *’. It can be exploited by fixing the rvalue to the
+correct type that will match the type of the variable. In this case, an rvalue should be
+type ‘char*’.
+b. Rewrite the code in C that would prevent or mitigate the impact of this deficiency.
+Note that you may not change the first 5 lines of code.
+char *base_url = malloc(11 * sizeof(char));
+printf("Enter an 11 character URL: ");
+scanf("%s", base_url);
+char src[11];
+char dst[11];
+// copies base_url to src
+strncpy(src, base_url, 11);
+// copies src to dest
+strncpy(dst, src, sizeof(dst)-1);
+dst[sizeof(dst)-1] = ‘\0’;
+printf("src: %s dst: %s\n", src, dst);
+4 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:24:20 GMT -05:00
+https://www.coursehero.com/file/177502626/csce3550-Homework2-SP22-1-1docx/
+Powered by TCPDF (www.tcpdf.org)

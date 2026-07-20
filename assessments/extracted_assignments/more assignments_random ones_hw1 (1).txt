@@ -1,0 +1,65 @@
+--- Page 1 ---
+University of Illinois at Urbana-Champaign
+Department of Computer Science
+Homework Assignment 1
+CS 273 Introduction to Theoretical Computer Science
+Fall Semester, 2002
+Due: Thursday, Sept 19, at the beginnning of class
+Please read the comments on the web page about how to do homeworks before doing this homework.
+This is a group homework. In all the problems, you must explicitly state your reasoning to
+get credit.
+1. (10 pts)
+(a) (5 pts) How many ways can ten boys and flve girls stand in a row with no two girls
+standing beside each other?
+(b) (5 pts) How many ways can ten boys and flve girls stand in a circle with no two girls
+standing beside each other?
+2. (16 pts) There are flve male students and flve female students register for a 497 seminar
+course. Unfortunately, the professor has trouble hiring any graders and he himself flnds
+the job unacceptably boring. As a result, he asks the students to exchange homeworks so
+that no one grades his or here own submission.
+(a) (4 pts) In how many ways can this be accomplished?
+(b) (4 pts) In how many ways can at least three students get lucky to grade their own
+homeworks?
+(c) (8 pts) Now back to the conditions given in the original problem and let the total
+number of registered students be n, in how many ways can this be accomplished
+(without the constraints in b )?
+3. (20pts)Everydayastudentwalksfromherhometoschool, whichislocated10blockseast
+and 14 blocks north from home. She always takes a shortest walk of 24 blocks. Assume
+she lives on a prefect grid.
+(a) (5 pts) How many difierent walks are possible?
+(b) (5pts)Suppose that4blockseastand5blocksnorth ofherhome livesher best friend,
+whom she meets each day on her way to school. Now how many difierent ways are
+possible?
+(c) (5 pts) Suppose, in addition, that 3 blocks east and 6 blocks north of ther friend’s
+house there is a park where the two girls stop each day to rest and play. Now how
+many difierent walks are there?
+(d) (5 pts) Stopping at a park to rest and play, the two students often get to school
+late. To avoid the temptation of the park, our two students decide never to pass the
+intersection where the park is. Now how many difierent walks are there?
+4. (10 pts) Use combinatorial reasoning to prove the identity (in the form given)
+n n¡3 n¡1 n¡2 n¡3
+¡ = + +
+(cid:181)k¶ (cid:181) k ¶ (cid:181)k¡1¶ (cid:181)k¡1¶ (cid:181)k¡1¶
+
+--- Page 2 ---
+CS 273|Fall, 2002 2 Homework Assignment 1
+5. (10 pts) Use combinatorial reasoning to prove
+n 2
+n 2n
+=
+(cid:181)k¶ (cid:181)n¶
+kX=0
+for any n‚0
+6. (10 pts) A thousand balloons are to be given to 200 children C1;C2;::: ;C200. In how many
+ways can it be done if
+(a) (2 pts) the balloons are identical?
+(b) (2 pts) the balloons are all difierent?
+(c) (3 pts) the balloons are identical and each child must get at least one?
+(d) (3 pts) the balloons are all difierent and each child must get at least one?
+7. (24 pts) Consider strings of 7 digits (e.g., 0000000, 1345692)
+(a) (4 pts) How many are there?
+(b) (5 pts How many contain at least one 2?
+(c) (7 pts) Suppose there are exactly one 2,two 5’s and four 7’s in any string. How many
+such strings are there?
+(d) (8 pts) Suppose there are at most one 2’s, three 5’s and flve 7’s in any string. How
+many such strings are there?

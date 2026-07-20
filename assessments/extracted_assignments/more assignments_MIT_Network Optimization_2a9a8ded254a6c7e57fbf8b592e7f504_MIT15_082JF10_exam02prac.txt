@@ -1,0 +1,181 @@
+--- Page 1 ---
+15.082 Final Exam
+Spring 2003
+Name
+Instructions.
+1. Please answer all questions in the exam books that are provided.
+2. Please budget your time carefully. It is often a good idea to read the entire exam first, so that
+you can first do the questions that take the least amount of time.
+3. Point values are listed on each problem.
+4. Questions crossed out in red cover topics not included on Midterm 2, Fall 2010.
+
+--- Page 2 ---
+Part 1. (45 points)
+1. (15 points, 2 points for parts a, b and c. 3 points for parts d, e and f.) Consider the following max
+flow problem given by the preflow push algorithm. The distance labels are given at left. The
+numbers above or below the nodes are the excesses. The numbers on the arcs are the residual
+capacities.
+s
+7 3
+5 10
+2 3
+1
+4 2211 2
+3 8 2 t
+s
+3
+2 4 2
+3 5
+4 5
+1 5 3
+0 6
+t
+0
+a. Is the labeling of the nodes valid? Why or why not?
+b. What are the admissible arcs?
+c. Which nodes are active?
+d. If the highest level push algorithm is used, what is the next node selected? Perform push
+relabels on that node and stop after the first non-saturating push. Show intermediate steps.
+e. Suppose that excess scaling is used and that we are at the 8-scaling phase. So no node has
+an excess of more than 8, and each non-saturating push has at least 4 units of flow.
+According to the excess scaling algorithm given in class, which node(s) could be selected
+next for pushing?
+f. A potential function argument was used to prove the O(n2m) time bound in class and in the
+text. What was the potential function? Evaluate the potential function for the current
+preflow.
+
+--- Page 3 ---
+2. (12 points) The following is a feasible flow during some iteration of a minimum cost flow
+problem. Assume that each lower bound on an arc flow is 0. Recall that the tail of arc (i, j) is
+node i and the head is node j.
+Tail Head Capacity Flow Cost
+1 2 6 5 1
+2 4 5 5 -2
+4 3 7 4 2
+1 3 7 5 2
+2 3 4 4 3
+a. (5 points) Write the residual network, and find a negative cost cycle in the residual network,
+and state the capacity of the cycle. If there is no negative cost cycle, then say so.
+b. (2 points). Use the fact that the flow given above is feasible to determine the
+supply/demand b(j) of each node j = 1, 2, 3, 4.
+c. (5 points) Does the above flow correspond to a spanning tree solution? If not, why not? If
+so, what is the basic feasible structure, the node potentials, and the reduced costs of the non-
+basic arcs?
+3. (8 points, 4 points per part) Consider the network below for the minimum cost spanning tree
+problem.
+5
+2 3
+7 1
+2 6 6
+1
+8
+4 3
+4 5
+a. What is the minimum cost spanning tree? List the arcs of the minimum cost spanning tree
+in the order in which they are added by Kruskal’s algorithm. You do not need to show steps
+of the algorithm.
+b. Consider Prim’s algorithm for the minimum cost spanning tree starting from node 1. List
+the arcs of the minimum cost spanning tree in the order they are added to the tree by Prim’s
+algorithm. You do not need to show the steps of the algorithm.
+
+--- Page 4 ---
+4. (10 points, 5 points per part.) Consider the multicommodity flow problem in the diagram below.
+5 units 3 5 units
+(cid:206) 1 4 (cid:206)
+Good 1 Good 1
+1
+0
+1
+1
+2 5
+2 2
+0
+4 units 4 units
+(cid:206) 3 6 (cid:206)
+Good 2 Good 2
+6
+The arc numbers are costs. One needs to send 5 units of commodity 1 from node 1 to node 4. One
+needs to send 4 units of commodity 2 from node 3 to node 6. In addition, there are bundle
+constraints on arcs (1, 2), (2, 5), and (5, 6). u = 4, u = 6, and u = 3.
+12 25 56
+a. Write the path formulation for this multicommodity flow problem. (This is the formulation that
+uses column generation, as discussed in the second lecture on multicommodity flows.)
+b. Suppose that the first restricted master problem consists of paths 1-4 and 3-6. What is the
+optimal solution to this restricted master problem, and what are the arc tolls that result? Assuming
+that the algorithm would add one path from each commodity, what paths would be added next to
+the restricted master? Please justify your answer.
+
+--- Page 5 ---
+Part 2 (25 points) Modeling and transformations
+5. (10 points) Consider a simple variant of the usual maximum flow problem in a network G =
+(N, A) in which there is a positive lower bound l on the flow of each arc (i,j) as well as a
+ij
+positive upper bound u on the flow. Rather than send the most amount of flow from s to t, the
+ij
+objective in this problem is to send the least amount of flow from s to t, while satisfying the
+lower bound constraints and conservation of flow at all nodes other than s and t. Explain how
+to solve this problem by two applications of a maximum flow algorithm. (HINT: First
+explain how to determine a feasible flow for the original problem by using one application of
+a maximum flow algorithm in a network G’ that is closely related to G.)
+6. (15 points, 5 points per part). Consider the minimum cost network flow problem subject to a
+single side constraint.
+z*=min ∑ c x (0)
+ij ij
+(i,j)∈A
+subject to ∑ x − ∑ x = b for i∈N (1)
+ij ji i
+j:(i,j)∈A j:(j,i)∈A
+∑ t x ≤T (2)
+ij ij
+(i,j)∈A
+0≤ x ≤u for all (i, j)∈A (3)
+ij ij
+x integral (4)
+Assume that there is a feasible solution to the above integer program.
+a. What is the Lagrangian problem L(µ) if we associate a vector µ of multipliers with (1)? Is it
+true that L(µ) ≤ z* for all µ? State the Lagrange multiplier problem, and let L* denote the
+1
+optimal solution to the Lagrange multiplier problem (see part c).
+b. What is the Lagrangian problem L(λ) if we associate a scalar λ for the single constraint (2)?
+Is it true that L(λ) ≤ z* for all λ? If not, what is true? Be careful about the sign of λ. State
+the Lagrange multiplier problem, and let L* denote the optimal solution to the Lagrange
+2
+multiplier problem. (see part c).
+c. Let z’ be the optimal solution to the LP relaxation, that is the LP obtained by relaxing
+constraints (4) above. Can we conclude that z’ = L* ? Can we conclude that z’ = L* .
+1 2
+Justify your answer in both cases.
+
+--- Page 6 ---
+Part 3. (30 points) Short answer.
+7. (7 points). Suppose that a generalized flow problem on a network G = (N,A) has m arcs and n
+nodes, and that there is at least one cycle that is not a breakeven cycle. Suppose further that
+there is a feasible solution. First, describe what a breakeven cycle is. Next, describe what a
+basis structure is and tell how many arcs are in the basis F.
+8. (8 points) In the global minimum cut algorithm, we find the minimum cut with node 1 on the S
+side of the cut by solving a sequence of minimum cut problems, whose total running time is the
+same as that of solving a single max flow problem. Suppose that the first minimum cut problem
+is to find a minimum 1-2 cut, that with node 2 on the T side of the (S,T) cut. What is the second
+cut problem solved? (Explain how the second sink node is obtained. Also explain whether the
+network for the second cut problem differs from the network from the first cut problem. If so,
+how does it differ?)
+9. (15 points, 5 points per part.) Consider a minimum cost flow problem G = (N,A) with costs c
+and upper bounds u, and supply/demand vector b. Let x* be an optimal flow, and let π be an
+optimal set of node potentials, that is (x*, π) satisfies the optimality conditions. An arc (i,j) is
+said to be upward critical if increasing the capacity in (i,j) by one unit decreases (that is, strictly
+improves) the optimal objective value.
+a. Write the optimality conditions for the minimum cost flow problem in terms of reduced
+costs.
+b Show how to determine if an arc (i,j) is upward critical by determining if there is a negative
+cost cycle in a graph G’ that is closely related to G(x) the residual network. Explain how to
+modify G(x) to obtain G’.
+c. Show how to determine if an arc (i,j) is upward critical by solving a shortest path problem
+on a related graph G” in which all arc costs are non-negative. Explain how to modify G(x)
+to obtain G”.
+
+--- Page 7 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+15.082J / 6.855J / ESD.78J Network Optimization
+Fall 2010
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

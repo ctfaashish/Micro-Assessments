@@ -1,0 +1,131 @@
+Problem Set 5
+1. In the bin packing problem, we are given n items, item i being of length a
+i
+(0 < a ≤ 1), and we need to find the minimum number of bins of length 1
+i
+so that no bin contains items whose total length exceeds 1. This problem is
+NP-hard. Consider the following heuristic, called “First Fit” (FF): Consider
+the items in any order and place each item into the first bin that still has room
+for it. Let L∗ denote the minimum number of bins needed and let L be the
+FF
+number of bins obtained by using First Fit.
+(a) Show that L ≤ 2L∗ − 1 for any instance.
+FF
+(b) Show that L ≤ αL∗ + β for some α < 2. The best possible answer is
+FF
+α = 1.7 and β = 2, but this is somewhat tricky to show (or supposedly
+tricky: you might have an easy argument).
+Hint to get α = 1.75 in case you don’t have any other idea. Consider
+three types of bins in the packing obtained by FF. B consists of the bins
+1
+containing items of total length greater than 2/3, B consists of the bins
+2
+not in B containing one item of length greater than 0.5 (and possibly other
+1
+items) and B consists of the remaining bins. Show first that |B | ≤ 2.
+3 3
+2. Consider the following problem. Given a collection F of subsets of {1,...,n}
+and an integer k, find k sets S ,...,S in F such that |S ∪ S ∪ ... ∪ S | is
+1 k 1 2 k
+maximum. This problem is NP-hard. The greedy algorithm first chooses S to
+1
+be the largest set, and then having constructed S ,...,S chooses S to be
+1 i−1 i
+the set that maximizes
+�
+� S \∪i−1S
+�
+� .
+i j=1 j
+Show that the greedy algorithm is a 1 −
+�
+1 − 1
+�k
+-approximation algorithm.
+k
+(Hint: You may want to show that, for any j, the union of the first j sets given
+by the greedy algorithm have a cardinality at least
+�
+1
+�j
+1 − 1 − OPT,
+k
+where OPT denotes the maximum cardinality of the union of k sets.)
+3. In MAX 2SAT, we are given a collection C ,...,C of boolean clauses with at
+1 k
+most two literals per clause. Each clause is thus either a literal or the disjunction
+of two literals drawn from a set of variables {x ,x ,...,x }. A literal is either
+1 2 n
+PS5-1
+
+--- Page 3 ---
+a variable x or its negation x¯. The goal is to find an assignment of truth values
+to the variables x ,...,x that maximizes the number of satisfied clauses.
+1 n
+(a) Show that the algorithm which independently sets every x to true with
+i
+probability 0.5 is a randomized 0.5-approximation algorithm. (As usual,
+compute the expected number of satisfied clauses.)
+(b) Consider the following linear program:
+k
+�
+Max z
+j
+j=1
+subject to:
+� �
+(LP ) y + (1 − y ) ≥ z j = 1, . . . , k
+i i j
+i∈I+ i∈I−
+j j
+0 ≤ y ≤ 1 1 ≤ i ≤ n
+i
+0 ≤ z ≤ 1 j = 1, . . . , k,
+j
+where I+ (resp. I−) denotes the set of variables appearing unnegated (resp.
+j j
+negated) in C . For example, the clause x ∨ x¯ would give rise to the
+j 3 5
+constraint y +1 − y ≥ z .
+3 5 j
+i. Show that the optimum value of this linear program is an upper bound
+on the optimum value of MAX 2SAT.
+ii. Let y∗,z∗ denote the optimum solution of this linear program. Show
+that the algorithm which independently sets every x to true with
+i
+probability y∗ is a randomized 0.75-approximation algorithm.
+i
+(c) Consider now an approach similar to the one described in class for MAX
+CUT. Define a unit vector v corresponding to “true” and also a unit
+0
+vector v for each variable x . Define the “value” of the clause or literal x
+i i i
+as v(x ) = 1+v0·vi and the value of x¯ as v(x¯ ) = 1−v0·vi. Observe that v(x )
+i 2 i i 2 i
+is 1 if v = v , 0 if v = −v , and between 0 and 1 otherwise. For a clause
+0 i 0 i
+with two literals, say C = x ∨x , define v(C) as (3+v ·v +v ·v −v ·v )/4.
+1 2 0 1 0 2 1 2
+The value of other clauses with two literals are similarly defined. Consider
+now the nonlinear program:
+k
+�
+Maximize v(C )
+j
+j=1
+(NLP ) subject to:
+v ∈ S i = 0, 1 ...,n.
+i n
+i. Show that the optimum value of this nonlinear program is an upper
+bound on the optimum value of MAX 2SAT.
+PS5-2
+
+--- Page 4 ---
+ii. Consider the algorithm which first solves this nonlinear program opti­
+mally, then generates a uniformly selected point r on the unit sphere
+S , and sets x to be true if (v · r)(v · r) ≥ 0. Using the analysis of
+n i 0 i
+the MAX CUT algorithm seen in class, show that this algorithm is a
+randomized 0.878-approximation algorithm for MAX 2SAT.
+(d) Can you do better than 0.878?
+PS5-3

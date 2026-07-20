@@ -1,0 +1,69 @@
+--- Page 1 ---
+CSCE 3550
+Quiz 2, 10/8/2019
+Full Name:
+Write the answer(s) in the below table.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+1. Canary is a countermeasure against buffer overflow attack. Which one is the specification of
+the Canary technique? (multiple answers)
+a) Before using the return address, check if the canary has the initial value.
+b) Initialized to some random number during compiling the program.
+c) If it is different, there was an overflow and program terminates.
+d) Push a “canary” on the stack between local variables and the return address.
+e) Use the return address, and then check if the canary has the initial value.
+f) Push a “canary” on the stack between after the return address.
+g) If it is different, check the memory again to make sure there was an overflow.
+h) Push a “canary” on the stack between before the local variables.
+i) Initialized to some random number at program start up.
+2. What is a polymorphic virus?
+a) The virus split itself into different parts.
+b) The virus makes a perfect copy but hides it in different places.
+c) The virus makes a modified copy instead of a perfect copy.
+3. Modules should have high coupling.
+a) True
+b) False
+4. A coupling is any time one module interacts with another module.
+a) True
+b) False
+5. Which one(s) are advantages of Using Databases? (multiple answers)
+a) Minimal redundancy
+b) Shared access
+c) Data consistency
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:20:40 GMT -05:00
+https://www.coursehero.com/file/49429685/Quiz-2pdf/
+
+--- Page 2 ---
+6. What are Change log or shadow fields applications?
+a) Backup from the database
+b) Backup from a part of the database
+c) Undo erroneous changes
+d) For access control purposes
+7. What is the purpose of using integrity lock? (multiple answers)
+a) Integrity
+b) Access Control
+c) Confidentiality
+d) Availability
+8. Which ones are security problems of data mining? (multiple answers)
+a) Availability: having access to the database
+b) Confidentiality: Derivation of sensitive information
+c) Integrity: mistakes in data
+d) All the above answers
+9. Which one is the definition of a quasi-identifier?
+a) Combination of attributes that can be used for linking attack
+b) Values which include sensitive information
+c) Values which are replaceable with the identifier
+10. When an attacker can use Skewness Attack?
+a) One sensitive attribute with two values: HIV+(1%)/HIV-(99%)
+b) One sensitive attribute with two values: HIV+(50%)/HIV-(50%)
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:20:40 GMT -05:00
+https://www.coursehero.com/file/49429685/Quiz-2pdf/
+Powered by TCPDF (www.tcpdf.org)

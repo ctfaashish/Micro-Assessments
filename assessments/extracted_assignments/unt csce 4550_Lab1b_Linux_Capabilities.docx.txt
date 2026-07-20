@@ -1,0 +1,271 @@
+--- Page 1 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+Lab 1b:
+Linux Capabilities Lab
+This lab uses the Ubuntu 20.04 virtual machine (VM) as an OVA file cscelab.ova on Canvas.
+Section 1: Introduction
+In Linux, there are two types of users: a superuser (root) with unrestricted privileges and normal (or
+unprivileged) users. In order to execute certain commands, the root privileges are required. However,
+normal users sometimes need to run these commands (represented by binary files) as well. This is
+achieved using the “setuid” access flag. If the setuid access flag (or bit) is set on a binary (command), a
+normal user can run it as the root user. Some examples of the suid commands are: ping, mount, su.
+However, setuid must be used with care: when a normal user runs a setuid command, it has all root
+privileges including those that are not needed to fulfill the intended operation. This excessive granting
+of privileges can be exploited by malware.
+Starting with kernel 2.2, Linux divides the privileges traditionally associated with superuser into
+distinct units, known as “capabilities”, which can be independently enabled and disabled. For the
+purpose of performing permission checks, traditional Unix implementations distinguish privileged
+processes (user ID is 0, root), and unprivileged processes (those with non-zero effective UID).
+Privileged processes bypass all kernel permission checks, while unprivileged processes are subject to
+full permission checking based on the process's credentials (usually: effective UID, effective GID
+[group ID], and supplementary group list). As the privileges are divided in capabilities it is possible to
+restrict access to executable files thus minimizing the risk.
+POSIX file capabilities enables the storing of capabilities granted to and associated with a binary in the
+file system as an extended attribute. A file attribute is a property of a file. File attributes can be found
+by running attr command. For example “attr /bin/sh”: this command will show attributes of file
+/bin/sh. Additionally to the permissions derived from the credentials the process is running with, the
+process of the started binary can get more privileges through the associates capabilities of that binary.
+Because there was a lack of mean to grant a process only a certain capability and store it for retrieval,
+the only way for a process to have the needed capability was to be started in the context of root either
+through sudo, su, setuid 0 or by root itself. By definition, root has all the necessary privileges or
+capabilities. With granting the necessary capabilities beforehand to a certain program, an unprivileged
+user can now run this program without resulting in a root-power enabled process.
+
+--- Page 2 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+Hence, capabilities are a measure to grant a program only the essential privileges and store them in the
+extended attribute 'capability' and therefore a measure to limit the presence of omnipotent processes
+which had to run beforehand in the context of root.
+Securing a system demands - among other steps - reducing the number of suid binaries. These binaries
+usually do not need the full range of root power. Just granting them enough power (i.e., capabilities) to
+do their job ensures that they will stay in their limits, hereby capabilities represent a mean to tighten
+security of a Linux system.
+Read man page of “capabilities” before doing this lab. (Type “man capabilities” in your Linux
+terminal.)
+Use the Ubuntu 20.04 VM with the following credentials:
+username: sec-lab
+password: untccdc
+IMPORTANT NOTE: Before performing the lab, you must change
+the command prompt of your terminal to show your EUID.
+For this, complete the following steps.
+1. Create a backup copy of your configuration file:
+cp ~/.bashrc ~/.bashrc.bak
+2. Type:
+sudo nano ~/.bashrc
+3. Scroll to the very end of the file, and add the following line:
+PS1="euid@\h:\w\$ "
+Note: In the above line, “euid” should be replaced with your actual EUID.
+Also, note that there is a space between “$” and the last quote mark.
+Example: Suppose that your EUID is “aa0001”, in this case the above line should be:
+PS1="aa0001@\h:\w\$ "
+IMPORTANT: Do not change anything else in the configuration file!
+
+--- Page 3 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+4. Note that although you changed the prompt, your actual username (and hence the login
+credentials shown before this note remain the same). To verify it, type:
+whoami
+5. Log off and login as the user “sec-lab”.
+Confirm that the command prompt displays your EUID instead of the username “sec-lab”.
+Note: If needed, it is possible to revert to the original configuration using the backup copy of the
+configuration file (simply by copying “bashrc.bak” to “bashrc”).
+
+--- Page 4 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+Section 2: Capability CAP_NET_RAW
+
+--- Page 5 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+We use getcap command to know existing capabilities on a binary and setcap to set capabilities. In this
+exercise we check, set and remove capabilities (CAP_NET_RAW) on command anotherping (a copy
+of the executable file /bin/ping) and see the result in each step. There are 3 different sets of capabilities:
+permissive (set p), enforcing (set e) and inheritable (set i)
+Ping is a command used to verify network connection between two nodes on a network. Ping is setuid
+command which means it assumes root privileges whenever run by normal user. The ping command
+requires the (command) process to create a raw socket. This is the primary root privilege required. In
+the following exercise we first strip the ping binary off setuid bit, which makes it normal file, thus
+removing all root privileges. We then set CAP_NET_RAW capability on the binary file. Then when a
+normal user run the ping command, it only get this essential capability while all other root privileges
+are disabled, making the command more secure.
+1. Log into the Ubuntu VM (as user sec-lab) and open the terminal.
+2. See the file capabilities on ping:
+getcap /bin/ping
+(If this did not work, you might have to install libcap2-bin.)
+Q1: What is the result? (Attach the screenshot.)
+3. Make copy of the “ping”
+
+--- Page 6 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+sudo cp /bin/ping anotherping
+ls
+Now, you should see “anotherping” file in green in your present directory.
+4. Type:
+ls -l anotherping
+ls -l /bin/ping
+Notice the difference in the file attributes.
+5. Run anotherping to ping to localhost
+./anotherping –c 1 localhost
+Note that you have to use a “./” (dot slash) before the command name as this is not a native Linux
+command, but a copy of command.
+6. Try the same command with sudo:
+sudo ./anotherping –c 1 localhost
+Q2: Attach the screenshots for steps 5 and 6.
+
+--- Page 7 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+7. We use the “setcap” command to set capabilities:
+sudo setcap cap_net_raw+ep anotherping
+Q3: Which sets of capabilities are enabled in the above command?
+8. Observe the file capabilities:
+getcap anotherping
+
+--- Page 8 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+Q4: What is the result? Attach a screenshot of the terminal.
+9. ./anotherping –c 1 localhost. What do you see now?
+10.Check the file attributes with following command
+attr -l /bin/ping
+
+--- Page 9 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+Q5: What is the result now? Attach the screenshot.
+Note: If you do not have the attr utility, install it: sudo apt-get install attr.
+11. Now delete:
+sudo setcap –r anotherping
+12.Check the file attributes, capabilities and again:
+attr -l anotherping
+getcap anotherping
+./anotherping –c 1 localhost
+sudo ./anotherping –c 1 localhost
+13.Delete the file “anotherping”:
+rm –rf anotherping
+
+--- Page 10 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+Section 3: Capability CAP_CHOWN
+In this section, we will learn how to use “chown” command without the root privileges using the
+cap_chown capability.
+1. Type “chown sec-lab /bin/kill” (note that sec-lab is the current user).
+Q6: What is the result? Attach the screenshot.
+2. Now type “sudo chown sec-lab /bin/kill”
+ls -l /bin/kill
+Is the owner changed to sec-lab?
+3. Change the owner back to root:
+sudo chown root /bin/kill
+ls -l /bin/kill
+4. Change the capability of “chown” command
+sudo setcap cap_chown+ep /bin/chown
+getcap /bin/chown
+
+--- Page 11 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+5. Now run the “chown” command without sudo
+chown sec-lab /bin/kill
+ls -l /bin/kill
+Q7: Has the owner changed successfully? Attach the screenshot.
+6. Revert the owner back to root
+chown root /bin/kill
+7. Reset the capability.
+chown root /bin/chown
+ls -l /bin/chown
+8. Check if capability is successfully removed
+getcap /bin/chown
+chown sec-lab /bin/kill
+
+--- Page 12 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+Q8: What is the result? Attach the screenshot.
+Note: To remove/reset capabilities on a file, we used the chown command - instead of setcap -r.
+The later command (setcap) still works, but we wanted to demonstrate an alternative way of doing it.
+Note that we used chown against itself to remove its capability.
+Section 3: Capability CAP_KILL
+The cap_kill capability can be applied to binaries such as /bin/kill, /usr/bin/killall to terminate
+a process run by any user without checking for permissions. Normal users are not allowed to kill
+process owned by other users. In this lab, we will set this capability on killall hereby overriding
+the process ownership and terminating other users’ processes.
+1. Find the process ID of the current bash terminal:
+pidof bash
+
+--- Page 13 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+2. Type:
+ps -aux | grep root
+
+--- Page 14 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+This will list all processes owned by root.
+Then type:
+killall -u root
+Q9: What is the result? Attach the screenshot.
+3. Run this command to apply cap_kill on /usr/bin/killall
+sudo setcap cap_kill+ep /usr/bin/killall
+4. Check capabilities:
+getcap /usr/bin/killall
+5. Now, run this command:
+killall -u root
+
+--- Page 15 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+Q10: What is the result? Attach the screenshot.
+6. Reset the VM: In the VM window, got to top right, you will find a menu:
+Machine  Reset
+(Alternatively, you can reset the VM from the VirtualBox main control window:
+Right-click on the VM  Reset, click on “Reset” in the confirmation popup window.)
+7. Login, open the terminal.
+8. Type:
+getcap /usr/bin/killall
+sudo chown root /usr/bin/killall
+9. Verify capabilities:
+getcap /usr/bin/killall
+
+--- Page 16 ---
+Student Name: Pavan Sai Marukukla, 11525150
+Course: CSCE 3550/4550/5550
+Semester:
+Linux Capabilities Lab
+Q11: What is the result? Attach the screenshot.

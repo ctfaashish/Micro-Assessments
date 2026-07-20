@@ -1,0 +1,737 @@
+--- Page 1 ---
+6.821 Programming Languages Handout
+Fall 2002
+MASSACHVSETTS INSTITVTE OF TECHNOLOGY
+Department of Electrical Engineering and Compvter Science
+1999 Final Examination and Solutions
+1. Final Examination
+There are five problems on this examination. Make sure you don’t skip over any of a problem’s parts! They
+are followed by an appendix that contains reference material from the course notes. The appendix contains
+no problems; it is just a handy reference.
+You will have three hours in which to work the problems. Some problems are easier than others: read all
+problems before beginning to work, and use your time wisely!
+This examination is open-book: you may use whatever reference books or papers you have brought to the
+exam. The number of points awarded for each problem is placed in brackets next to the problem number.
+There are 100 points total on the exam.
+Do all written work in your examination booklet – we will not collect the examination handout itself; you
+will only be graded for what appears in your examination booklet. It will be to your advantage to show
+your work – we will award partial credit for incorrect solutions that make use of the right techniques.
+If you feel rushed, be sure to write a brief statement indicating the key idea you expect to use in your
+solutions. We understand time pressure, but we can’t read your mind.
+This examination has text printed on only one side of each page. Rather than flipping back and forth be
+tween pages, you may find it helpful to rip pages out of the exam so that you can look at more than one
+page at the same time.
+Contents
+Problem 1: Short Answer [18 points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+Problem 2: Operational Semantics [22 points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+Problem 3: Denotational Semantics [24 points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+Problem 4: Type Reconstruction [20 points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+Problem 5: Compilers [16 points] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+Appendix A: PostFix Grammar . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+Appendix B: PostFix SOS from Chapter 3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+Appendix C: Standard Semantics of FLK! . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+Appendix D: Typing Rules for SCHEME/R . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+Appendix E: Type Reconstruction Algorithm for SCHEME/R . . . . . . . . . . . . . . . . . . . . . . 15
+Appendix F: Meta-CPS Conversion Rules . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+The figures in the Appendix are very similar to the ones in the course notes. Some bugs have been fixed,
+and some figures have been simplified to remove parts inessential for this exam. You will not be marked
+down if you use the corresponding figures in the course notes instead of the appendices.
+
+--- Page 2 ---
+Problem 1: Short Answer [18 points]
+a. Explicit Polymorphism [6 points]
+Rewrite the following programs in Scheme/XSP with the most flexible type possible.
+(i) [3 points]
+(lambda (f g x)
+(if (f x)
+(g x)
+(g (g x))))
+(ii) [3 points]
+(lambda (f)
+(if (f #t)
+(f (f 1))
+(f 2)))
+b. Type Reconstruction [12 points]
+Determine the reconstructed types of the following Scheme/R expressions. If none exists, explain
+why.
+(i) [3 points]
+(lambda (f x)
+(if (f #t)
+(f x)
+2))
+(ii) [3 points]
+(let ((f (lambda (g x) (g (g x)))))
+(if (f not #t)
+(f (lambda (x) (+ x 1)) 1)
+2))
+(iii) [3 points]
+(let ((f (lambda (x) x)))
+(cons (f 1)
+(cons (f #t)
+(null))))
+(iv) [3 points]
+(lambda (g) (g g))
+2
+
+--- Page 3 ---
+Problem 2: Operational Semantics [22 points]
+ANSWERS FOR THE FOLLOWING QUESTIONS SHOULD BE BASED ON EXTENDING THE POSTFIX
+GRAMMAR IN APPENDIX AAND THE POSTFIX OPERATIONAL SEMANTICS GIVEN IN APPENDIX
+B.
+Intel has released the new 747 chip, a chip so big it can handle mind boggling amounts of number crunch
+ing. The good programmers over at Microsquish are excited because this means there is now a computer
+fast enough to run their dream programming language, TwoStack PostFix. In TwoStack PostFix, a program
+is a tuple of two command sequences, one per stack. For instance, to have one stack add the numbers 1and
+3 and have the other stack multiply4*5,uset he program
+<[1 3 add],[4 5 mul]>
+The meaning of a TwoStack program is also a tuple, reporting the top of each stack at the end of the pro
+gram. In the previous case, <4,20>.
+Keep in mind that the stacks are represented as completely separate entities at different locations in mem
+ory. Note that we will model errors as stuck states. For example, the program
+<[5 1 mul],[4 0 div]>
+should get stuck. It is also a stuck state if one stack runs out of commands before the other. For instance,
+<[5 1 mul 3 add],[4 1 div]>
+should get stuck right after the transition which performs the div command. Note that matching com
+mands are executed simultaneously-that is, the 5 and 4 are pushed at the same time and the mul and the
+div are executed at the same time.
+Finally, Executives at Microsquish would like to implement a talk command allowing the two stacks to
+communicate. For now, do not worry about the transition rule for the talk command, but know that it
+requires the following domain updates:
+C ∈ CommandPostFix+Talk
+C ::= ... existing PostFix commands ...
+| talk
+Q ∈ CommandsPostFix+Talk = CommandPostFix+Talk *
+V ∈ Value =IntLit + CommandsPostFix+Talk
+In addition, the transition relation for PostFix+Talk is the same as the relation for PostFix except it is
+updated to work with the new domains. It currently results in a stuck state for the talk command.
+The important domains for TwoStack are as follows:
+P ∈ Program
+TwoStack
+= CommandsTwoStack
+CommandsTwoStack = CommandsPostFix+Talk × CommandsPostFix+Talk
+A ∈ AnswerTwoStack = Answer × Answer
+a. [12 points] Louis Reasoner is given the job of defining the Operational Semantics of PostFix+Talk. He
+decides on the following configuration:
+3
+
+--- Page 4 ---
+C TwoStack = CommandsTwoStack × Stack × Stack
+However, he needs your help to define the rest of the 5-tuple. Define the Input, Ouput and Transition
+functions in terms of the PostFix+Talk functions. Use subscripting to express which domains the func
+tions are over. For instance, ⇒ PostF ix+Talk is the transition function for PostFix+Talk and ⇒ TwoStack
+is the transition function for TwoStack PostFix.
+Be sure to also define the set of final configurations of TwoStack Postfix, but do not worry about
+reporting errors for stuck states.
+It’s not very exciting having two stacks run in parallel unless they can communicate. So, Louis Reasoner
+decides to define the talk command. If talk is at the front of both command sequences, the top value on
+each stack is copied to the top of the other stack. For instance,
+<[5 1 mul talk add],[4 1 div talk mul]>
+should return <9,20>
+b. [6 points] Extend the transition function for TwoStack to include the talk command.
+c. [4 points] Mark An-treason (who is also working at Microsquish since his company was bought out)
+is worried that programs with talk may not terminate. If programs in TwoStack PostFix always ter
+minate, set Mark’s fears at rest by explaining how you would modify the energy proof to show this.
+If not, give an example program which does not terminate.
+4
+
+--- Page 5 ---
+Problem 3: Denotational Semantics [24 points]
+ANSWERS FOR THE FOLLOWING QUESTIONS SHOULD BE BASED ON MODIFYING THE FLK! STAN
+DARD SEMANTICS GIVEN IN APPENDIX C.
+Ben Bitdiddle has been called in to assist in the development of a new feature for FL!. This feature will allow
+procedures to call themselves recursively without having to use rec or letrec. Ben proposes adding a new
+form (self E)to FLK!. The form (self E)calls the containing procedure with an actual parameter that is the
+result of evaluating E.
+The FLK! expression grammar is changed by the addition of the form (self E):
+E ::= ... existing FLK! forms ..
+| (self E)
+Here is an example of the use of (self E)written in FL! (which would be desugared into FLK! before execu
+tion):
+(let ((fact (lambda (n) (if (= n 0) 1 (* n (self (- n 1)))))))
+(fact 4))
+⇒24
+Ben further specifies that when (self E)is used outside of a procedure it causes the program to terminate
+immediately with a value that is the result of evaluating E.
+Ben begins describing the denotational semantics of the self form by modifying the signature of the mean
+ing function, E. His new signature is:
+E : Exp →Environment →SelfProc →ExpCont →CmdCont
+SelfProc = Procedure
+Ben asks you to complete the denotational description of the self form because he is going to a confer
+ence to give a speech on why FL! is the language of the future.
+a. [4 points] Give the revised meaning function TL[[E]].
+b. [4 points] What is the revised E[[(call E 1 E 2)]]?
+c. [4 points] What is E[[(self E)]]?
+d. [4 points] What is the revised E[[(proc I E)]]?
+e. [4 points] Prove that TL[[(self (self 1))]]in your semantics means (Value(cid:4)→Expressible (Int→(cid:4) Value 1)).
+f. [4 points] Use your semantics to show (proc x (self 1)) evaluates to a procedure that, no matter what
+input it is called with, loops forever.
+5
+
+--- Page 6 ---
+Problem 4: Type Reconstruction [20 points]
+ANSWERS FOR THE FOLLOWING QUESTIONS SHOULD BE BASED ON EXTENDING THE TYPING
+RULES GIVEN IN APPENDIX D AND THE TYPE RECONSTRUCTION ALGORITHM GIVEN IN AP
+PENDIX E.
+Alyssa P. Hacker has been asked to extend the type system for SCHEME/R to handle (label IE)and (jump
+E1 E2). As introduced in class and in the book, (label IE)establishes a control point called Iin E, and (jump
+E1 E2)jumps to the control point that is the value of E1 and gives it the value obtained by evaluating E2.
+For example:
+(label out
+(if (= x 0)
+(jump out 0)
+(/ y x)))
+Alyssa has added a control point type to the type grammar for SCHEME/R as follows:
+T ::= ... existing SCHEME/R types ...
+| (control-point T)
+In the example above, the control point out would have type (control-point int). It is possible to have control
+point type errors in SCHEME/R. For example, a label expression must have the same type regardless of
+whether a jump is encountered, making the following expression not well-typed:
+(label out
+(if (= x 0)
+(jump out #f)
+(/ y x)))
+Your job is to complete the implementation of typed control points.
+a. [5 points] Give the new typing rules in SCHEME/R for (label IE)and (jump E1 E2).
+b. [5 points] Give the type reconstruction algorithm clause for (label IE).
+c. [5 points] Give the type reconstruction algorithm clause for (jump E1 E2).
+d. [5 points] Give the reconstructed type of the following expression, or give the input parameters to the
+procedure that fails during the reconstruction:
+(let ((x (label y y)))
+(jump x (label z z)))
+6
+
+--- Page 7 ---
+Problem 5: Compilers [16 points]
+ANSWERS FOR THE FOLLOWING QUESTIONS SHOULD BE BASED ON META CPS CONVERSION
+ALGORITHM GIVEN IN APPENDIX F.
+Ben Bitdiddle is a consummate compiler hacker, and has been asked by JavaHard to analyze their new
+Scheme compiler. JavaHardhas recently realized that Java will not win in the marketplace against Scheme,
+and has adopted the 6.821 Scheme compiler as the cornerstone of their crash development effort.
+The following code was produced by the compiler after the desugar, globals/wrap, cps-convert, closures/flat-all,
+and lift-convert phases of compilation.
+(program
+(define
+.lambda24.
+(lambda
+(.closure11. .t5.)
+(call-closure .t5. 1 (primop closure-ref .closure11. 1))))
+(define
+.lambda21.
+(lambda
+(.closure14. f g .k1.)
+(call-closure .k1. (primop closure .lambda22. g f))))
+(define
+.lambda22.
+(lambda
+(.closure13. x .k2.)
+(call-closure
+(primop closure-ref .closure13. 1)
+x
+(primop closure .lambda23. (primop closure-ref .closure13. 2) .k2.))))
+(define
+.lambda23.
+(lambda
+(.closure12. .t3.)
+(call-closure
+(primop closure-ref .closure12. 1)
+.t3.
+(primop closure-ref .closure12. 2))))
+(define .lambda20. (lambda (.closure17. x) x))
+(define
+.lambda19.
+(lambda
+(.closure16. a .k9.)
+(let ((.t10. (primop not a))) (call-closure .k9. .t10.))))
+(define
+.lambda18.
+(lambda
+(.closure15. a .k7.)
+(let ((.t8. (primop integer? a))) (call-closure .k7. .t8.))))
+(define *top* (primop closure .lambda20.))
+(define not (primop closure .lambda19.))
+(define integer? (primop closure .lambda18.))
+(let
+((compose (primop closure .lambda21.)))
+(call-closure compose not integer? (primop closure .lambda24. *top*))))
+7
+
+--- Page 8 ---
+a. [6 points] What source code resulted in the incompletely compiled code above?
+JavaHard soon discovers another problem with the compiler. The compiler they are using cannot
+handle the begin form because the cps-convert phase does not include a rule for translating begin.
+b. [4 points] Ben looked in the 6.821 book and could not find the meta-cps rule for begin. What is
+MCPS[[(begin E1 E2)]]?
+JavaHard has decided to not let programmers access control features such as cwcc, label, and jump to
+simplify the analysis of programs. Ben suggests to JavaHard that they include a region identifier in every
+procedure type:
+T ::= ...|(→ (T ∗) T R)
+Just as regions are assigned to cells, every procedure will be assigned a new region identifier except
+when two procedures are aliased together.
+A procedure in E can be explicitly freed if all of the following conditions are met: (1) the procedure is in
+region R, (2) region R is not in the type of any free variables of E, and (3) region R is not in the type of E.
+c. [4 points] Excited about explicit freedom, Ben invents a new primitive called (%procedure-free x) that
+frees the procedure represented by value x. In the following example, the lambda expression (lambda
+(y) y) is bound to x and freed:
+(let ((x (lambda (y) y)))
+(%procedure-free x))
+Let Ebe an expression that contains a non-nested lambda expression P. From effect analysis, we know
+that P’s value is no longer needed after Ecompletes. Thus, Ben would like to use (%procedure-free x)
+to free the procedure value corresponding to P. Help Ben by writing a translation function for E that
+will free the value of P and return the value of E. Use [v/P]E to substitute the variable v for lambda
+expression P in E. Assume that your translation occurs before MCPS conversion and that the variable
+v does not appear in E.
+T [[E ]]=(let ((v P))
+...fill in text here...
+)
+d. [2 points] Ben revises his compiler to call this primitive to free all closures using your translation rule
+(assuming it works), and notes that certain programs slow down as a consequence. Ben had thought
+that reducing the work that the garbage collector had to do would make programs run faster. What is
+a possible explanation for this behavior?
+8
+
+--- Page 9 ---
+Appendix A: PostFix Grammar
+P ∈ Program
+Q ∈ Commands
+C ∈ Command
+A ∈ Arithmetic-operator = {add, sub, mul, div}
+R ∈ Relational-operator = {lt, eq, gt}
+N ∈ Intlit = {..., -2, -1, 0, 1, 2, ...}
+P ::= (Q) [Program]
+Q ::= C* [Command-sequence]
+C ::= N [Integer-literal]
+| pop [Pop]
+| swap [Swap]
+| A [Arithmetic-op]
+| R [Relational-op]
+| sel [Select]
+| exec [Execute]
+| (Q) [Executable-sequence]
+Figure 1: The S-Expression Grammar for PostFix
+9
+
+--- Page 10 ---
+Appendix B: PostFix SOS from Chapter 3
+C , F, I and Ofor our PostFix SOS are given by:
+C=Commands × Stack
+F = {[] } × Stack
+Command
+I :Program →C
+= λP . matching P
+(cid:2) (Q)[] (cid:5)Q, [] (cid:6)
+Value
+endmatching
+O:F →Answer
+= λ(cid:5)[] , S(cid:6). matching S
+Command
+(cid:2) V. S (cid:2) [] (Value (cid:4)→Answer V)
+(cid:2) [][] (Error (cid:4)→Answer error)
+endmatching
+(cid:5)N. Q, S(cid:6) ⇒ (cid:5)Q, N. S (cid:6) [numeral]
+(cid:5)(Qexec ).Qrest , S(cid:6) ⇒ (cid:5)Qrest , Qexec . S(cid:6) [executable]
+(cid:5)pop . Q, Vtop . S(cid:6) ⇒ (cid:5)Q, S(cid:6) [pop]
+(cid:5)swap . Q, V1 . V2 . S(cid:6) ⇒ (cid:5)Q, V2 . V1 . S (cid:6) [swap]
+(cid:5)sel . Qrest , Vfalse . Vtrue .0. S(cid:6) ⇒ (cid:5)Qrest , Vfalse . S (cid:6) [sel-false]
+(cid:5)sel . Qrest , Vfalse . Vtrue . Ntest . S(cid:6) ⇒ (cid:5)Qrest , Vtrue . S(cid:6)
+where Ntest (cid:7)≡0 [sel-true]
+(cid:5)exec . Qrest , Qexec . S(cid:6) ⇒ (cid:5)Qexec @Qrest , S (cid:6) [execute]
+(cid:5)A. Q, N1 . N2 . S(cid:6) ⇒ (cid:5)Q, Nresult . S(cid:6)
+where Nresult ≡(calculate A N 2 N 1) [arithop]
+and ¬((A ≡div)∧(N 1 ≡0))
+(cid:5)R. Q, N1 . N2 . S(cid:6) ⇒ (cid:5)Q, 1. S(cid:6)
+where (compare R N 2 N 1) [relop-true]
+(cid:5)R. Q, N1 . N2 . S(cid:6) ⇒ (cid:5)Q, 0. S(cid:6)
+where ¬(compare R N 2 N 1) [relop-false]
+Figure 2: Rewrite rules defining the transition relation for PostFix.
+10
+
+--- Page 11 ---
+Appendix C: Standard Semantics of FLK!
+v ∈ Value = Unit + Bool + Int + Sym + Pair + Procedure + Location
+k ∈ Expcont = Value →Cmdcont
+γ ∈ Cmdcont = Store → Expressible
+Expressible = (Value +Error) ⊥
+Error = Sym
+p ∈ Procedure = Denotable → Expcont → Cmdcont
+d ∈ Denotable = Value
+e ∈ Environment = Identifier → Binding
+β ∈ Binding = (Denotable +Unbound) ⊥
+Unbound = {unbound}
+s ∈ Store = Location → Assignment
+l ∈ Location = Nat
+α ∈ Assignment = (Storable +Unassigned)
+⊥
+σ ∈ Storable = Value
+Unassigned = {unassigned}
+top-level-cont :Expcont
+=λv. λs. (Value (cid:3)→Expressible v)
+error-cont :Error → Cmdcont
+= λy. λs. (Error (cid:3)→Expressible y)
+empty-env :Environment =λI. (Unbound (cid:3)→Binding unbound)
+test-boolean :(Bool → Cmdcont)→ Expcont
+= λf. (λv. matching v
+(cid:6)(Bool →(cid:3) Value b)[] (f b)
+(cid:6)else (error-cont non-boolean)
+endmatching )
+Similarly for:
+test-procedure :(Procedure → Cmdcont)→ Expcont
+test-location :(Location → Cmdcont)→ Expcont
+etc.
+ensure-bound :Binding → Expcont → Cmdcont
+= λβk. matching β
+(cid:6)(Denotable →(cid:3) Binding v)[] (k v)
+(cid:6)(Unbound →(cid:3) Binding unbound)[] (error-cont unbound-variable )
+endmatching
+Similarly for:
+ensure-assigned :Assignment → Expcont → Cmdcont
+Figure 3: Semantic algebras for standard semantics of strict CBV FLK!.
+11
+
+--- Page 12 ---
+same-location? : Location →Location →Bool = λl 1 l 2 . (l 1 = Nat l 2 )
+next-location : Location → Location = λl . (l + 1)
+Nat
+empty-store : Store = λl . (Unassigned (cid:3)→Assignment unassigned)
+fetch : Location → Store → Assignment = λls . (s l)
+assign : Location → Storable →Store → Store
+= λl 1 σ s . λl 2 . if (same-location? l 1 l 2 )
+then (Storable (cid:3)→Assignment σ)
+else (fetch l 2 s)
+fresh-loc : Store → Location = λs . (first-fresh s 0)
+first-fresh : Store → Location → Location
+= λsl . matching (fetch l s)
+(cid:6) (Unassigned →(cid:3) Assignment unassigned)[] l
+(cid:6) else (first-fresh s (next-location l))
+endmatching
+lookup : Environment → Identifier → Binding = λeI . (eI)
+Figure 4: Store helper functions for standard semantics of strict CBV FLK!.
+12
+
+--- Page 13 ---
+TL:Exp →Expressible
+E :Exp →Environment →Expcont →Cmdcont
+L:Lit →Value ;Defined as usual
+TL[[E]] = E[[E]] empty-env top-level-cont empty-store
+E[[L]] = λek . k L[[L]]
+E[[I]] =λek . ensure-bound (lookup e I) k
+E[[(proc I E)]] =λek . k (Procedure (cid:3)→Value (λdk(cid:2) .E [[E]] [I :d]e k(cid:2)))
+E[[(call E1 E2)]] =λek . E [[ E1 ]] e (test-procedure (λp .E [[ E2 ]] e (λv .p v k)))
+E[[(if E1 E2 E3)]] =
+λek . E[[E1 ]] e (test-boolean (λb .if b then E[[E2 ]] e k e lse E[[E3 ]] e k))
+E[[(pair E1 E2)]] =λek . E [[ E1 ]] e (λv 1 .E [[ E2 ]] e (λv 2 .k (Pair (cid:3)→Value (cid:4)v 1 , v 2 (cid:5))))
+E[[(cell E)]] =λek . E [[ E]] e (λvs . k (Location →(cid:3) Value (fresh-loc s))
+(assign (fresh-loc s) v s))
+E[[(begin E1 E2)]] =λek . E[[E1 ]] e (λv ignore .E[[E2 ]] e k)
+E[[(primop cell-ref E)]] =λek . E [[ E ]] e (test-location (λls .ensure-assigned (fetch l s) k s))
+E[[(primop cell-set! E1 E2)]]
+=λek . E[[E1 ]] e (test-location (λl .E[[E2 ]] e (λvs.k (Unit (cid:3)→Value unit) (assign l v s))))
+E[[(rec I E)]] =λeks . let f = fix (λa. E [[ E]][I :(extract-value a)] e top-level-cont s)
+Expressible
+matching f
+(cid:6)(Value →(cid:3) Expressible v)[] E [[ E]][I: v]e ks
+(cid:6)else f
+endmatching
+extract-value :Expressible →Binding
+=λa. matching a
+(cid:6)(Value (cid:3)→Expressible v)[] (Denotable (cid:3)→Binding v)
+(cid:6)else ⊥
+Binding
+endmatching
+Figure 5: Valuation clauses for standard semantics of strict CBV FLK!.
+13
+
+--- Page 14 ---
+Appendix D: Typing Rules for SCHEME/R
+(cid:10) #u : unit [unit]
+(cid:10) B : bool [bool]
+(cid:10) N : int [int]
+(cid:10) (symbol I) : sym [symbol]
+[...,I:T,...](cid:10) I : T [var]
+[...,I:(generic (I1 ... In) Tbody ),...](cid:10) I :(∀i [T i /I i])Tbody [genvar]
+A (cid:10) Etest : bool ; A (cid:10) Econ : T ; A (cid:10) Ealt : T
+[if ]
+A (cid:10) (if Etest Econ Ealt ) : T
+A[I1:T1, ..., In:Tn](cid:10) Ebody : Tbody
+[λ]
+A (cid:10) (lambda (I1 ... In) Ebody ): (-> (T1 ... Tn) Tbody )
+A (cid:10) Erator : (-> (T1 ... Tn) Tbody )
+∀i. (A (cid:10) Ei : Ti)
+[apply]
+A (cid:10) (Erator E1 ... En): Tbody
+∀i. (A (cid:10) Ei : Ti)
+A[I1:Gen(T 1, A), ..., In:Gen(T n, A)] (cid:10) Ebody : Tbody
+[let]
+A (cid:10) (let ((I1 E1) ... (In En)) Ebody ): Tbody
+∀i. (A[I1:T1, ..., In:Tn](cid:10) Ei : Ti)
+A[I1:Gen(T 1, A), ... In:Gen(T n, A)] (cid:10) Ebody : Tbody
+[letrec]
+A (cid:10) (letrec ((I1 E1) ... (In En)) Ebody ) : Tbody
+∀i. (A (cid:10) Ei : Ti)
+[record]
+A (cid:10) (record (I 1 E 1) ... (I n E n)) : (recordof (I 1 T 1) ... (I n T n))
+A (cid:10) E r : (recordof (I 1 T 1) ... (I n T n))
+A[I 1:T 1, ..., I n:T n](cid:10) E b : T
+[with]
+A (cid:10) (with (I 1 ... I n) E r E b): T
+A (cid:10) (letrec ((I1 E1) ... (In En)) Ebody ): T
+[program]
+A (cid:10) (program (define I1 E1) ... (define In En) Ebody ) : T
+Gen(T,A)= (generic (I1 ... In) T),where {I i } = FTV (T)− FTE(A)
+14
+
+--- Page 15 ---
+Appendix E: Type Reconstruction Algorithm for SCHEME/R
+R[[#u] ]AS = (cid:4)unit,S(cid:5)
+R[[B]]AS = (cid:4)bool,S(cid:5)
+R[[N]]AS = (cid:4)int,S(cid:5)
+R[[(symbol I)]]AS = (cid:4)sym,S(cid:5)
+R[[I]]A[I : T]S = (cid:4)T,S(cid:5)
+R[[I]]A[I : (generic (I 1 ... I n) T)]S = (cid:4)T[?v i /I i ],S(cid:5) (?v i are new)
+R[[I]]AS = fail (when I is unbound)
+R[[(if E t E c E a)]]AS = let (cid:4)T t ,S t (cid:5) = R [[E t ]]AS
+in let S t (cid:2) = U(T t ,bool,S t )
+in let (cid:4)T c ,S c (cid:5) = R [[E c ]]AS t (cid:2)
+in let (cid:4)T a ,S a (cid:5) = R [[E a ]]AS c
+in let S a (cid:2) = U(T c ,T a ,S a )
+in (cid:4)T a ,S a (cid:2) (cid:5)
+R[[(lambda (I 1 ... I n) E b)]]AS = let (cid:4)T b ,S b (cid:5) = R [[E b ]]A[I i :?v i ]S
+in (cid:4)( -> (?v 1 ... ?v n) T b),S b (cid:5) (?v i are new)
+R[[(E 0 E 1 ... E n)]]AS = let (cid:4)T 0 ,S 0 (cid:5) = R [[E 0 ]]AS
+in ...
+let (cid:4)T n ,S n (cid:5) = R [[E n ]]AS n−1
+in let S f = U(T 0 ,(-> (T 1 ... T n) ?v f ),S n )
+in (cid:4)?v f ,S f (cid:5) (?v f is new)
+R[[(let ((I 1 E 1) ... (I n E n)) E b)]]AS = let (cid:4)T 1 ,S 1 (cid:5) = R [[E 1 ]]AS
+in ...
+let (cid:4)T n ,S n (cid:5) = R [[E n ]]AS n−1
+in R [[E b ]]A[I i : Rgen(T i ,A,S n )]S n
+R[[(letrec ((I 1 E 1) ... (I n E n)) E b)]]AS = let A 1 = A[I i :?v i ] (?v i are new)
+in let (cid:4)T 1 ,S 1 (cid:5) = R [[E 1 ]]A 1 S
+in ...
+let (cid:4)T n ,S n (cid:5) = R [[E n ]]A 1 S n−1
+in let S b = U(?v i ,T i ,S n )
+in R [[E b ]]A[I i : Rgen(T i ,A,S b )] S b
+R[[(record (I 1 E 1) ... (I n E n))]]AS = let (cid:4)T 1 ,S 1 (cid:5) = R [[E 1 ]]AS
+in ...
+let (cid:4)T n ,S n (cid:5) = R [[E n ]]AS n−1
+in (cid:4)(recordof (I 1 T 1) ... (I n T n)),S n (cid:5)
+R[[(with (I 1 ... I n) E r E b)]]AS = let (cid:4)T r ,S r (cid:5) = R [[E r ]]AS
+in let S b = U(T r ,(recordof (I 1 ?v i) ... (I n ?v n)),S r ) (?v i are new)
+in R [[E b ]]A[I i :?v i ]S b
+Rgen(T,A,S)=G en((ST),(subst-in-type-env SA))
+15
+
+--- Page 16 ---
+Appendix F: Meta-CPS Conversion Rules
+In the following rules,grey mathematical notation (like λv)and square brackets[] are used for
+“meta-application”, which is evaluated as part of meta-CPS conversion. Code in BLACK TYPEWRITER FONT is
+part of the output program; meta-CPS conversion does not evaluate any of this code. Therefore, you can
+think of meta-CPS-converting an expression E as rewriting MCPS[[E ]]until no grey is left.
+E ∈ Exp
+m ∈ Meta-Continuation = Exp → Exp
+meta-cont → exp :(Exp → Exp)→ Exp =[λm . (LAMBDA (t)[m t])]
+exp → meta-cont : Exp → (Exp → Exp)=[λE . [λV . (CALL E V )]]
+meta-cont→exp [λV . (CALL K V )]= K
+MCPS : Exp → Meta-Continuation → Exp
+MCPS[[I]]= [λm . [m I]]
+MCPS[[L ]]= [λm . [m L]]
+MCPS[[(LAMBDA (I 1 ... I n) E)]]
+= [λm . [m (LAMBDA (I 1 ... I n .Ki.)
+[MCPS[[E ]] [ exp → meta-cont .Ki.]])]]
+MCPS[[(CALL E 1 E 2)]]
+= [λm . [MCPS[[E 1]] [λv 1 .
+[MCPS[[E 2]] [λv 2 .
+(CALL v 1 v 2 [meta-cont → exp m])]]]]]
+MCPS[[(PRIMOP P E 1 E 2)]]
+= [λm . [MCPS[[E 1]] [λv 1 .
+[MCPS[[E 2]] [λv 2 .
+(LET ((.Ti. (PRIMOP P v 1 v 2)))
+[m .Ti.])]]]]]
+MCPS [[(IF E c E t E f)]]
+= [λm . [MCPS [[E c ]] [λv 1 .
+(LET ((K [meta-cont → exp m]))
+(IF v 1
+[MCPS[[E t ]] [exp →meta-cont K]]
+[MCPS [[E f]] [exp → meta-cont K]]))]]]
+MCPS[[(LET ((I E def )) E body)]]
+= [λm . [MCPS[[E def ]] [λv .
+(LET ((I v)) [MCPS[[E body]] m])]]]
+16
+
+--- Page 17 ---
+2. Final Examination Solutions
+Problem 1: Short Answer
+a. Explicit Polymorphism
+(i) (plambda (t)
+(lambda ((f (-> (t) bool)) (g (-> (t) t) (x t)))
+(if (f x)
+(g x)
+(g (g x)))))
+(ii) (lambda ((f (poly (t) (-> (t) t))))
+(if ((proj f bool) #t)
+((proj f int) ((proj f int) 1))
+((proj f int) 2)))
+b. Type Reconstruction
+(i) No reconstructed type exists. There is no first class polymorphism allowed in Scheme/R.
+(ii) int
+(iii) No reconstructed type exists. No heterogeneous lists in Scheme/R.
+(iv) No reconstructed type exists. Hindley-Milner cannot reconstruct the type of an identifier in
+volved in a self application.
+Problem 2: Operational Semantics
+a.
+I TwoStack : Program TwoStack →C TwoStack
+I TwoStack = λ(cid:5)Q 1 , Q 2 (cid:6).(cid:5)(cid:5)Q 1 , Q 2 (cid:6), []Value , []Value (cid:6)
+F T woStack = {[]CommandPostFix+Talk }×{[]CommandPostFix+Talk }×Stack ×Stack
+O TwoStack : F →AnswerTwoStack
+O TwoStack = λ(cid:5)(cid:5)[]CommandPostFix+Talk , []CommandPostFix+Talk (cid:6), S 1 , S 2 (cid:6).
+(cid:5)O
+PostFix
+(cid:5)[]CommandPostFix+Talk , S
+1
+(cid:6), O
+PostFix
+(cid:5)[]CommandPostFix+Talk , S
+2
+(cid:6)(cid:6)
+⇒ TwoStack :
+(cid:5)Q
+1
+, S
+1
+(cid:6)⇒
+PostFix+Talk
+(cid:5)Q(cid:2)
+1
+, S
+1
+(cid:2) (cid:6)∧(cid:5)Q
+2
+, S
+2
+(cid:6)⇒
+PostFix+Talk
+(cid:5)Q(cid:2)
+2
+, S
+2
+(cid:2) (cid:6)
+(cid:5)(cid:5)Q
+1
+, Q
+2
+(cid:6), S
+1
+, S
+2
+(cid:6)⇒
+TwoStack
+(cid:5)(cid:5)Q
+1
+(cid:2) , Q(cid:2)
+2
+(cid:6), S
+1
+(cid:2) , S
+2
+(cid:2)(cid:6)
+b.
+(cid:5)(cid:5)talk.Q
+1
+, talk.Q
+2
+(cid:6), V
+1
+.S
+1
+, V
+2
+.S
+2
+(cid:6) ⇒
+TwoStack
+(cid:5)(cid:5)Q
+1
+, Q
+2
+(cid:6), V
+2
+.V
+1
+.S
+1
+, V
+1
+.V
+2
+.S
+2
+(cid:6)
+c. The following program does not terminate:
+<((talk exec) talk exec),((talk exec) talk exec)>
+17
+
+--- Page 18 ---
+Problem 3: Denotational Semantics
+a. TL[[E ]]= (E[[E ]] empty-env (λdk . (top-level-cont d)) top-level-cont empty-store)
+b. E[[(call E 1 E 2)]]= λep 1 k . (E[[E1]] e p 1 (test-procedure (λp 2 . (E[[E2]] e p 1 (λv . (p 2 v k))))))
+c. E[[(self E)]]= λepk . (E[[E]] e p λv . (p v k))
+d. E[[(proc I E)]]=
+λep 1 k 1 . (k 1 (Procedure→(cid:4) Value (fixProcedure(λp 2 . (λdk 2 . (E[[E]] [I : d]e p 2 k 2))))))
+e.
+TL[[(self (self 1))]]=
+= (E[[(self (self 1))]] empty-env (λdk . (top-level-cont d)) top-level-cont empty-store)
+= (E[[(self 1)]] empty-env (λdk . (top-level-cont d)) top-level-cont empty-store)
+because λv . (λdk . (top-level-cont d) v k)= top-level-cont
+= (E[[1]] empty-env (λdk . (top-level-cont d)) top-level-cont empty-store)
+= (top-level-cont L[[1]])
+= (Value(cid:4)→Expressible (Int(cid:4)→Value 1))
+f.
+E[[(proc x (self 1))]]
+= λep 1 k 1 . (k 1 (Procedure(cid:4)→Value (fixProcedure λp 2 . (λdk 2 . (E[[(self 1)]] [x : d]e p 2 k 2)))))
+= λep 1 k 1 . (k 1 (Procedure(cid:4)→Value (fixProcedure λp 2 . (λdk 2 . (E1) [x : d]e p 2 λv . (p 2 v k 2))))))
+= λep 1 k 1 . (k 1 (Procedure(cid:4)→Value (fixProcedure λp 2 . (λdk 2 . (λv . (p 2 v k 2) L[[1]])))))
+= λep 1 k 1 . (k 1 (Procedure→(cid:4) Value (fixProcedure λp 2 . (λdk 2 . (p 2 L[[1]] k 2)))))
+but ⊥ Procedure is a fixed point of λp 2 . (λdk 2 . (p 2 L[[1]] k 2))
+It should be clear that ⊥ Procedure must be the procedure-generating function’s least fixed point. This
+means that the procedural value that the expression (proc x (self 1)) computes is ⊥ Procedure, a pro-
+cedure that given any denotable and expression continuation returns ⊥ CmdC ont i.e. a procedure that
+loops forever regardless of its input. Since this procedural value is the value computed by (proc x (self
+1)), we have completed the demonstration.
+Problem 4: Type Reconstruction
+a.
+A[I:(control-point T)](cid:10)E : T
+[label]
+A (cid:10)(label I E) : T
+A (cid:10)E1 : (control-point T)
+A (cid:10)E2 : T
+[jump]
+A (cid:10)(jump E1 E2): Tany
+b. R[[(label I E)]]AS = let (cid:5)T 1 ,S 1 (cid:6)= R [[E ]]A[I : (control-point ?v 1)]S
+in (cid:5)T 1 ,U (T 1 , ?v 1 ,S 1)(cid:6)
+where ?v 1 is a fresh type variable
+18
+
+--- Page 19 ---
+c. R[[(jump E1 E2)]]AS = let (cid:5)T 1 ,S 1 (cid:6)= R[[E 1]]AS
+in let (cid:5)T 2 ,S 2 (cid:6)= R[[E 2]]AS 1
+in (cid:5)?v 1 ,U(T 1 ,(control-point T 2),S 2)(cid:6)
+where ?v 1 is a fresh type variable
+d. Unification fails while reconstructing the type of (label y y). The unification call that fails is
+U((control-point ?v 1),?v 1,S 1).
+Problem 5: Compilers
+a. (let ((compose (lambda (f g)(lambda (x)(f (g x))))))
+((compose not integer?) 1))
+b. MCPS[[(begin E1 E2)]]m=
+(begin (MCPS[[E1]](λV . V)) (MCPS[[E2]]m))
+c. T [[E]]=
+(let ((v P))
+(let ((r [v/P]E))
+(begin
+(%procedure-free v)
+r)))
+d. One possible explanation is that the programs do not exhaust memory, and thus the garbage collec
+tor is never called. In that case, explicitly freeing unused closures is extra work that has no benefit.
+Another possibility is that in some programs, explicitly freeing closures releases enough memory so
+the garbage collector is no longer invoked, leading to storage fragmentation that slows the program
+down.
+19

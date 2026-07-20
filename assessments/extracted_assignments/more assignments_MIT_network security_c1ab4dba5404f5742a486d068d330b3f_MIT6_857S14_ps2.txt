@@ -1,0 +1,97 @@
+--- Page 1 ---
+Massachusetts Institute of Technology Handout 3
+6.857: Network and Computer Security February 24, 2012
+Professor Ron Rivest Due: March 10, 2012
+Problem Set 2
+This(cid:3)problem(cid:3)set(cid:3)is(cid:3)due(cid:3)on(cid:3)Monday,(cid:3)February(cid:3)24(cid:3)at(cid:3)11:59(cid:3)PM.(cid:3)Please(cid:3)note(cid:3)that(cid:3)no(cid:3)late(cid:3)submissions(cid:3)will(cid:3)be(cid:3)
+accepted.(cid:3)Each(cid:3)p(cid:3)roblem(cid:3)s(cid:3)hould(cid:3)(cid:3)be(cid:3)in(cid:3)a(cid:3)(cid:3)sepa(cid:3)ra(cid:3)te(cid:3)PD(cid:3)F.(cid:3)Have(cid:3)(cid:3)on(cid:3)e(cid:3)and(cid:3)(cid:3)o(cid:3)nly(cid:3)one(cid:3)group(cid:3)me(cid:3)mber(cid:3)submit(cid:3)
+the(cid:3)finished(cid:3)problem(cid:3)set.(cid:3)Please(cid:3)title(cid:3)each(cid:3)PDF(cid:3)with(cid:3)the(cid:3)Kerberos(cid:3)of(cid:3)your(cid:3)group(cid:3)members(cid:3)as(cid:3)well(cid:3)as(cid:3)the(cid:3)
+problem(cid:3)set(cid:3)number(cid:3)and(cid:3)problem(cid:3)number(cid:3)(i.e.(cid:3)kerberos1(cid:3)kerberos2(cid:3)kerberos3(cid:3)pset1(cid:3)problem1.pdf).(cid:3)
+You(cid:3)are(cid:3)to(cid:3)work(cid:3)on(cid:3)this(cid:3)problem(cid:3)set(cid:3)with(cid:3)your(cid:3)assigned(cid:3)group(cid:3)of(cid:3)three(cid:3)or(cid:3)four(cid:3)people.(cid:3) Please(cid:3)see(cid:3)the(cid:3)
+course(cid:3)website(cid:3)for(cid:3)a(cid:3)listing(cid:3)of(cid:3)groups(cid:3)for(cid:3)this(cid:3)problem(cid:3)set. Be(cid:3)sure(cid:3)that(cid:3)all(cid:3)group(cid:3)members(cid:3)can(cid:3)explain(cid:3)the
+(cid:3)solutions.(cid:3) See(cid:3)Handout(cid:3)1(cid:3)(Course(cid:3)Information)(cid:3)for(cid:3)our(cid:3)policy(cid:3)on(cid:3)collaboration.(cid:3)
+Homework must be submitted electronically! Each problem answer must appear on a separate page. Mark
+the top of each page with your group member names, the course number (6.857), the problem set number
+and question, and the date. We have provided templates for LATEX and Microsoft Word on the course website
+(see the Resources page).
+Grading: All problems are worth 10 points.
+With the authors’ permission, we will distribute our favorite solution to each problem as the “official”
+solution—this is your chance to become famous! If you do not wish for your homework to be used as an
+official solution, or if you wish that it only be used anonymously, please note this in your profile on the
+homework submission website.
+Problem 2-1. Rainbow Tables
+Ben Bitdiddle is learning to code, and he has decided to build a website! To authenticate users, he created a
+database with all of his users’ usernames and the SHA-256 hash of their passwords. Unfortunately for him,
+Eve has stolen the contents of this database.
+In this problem, we will explore some of the space/time tradeoffs which Eve can use to invert cryptographic
+hashes of passwords. Suppose Eve knows that all the passwords come from a set S, and our hash function
+produces d-bit strings. With no precomputation, if |S| is much smaller than 2d, then inverting the hash of
+a password will take Eve about |S|/2 tries in expectation, and therefore time that is Ω(|S|).
+If Eve had infinite time to prepare for breaking the password hashes, she could construct a lookup table with
+the hash of every possible password in it. Inverting a password hash would just be an O(1) table lookup,
+but Eve would then be required to store a table of size Ω(|S|).
+(a) One early approach to achieving a finer-grained tradeoff between table size and lookup time is hash
+chains. Just as our cryptographic hash function h is a pseudorandom function mapping S to {0, 1}d ,
+it is typically possible to construct a pseudorandom function f mapping {0, 1}d to S. In particular,
+this is possible if S is efficiently enumerable. This means that there is an ordering on S such that the
+ith element of S can be efficiently computed.
+If S is the set of all 10 character alphanumeric passwords, construct a pseudorandom function mapping
+{0, 1}256 to S.
+(b) The next idea is that f and h are alternately applied k times on a random password to yield a chain
+of k passwords and password hashes. Show that if we store a single entry in a lookup table mapping
+the last hash of this chain to the starting password, then in O(k) time, we can invert any of the hashes
+which occurred in the chain.
+(c) A natural next idea is to store multiple (hash, password) pairs in the lookup table, all constructed in
+the same way. Show that if all the corresponding chains are of length k, then we can efficiently invert
+the hash of any password which occurs in any of the chains. If you create |S|/k chains of length k as
+described above, do you expect the chains to contain close to |S| distinct passwords?
+
+--- Page 2 ---
+2 6.857 : Handout 3: Problem Set 2
+(d) Rainbow tables use a different and independent pseudorandom function f mapping {0, 1}d to S for
+i
+each step of the chain. Why does this increase the number of distinct hashes you expect the chains
+to contain?
+(e) How can Ben Bitdiddle modify his password storage scheme to make it infeasible for a precomputed
+rainbow table to significantly weaken his users’ passwords?
+Problem 2-2. Password Cracker
+You’re working for the NSA and have been assigned the task of breaking into the most top secret government
+agencies. To do so, you must crack as many passwords that have been hashed using the MD5 algorithm as
+you can. The hashes have been included in a separate file (hashes.txt) and have been divided into weak,
+moderate and strong categories. Try to break as many of them as you can!
+Please submit three python lists, one for each category, of cracked passwords. Leave passwords that you are
+unable to break as an empty string. For example:
+Weak:
+1. 1f3870be274f6c49b3e31a0c6728957f
+2. fe01d67a002dfa0f3ac084298142eccd
+Answer:
+# Weak:
+[’apple’, ”]
+Please use the Problem 2-2 python template provided.
+Problem 2-3. Scalability of alternate currencies.
+All information about transactions in Bitcoin are stored into blocks that are joined together to form the
+block-chain.
+After receiving a new block each node in the network verifies (a) the proof-of-work property; and (b) that all
+ECDSA signatures corresponding to the transactions are valid. If both checks pass the block is propagated
+further, otherwise it is rejected.
+Currently neither (a) nor (b) pose a CPU bottleneck, because cryptographic operations (SHA256, RIPEMD­
+160 hash computations and ECDSA signature verification) involved in (a) and (b) are very fast.
+Some proposed extensions to BitCoin (e.g. ZeroCoin and ZeroCash) would make BitCoin more anonymous,
+but all make transaction verification in part (b) more expensive. E.g. in ZeroCoin the fast ECDSA signature
+verification would be replaced by a much slower cryptographic checks.
+Suppose that Ben Bitdiddle has invented yet another public-ledger based currency BenCoin, that works just
+like Bitcoin, but with slower transaction verification times.
+(a) The transaction verification time for BenCoin is terrible: 1 second per transaction on a typical
+computer. What effects does this have on block propagation?
+(b) Do dishonest minorities have easier time attacking BenCoin than they would have attacking Bitcoin?
+Why?
+(c) Alyssa suggests to propagate block immediately after proof-of-work checks pass and then discard it
+(after sending it off to others) if transaction checks fail. Would this suggestion improve the scalability
+of BenCoin?
+
+--- Page 3 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.857 Network and Computer Security
+Spring 2014
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

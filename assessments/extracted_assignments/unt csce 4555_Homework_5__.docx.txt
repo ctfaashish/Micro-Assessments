@@ -1,0 +1,104 @@
+--- Page 1 ---
+CSCE 4555/5555 – Homework 5
+Due: 11:59 PM on Friday, November 4, 2022
+Navya kakumani
+11489119
+Review the supporting material from Chapter 9 in the textbook to complete the assigned
+exercises and submit the applicable files to the Homework 5 dropbox on Canvas by the
+due date and time.
+1. Read the following article about
+https://www.washingtonpost.com/news/morning-mix/wp/2018/10/02/new-zealands-digital-strip-
+searches-give-border-agents-your-device-passwords-or-risk-a-5000-fine/?
+noredirect=on&utm_term=.dc8f436cfe5c
+Given our discussion of the Fourth Amendment as the basis for privacy rights, plus
+the First Amendment’s guarantee of freedom of speech (among other things), do you
+feel this would be a violation of our rights here in the United States? Justify your
+answer. Note that there are no right or wrong answers here, but you should clearly
+justify your argument.
+Please note that we will be completing the Hands-On Projects 9-2 through 9-4 found in
+the fifth edition of the course textbook (Guide to Computer Forensics and
+Investigations, Bill Nelson, Amelia Phillips, and Christopher Steuart, 5th Ed.). I am
+including the actual assignment text from the following pages of the 5th edition of the
+textbook:
+The unused run the show that Unused Zealand executed to fine individuals up to
+5000NZD or 3300USD who doesn’t provide all their points of interest which incorporate
+passwords, codes and encryption keys for their computerized gadgets is nothing but giving free
+get to into people individual information without their consent and on best of that on the off
+chance that individuals deny to deliver these subtle elements they might indeed seize the gadgets
+and can be inspected, they can duplicate the whole data and examine everything within the
+drives, this can be going way as well much on the individuals in the event that they haven’t done
+anything off-base and this is often a clear infringement of our security rights.
+Even in spite of the fact that law says that authorities have to be have sensible
+cause to suspect wrongdoing some time recently conducting look that seem not be exceptionally
+down to earth, As Thomas Beagle representative said the necessity for sensible cause to the
+traditions benefit is futile as they don’t indicate the cause to people besides so there's no way that
+this may be challenged which is nothing but we fair need to acknowledge for anything they do in
+bolster to this meka. Whitmire and Kris falcao labor party included government was
+downplaying and may cause concerns among individuals.
+In spite of the fact that Traditions Benefit said it would boost the border
+compliance and back the national economy, I accept that most people would consider picking up
+get to to another person's phone or contraption to be a infringement of their protection. In
+expansion to the Modern Zealand other nations like Canada and Joined together states tests for
+1 of 6
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:43:29 GMT -05:00
+https://www.coursehero.com/file/184374455/Homework-5-docx/
+
+--- Page 2 ---
+contraptions has been expanded essentially additional time that's from 5000 in 2015 to 25000 in
+2016 which includes abusing the security of numerous unsuspected individuals. Moreover, able
+to see numerous cases where judges themselves denying the Office of Country security
+compliant on the premise of to begin with and fourth revisions. Today, people have all their
+data on their phones, from one photo to the rest of their bills, so having a device confiscated is
+very sensitive and very annoying to a person. Finally, I accept the duplicitous appearance that
+confiscation of gadgets is unsatisfactory and requires valid assurance and justification from
+the traditional office to proceed with confiscation of gadgets or other equipment.
+2. Hands-On Project 9-2 (p. 384)
+ Turn in a screenshot of your entire WinHex window that shows the MD5 hash of
+the gcfi-ntfs.dd image. This value should agree with the MD5 hash for this image
+given in the GCFI-NTFS has values document.
+2 of 6
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:43:29 GMT -05:00
+https://www.coursehero.com/file/184374455/Homework-5-docx/
+
+--- Page 3 ---
+3. Hands-On Project 9-3 (p. 385)
+Turn in the OSForensics report HOP09-3Case Report to Canvas along with a short
+memo (i.e., a few sentences) to Ileen Johnson, the lead investigator for the case,
+summarizing your findings and what they indicate.
+Memo
+DATE:04/11/2022
+TO: Lleen johnson
+Lead investigator
+From: Navya kakumani
+Investigator
+Re: HOP09-3 Case Report and summary
+The email address @baspen99@aol.com was found in a search for Chris and
+the email was added to a case and then exported to a bag after being added to the
+case.
+4. Hands-On Project 9-4 (p. 386)
+ Turn in the OSForensics report HOP09-4Case Report to Canvas.
+ Due to an issue in working with VMs, the file 10K limit for the demo version of
+OSForensics may be reached before indexing the entire image. Therefore, to
+make sure that you have files in the Files tab in OSForensics for HOP 9-4,
+please select all the Pre-Defined File Types (as seen in the screenshot) except
+for the system and hibernation files. Then, you can parse through the related files
+for evidence.
+3 of 6
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:43:29 GMT -05:00
+https://www.coursehero.com/file/184374455/Homework-5-docx/
+
+--- Page 4 ---
+4 of 6
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:43:29 GMT -05:00
+https://www.coursehero.com/file/184374455/Homework-5-docx/
+
+--- Page 5 ---
+5 of 6
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:43:29 GMT -05:00
+https://www.coursehero.com/file/184374455/Homework-5-docx/
+
+--- Page 6 ---
+6 of 6
+This study source was downloaded by 100000898471838 from CourseHero.com on 04-22-2025 11:43:29 GMT -05:00
+https://www.coursehero.com/file/184374455/Homework-5-docx/
+Powered by TCPDF (www.tcpdf.org)

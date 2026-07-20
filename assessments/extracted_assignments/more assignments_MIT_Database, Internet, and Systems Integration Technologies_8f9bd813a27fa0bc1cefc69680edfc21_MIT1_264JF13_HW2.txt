@@ -1,0 +1,241 @@
+--- Page 1 ---
+Homework 2
+1.264, Fall 2013
+Requirements, software estimation
+Due Wednesday, September 18
+A. Overview
+You will write a text description, with sample Web pages, of a simple supply chain system for an
+aircraft parts distributor to take and ship orders to its customers. The key aspects of the system
+are:
+1. The aircraft parts distributor has a single warehouse in which all the parts in the catalog are
+stocked. It has a warehouse management system that stores data on all the parts that are
+in the warehouse. The system provides the quantity on hand and the price of each part.
+There are about 5,000 parts handled. Most are jet aircraft parts, but because your CEO is
+a balloon enthusiast, you also carry a selection of balloon parts.
+2. There is a set of freight carriers that the distributor uses to ship the parts to the airlines.
+There are about 22,000 carriers, though you generally use a much smaller number.
+3. There is a set of customers that buy the parts; these are airlines or individuals. We provide
+a small amount of test data only. Airlines buy jet aircraft replacement parts; individuals
+buy balloon replacement parts.
+4. You will need to create a mechanism to take orders, which can consist of multiple parts.
+The airlines will pay for the orders via credit card or purchase order. Individuals will pay
+by credit card.
+5. You will need to track the remaining inventory in the warehouse. You may not ship a part
+that you do not have in stock. You must decide how to handle backorders.
+In this homework you will:
+1. Write the requirements narrative (10 pages or so) for the system. (You will make the
+requirements more precise in homework sets 3 and 4 using UML diagrams and data
+models.)
+2. Estimate the size of the system (lines of code), the person months and schedule months
+required to complete it. These must be consistent with the time you and your partner have
+available for this course.
+B. Requirements narrative
+Your ten page document will be a description of the Web-based system the aircraft parts
+distributor will use to interact with its customers.
+Your Web system must contain pages to implement the following processes and information
+display. We indicate some requirements that your system must meet; you are to define others that
+you feel are necessary to operate the distribution business.
+1. Describe the distributor: general description of products and services, and a description of
+the company. These can be described very briefly in 1 or 2 pages, with some sample Web
+pages. Decide on whether jet and balloon parts will be handled together or separately.
+1
+
+--- Page 2 ---
+2. Create new customer. Decide on the process for this: self-service, or set up by
+manufacturer, or… A customer registers with the distributor initially. A customer that has
+had no transactions for a year is removed and must re-register. A customer must inform
+you of changes in address, phone, etc.
+3. Customer login to Web site
+4. Customer update of its address, contact or other information
+5. Allow customers to browse aircraft parts available and freight carriers available. You must
+decide if the customers must be logged in to see this information or not.
+6. Allow customers to place an order:
+a. The customer selects a set of parts, and specifies the quantities.
+b. The customer or the manufacturer can specify the mode and carrier; decide how
+you wish to do this; you do not have to compute the freight charges.
+c. The system must compute the total cost of the order, including 5% sales tax. It does
+not have to compute freight charges.
+d. The system must accept payment information, either by credit card or purchase
+order. (You will not actually implement a credit card interface.)
+e. Your system will assign a unique order number.
+7. Display and confirmation of past orders. You do not need to indicate order or shipping
+status.
+8. You should discuss the following awkward issues:
+a. What to do with the order if items are out of stock, or if the full quantity ordered
+cannot be shipped
+b. Must an order be sent in a single shipment, or can it be split among multiple
+shipments?
+c. Must a single carrier be used for each order, or can more than one carrier be used?
+How do you select the carrier(s)?
+d. Must a shipment go to a single address?
+e. What error handling will you implement? (Hint: minimal, but describe it)
+There are several processes you do not need to consider:
+• You do not have to support the processes of updating aircraft parts inventory when new
+shipments are received at your warehouse, or adding/deleting/changing aircraft parts
+when the items change.
+• You do not have to support adding, deleting or changing freight carriers
+• You do not need to consider price changes
+• You do not need to consider order status.
+Explain your decisions briefly so that implementers understand the design principles. Your
+system just implements one link of the supply chain: distributor to customer.
+2
+
+--- Page 3 ---
+C. Data available
+The data that is available as your build the system includes:
+1. Aircraft parts inventory file. (This is part of the actual Federal Aviation Administration
+replacement parts approval database, simplified and structured for this homework.) This
+is also your product catalog.
+a. Part number. This is the replacement part number; it is unique to the replacement
+part manufacturer (the PMA holder) below.
+b. Part name. Descriptive name.
+c. Replacement for. This is the original manufacturer part number.
+d. Approval means. Process or Federal regulation used, identifying number, and date
+of approval. This must be tracked, as required by regulation.
+e. Manufacturer. Original part manufacturer. You carry parts only for McDonnell-
+Douglas aircraft, and also for balloons. Any non-McDonnell-Douglas
+manufacturer is a balloon manufacturer.
+f. Entry date. Date that the approval was entered by the US Federal Aviation
+Administration (FAA)
+g. Model1 through Model5. A list of the aircraft models for which the replacement
+part can be used. Examples are DC-8, DC-9, MD-80. In this homework, we have
+a maximum of 5 models for each part.
+h. PMA Holder. Manufacturer of the replacement part, referred to as 'Parts
+Manufacturer Approval (PMA) holder' by this industry.
+i. PMA Holder Address. Street, city, state, zip code.
+j. MIDO. Manufacturer Inspection District Office, the FAA office that tests and
+inspects the replacement part. This information must be tracked, as required by
+regulation.
+k. MIDO Address. Street, city, state, zip, phone, fax.
+l. Price. This is the selling price, in US dollars, for the replacement part.
+m. Quantity in stock. This is the number of units of this part in the warehouse. Your
+Web application must check and update this as part of taking an order.
+n. You don’t have data on this, but you have been promised it will be available in the
+future, so you should design for it: Whether the part can be carried by a given
+mode (air, highway, rail or water). Some replacement parts are too large to ship
+by air, and a few are too large to ship by highway (some structural members).
+Consider this in your requirements; we’ve placed it here as an example of a
+‘design-ahead’ issue.
+2. Freight carriers. This file contains freight carriers that are certified to carry hazardous
+materials. (This is the actual USDOT approved carriers file.) Buyers of aircraft parts
+often prefer to use these carriers because their safety and handling standards are high.
+The file contains:
+a. Certificate number. The USDOT carrier certificate number for the freight company,
+used as a unique identifier.
+3
+
+--- Page 4 ---
+b. Company name, address. The name and address of the freight carrier. Many of the
+'carriers' are brokers or forwarders. These fields include street, city, state, zip
+code, country, contact name and phone number.
+c. Mode. This is a 4 digit field (an awkward format) indicating whether the carrier
+offers
+i. Highway transportation (1 in column 1)
+ii. Rail transportation (1 in column 2)
+iii. Water transportation (1 in column 3)
+iv. Air transportation (1 in column 4)
+3. Customer (airline) file. You will create this. This contains:
+a. Airline or balloon customer name. For example, United, American, Delta.
+b. Airline or balloon customer address. Street, city, state, zip code, country.
+4. You will create your own order and order detail data. The order will contain the 'obvious'
+data:
+a. Customer.
+b. Aircraft parts and quantities ordered. Subtotal (price)
+c. Taxes
+d. Total order (subtotal plus taxes)
+e. Freight carrier used to ship the order. You will not include freight charges, a
+simplification from real life.
+f. Means of payment: a purchase order or credit card number and expiration date.
+D. Assignment
+1. You are to write the narrative requirements for the system to support the manufacturer, as
+described in section B. Use MS Word for the narrative; you may use Visual Web
+Developer to create sample Web pages if you wish, or you can mock them up in MS
+Word, Powerpoint or other tool you may know. Include the screen shots in the MS Word
+document; ask the TAs for help if needed.
+2. Estimate the size of the effort. Do this as covered in class. The key steps are:
+a. Count the function points for each of the systems functions that you will
+implement. (McConnell, pp 174-177). You will need to estimate the number of
+database tables, even though you have not designed it yet. While this seems and is
+unfair, it is also typical in real projects. 20 is a good guess for this project.
+b. Estimate the lines of code for your system, using McConnell, page 519.
+i. While you would normally use the Oracle numbers for the database
+function points, use 10 lines of code per function point instead. You will
+only do straightforward queries when you implement your system, and
+you will omit most of the more complex queries, to keep the homework
+manageable.
+ii. While you would normally use the perl numbers for the Web application,
+again you should use 10 lines of code per function point. Perl is the closest
+match to html and ASP.NET, which you will use to implement the Web
+4
+
+--- Page 5 ---
+app. In your homework, you will be given code examples to follow, so
+that the amount of code you write will be minimal.
+c. Once you have the lines of code, estimate the person months and schedule months.
+Extrapolate from tables 8-8 to 8-10 to make the estimate. Your project is smaller
+than 10,000 lines, and the relationships are nonlinear. A very approximate
+estimate is sufficient; don't spend time fitting curves, etc. Drawing a curve
+through the points on the graph to extrapolate is perhaps the easiest thing to do.
+Justify your choice of table (8-8, 8-9 or 8-10) and type of software.
+d. Compute the team size as person-months divided by schedule months.
+e. Assign a confidence range to your estimates, based on figure 8-2 (page 168). Never
+use a point estimate without a range!
+f. Briefly comment on any other factors that affect the estimates or ranges that you
+have prepared.
+E. Hand in
+Hand in an MS Word document on the course Web site.
+F. Data example
+The aircraft part data is based on the actual FAA replacement parts database. It has been
+simplified substantially and some data has been invented. An example row is:
+Part data:
+Part number: KSF127
+Part name: Bearing
+Replacement for: KSR127104B1
+Approval means: Identicality per 14 CFR Sec 21.3
+Manufacturer: McDonnell Douglas
+Entry date: 6/15/99
+Model1: DC-10
+Model2:
+Model3:
+Model4:
+Model5:
+PMA holder: Kamatics Corp
+PMA street: 1330 Blue Hills Ave
+PMA city: Bloomfield
+PMA state: CT
+PMA zip: 06002
+MIDO: WIN
+MIDO street: Bradley International
+MIDO city: Windsor Locks
+MIDO state: CT
+MIDO zip: 06096
+MIDO phone: 203.654.1091
+5
+
+--- Page 6 ---
+MIDO fax: 203.654.1089
+Price: $7.00
+Quantity in stock: 2
+An example of the carrier data in the dataset is given below; the address and group E are omitted
+to save space. The carrier data is from a US Department of Transportation database and is given
+to you 'as is'.
+CERT_NO COMPANY MODE GRP_A GRP_B GRP_C GRP_D
+0621998510 (GESEACO) 0010 N Y N N
+0514 990080 0 J & R 1000 N Y N N
+0602 990050 0EIS MARK ET S 1000 N Y N N
+0716 990030 10-4 1000 N Y N N
+0608 990030 1001 S 1000 N N Y N
+0701 999990 1049 585 1000 N N Y Y
+0708 999990 1050758 1000 N N Y Y
+0603 990070 1226 934 1000 Y N N N
+0607 990190 123 INC 1000 Y Y Y Y
+0628 990010 1243465 1000 N N N Y
+0623 990040 1243480 1000 N Y N N
+6
+
+--- Page 7 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+1.264J / ESD.264J Database, Internet, and Systems Integration Technologies
+Fall 2013
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

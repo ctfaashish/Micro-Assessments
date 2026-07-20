@@ -1,0 +1,123 @@
+--- Page 1 ---
+6.821 Programming Languages Handout
+Fall 2002
+MASSACHVSETTS INSTITVTE OF TECHNOLOGY
+Department of Electrical Engineering and Compvter Science
+Problem Set 7
+Problem 1: Pattern Matching
+This problem should be solved in the pattern-matching framework discussed in class.
+a. Write a definition in Scheme for the deconstructor cons~.
+b. Write a definition in Scheme for the deconstructor odd~. Inside match, odd will be used as a “construc­
+tor” taking one argument. An (odd P ) pattern succeeds if P matches an integer, and that integer is
+odd; it fails otherwise. (Note that odd is not actually a constructor.)
+c. Desugar the following match expression using the desugaring discussed in class.
+(match e
+((cons #f (cons #t y)) (cons #t e))
+(_ (error "Louis, get out of the kitchen!")))
+Problem 2: Costs
+Sam Antics has a new idea for a type system that is intended to help programmers estimate the running
+time of their programs. His idea is to develop a set of static rules that will assign every expression a cost as
+well as a type. The cost of an expression is a conservative estimate of how long the expression will take to
+evaluate.
+Sam has developed a new language, called Discount, that uses his cost model. Discount is a call-by-
+value, statically typed functional language with type reconstruction. Discount is based on SCHEME/R, and
+inherits its types, with one major difference: a function type in Discount includes the latent cost of the
+function, that is, the cost incurred when the function is called on some arguments.
+For example, the Discount type (-> 4 (int int) int) is the type of a function that takes two ints as
+arguments, returns an int as its result, and has cost at most 4 every time it is called.
+The grammar of Discount is a subset of SCHEME/R, with function types extended to include costs:
+T ∈ Type
+O ∈ Primop = {+, -, *, /, <, =}
+E ∈ Exp
+L ∈ Lit = Boollit ∪ Intlit
+I ∈ Identifier
+C ∈ Cost
+E ::= L
+| I
+| (if E E E )
+test con alt
+| (primop O E *)
+arg
+| (lambda (I*) E )
+body
+
+--- Page 2 ---
+| (E E *)
+rator rand
+| (let ((I E)*) E )
+body
+| (letrec ((I E)*) E )
+body
+C ::= loop | I | (sum C*) | (max C*) | 0 | 1 | 2 | ...
+T ::= int | bool | I | (-> C (T*) T )
+body
+Sam has formalized his system by defining type/cost rules for Discount. The rules allow judgments of the
+form
+A � E : T $ C,
+which is pronounced, “in the type environment A, expression E has type T and cost C.”
+For example, here are Sam’s type/cost rules for literals and(non-generic) identifiers:
+A � N : int $ 1
+A � B : bool $ 1
+A[I : T] � I : T $1
+That is, Sam assigns both literals and identifiers a cost of 1. In addition:
+• The cost of a lambda expression is 2.
+• The cost of an if expression is 1 plus the cost of the predicate expression plus the maximum of the
+costs of the consequent and alternate.
+• The cost of an N argument application is the sum of the cost of the operator, the cost of each argument,
+the latent cost of the operator, and N .
+• The cost of an N argument primop application is the sum of the cost of each argument, the latent cost
+of the primop, and N . The latent cost of the primop is determined by a signature Σ, a function from
+primop names to types. For example,
+Σ(+)= (-> 1 (int int) int).
+Here are some example judgments that hold in Sam’s system:
+A � (primop + 2 1):int$5
+A � (primop + (primop + 1 2) 4) : int $ 9
+A � (primop + 2 ((lambda (y) (primop + y 1)) 3)) : int $ 13
+Loop is the cost assigned to expressions that may diverge. For example, the expression
+(letrec ((my-loop (lambda () (my-loop))))
+(my-loop))
+is assigned cost loop in Discount. Because it is undecidable whether an arbitrary expression will diverge,
+we cannot have a decidable type/cost system in which exactly the diverging expressions have cost loop. We
+will settle for a system that makes a conservative approximation: every program that diverges will be assigned
+cost loop, but some programs that do not diverge will also be assigned loop.
+Because Discount has non-numeric costs, like loop and cost identifiers (which we won’t discuss), it is not
+so simple to define what we mean by statements like “the cost is the sum of the costs of the arguments. . . .”
+That is the purpose of the costs (sum C C ) and (max C C ). Part of Sam’s system ensures that sum and
+1 2 1 2
+max satisfy sensible cost equivalent axioms, such as the following:
+(sum N N ) = N + N
+1 2 1 2
+(sum loop N) = loop
+(sum N loop) = loop
+2
+
+--- Page 3 ---
+(sum loop loop) = loop
+(max N N ) = the max of N and N
+1 2 1 2
+(max loop N) = loop
+(max N loop) = loop
+(max loop loop) = loop
+You do not have to understand the details of how cost equivalences are proved in order to solve this prob­
+lem.
+a. Give a type/cost rule for lambda.
+b. Give a type/cost rule for application.
+c. Give a type/cost rule for if.
+d. We would like to be able to write Discount expressions such as
+(if w
+(lambda (x) (primop + x x))
+(lambda (y) (primop + (primop + y y) y)))
+However, the rule for if requires the types (not costs) of the consequent and alternative of an if
+expression be identical. In this case, the types are (-> 5 (int) int) and (-> 9 (int) int), which
+differ, but only in the latent cost. We can use subtyping to get around this problem.
+Assume that you have a predicate cost-leq on costs, which works as expected:
+• (cost-leq N N ) is true if and only if N ≤ N ;
+1 2 1 2
+• (cost-leq loop N) is false;
+• (cost-leq N loop) is true;
+• (cost-leq loop loop) is true;
+and so on.
+Use cost-leq to give a subtyping rule for function types. (Your rule, along with the usual [inclusion]
+typing rule, should enable the system to deduce that the consequent and alternative of the example
+expression above have the same type.)
+3

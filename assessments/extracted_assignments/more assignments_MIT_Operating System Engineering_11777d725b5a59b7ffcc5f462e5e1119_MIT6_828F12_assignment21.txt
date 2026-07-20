@@ -1,0 +1,18 @@
+--- Page 1 ---
+Homework: Linux scalability
+Homework: Lock-free coordination
+Hand-In Procedure
+You are to turn in this homework during lecture.
+Linux scalability
+This paper describes several parallel programming techniques used in the Linux kernel to allow the kernel to scale with
+increasing number of cores.
+Submit: Section 4.4 describes one technique, namely lock-free comparisons in the dentry cache. Why does this
+protocol allow for better scalability than the original implementation that uses a spinlock per dentry? Would using a
+scalable lock instead of a spinlock allow for better scalability too?
+
+--- Page 2 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.828 Operating System Engineering
+Fall 2012
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

@@ -1,0 +1,126 @@
+--- Page 1 ---
+Running head: LAB 6a REPORT 1
+Lab 6a Report
+Create Initial Baseline Using the Windows Forensic Toolchest
+Liberty University
+Overview of Computer Security
+CSCI 501
+Dr. Joe Wilson
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:44 GMT -05:00
+https://www.coursehero.com/file/63532584/CSCI-501-Lab-6a-Report-Initial-Baseline-Creationdocx/
+
+--- Page 2 ---
+LAB 6a REPORT 2
+Lab 6a: Create Initial Baseline Using the Windows Forensic Toolchest
+*** Please ensure that you document the steps and include screenshots as needed. Also highlight
+important details to show the answer clearly and in your personalized way to differentiate from
+the screenshots in the lab instructions. ***
+Scenario
+Students will run Windows Forensic Toolchest against an existing system to create a baseline
+that will be used for future analysis. WFT is a wrapper that takes incident response tools and runs
+them and records the output.
+An organization wants to be able to identify post compromise activity from the enterprise
+standard gold builds. You are tasked with using the Windows Forensic Toolchest to create a
+baseline on a system that is suspected to be compromised and compare it with a baseline that was
+created on the same system at an earlier time. During the comparison look for any indicators
+(IOC) that could be evidence of compromise.
+Objective
+ Create a baseline with the WFT (Windows Forensic Toolchest)
+ Create a baseline of running services with the WFT
+ Create a baseline of installed services with the WFT
+ Create a baseline of key registries with the WFT
+ Analyze the output of the created baseline
+Estimated time: 2 hours
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:44 GMT -05:00
+https://www.coursehero.com/file/63532584/CSCI-501-Lab-6a-Report-Initial-Baseline-Creationdocx/
+
+--- Page 3 ---
+LAB 6a REPORT 3
+LAB 6a – STEPS
+Log into the Windows 7 machine with the username Administrator and
+STEP 6.1a
+password P@ssw0rd.
+STEP 6.2a Open Windows File Explorer, go to C:\wft\, and open wft.exe.
+Run WFT with the default paths
+Start and run WFT with the defaults by hitting enter.
+Accept the default options until it runs.
+STEP 6.3a
+Wait until it's finished running (it will take about five minutes). Once complete
+make a screenshot, you will be prompted to hit "ENTER" to exit and the
+automated response is finished.
+Screenshot
+Finding the output
+After WFT has run navigate to where the output was placed and analyze the
+STEP 6.4a
+output by clicking on the folder which represents the date the output was
+created, the time and open INDEX.HTM
+C:\WFT\<Host Name><TODAYS DATE><TIME>
+Screenshot
+Analyzing the output
+STEP 6.5a When the report page loads, click on the various hyperlinks to get an idea of the
+information the incident response tools (WFT) pulled off the system. Make a
+screenshot of the “net local group”.
+Screenshot
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:44 GMT -05:00
+https://www.coursehero.com/file/63532584/CSCI-501-Lab-6a-Report-Initial-Baseline-Creationdocx/
+
+--- Page 4 ---
+LAB 6a REPORT 4
+Lab 6a - Assessment Questions
+What is meant by a structured and repeatable automated live forensic response, incident
+LA 6.1a response, or audit on a Windows system?
+Windows has a tool called The Windows Forensic Toolchest (WFT) which
+provides structured and repeatable automated live forensic response, incident response, or
+Answer audit. During these processes the tool
+Can WFT run as a batch processing shell? Clearly explain your answer?
+LA 6.2a
+The WFT provides automated incident responses while collecting information regarding
+system security which essentially makes the toolchest a batch processing shell that
+Answer creates forensically significant reports.
+What other security tools can WFT run?
+LA 6.3a
+Answer List here…-cfg cfgfile
+Uses cfgfile to determine which tools to run (defaults to ‘wft.cfg’)
+-drive drive_letters
+Specifies the drives to be used by wft (defaults to ‘C’)
+-toolpath path_to_tools
+Defines the path where wft tools are stored (defaults to ‘.\’)
+-dst destination
+Defines the path that reports will be written to (defaults to ‘.\’)
+Note: Destination can include macros $magic$, $systemname$, $date$, or $time$
+-shell cmdshell
+Redefines shell references from cmd.exe to cmdshell
+-noslow
+Causes WFT not to run slow (S) executables in cfgfile
+-nowrite
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:44 GMT -05:00
+https://www.coursehero.com/file/63532584/CSCI-501-Lab-6a-Report-Initial-Baseline-Creationdocx/
+
+--- Page 5 ---
+LAB 6a REPORT 5
+Causes WFT not to run executables that write (W) to source machine
+-noreport
+Causes WFT not to create HTML (H) reports
+What are the categories of information WFT can produce?
+LA 6.4a
+WFT produces two data formats: HTML output and Raw Text output. HTML output
+Answer reports are self- ease of access.
+LA 6.5a What is a unique advantage of creating an initial baseline?
+A major ow changes were made during an attack or loss of data integrity.
+Answer
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:44 GMT -05:00
+https://www.coursehero.com/file/63532584/CSCI-501-Lab-6a-Report-Initial-Baseline-Creationdocx/
+
+--- Page 6 ---
+LAB 6a REPORT 6
+LAB 6a - CHALLENGE QUESTIONS
+CQ 4.1 Create a baseline of running services with the WFT
+Screenshot goes here
+CQ 4.2 Create a baseline of installed services with the WFT
+Screenshot goes here
+Create a baseline of key registries with the WFT
+CQ 4.3
+Screenshot goes here
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:44 GMT -05:00
+https://www.coursehero.com/file/63532584/CSCI-501-Lab-6a-Report-Initial-Baseline-Creationdocx/
+Powered by TCPDF (www.tcpdf.org)

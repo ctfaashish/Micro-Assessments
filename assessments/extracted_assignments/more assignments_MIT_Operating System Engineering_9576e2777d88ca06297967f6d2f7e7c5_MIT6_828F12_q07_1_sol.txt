@@ -1,0 +1,199 @@
+--- Page 1 ---
+Department of Electrical Engineering and Computer Science
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+6.828 Fall 2007
+Quiz I Solutions
+The mean score was 59, and the median was 64.
+1
+
+--- Page 2 ---
+I Boot
+1. [4 points]: Explain how xv6 ensures that the boot loader (bootasm.S and bootmain.c) copies
+thekernelfromdiskto memoryinawaythatavoidsoverwritingtheboot loader’sown instructionsor
+stack.
+Answer: The xv6 kernelis linkedat 0x100000, sothe ELF headerinformation will cause bootmain()
+to only overwrite memory at 0x100000 and above. The boot loader’s instructions are at 0x7c00, and
+its stackisjustbelowthat,sotheywon’tbeoverwrittenbythekernel.
+2. [5 points]: Bugs Bunny, after reading xv6’s userinit() (sheet 17), claims that the start-up of
+the first process couldbe made moreefficientbyarrangingfor swtch() to directly enter the process.
+Specifically he suggests changing line 1774 to read
+p->context.eip = (uint) p->mem; // swtch() directly to start of initcode
+Whyis this change a bad idea?
+Answer: The change affects what swtch() will do when scheduler() eventually calls it: swtch() will
+cause the CPU to execute initcode’s instructions, but with the kernel’s privileges and in the kernel’s
+address space. Perhaps the most immediate problem will be that proc table lock won’t be released
+(ordinarilythat swtch()jumpstoforkret(), whichreleasesthelock).
+2
+
+--- Page 3 ---
+II Processes and Address Spaces
+3. [5 points]: JOS hasa single kernel stack, while xv6 has onekernel stack per process. Explain
+how this restricts what the JOS kernel can do, and mention a specific feature of xv6 that would be
+difficultin the JOSkernel becauseit has only the one stack.
+Answer: xv6 can have system calls that block in the middle to wait for I/O, for example to wait for
+the various disk reads required to look up a file pathname. The process’s kernel stack saves the
+intermediate stateof the system call whileit blocks. AJOS system call cannot blockin the middle,it
+can only block at the very end.
+The Intel x86 allows the stack segment (SS) and data segment (DS) to differ. This separation allows an
+operating system to permit a process to expand both segments independently as needed, without worrying
+aboutthestackrunningintotheheap. xv6,however,alwaysmakesthetwosegmentsthe same(forexample,
+see userinit() on sheet 17). As a result, an xv6 process’s stack cannot expand beyond the memory
+initially allocated for it.
+4. [5 points]: Explain whyit would be awkward for xv6 to give a process different data and stack
+segments(i.e. haveDSandSSreferto descriptorswithdifferentBASE fields).
+Answer: It’s commonforCcodetocreatepointerstodataonthestack,aswellaspointerstodatain
+the heap. Functions such as strlen() that operate on pointers would need to know whether to use the
+pointers with DS or SS. So either the compiler would have to be modified to use 48-bit pointers (32
+bitsofoffsetplusasegment selector),ortheprogrammerwouldhavetokeeptrackofthisinformation
+by handfor each pointer.
+3
+
+--- Page 4 ---
+III Kernel Entry
+5. [5 points]: When a user-space process executes INT, INT switches to a stack specified in the
+TSS. JOS sets up the TSS to point to a stack in kernel memory. What might go wrong in JOS if the
+INT instruction didn’t change stacks?
+Answer: TheenvironmentmightsetitsESPtoaninvalidaddressbeforetheINT,whichwould cause
+the kernel to fault. The environment might set its ESP to point to a protected kernel data structure,
+so that the INT would save EFLAGS &c on the kernel’s data. If JOS had system calls like read()
+that copied data to user space, then the environment might be able to trick the kernel into executing
+arbitrary code by read()ing data onto the stack: the data could overwrite one of the kernel’s saved
+return EIPs witha pointerto instructionsintheenvironment’s memory.
+6. [12 points]: Explain whythe pushl at xv6 line 6610 is needed.
+Answer: Ordinarily that space on the stack would hold the return program counter from the call to
+the C library system call routine. The kernel expects something to be there on the stack when it is
+calculatingtheaddressfrom whichto fetchanargument,for exampleonline 2696. Ifthepushl were
+deleted, argint() would return the wrong argument.
+7. [12 points]: xv6 defines two structures that hold saved registers for a process: struct
+trapframe on sheet 05, and struct context on sheet15. Explaina situationin whicha single
+process will have three sets of saved registers.
+Answer: Aprocessmakesa systemcall(saving userregistersina trapframe),a clock interrupthap­
+pens just as trap() is returning (saving kernel registers for the same process in another trapframe
+lower on the same stack), and this second call to trap() calls yield() and thus swtch() (saving kernel
+registersfor the sameprocessina struct context).
+4
+
+--- Page 5 ---
+IV Locking
+8. [5 points]: xv6’s acquire() turns off interrupts at line 1431 only if nlock is zero.
+release() turns them back on only if nlock (after decrementing) is zero (at line 1466). What
+could go wrong if acquire() always turned off interrupts, and release() always turned inter­
+rupts on?
+Answer: Ifaprocessacquirestwolocks,andthenreleasesoneofthem,this modificationwould cause
+interrupts to be turned on. In that case there is a risk that an interrupt routine (such as ide intr())
+could try to acquire the lock that is still held. That would produce a deadlock (actually a panic in
+acquire()).
+Suppose you swapped xv6 lines 1869 and 1870, so that yield() looked like this:
+void
+yield(void)
+{
+cp->state = RUNNABLE;
+acquire(&proc_table_lock);
+sched();
+release(&proc_table_lock);
+}
+9. [8 points]: Would anything go wrong? Explain whyor whynot.
+Answer: The scheduler() on a different CPU might see that the process is RUNNABLE and run it.
+ThentwoCPUswouldbe executingontheprocess’skernelstack, overwritingeach others’variables
+andreturnEIPs, whichislikelyto causetrouble.
+5
+
+--- Page 6 ---
+V Context Switch
+When one xv6 process switches to another, two calls to swtch() are involved: one from sched() to
+scheduler(), and one from scheduler() to sched(). Bugs Bunnyis obsessed with swtch() and
+suggests eliminating one of the calls: sched() could call a variant of scheduler() directly. The new
+code:
+// caller must hold proc_table_lock.
+void
+sched(void)
+{
+scheduler2();
+}
+// caller must hold proc_table_lock.
+void
+scheduler2(void)
+{
+struct proc *p;
+struct proc *from = cp; // remember who we are
+int i;
+for(;;){
+for(i = 0; i < NPROC; i++){
+p = &proc[i];
+if(p->state != RUNNABLE)
+continue;
+cp = p;
+setupsegs(p);
+p->state = RUNNING;
+swtch(&from->context, &p->context);
+// a return from swtch() means some other call to
+// scheduler2() decided to run us.
+cp = from;
+setupsegs(cp);
+return;
+}
+release(&proc_table_lock);
+acquire(&proc_table_lock);
+}
+}
+6
+
+--- Page 7 ---
+10. [12 points]: This new swtch()-less sched() works most of the time, but not always.
+What’s likely to go wrong?
+Answer: Supposeaprocess sleep()s waitingfor an IDE interrupt. The CPU on whichit was running
+will usetheprocess’skernel stackto execute scheduler2(). WhentheIDE interrupt occursand marks
+the process RUNNABLE, the scheduler on a different CPU may run the process. Then there will be
+twoCPUsusingthesamekernelstack,whichissureto causetrouble.
+11. [5 points]: What’s the reason for the release() and immediate re-acquire() at the end
+of Bugs’s scheduler2()?
+Answer: Without the release() and acquire(), interrupts would always be off when there are no
+RUNNABLE processes, permanently preventing delivery of (for example) keyboard and IDE inter­
+rupts. Another problem is that, if there is just one process RUNNING, it may spin forever next time
+ittriestoacquireprocess table locksincethelockmaybe permanentlyheldbyanidleCPU.
+7
+
+--- Page 8 ---
+VI Sleep/Wakeup
+In exit() (sheet 20), suppose you swapped lines 2023 and 2026 and changed the wakeup1() to wakeup(),
+so that the resulting code looked like:
+// Parent might be sleeping in proc_wait.
+wakeup(cp->parent);
+acquire(&proc_table_lock);
+12. [8 points]: What is likely to go wrong as a result of this change to exit()?
+Answer: Suppose the parent is in wait() just before the sleep(), and the child’s exit() calls wakeup().
+Then the parent will miss the wakeup and sleepforever.
+VII File System
+The policy that bget() line 3576 and brelse() enforce is that at most one process at a time can use
+a buffer. One reason is to prevent other processes from using a buffer between the time it is allocated
+in bget() and when the IDE driver finishes reading valid data from the disk into the buffer (and sets
+B VALID).
+13. [8 points]: Suppose bget() and brelse() were modified to let multiple processes use a
+B VALID buffer at the same time, while ensuring that a buffer is only re-used for a different sector
+when thebufferis notin use. Please describea specific problem thatwould arise.
+Answer: The file system code uses the one-at-a-time rule to provide mutual exclusion for code that
+reads and then updates the file system’s own on-disk data structures. For example, if two processes
+call balloc() at the same time and bget() allowed them to use the same buffer at the same time, they
+mightboth allocatethesamefreeblock. Itwouldbeaseriouserrorforthesamediskblocktobeused
+by two different files.
+8
+
+--- Page 9 ---
+VIII 6.828
+We’dlike to hear your opinions about 6.828, so please answer the following questions. (Anyanswer,except
+no answer, will receive full credit.)
+14. [2 points]: What ideas in the course have been the hardest to understand?
+Answer: The difference between virtual andphysical memory.
+15. [2 points]: What is the best aspect of 6.828?
+Answer: The labs.
+16. [2 points]: What is the worst aspect of 6.828?
+Answer: Debugging the labs.
+End of Quiz
+9
+
+--- Page 10 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.828 Operating System Engineering
+Fall 2012
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

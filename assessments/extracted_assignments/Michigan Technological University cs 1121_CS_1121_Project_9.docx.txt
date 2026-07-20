@@ -1,0 +1,71 @@
+--- Page 1 ---
+CS-1121 Visual Basic
+Project 9 Report
+Title: Sales Solution
+Author: Olajumobi Akeeb
+I certify that this project is the product of my own intellectual labor.
+_________________________________________________________
+(Author’s signature)
+Date: 4/5/2017
+Lab: 11:00-11:50am
+Grading:
+______ Project Execution (0-10)
+3 Lesson A
+3 Lesson B
+4 Lesson C
+______ Program Documentation (0-5)
+3 TOE Chart
+1 Code
+1 Screen Captures
+______ Total
+1
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:45 GMT -05:00
+https://www.coursehero.com/file/30615214/CS-1121-Project-9docx/
+
+--- Page 2 ---
+TOE CHART
+Task Object Event
+User clicks the calculate button: each array element btnCalc Click
+multiplied by 125% is displayed in two decimal places
+The background color of lstSales changes
+Output: Displays the sales value lstSales None
+Exit the application btnExit Click
+PROJECT CODE
+' Name: Sales Project
+' Purpose: Multiplies each array element by 125% and then
+' displays the array contents in a list box
+' Programmer: <Olajumobi Akeeb> on <4/4/2017>
+Option Explicit On
+Option Strict On
+Option Infer Of
+Public Class frmMain
+Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+Me.Close()
+End Sub
+Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles
+btnCalc.Click
+' multiplies each array element by 125% and then displays
+' the results with two decimal places in a list box
+Dim dblSales(,) As Double = {{36.75, 54}, {35, 46.5}, {40.5, 27}, {59, 24}}
+Dim intHighRow As Integer = dblSales.GetUpperBound(0)
+2
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:45 GMT -05:00
+https://www.coursehero.com/file/30615214/CS-1121-Project-9docx/
+
+--- Page 3 ---
+Dim intHighCol As Integer = dblSales.GetUpperBound(1)
+For intR As Integer = 0 To intHighRow
+For intC As Integer = 0 To intHighCol
+dblSales(intR, intC) = (1.25 * dblSales(intR, intC)) + dblSales(intR, intC)
+lstSales.Items.Add((dblSales(intR, intC).ToString("N2")))
+Next
+Next
+'changes the background color of the listbox
+lstSales.BackColor = Color.Lavender
+End Sub
+End Class
+SCREEN CAPTURES
+3
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:45 GMT -05:00
+https://www.coursehero.com/file/30615214/CS-1121-Project-9docx/
+Powered by TCPDF (www.tcpdf.org)

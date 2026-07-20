@@ -1,0 +1,69 @@
+--- Page 1 ---
+MIT 6.S096 Assignment 1, Problem 1
+Problem 1: Floating Point (floating)
+In this problem, we will investigate how floating-point numbers are represented in memory. Recall that
+a float is a 32-bit value with a single sign bit, eight exponent bits, and 23 mantissa bits. Specifically,
+a floating point number x with sign bit ‘sign’, exponent e, and mantissa bits m , m , . .. , m can be
+0 1 22
+written1
+x
+=(−
+1
+)sign · (
+1.m m m .. . m
+) · 2e−bias
+22 21 20 0
+where the mantissa is, of course, in base two. You will be given a list of N floating point values
+x , x ,. .., x . For each x , your program should write its binary representation to the output file as
+1 2 N i
+indicated below.
+Suggested approach: You’ll need to use bitwise operations, but you cannot do so on a floating-point
+number directly. Instead, you will need a way of considering a variable as either a float or an unsigned
+int. We will use a union, which is valid in this case because we assume the size of the two data types is
+the same.
+union float bits {
+float f;
+unsigned int bits;
+};
+II print hex( 5.Of ) outputs "The float looks like Ox4OaOOOOO in hex."
+void print hex( float f) {
+union float bits t;
+t.f = f;
+printf( "The float looks like Ox%x in hex.\n", t.bits );
+}
+Input Format
+Line 1: One integer N
+Lines 2... N
++
+1: Line i
++
+1 contains floating point number x
+i
+Sample Input (file floating.in)
+3
+1.5
+O.15625
+-7.333
+1Except for the case where x is a denormal floating point number, as discussed in class, in which case the (unbiased)
+exponent is -126 and mantissa is written 0.m m m ... m .
+22 21 20 0
+1
+
+--- Page 2 ---
+MIT 6.S096 Assignment 1, Problem 1
+Output Format
+Lines 1... N : Line i contains a representation of the floating-point number x , formatted as shown in
+i
+the sample output.
+Sample Output (file floating.out)
+1.1OOOOOOOOOOOOOOOOOOOOOO * 2�O
+1.O1OOOOOOOOOOOOOOOOOOOOO * 2�-3
+-1.11O1O1O1O1OO1111111OOOO * 2�2
+2
+
+--- Page 3 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.S096 Effective Programming in C and C++
+IAP 2014
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

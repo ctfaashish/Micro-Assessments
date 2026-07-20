@@ -1,0 +1,91 @@
+--- Page 1 ---
+DFSC2316 DF/IA Fundamentals II
+Assignment 2
+Name: ____________________________ Score: _________/180_______
+1. What are the four transformations performed in each round in AES encryption algorithm?
+(10 points)
+Byte Substitution, Shift Rows, Mix Columns, Add Round keys
+2. Considering the substitution box below and an input of 00110101, what is the output? Show
+how you get your answer (10 points)
+ED
+3. What is the encryption mode used in AES in WPA2? What is the advantage of using this
+mode? (10 points)
+It uses the AES-128, it is fast in both hardware and software. Newer Software ensures advanced
+encryption and doesn’t affect performance.
+4. What is the initialization vector (IV) in the encryption processes? What is the main function
+of using it? (10 points)
+Used to avoid encrypting two cipher texts with the same key stream and to produce a different RC4
+key for each packet.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:27:46 GMT -05:00
+https://www.coursehero.com/file/56151975/Assignment21docx/
+
+--- Page 2 ---
+5. What is the main weakness of wireless networks in terms of security compared to wired
+networks? (10 points)
+Eavesdropping is easy, Jamming is easy
+6. What are directional antennas? How an attacker can make use of them? (5 points)
+A directional antenna will increase the range over which the attacker can access your network.
+A directional antenna can actually be made from a Pringles potato chip can.
+7. Integrity Check (IC) field and Initialization Vector (IV) are used for integrity check and
+encryption in WEP, respectively. (5 points)
+8. Do you think WEP is strong enough for securing our wireless networks? Justify your answer
+(10 points)
+I do not think that WEP is strong enough for fully securing our wireless networks because it is
+vulnerable and easily hacked.
+9. What is the main difference between WPA-Personal and WPA-Enterprise? (10 points)
+Personal Mode
+“Shared Secret” is used for authentication to the access point.
+More appropriate to home networks
+Does not require authentication server.
+Enterprise Mode
+Requires an authentication server
+Uses Extensible Authentication Protocol (EAP)
+Centralized management of users’ credentials.
+More appropriate to business networks
+10.What is the encryption algorithm used in WPA2? (5 points)
+Advanced Encryption Standard
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:27:46 GMT -05:00
+https://www.coursehero.com/file/56151975/Assignment21docx/
+
+--- Page 3 ---
+11.How does RC4 encryption work? You may plot a simple figure. (10 points)
+12.Describe how does Cyclic Redundancy Check (CRC) work? Criticize CRC. (10 points)
+Both the sender and the receiver agree on a polynomial function, then you divide the block
+message by the generator and append the remainder to the message. CRC is not a hash function and
+therefore does not provide a sufficiently strong data integrity guarantee for packets.
+13. Temporal Key Integrity Protocol (TKIP) is an encryption protocol designed to provide more
+secure encryption than WEP without changing legacy equipment (5 points)
+14.What is the main difference between WPA and WPA2? (5 points)
+WPA uses TKIP (Temporal Key Integrity Protocol) while WPA2 is capable of using TKIP or the more
+advanced AES algorithm.
+15.WPA introduces “Michael“ or MIC for "Message Integrity Code" algorithm for improved
+payload integrity. (5 points)
+16.WPA2 uses Block Chaining Message Authentication Code protocol which introduces enhanced
+security than that of WPA (5 points)
+AES
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:27:46 GMT -05:00
+https://www.coursehero.com/file/56151975/Assignment21docx/
+
+--- Page 4 ---
+17.DES uses Feistel network while AES uses permutation-substitution Network for encryption. (5
+points)
+18.Search on the Internet, answer the following questions. Which module of the
+requests library offers the possibility of performing Digest type authentication in
+Python? (10 points) HTTPDigestAuth
+19.What coding system does the Basic authentication mechanism use to send the
+username and password in Python? (10 points)
+Base64
+20.Please briefly describe audit IDS and inline IDS (10 points)
+In-line is faster but only provides a “local” view unless a lot of data is forwarded in real-time to
+a central location. Audit is deeper but requires keeping lots of data.
+21.Please briefly describe Host-based IDS and network-based IDS (10 points)
+Quality and density of information is very high on Host-based however, capture is system
+specific and performance is unreliable, and hosts are often target of attack.
+Network based collect data from the network of a hub/switch and try to determine what is
+happening from the contents of the network traffic. Can derive information that host based
+logs can not provide.
+22.What is Honeypot? What is the purpose by using honeypot (10 points)
+A honey pot is a system that is deliberately named and configured to invite attack.
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:27:46 GMT -05:00
+https://www.coursehero.com/file/56151975/Assignment21docx/
+Powered by TCPDF (www.tcpdf.org)

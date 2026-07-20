@@ -1,0 +1,65 @@
+--- Page 1 ---
+CSCE 3560/5562 – Cloud Security
+Spring 2024
+Homework 2
+Question 1 (20 pts):
+There exist multiple TPM chipset manufacturers. Among them Infineon Technologies AG
+chipsets had a vulnerability that wakens public key resistance. Explain how the attackers
+can apply this attack.
+Infineon Technologies AG chipsets faced a vulnerability in their TPM firmware due to which
+there were weak RSA keys produced. This makes it easier for attackers to figure out the secret
+private key from the public key by algorithms, after which they could get data and fake
+identities.
+Question 2 (25 pts):
+Recently a new version of Spectre attack has been announced; i.e., known as Spectre-BHI.
+Actually, initially AMD was thought to be not affected by this attack, which was then
+shown to be incorrect. Explain
+(a) how this attack works (5 pts), It manipulates a CPU’s branch prediction to perform
+instructions that should not be done. It does not give away data or change it but it changes
+the CPU’s state which reveals sensitive information.
+(b) how AMD (was expected to) mitigate (5 pts), The main aim for AMD was to prevent
+unauthorized execution from accessing sensitive data which was done by microcode updates
+and software patches that helped enhance the security of the CPU.
+(c) what are the current solutions (10 pts) microcode updates and software patches are still
+being used but there is now compiler-based mitigations that also help prevent speculative
+execution.
+(d) how the current solutions affect the performance (5 pts) It mainly depends on the
+workload but in most cases, these mitigations increase the computational overhead hence
+the system performance is reduced.
+Question 3 (20 pts):
+What are the differences between paravirtualization, full virtualization, hardware-assisted
+virtualization? What are their pros and cons?
+paravirtualization, full virtualization, and hardware-assisted virtualization are all good but in
+different cases for example paravirtualization is good in performance but requires OS
+modification whereas full virtualization gives the highest level of compatibility at the cost of
+performance While hardware-assisted virtualization uses certain hardware capabilities to try to
+balance compatibility and performance.
+
+--- Page 2 ---
+Question 4 (20 pts):
+Xen is one of the commonly used hypervisors. What makes it special? What are the
+advantages of Xen compared to other hypervisors?
+Xen uses both hardware-assisted virtualization as well as paravirtualization which gives a good
+balance between compatibility and performance for a wide range of operating systems. Xen has
+a strong community with good financial stability which guarantees regular enhancements and
+adaptability making it a good option.
+Question 5 (20 pts):
+This step will be a hands-on implementation. On your Linux VM, on one terminal run top
+command and on another terminal, run the following command (it has to be exactly the
+same, be careful):
+:(){ :|:& };:
+a. What happens when you run this attack? Also explain using the top behavior.
+It is like a DoS attack therefore the system was slower since it was getting a large
+number of processes which I noticed after running the ‘top’ command on another
+terminal
+b. What is this attack called? Fork bomb
+c. Show one method to prevent it and prove that it worked. Explain how it prevents.
+Since it is a DoS attack it can be prevented by putting a limit to the number of processes
+by using the ‘ulimit’ command
+Question 6 (15 pts):
+What is the difference between a side-channel attack and covert-channel attack. Give one
+example to explain.
+A side channel attack focuses on getting information indirectly by analyzing power and time
+consumption to predict private keys whereas convert-channel attacks create a channel that
+enables communication of information between processes in a way that is not intended by the
+system.

@@ -1,0 +1,225 @@
+--- Page 1 ---
+IntroductiontoAlgorithms: 6.006
+MassachusettsInstituteofTechnology September8,2011
+ProfessorsErikDemaineandSriniDevadas ProblemSet1
+Problem Set 1
+Both theory and programming questions are due Thursday, September 15 at 11:59PM.
+Please download the .zip archive for this problem set, and refer to the README.txt file for
+instructionsonpreparingyoursolutions. Remember,yourgoalistocommunicate. Fullcreditwill
+be given only to a correct solution which is described clearly. Convoluted and obtuse descriptions
+might receive low marks, even when they are correct. Also, aim for concise solutions, as it will
+saveyoutimespentonwrite-ups,andalsohelpyouconceptualizethekeyideaoftheproblem.
+We will provide the solutions to the problem set 10 hours after the problem set is due, which
+you will use to find any errors in the proof that you submitted. You will need to submit a critique
+ofyoursolutionsbyTuesday,September20th,11:59PM.Yourgradewillbebasedonbothyour
+solutionsandyourcritiqueofthesolutions.
+Problem1-1. [15points] AsymptoticPractice
+Foreachgroupoffunctions,sortthefunctionsinincreasingorderofasymptotic(big-O)complex-
+ity:
+(a) [5points] Group1:
+f (n) = n0.999999logn
+1
+f (n) = 10000000n
+2
+f (n) = 1.000001n
+3
+f (n) = n2
+4
+(b) [5points] Group2:
+f (n) = 221000000
+1
+f (n) = 2100000n
+2
+(cid:18) (cid:19)
+n
+f (n) =
+3
+2
+√
+f (n) = n n
+4
+(c) [5points] Group3:
+√
+f (n) = n n
+1
+f (n) = 2n
+2
+f (n) = n10 ·2n/2
+3
+n
+(cid:88)
+f (n) = (i+1)
+4
+i=1
+1
+
+--- Page 2 ---
+ProblemSet1
+Problem1-2. [15points] RecurrenceRelationResolution
+Foreachofthefollowingrecurrencerelations,pickthecorrectasymptoticruntime:
+(a) [5 points] Select the correct asymptotic complexity of an algorithm with runtime
+T(n,n)where
+T(x,c) = Θ(x) forc ≤ 2,
+T(c,y) = Θ(y) forc ≤ 2,and
+T(x,y) = Θ(x+y)+T(x/2,y/2).
+1. Θ(logn).
+2. Θ(n).
+3. Θ(nlogn).
+4. Θ(nlog2n).
+5. Θ(n2).
+6. Θ(2n).
+(b) [5 points] Select the correct asymptotic complexity of an algorithm with runtime
+T(n,n)where
+T(x,c) = Θ(x) forc ≤ 2,
+T(c,y) = Θ(y) forc ≤ 2,and
+T(x,y) = Θ(x)+T(x,y/2).
+1. Θ(logn).
+2. Θ(n).
+3. Θ(nlogn).
+4. Θ(nlog2n).
+5. Θ(n2).
+6. Θ(2n).
+(c) [5 points] Select the correct asymptotic complexity of an algorithm with runtime
+T(n,n)where
+T(x,c) = Θ(x) forc ≤ 2,
+T(x,y) = Θ(x)+S(x,y/2),
+S(c,y) = Θ(y) forc ≤ 2,and
+S(x,y) = Θ(y)+T(x/2,y).
+1. Θ(logn).
+2. Θ(n).
+3. Θ(nlogn).
+4. Θ(nlog2n).
+5. Θ(n2).
+6. Θ(2n).
+2
+
+--- Page 3 ---
+ProblemSet1
+Peak-Finding
+In Lecture 1, you saw the peak-finding problem. As a reminder, a peak in a matrix is a location
+withthepropertythatitsfourneighbors(north,south,east,andwest)havevaluelessthanorequal
+to the value of the peak. We have posted Python code for solving this problem to the website in
+a file called ps1.zip. In the file algorithms.py, there are four different algorithms which
+have been written to solve the peak-finding problem, only some of which are correct. Your goal is
+tofigureoutwhichofthesealgorithmsarecorrectandwhichareefficient.
+Problem1-3. [16points] Peak-FindingCorrectness
+(a) [4points] Isalgorithm1correct?
+1. Yes.
+2. No.
+(b) [4points] Isalgorithm2correct?
+1. Yes.
+2. No.
+(c) [4points] Isalgorithm3correct?
+1. Yes.
+2. No.
+(d) [4points] Isalgorithm4correct?
+1. Yes.
+2. No.
+Problem1-4. [16points] Peak-FindingEfficiency
+(a) [4 points] What is the worst-case runtime of algorithm1 on a problem of size
+n×n?
+1. Θ(logn).
+2. Θ(n).
+3. Θ(nlogn).
+4. Θ(nlog2n).
+5. Θ(n2).
+6. Θ(2n).
+(b) [4 points] What is the worst-case runtime of algorithm2 on a problem of size
+n×n?
+1. Θ(logn).
+2. Θ(n).
+3
+
+--- Page 4 ---
+ProblemSet1
+3. Θ(nlogn).
+4. Θ(nlog2n).
+5. Θ(n2).
+6. Θ(2n).
+(c) [4 points] What is the worst-case runtime of algorithm3 on a problem of size
+n×n?
+1. Θ(logn).
+2. Θ(n).
+3. Θ(nlogn).
+4. Θ(nlog2n).
+5. Θ(n2).
+6. Θ(2n).
+(d) [4 points] What is the worst-case runtime of algorithm4 on a problem of size
+n×n?
+1. Θ(logn).
+2. Θ(n).
+3. Θ(nlogn).
+4. Θ(nlog2n).
+5. Θ(n2).
+6. Θ(2n).
+Problem1-5. [19points] Peak-FindingProof
+Please modify the proof below to construct a proof of correctness for the most efficient correct
+algorithmamongalgorithm2,algorithm3,andalgorithm4.
+Thefollowingistheproofofcorrectnessforalgorithm1,whichwassketchedinLecture1.
+We wish to show that algorithm1 will always return a peak, as long as the problem
+isnotempty. Tothatend,wewishtoprovethefollowingtwostatements:
+1. If the peak problem is not empty, then algorithm1 will always return a lo-
+cation. Say that we start with a problem of size m × n. The recursive subproblem
+examinedbyalgorithm1willhavedimensionsm×(cid:98)n/2(cid:99)orm×(n−(cid:98)n/2(cid:99)−1).
+Therefore,thenumberofcolumnsintheproblemstrictlydecreaseswitheachrecursive
+callaslongasn > 0. Soalgorithm1eitherreturnsalocationatsomepoint,oreven-
+tuallyexaminesasubproblemwithanon-positivenumberofcolumns. Theonlywayfor
+the number of columns to become strictly negative, according to the formulas that de-
+terminethesizeofthesubproblem,istohaven = 0atsomepoint. Soifalgorithm1
+doesn’treturnalocation,itmusteventuallyexamineanemptysubproblem.
+We wish to show that there is no way that this can occur. Assume, to the contrary, that
+algorithm1 does examine an empty subproblem. Just prior to this, it must examine
+4
+
+--- Page 5 ---
+ProblemSet1
+a subproblem of size m×1 or m×2. If the problem is of size m×1, then calculating
+the maximum of the central column is equivalent to calculating the maximum of the
+entire problem. Hence, the maximum that the algorithm finds must be a peak, and it
+will halt and return the location. If the problem has dimensions m × 2, then there are
+two possibilities: either the maximum of the central column is a peak (in which case
+the algorithm will halt and return the location), or it has a strictly better neighbor in the
+other column (in which case the algorithm will recurse on the non-empty subproblem
+with dimensions m × 1, thus reducing to the previous case). So algorithm1 can
+never recurse into an empty subproblem, and therefore algorithm1 must eventually
+returnalocation.
+2. If algorithm1 returns a location, it will be a peak in the original problem. If
+algorithm1 returns a location (r ,c ), then that location must have the best value
+1 1
+in column c , and must have been a peak within some recursive subproblem. Assume,
+1
+forthesakeofcontradiction,that(r ,c )isnotalsoapeakwithintheoriginalproblem.
+1 1
+Then as thelocation (r ,c )is passed upthe chain of recursive calls, it musteventually
+1 1
+reach a level where it stops being a peak. At that level, the location (r ,c ) must be
+1 1
+adjacenttothedividingcolumnc (where|c −c | = 1),andthevaluesmustsatisfythe
+2 1 2
+inequalityval(r ,c ) < val(r ,c ).
+1 1 1 2
+Let(r ,c )bethelocationofthemaximumvaluefoundbyalgorithm1inthedivid-
+2 2
+ingcolumn. Asaresult,itmustbethatval(r ,c ) ≤ val(r ,c ). Becausethealgorithm
+1 2 2 2
+chose to recurse on the half containing (r ,c ), we know that val(r ,c ) < val(r ,c ).
+1 1 2 2 2 1
+Hence,wehavethefollowingchainofinequalities:
+val(r ,c ) < val(r ,c ) ≤ val(r ,c ) < val(r ,c )
+1 1 1 2 2 2 2 1
+But in order for algorithm1 to return (r ,c ) as a peak, the value at (r ,c ) must
+1 1 1 1
+have been the greatest in its column, making val(r ,c ) ≥ val(r ,c ). Hence, we have
+1 1 2 1
+acontradiction.
+Problem1-6. [19points] Peak-FindingCounterexamples
+Foreachincorrectalgorithm,uploadaPythonfilegivingacounterexample(i.e. amatrixforwhich
+thealgorithmreturnsalocationthatisnotapeak).
+5
+
+--- Page 6 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.006 In troduction to Algorithms
+Fall 2011
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

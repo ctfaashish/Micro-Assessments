@@ -1,0 +1,23 @@
+--- Page 1 ---
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+15.082J Fall 2010
+HW 5 Due Session 22
+Hand in the exercises labeled 3,4,5,6.
+1. 16.21
+2. 16.27
+3. 16.7 Note: This is an odd-numbered problem, and you may use the online solution to help you.
+The problem unites many concepts covered in class, and your solution should go above and beyond
+the posted online solution in demonstrating your understanding of the connections between min-cost­
+flow, linear programming, and Lagrangian relaxation. DO NOT just copy and paste the on- line
+solution, you will get zero credit for that.
+4. 16.2
+5. 16.16
+6. 16.20
+1
+
+--- Page 2 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+15.082J / 6.855J / ESD.78J Network Optimization
+Fall 2010
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

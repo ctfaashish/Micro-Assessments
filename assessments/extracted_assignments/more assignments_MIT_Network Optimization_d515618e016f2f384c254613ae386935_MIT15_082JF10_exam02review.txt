@@ -1,0 +1,46 @@
+--- Page 1 ---
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+15.082J Fall 2010
+Midterm 2 Review
+1. Prove the max-flow min-cut Theorem.
+2. Consider some instance of the maximum s-t flow problem. Suppose that in some feasible flow
+there exists a cut C all of whose forward arcs are saturated. What does this imply? What is the rela­
+tionship between saturated cuts, minimum cuts, and maximum flows?
+3. What does it mean for a distance function to be valid for a given flow? What does it mean for
+an arc (or path) to be admissible in a residual network? Explain why these notions are important for
+proving runtime bounds for max-flow algorithms (give at least one example and the associated proofs
+to back it up).
+4. Explain the difference between a ‘saturating push’ and ‘non-saturating push’ in the context of
+max-flow algorithms. What proof techniques are used to bound the number of each kind of push
+(respectively)? Give proof sketches to support your arguments.
+5. What does it mean for an algorithm to use scaling? Why does scaling make an algorithm’s runtime
+easier to analyze? Justify your arguments by analyzing the excess scaling algorithm.
+6. State and prove the optimality conditions for the min-cost flow problem. Based on your opti­
+mality condition, describe an algorithm for min-cost flow problem and analyze its runtime. If your
+algorithm is not polynomial time, describe a sequence of instances on which your algorithm takes
+‘exponential’ time.
+7. Give the reduction from the family of linear programs with the ‘consecutive ‘1’s property’ (Appli­
+cation 9.6 of the book) to the min-cost-flow problem.
+8. Exercise 9.39
+9. What is a spanning tree solution? What is a basic feasible solution in a linear program? What
+is the relation between these notions in the network simplex algorithm?
+10. Describe how a pivot is performed in the network simplex algorithm. Discuss the role of node
+potentials and reduced costs. What is the role of linear independence during a pivot?
+11. Exercise 11.29
+12. Given a spanning tree solution during an iteration of network simplex, explain how to com­
+pute the corresponding node potentials.
+13. Given a spanning tree solution during an iteration of network simplex, explain how to com­
+pute the corresponding flows.
+1
+
+--- Page 2 ---
+14. Given a spanning tree solution during an iteration of network simplex, explain how to determine
+if the solution is optimal.
+2
+
+--- Page 3 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+15.082J / 6.855J / ESD.78J Network Optimization
+Fall 2010
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

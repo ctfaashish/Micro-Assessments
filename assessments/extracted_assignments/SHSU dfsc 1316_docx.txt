@@ -1,0 +1,312 @@
+--- Page 1 ---
+Avery Zamzow
+Zachary Gasaway
+Brittany Baisley
+DFSC 1316 Lab 3
+Operating System Forensics
+1) By using the forensics tools, you are requested to retrieve the following information
+from your computer
+a) The USB memory keys once connected to your computer (20 points)
+• Avery Zamzow used USBDeview
+==================================================
+Device Name :
+Description : USB Input Device
+Device Type : HID (Human Interface Device)
+Connected : Yes
+Safe To Unplug : Yes
+Disabled : No
+USB Hub : No
+Drive Letter :
+Serial Number :
+Created Date : 10/5/2017 9:18:29 PM
+Last Plug/Unplug Date: 9/10/2015 4:22:07 PM
+VendorID : 06cb
+ProductID : 75bf
+Firmware Revision : 0.04
+USB Class : 03
+USB SubClass : 00
+USB Protocol : 00
+Hub / Port : Hub 2, Port 4
+Computer Name : WINDOWS-3G67M3S
+
+--- Page 2 ---
+Vendor Name :
+Product Name :
+ParentId Prefix : 7&f2cb29a&0
+Service Name : HidUsb
+Service Description: @input.inf,%HID.SvcDesc%;Microsoft HID Class Driver
+Driver Filename : hidusb.sys
+Device Class :
+Device Mfg : (Standard system devices)
+Power : 100 mA
+USB Version : 2.00
+Driver Description: USB Input Device
+Driver Version : 6.3.9600.18341
+Driver InfSection : HID_Inst.NT
+Driver InfPath : input.inf
+Instance ID : USB\VID_06CB&PID_75BF\6&19eda139&0&4
+Capabilities : SurpriseRemovalOK
+==================================================
+==================================================
+Device Name : 0000.0010.0000.004.000.000.000.000.000
+Description : USB Video Device
+Device Type : Video
+Connected : Yes
+Safe To Unplug : Yes
+Disabled : No
+USB Hub : No
+Drive Letter :
+Serial Number :
+Created Date : 10/5/2017 9:18:28 PM
+
+--- Page 3 ---
+Last Plug/Unplug Date: 9/10/2015 4:26:36 PM
+VendorID : 0c45
+ProductID : 6712
+Firmware Revision : 51.05
+USB Class : 0e
+USB SubClass : 03
+USB Protocol : 00
+Hub / Port :
+Computer Name : WINDOWS-3G67M3S
+Vendor Name :
+Product Name :
+ParentId Prefix :
+Service Name : usbvideo
+Service Description: @usbvideo.inf,%USBVideo.SvcDesc%;USB Video Device (WDM)
+Driver Filename : usbvideo.sys
+Device Class :
+Device Mfg : Microsoft
+Power : 500 mA
+USB Version : 2.00
+Driver Description: USB Video Device
+Driver Version : 6.3.9600.17217
+Driver InfSection : USBVideo
+Driver InfPath : usbvideo.inf
+Instance ID : USB\VID_0C45&PID_6712&MI_00\6&19d2c833&0&0000
+Capabilities : Removable, SilentInstall, SurpriseRemovalOK
+==================================================
+==================================================
+Device Name : 0000.0012.0000.001.002.000.000.000.000
+
+--- Page 4 ---
+Description : Canon MG2900 series
+Device Type : Unknown
+Connected : No
+Safe To Unplug : Yes
+Disabled : No
+USB Hub : No
+Drive Letter :
+Serial Number :
+Created Date : 10/1/2017 1:22:27 PM
+Last Plug/Unplug Date: 10/1/2017 1:11:58 PM
+VendorID : 04a9
+ProductID : 1780
+Firmware Revision : 2.00
+USB Class : 00
+USB SubClass : 00
+USB Protocol : 00
+Hub / Port :
+Computer Name : WINDOWS-3G67M3S
+Vendor Name :
+Product Name :
+ParentId Prefix :
+Service Name : usbscan
+Service Description: @sti.inf,%usbscan.SvcDesc%;USB Scanner Driver
+Driver Filename : usbscan.sys
+Device Class :
+Device Mfg : Canon
+Power :
+USB Version :
+Driver Description: Canon MG2900 series
+
+--- Page 5 ---
+Driver Version : 20.4.0.14
+Driver InfSection : CNCInstall_64
+Driver InfPath : oem14.inf
+Instance ID : USB\VID_04A9&PID_1780&MI_00\6&3826bd61&1&0000
+Capabilities : SurpriseRemovalOK
+==================================================
+==================================================
+Device Name : 0000.0012.0000.001.002.000.000.000.000
+Description : USB Printing Support
+Device Type : Printer
+Connected : No
+Safe To Unplug : Yes
+Disabled : No
+USB Hub : No
+Drive Letter :
+Serial Number :
+Created Date : 10/1/2017 1:22:27 PM
+Last Plug/Unplug Date: 10/1/2017 1:11:55 PM
+VendorID : 04a9
+ProductID : 1780
+Firmware Revision : 2.00
+USB Class : 07
+USB SubClass : 01
+USB Protocol : 02
+Hub / Port :
+Computer Name : WINDOWS-3G67M3S
+Vendor Name :
+Product Name :
+
+--- Page 6 ---
+ParentId Prefix : 7&2d99a9da&0
+Service Name : usbprint
+Service Description: @usbprint.inf,%USBPRINT.SvcDesc%;Microsoft USB PRINTER Class
+Driver Filename : usbprint.sys
+Device Class :
+Device Mfg : Microsoft
+Power :
+USB Version :
+Driver Description: USB Printing Support
+Driver Version : 6.3.9600.16384
+Driver InfSection : USBPRINT_Inst.NT
+Driver InfPath : usbprint.inf
+Instance ID : USB\VID_04A9&PID_1780&MI_01\6&3826bd61&1&0001
+Capabilities : SurpriseRemovalOK
+==================================================
+b) The recently browsing history (20 points)
+• Brittany Baisley used Browser history capture
+•
+
+--- Page 7 ---
+c) The software recently installed to the computer (20 points)
+• Zachary Gasaway used Everything
+•
+
+--- Page 8 ---
+d) The recently open documents (20 points)
+• Zachary Gasaway used RecentFilesViewer
+Filename : C:\Users\Zachary\AppData\Roaming\Microsoft\Templates
+Modified Time : 4/25/2017 3:17:03 PM
+Created Time : 10/2/2015 5:46:10 PM
+Execute Time : 4/25/2017 3:17:03 PM
+Missing File : No
+Stored In : Recent Folder
+Extension :
+File Only : Templates
+==================================================
+==================================================
+Filename : C:\Users\ Zachary \AppData\Roaming\Microsoft\Templates\Business cards (Red
+design, 10 per page).dotx
+Modified Time : 4/25/2017 3:17:02 PM
+Created Time : 4/25/2017 3:17:02 PM
+Execute Time : 4/25/2017 3:17:03 PM
+Missing File : No
+Stored In : Recent Folder
+Extension : dotx
+File Only : Business cards (Red design, 10 per page).dotx
+==================================================
+==================================================
+Filename : C:\Users\ Zachary \AppData\Roaming\Microsoft\Templates\Normal.dotm
+Modified Time : 3/4/2017 3:22:41 PM
+Created Time : 1/16/2016 1:56:33 AM
+Execute Time : 4/8/2017 12:16:17 PM
+Missing File : No
+Stored In : Recent Folder
+Extension : dotm
+File Only : Normal.dotm
+==================================================
+==================================================
+Filename : C:\Users\ Zachary \AppData\Roaming\Microsoft\Templates\Wedding
+checklist.dotx
+Modified Time : 4/23/2017 4:21:09 PM
+Created Time : 4/23/2017 4:21:09 PM
+Execute Time : 4/23/2017 4:21:12 PM
+Missing File : No
+Stored In : Recent Folder
+Extension : dotx
+File Only : Wedding checklist.dotx
+==================================================
+
+--- Page 9 ---
+==================================================
+Filename : C:\Users\ Zachary
+\AppData\Roaming\Microsoft\Windows\Libraries\Documents.library-ms
+Modified Time : 6/17/2017 9:48:22 PM
+Created Time : 10/2/2015 4:29:13 PM
+Execute Time : 9/11/2017 8:52:58 PM
+Missing File : No
+Stored In : Recent Folder
+Extension : library-ms
+File Only : Documents.library-ms
+==================================================
+e) The social media log files and/or the messages if no privacy is violated (20 points)
+• Avery Zamzow used Evidence Center Trail
+Common information
+Generated at 10/6/2017 12:14:12 AM
+Generated by Avery
+Case Properties
+Name New case (2017.10.05 22:33:39)
+Description
+Created at 10/5/2017 10:33:39 PM
+Created by Avery
+Time zone (UTC-06:00) Central Time (US &amp; Can
+Report options
+Sorting Earlier first
+Grouping None
+Dates All history
+
+--- Page 11 ---
+f) Recover removed files over the past few days (20 points)
+• Zachary Gasaway used FreeUndelete 2.1 by officeRecovery
+•
+g) Password hash (20 points)
+• Avery Zamzow used Passwordfox
+==================================================
+Record Index : 1
+Web Site : chrome://FirefoxAccounts
+User Name : a****
+Password : *******
+User Name Field :
+Password Field :
+Signons File : logins.json
+HTTP Realm : Firefox Accounts credentials
+Password Strength : Very Strong
+Firefox Version : 32+
+Created Time : 10/5/2017 8:55:13 PM
+Last Time Used : 10/5/2017 8:55:13 PM
+Password Change Time: 10/5/2017 8:56:01 PM
+Password Use Count: 1
+==================================================
+==================================================
+Record Index : 2
+
+--- Page 12 ---
+Web Site : https://accounts.google.com
+User Name : zamzowavery**********
+Password : ***********
+User Name Field : identifier
+Password Field : password
+Signons File : logins.json
+HTTP Realm :
+Password Strength : Very Strong
+Firefox Version : 32+
+Created Time : 9/8/2017 11:21:26 PM
+Last Time Used : 10/5/2017 8:56:06 PM
+Password Change Time: 9/8/2017 11:21:26 PM
+Password Use Count: 1
+==================================================
+==================================================
+Record Index : 3
+Web Site : https://adfs.shsu.edu
+User Name : shsu********
+Password : ***********
+User Name Field : UserName
+Password Field : Password
+Signons File : logins.json
+HTTP Realm :
+Password Strength : Very Strong
+Firefox Version : 32+
+Created Time : 7/7/2016 11:03:51 PM
+Last Time Used : 10/5/2017 8:56:06 PM
+Password Change Time: 4/5/2017 7:47:57 AM
+Password Use Count: 1
+==================================================
+
+--- Page 13 ---
+h) Recent wireless connections (20 points)
+• Brittany Baisley used WiFiHistoryView
+•
+i) Other forensics information your group is interested (bonus 20 points)

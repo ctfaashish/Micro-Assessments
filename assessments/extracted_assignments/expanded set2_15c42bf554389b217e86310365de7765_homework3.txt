@@ -1,0 +1,85 @@
+--- Page 1 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.854J / 18.415J Advanced Algorithms
+�� Fall 2008
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.
+
+--- Page 2 ---
+18.415/6.854 Advanced Algorithms
+Problem Set 3
+1. Consider the following optimization problem:
+Given c E Rn, c 2 0, n even, find
+min{cTx: C,,,xi 2 1 VS c {I,...,n), IS1 = 5n ,
+In class, it was shown that this can be solved by the ellipsoid method because
+there is an efficient separation algorithm. However, this problem has a more
+straightforward solution.
+Develop an algorithm which finds the optimum in O(n logn) time. Prove its
+correctness.
+2. Fill a gap in the analysis of the interior point algorithm:
+Suppose that (x, y, s) is a feasible vector, i.e. x > 0, s > 0,
+and we perform one Newton step by solving for Ax, Ay, As:
+AAx = O
++
+A ~ AAs =~ 0
++
+Vjj'; XjSj Axjsj xjA5'j = P
+where p > 0. The proximity function is defined as
+XjSj
+I)?
+P
+Prove that if
++ +
+o(x Ax, s As, < 1
+A!,)
++ + +
+then (x Ax, y Ay, s As) is a feasible vector for Ax = b,x > 0 and
+ATY+s=c,s > 0.
+
+--- Page 3 ---
+3b G iven a directed graph G = (V,E) and two vertices s and t, we d d like to
+find the maximum number of edge-disjoint paths between s and t (two paths
+are edge-disjoint if they don't share an edge). Denote the number of vertices
+by n and the number of edges by m.
+(a) Argue that this problem can be solved as a m h u m f low problem with
+unit capacitia. Explain.
+(b) Consider now the mashurn proMan on directed graphs G =(V,E)
+~ Q W
+with unit capacity edges (dthoughsome of the questions below would also
+appIy to the more general case).
+Given afeasible flow f,we cmconstruct the midual network Gf = (V, E!)
+where
+The residual capacity of an edge (i,j) E Ef is equal to -fV or to fji
+depending onthe case above. Since we are dealingwith the unit capwits
+case, an the q*'s are 1 and therefore for 0-1flows f (i,e. flowsfor which
+the due on any edge is 0or I),dlresidual capwitia wilI be I.
+We d&e the distance of .a vertex If(v) as the Iengkh of the shortest path
+from s to v inEp (w for vertices which are not reachable from s in Ef).
+Further, d&e the lmelled residual network as
+d a sabmtingflow g in E) as a flow in E'f (with capacities being the
+residual capacities) such that every directed s - t path in El has at least
+one saturated edge (i.e. an edge whose fiflow equals the residual capacity].
+For a unit capacity graph and a given 0 -1 flow f,show howwe can .find
+the leverIIed residual network and a saturatisg flaw in O(m)time.
+(c) Prove that ifthe le~1ledreaidualnetwork has nopath from s to t (kf (t)=
+m),then the fiow f iis mmhum.
+Ed] For a flm f,d&e
+4fl b($1
+=
+(the distance from s to 5 in the residual network). Prove that if g is a
+saturating flow far f then
++
+where f g denotes the b wo btained from f by either incr- the flow
+fij by gij or decreasing the flow fjiiby gg for e m ed ge (i,j) E GI.
+
+--- Page 4 ---
+(e) Prove that if f is a feasible 0 - 1flow with distance d = d(f) and f * is an
+optimum flow, then
+and also
+(f) Design a maximum flow algorithm (for unit capacities) which proceeds by
+finding a saturating flow repeatedly. Try to optimize its running time.
+Using the observations above, you should achieve a running time bounded
+o
+by (min (mn2I3,m 3I2)).
+(g) Can we now justify that, for 0 - 1capacities, there is always an optimum
+flow that takes values 0 or 1on every edge?

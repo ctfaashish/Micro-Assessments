@@ -1,0 +1,72 @@
+--- Page 1 ---
+6.231 Dynamic Programming and Optimal Control
+Midterm Exam, Fall 2015
+Prof. Dimitri Bertsekas
+Problem 1 (50 points)
+This is a stopping problem, where before stopping is applied, the state of
+the system evolves according to
+x =ax +bu , (1)
+k+1 k k
+where the nonzero scalars a and b are known. At each period k where
+the system has not yet stopped, we have the option of using a control u ,
+k
+incurring a cost qx2 +ru2, and moving to a new state x according to
+k k k+1
+Eq. (1), or else stopping (i.e., moving to a special cost-free and absorbing
+termination state) and incurring a stopping cost tx2 (we may have t(cid:54)=q).
+k
+At the final period N, if not already stopped, we must stop and incur the
+stopping cost tx2 . We assume that the scalars q, r, and t are positive.
+N
+(a) Considerfirsttherestrictedoptimizationoverpoliciesthatneverstop,
+except at time N, so we obtain a standard linear quadratic problem,
+whose optimal cost function has the form
+J (x )=Kx2,
+0 0 0
+where K is a positive scalar that depends on N. Write the Riccati
+equation that yields K as well as the steady-state equation that has
+K¯, the limit of K as N → ∞, as its solution. Does the steady-state
+equation have any other solutions?
+(b) Considertheunrestrictedoptimizationwherestoppingisalsoallowed.
+Write the DP algorithm for this problem.
+(c) Show that for the problem of part (b) there is a threshold value t¯
+suchthatift<t¯immediatestoppingisoptimalateverystate,andif
+t > t¯continuing at every state x and period k is optimal. How are
+k
+the scalars K¯ and t¯of parts (a) and (c) related?
+(d) State an extension of the result of part (c) for the case of a multidi-
+mensional system.
+1
+
+--- Page 2 ---
+Problem 2 (50 points)
+Consider a situation involving a blackmailer and his victim. At each stage
+the blackmailer has a choice of:
+(1) Retiring with his accumulated blackmail earnings.
+(2) Demanding a payment of $ 1, in which case the victim will comply
+with the demand (this happens with probability p, where 0<p<1,
+independentlyofthepasthistory),orwillrefusetopayanddenounce
+the blackmailer to the police (this happens with probability 1−p).
+Once denounced to the police, the blackmailer loses all of his accumulated
+earningsandcannotblackmailagain. Also,theblackmailerwillretireonce
+hereachesaccumulatedearningsof$n,wherenisagivenintegerthatmay
+be assumed very large for the purposes of this problem. The blackmailer
+wants to maximize the expected amount of money he ends up with.
+(a) Formulate the problem as a stochastic shortest path problem with
+states i=0,1,...,n, plus a termination state,
+(b) Write Bellman’s equation and justify that its unique solution is the
+optimal value function J∗(i).
+(c) Use value iteration to show that J∗(i) is monotonically strictly in-
+creasing with i, and that J∗(i) = i for all i larger than a suitable
+scalar.
+(d) Start policy iteration with the policy where the blackmailer retires
+at every i. Derive the sequence of generated policies and the optimal
+policy. How many iterations are needed for convergence?
+2
+
+--- Page 3 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.231 Dynamic Programming and Stochastic Control
+Fall 2015
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

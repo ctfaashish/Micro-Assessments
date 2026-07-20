@@ -1,0 +1,77 @@
+--- Page 1 ---
+CSCE 4550 – Introduction to Computer Security Fall 2016
+Homework 1
+Due: 11:59 PM on Friday, September 9, 2016
+Form of submission: Word or Text Document in Blackboard
+Supriya Thapa
+Chapter 1 – Introduction
+1. Distinguish between vulnerability, threat, and control.
+Vulnerability is a weakness in the system. Threat is a condition that could cause harm to a
+system and Control is to prevent any threat from exercising vulnerabilities. For example,
+a personal computer that is not password protected provides an easy access to anyone.
+This is a vulnerability of the PC that could be used against us. Threat is someone
+accessing the personal files in the PC and using it to benefit them and harm us. Control in
+this case would be to create a strong password for the PC so that unauthorized person
+would not have access to our personal files.
+2. List at least three kinds of harm a company could experience from electronic espionage or
+unauthorized viewing of confidential company materials.
+Unauthorized viewing of confidential company material could reveal company’s trade
+secret. This revelation could be used by their competitor to their benefit and harm
+company’s reputation, sales and such. Company’s database could provide important
+information about its customer and that could be misused or modified by an unauthorized
+person for their benefit. This could harm bond and trust that had formed between the
+company and its customer.
+1 of 3
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:11:23 GMT -05:00
+https://www.coursehero.com/file/19965028/csce4550-002-HW1-FA16-Copy/
+
+--- Page 2 ---
+CSCE 4550 – Introduction to Computer Security Fall 2016
+8. One control against accidental software deletion is to save all old versions of a
+program. Of course, this control is prohibitively expensive in terms of cost of storage. Suggest a
+less costly control against accidental software deletion. Is your control effective against all
+possible causes of software deletion? If not, what threats does it not cover?
+Alternative control against accidental software deletion that is cost effective is configuration
+management. It is cost effective because software development control can prevent from causes
+of software deletion. Configuration management allows replacement of the older version of the
+software with a newer version while maintaining the integrity and performance. Replacement
+software is compatible and works as well as the older version. They are well documented and
+verified. Thus, they are the better alternative to saving old version of a program.
+12. Do you think attempting to break in to (that is, obtain access to or use of) a computing
+system without authorization should be illegal? Why or why not?
+Attempting to break in to a computing system without authorization should be illegal because it
+can expose user’s vulnerability and this could be used against them. Unauthorized person could
+modify the data of user’s computing system and also deny them access to their own system.
+Thus for these reasons unauthorized use of computing system should be illegal.
+16. When you say that software is of high quality, what do you mean? How does security fit in
+your definition of quality? For example, can an application be insecure and still be “good”?
+High quality software is the one that has been downloaded from a reliable source with proper
+license that a user can see. It should have a documentation on how to use and steps to get started
+2 of 3
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:11:23 GMT -05:00
+https://www.coursehero.com/file/19965028/csce4550-002-HW1-FA16-Copy/
+
+--- Page 3 ---
+CSCE 4550 – Introduction to Computer Security Fall 2016
+with the software should be easy. It should be easy to install, easy to use and easy to uninstall if
+needed. It must be compatible with the devices that it is being downloaded too. It should be
+compatible with the older version and user should have a option to update if there is any new
+updates to the software. Software should be quick and responsive. It should be secure. Security is
+very important as well. If a software is not secure, it can still be called good because there are
+other characteristic that contributes to making a high quality software and security is just one of
+them.
+19. Consider a program that allows consumers to order products from the web. Who might want
+to attack the program? What types of harm might they want to cause? What kinds of
+vulnerabilities might they exploit to cause harm?
+Individual, organized group of hacker or terrorist might want to attack the program for money.
+Individuals might be motivated by the easy money they can make by retrieving credit card
+information of a customer who order from web. They can exploit the information they receive or
+they can sell the information to third party. Terrorist might use the money, which they get by
+redirecting payment of customer to their account, for buying weapons and like. They can modify
+program to cause harm to customer as well as the creator of a program. Customer’s identity is
+compromised and also cause financial losses. Creator of the program can be locked out of their
+own website and that causes them financial loss, inconvenience and hassle.
+3 of 3
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:11:23 GMT -05:00
+https://www.coursehero.com/file/19965028/csce4550-002-HW1-FA16-Copy/
+Powered by TCPDF (www.tcpdf.org)

@@ -1,0 +1,112 @@
+--- Page 1 ---
+CSCE 3550 – Foundations of Cybersecurity Spring 2022
+Homework 7
+Due: 11:59 PM on Thursday, April 28, 2022
+Form of submission: PDF, Word, or Text Document in Canvas
+1. Consider the following questions regarding the data aggregation:
+(a) Describe a situation in which the sensitivity of an aggregate is greater than that of its
+constituent values.
+(b) Describe a situation in which the sensitivity of an aggregate is less than that of its
+constituent values.
+2. One approach suggested to ensure privacy is the small result rejection, in which the system
+rejects any query whose result returns a small number (e.g., where n = 5, for example).
+Describe the process how an attacker might be able to obtain sensitive data by using only
+queries derived from six records.
+3. The response to a query “sensitive value; response suppressed” is itself a disclosure. One
+possible measure to suppress responses that reveal sensitive information without disclosing
+that the responses to certain queries are sensitive is to use random data suppression, where
+the database management system periodically suppresses the response to a particular query
+that was not sensitive. In this case, the user would not know if it was because of random
+suppression or sensitive data. Describe how this approach might fail.
+1 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:25:36 GMT -05:00
+https://www.coursehero.com/file/145204011/csce3550-Homework7-SP22docx/
+
+--- Page 2 ---
+CSCE 3550 – Foundations of Cybersecurity Spring 2022
+4. Suppose that you create a new privacy-conscious social network called PrivateFriends
+whose data consists of a dataset called Users that contains a record with the ID, name, age,
+interests (i.e., things a user likes), and list of friends. Friendships on PrivateFriends are two-
+way, meaning that if user A is friends with user B, then user B is friends with user A. The ages
+of all the users are between 0 (yes, infants want private friends in this day and age) and 80,
+inclusively, and each user can only have up to 50 friends, inclusively. If a user is removed
+from the network, then that user no longer appears in any list of friends.
+Of course, you are concerned about the differential privacy as your advertisers make queries
+on your Users dataset. Suppose that we define the sensitivity of a function f on datasets
+DB and DB' as ∆f=max|f (DB)−f (DB')| , where the maximum is over all pairs
+of sets in DB and DB' that differ in at most one element. Recall that DB and
+DB' can only differentiate by at most one row, when a user is added or removed. For each
+of the queries listed below on Users, compute the sensitivity ∆f . If the sensitivity is not
+bounded by a constant given in the problem, write "not bounded".
+(a)
+f (Users)=# of users who are female, live in Denton, and are interested in Minecraft
+1
+30-30 = 0
+30 – 31 = -1
+(b) f (Users)=maximum age of users who are interested in Minecraft
+2
+(c) f (Users)=# of users named Mary who are friends with someone named Jack
+3
+(d) f (Users)=# of users connected through some friendship (i.e., list of friends) to you
+4
+2 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:25:36 GMT -05:00
+https://www.coursehero.com/file/145204011/csce3550-Homework7-SP22docx/
+
+--- Page 3 ---
+CSCE 3550 – Foundations of Cybersecurity Spring 2022
+5. Consider the following database table:
+A normal user may not query the database on the field Name and may only use formulas such
+as COUNT() ,
+∑()
+, MEDIAN() , MAX() , MIN() , and MEAN() . The
+database is protected with the query size restriction technique for each operation (e.g.,
+COUNT() , ∑() , etc.) with k=2 , in that no individual query operation that
+matches fewer than k or more than N−k will be answered, where N is the size of
+the database table. This means that a query operation resulting in 1 record or more than 11
+(i.e., N−2 ) will be rejected.
+Formulate your query in the following format:
+ C is the characteristic formula, such as (Department=Math)∧(Sex!=Male) .
+i
+ A is a specific attribute, such as Salary .
+j
+Then, using the values above, the query MAX(C ,A )=100 is acceptable since it is based
+1 1
+on two entries. Since k=2 , the query with MIN(C ,A ) where
+1 1
+C =(Department=Stat)∧(Position=Admin) and A =Salary would be rejected since
+1 1
+the result is based on one match.
+(a) Use a query with exactly two query operations and demonstrate how the tracker attack
+could be used to find the exact salary of Professor Dodd assuming that the attacker
+knew that Professor Dodd is the only female CS professor. This is the only external
+information that the attacker has, and you cannot make any other assumptions about the
+values in the database. This means that you should have two characteristic formulas,
+C and C , and one attribute, A , expressed something like
+1 2 1
+COUNT(C ,A )−MIN(C ,A ) , for example.
+1 1 2 1
+(b) BONUS: Now assume that the database consists solely of the six entries from the CS
+department, such that N=6 . Rewrite your query from (a) above so that it does not
+violate the query size restriction technique for k=2 , meaning that all query
+3 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:25:36 GMT -05:00
+https://www.coursehero.com/file/145204011/csce3550-Homework7-SP22docx/
+
+--- Page 4 ---
+CSCE 3550 – Foundations of Cybersecurity Spring 2022
+operations should have between 2 and 4 results, inclusively. Note that if your answer to
+(a) above satisfies this requirement, simply rewrite it here again so that the graders will
+know to give credit for the bonus.
+6. Suppose that a telephone company maintains records on every telephone call it handled,
+showing the calling phone number, the called phone number, and the time, date, and duration
+of the call.
+(a) What uses might the telephone company make of those records?
+(b) What uses might commercial marketers make of those records?
+(c) What uses might a rival telephone company make of those records?
+(d) What uses might a government make of those records?
+(e) Which of those uses violates individuals’ privacy rights?
+4 of 4
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 16:25:36 GMT -05:00
+https://www.coursehero.com/file/145204011/csce3550-Homework7-SP22docx/
+Powered by TCPDF (www.tcpdf.org)

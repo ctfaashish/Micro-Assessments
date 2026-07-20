@@ -1,0 +1,1959 @@
+--- Page 1 ---
+Project 1 CSCE 5380 Data Mining
+Group xx
+2022-06-30
+# Importing libraries
+library(data.table)
+library(tidyverse)
+## ── Attaching packages ─────────────────────────────────────── tidyverse
+1.3.1 ──
+## ✔ ggplot2 3.3.6 ✔ purrr 0.3.4
+## ✔ tibble 3.1.7 ✔ dplyr 1.0.9
+## ✔ tidyr 1.2.0 ✔ stringr 1.4.0
+## ✔ readr 2.1.2 ✔ forcats 0.5.1
+## ── Conflicts ──────────────────────────────────────────
+tidyverse_conflicts() ──
+## ✖ dplyr::between() masks data.table::between()
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::first() masks data.table::first()
+## ✖ dplyr::lag() masks stats::lag()
+## ✖ dplyr::last() masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+library('psych')
+##
+## Attaching package: 'psych'
+## The following objects are masked from 'package:ggplot2':
+##
+## %+%, alpha
+library(caTools)
+library("rpart")
+library("rpart.plot")
+library('caret')
+## Loading required package: lattice
+##
+## Attaching package: 'caret'
+## The following object is masked from 'package:purrr':
+##
+## lift
+
+--- Page 2 ---
+library(RWeka)
+##
+## Attaching package: 'RWeka'
+## The following object is masked from 'package:caTools':
+##
+## LogitBoost
+library(mlbench)
+# Importing dataset
+link = 'https://archive.ics.uci.edu/ml/machine-learning-databases/breast-
+cancer/breast-cancer.data'
+brestcancerdata <- fread(link,
+col.names=c('class','age','menopause','tumorsize','invnodes','nodecaps','degm
+alig','breast','breastquad','irradiant'))
+Project 1 CSCE 5380 Data Mining
+Task 1 (15 marks)
+Use the Breast Cancer (UCI Machine Learning Repository: Breast Cancer Data
+Set) and German Credit Card (UCI Machine Learning Repository: Statlog
+(German Credit Data) Data Set) datasets for experimentation. For each of these
+datasets:
+Describe (without using any form of code), what pre-processing operations you
+performed.
+This project’s objective is to make a prediction regarding the class variable, which may
+either be recurrence occurrences or no recurrence events. Because the variables in this
+data set are categorical, the bulk of the models need the usage of dummy variables for all of
+the distinct variables contained within this data set.The following are the procedures that
+we did in order to do preliminary processing on the data:
+1. View the data
+2. Check for dimension, column names and missing observations in the data sets
+1. Dealing with missing values
+2. Drop the missing values
+3. Check data type and code the categorical variables
+1. Converting chr –> factor
+
+--- Page 3 ---
+4. Visualization
+5. Codding categorical data
+Initially, I produced bar graphs in ggplot looking at each attribute with the class variable
+highlighted in color to see if there are any interesting interactions between the covariates
+and the class variable. A graph was produced for each of the 9 attributes. Age group and
+breast quandrant and roughly normal distributions. Below are the two most interesting
+attributes on class which are also used the model selection process that contained
+significant p-value. ’
+Develop the necessary code in R. In your Google Colab R program, be sure to
+include this code under a heading of “Task 1 code”.
+1. View the dataset
+head(brestcancerdata)
+## class age menopause tumorsize invnodes nodecaps
+degmalig
+## 1: no-recurrence-events 30-39 premeno 30-34 0-2 no
+3
+## 2: no-recurrence-events 40-49 premeno 20-24 0-2 no
+2
+## 3: no-recurrence-events 40-49 premeno 20-24 0-2 no
+2
+## 4: no-recurrence-events 60-69 ge40 15-19 0-2 no
+2
+## 5: no-recurrence-events 40-49 premeno 0-4 0-2 no
+2
+## 6: no-recurrence-events 60-69 ge40 15-19 0-2 no
+2
+## breast breastquad irradiant
+## 1: left left_low no
+## 2: right right_up no
+## 3: left left_low no
+## 4: right left_up no
+## 5: right right_low no
+## 6: left left_low no
+2. Check for dimension, column names and missing observations in the datasets
+dim(brestcancerdata)
+## [1] 286 10
+The dataset has 10 variables and 286 observations
+names(brestcancerdata)
+## [1] "class" "age" "menopause" "tumorsize" "invnodes"
+## [6] "nodecaps" "degmalig" "breast" "breastquad" "irradiant"
+
+--- Page 4 ---
+Above are the column names of the dataset variables. Class is the main focus/dependent
+variable in this project
+2.1 Dealing with missing values
+brestcancerdata[brestcancerdata == '?'] <- NA
+sum(is.na(brestcancerdata))
+## [1] 9
+print('----------------------------------------------------------')
+## [1] "----------------------------------------------------------"
+colnames(brestcancerdata)[colSums(is.na(brestcancerdata)) > 0]
+## [1] "nodecaps" "breastquad"
+There are 9 missing values in the dataset in the coluns “nodecaps” and “breastquad”.
+2.2 Drop the missing values
+brestcancerdata <- na.omit(brestcancerdata)
+Check if NA are dropped and the new structure
+sum(is.na(brestcancerdata))
+## [1] 0
+print('----------------------------------------------------------')
+## [1] "----------------------------------------------------------"
+dim(brestcancerdata)
+## [1] 277 10
+The new data-set has 277 observations and 10 variables and 0 missing observation
+3. Check data type and code the categorical variables
+str(brestcancerdata)
+## Classes 'data.table' and 'data.frame': 277 obs. of 10 variables:
+## $ class : chr "no-recurrence-events" "no-recurrence-events" "no-
+recurrence-events" "no-recurrence-events" ...
+## $ age : chr "30-39" "40-49" "40-49" "60-69" ...
+## $ menopause : chr "premeno" "premeno" "premeno" "ge40" ...
+## $ tumorsize : chr "30-34" "20-24" "20-24" "15-19" ...
+## $ invnodes : chr "0-2" "0-2" "0-2" "0-2" ...
+## $ nodecaps : chr "no" "no" "no" "no" ...
+## $ degmalig : int 3 2 2 2 2 2 2 1 2 2 ...
+## $ breast : chr "left" "right" "left" "right" ...
+## $ breastquad: chr "left_low" "right_up" "left_low" "left_up" ...
+
+--- Page 5 ---
+## $ irradiant : chr "no" "no" "no" "no" ...
+## - attr(*, ".internal.selfref")=<externalptr>
+All the variables excluding degmalig are of class character and they need to be chnaged to
+factor class ### 3.1 Converting chr –> factor
+#covvert chr -> factor
+brestcancerdata <- as.data.frame(unclass(brestcancerdata), stringsAsFactors =
+TRUE)
+# structure of the dataset
+str(brestcancerdata)
+## 'data.frame': 277 obs. of 10 variables:
+## $ class : Factor w/ 2 levels "no-recurrence-events",..: 1 1 1 1 1 1 1
+1 1 1 ...
+## $ age : Factor w/ 6 levels "20-29","30-39",..: 2 3 3 5 3 5 4 5 3 3
+...
+## $ menopause : Factor w/ 3 levels "ge40","lt40",..: 3 3 3 1 3 1 3 1 3 3
+...
+## $ tumorsize : Factor w/ 11 levels "0-4","10-14",..: 6 4 4 3 1 3 5 4 11 4
+...
+## $ invnodes : Factor w/ 7 levels "0-2","12-14",..: 1 1 1 1 1 1 1 1 1 1
+...
+## $ nodecaps : Factor w/ 2 levels "no","yes": 1 1 1 1 1 1 1 1 1 1 ...
+## $ degmalig : int 3 2 2 2 2 2 2 1 2 2 ...
+## $ breast : Factor w/ 2 levels "left","right": 1 2 1 2 2 1 1 1 1 2 ...
+## $ breastquad: Factor w/ 5 levels "central","left_low",..: 2 5 2 3 4 2 2 2
+2 3 ...
+## $ irradiant : Factor w/ 2 levels "no","yes": 1 1 1 1 1 1 1 1 1 1 ...
+# Summary of the dataset for both categorical and continuous data
+summary(brestcancerdata)
+## class age menopause tumorsize
+invnodes
+## no-recurrence-events:196 20-29: 1 ge40 :123 30-34 :57 0-2
+:209
+## recurrence-events : 81 30-39:36 lt40 : 5 25-29 :51 12-14:
+3
+## 40-49:89 premeno:149 20-24 :48 15-17:
+6
+## 50-59:91 15-19 :29 24-26:
+1
+## 60-69:55 10-14 :28 3-5 :
+34
+## 70-79: 5 40-44 :22 6-8 :
+17
+## (Other):42 9-11 :
+7
+## nodecaps degmalig breast breastquad irradiant
+
+--- Page 6 ---
+## no :221 Min. :1.000 left :145 central : 21 no :215
+## yes: 56 1st Qu.:2.000 right:132 left_low :106 yes: 62
+## Median :2.000 left_up : 94
+## Mean :2.058 right_low: 23
+## 3rd Qu.:3.000 right_up : 33
+## Max. :3.000
+##
+4. Visualization
+ggplot(brestcancerdata, aes(x=invnodes, fill=class)) +
+geom_bar(position='dodge') + labs(title='Plot of Inv Nodes Grouped by
+Class',x='Inv Nodes',y='Freq.')
+Based on the chart above, it is evident that recurrency of a breast cancer is high at 0-2 Inv
+nodes and declines to near zero at 24-26 Inv nodes.
+ggplot(brestcancerdata, aes(x=degmalig, fill=class)) +
+geom_bar(position='dodge') + labs(title='Plot for Malignancy level Grouped by
+Class', x='Malignancy Level',y='Freq.')
+
+--- Page 7 ---
+As observed from the chart above, it is evident that The rate of a cancer reccuring is
+dependent on the level of the malignancy; in that the higher the level of malignancy the
+higher the rate of recurrency.
+ggplot(brestcancerdata, aes(x= age, fill=class)) + geom_bar(position='dodge')
++ labs(title='Plot of Age Grouped by Class',x='Age',y='Freq.')
+
+--- Page 8 ---
+Cancer patients whose cancer recurs make up a relatively small proportion of the youngest
+and elderly individuals populations. In addition to this, there is a significant percentage of
+both no-recurrence events and recurrence events occurring in people between the ages of
+40 and 69. To be more specific, the individuals between the ages of 40 and 49 account for
+the biggest proportion of recurrence events, whereas those between the ages of 50 and 59
+account for the highest proportion of non-recurrence events category.
+ggplot(brestcancerdata, aes(x=breastquad, fill=class)) +
+geom_bar(position='dodge') + labs(title='Plot of Breast Quandrant Grouped by
+Class',x='Breast Quandrant',y='Freq.')
+
+--- Page 9 ---
+According to the chart that is presented above, it is clear that the majority of cancer
+recurrences take place when the cancer is located on the left side of the breast, in particular
+on the lower half of the breast. Additionally, the identical quadrants hold the same high
+frequency of non-recurrence respectively. [Cause and effect] A person who has breast
+cancer in the right quadrant, particularly the lower one, has less reasons to be concerned
+about the cancer returning as compared to those whose cancer is located in the
+other quadrant.
+ggplot(brestcancerdata,aes(x= degmalig,fill=
+tumorsize))+geom_density(alpha=0.3)+ggtitle("Tumor size By
+DegMalignant")+xlab("DegMalignant Levels")+ylab("Density.")
+
+--- Page 10 ---
+#Checking for coeff of corr between the dataset's attributes
+pairs.panels(brestcancerdata)
+
+--- Page 11 ---
+The values of each variable’s correlation are displayed here in the graph. To be more exact,
+the maximum correlation value is -0.72, which indicates that age and menopause have a
+strong but negative correlation. On the other hand, when we look at the relation between
+menopause and tumor size, we find that it is zero, which indicates that there is no
+likelihood that the two factors would influence one another.
+5. Coding categorical data [logic used for binary: 1=‘yes’, 0=‘’no’]
+brestcancerdata$class= factor (brestcancerdata$class, labels= c(0,1) ,
+levels= c("no-recurrence-events", "recurrence-events"))
+brestcancerdata$age= factor (brestcancerdata$age,labels= c(0,1,2,3,4,5) ,
+levels= c("20-29","30-39","40-49","50-59","60-69","70-79"))
+brestcancerdata$menopause= factor (brestcancerdata$menopause, labels=
+c(0,1,2) , levels= c("premeno","lt40","ge40"))
+brestcancerdata$tumorsize= factor (brestcancerdata$tumorsize, labels=
+c(0,1,2,3,4,5,6,7,8,9,10) , levels= c("0-4","5-9","10-14", "15-19", "20-
+24","25-29", "30-34", "35-39","40-44","45-49","50-54"))
+brestcancerdata$invnodes= factor (brestcancerdata$invnodes, labels=
+c(0,1,2,3,4,5,6) , levels= c("0-2","3-5","6-8", "9-11","12-14", "15-17", "24-
+26"))
+brestcancerdata$nodecaps= factor (brestcancerdata$nodecaps, labels= c(0,1) ,
+levels= c("no", "yes"))
+brestcancerdata$degmalig= factor (brestcancerdata$degmalig, labels= c(0,1,2)
+, levels= c("1", "2", "3"))
+brestcancerdata$breast= factor (brestcancerdata$breast, labels= c(0,1) ,
+levels= c("left", "right"))
+brestcancerdata$breastquad= factor (brestcancerdata$breastquad, labels=
+c(0,1,2,3,4) , levels= c("central", "left_low", "left_up", "right_low",
+"right_up"))
+brestcancerdata$irradiant= factor (brestcancerdata$irradiant, labels= c(0,1)
+, levels= c("no", "yes"))
+new_dataset <- brestcancerdata
+head(new_dataset,3)
+## class age menopause tumorsize invnodes nodecaps degmalig breast
+breastquad
+## 1 0 1 0 6 0 0 2 0
+1
+## 2 0 2 0 4 0 0 1 1
+4
+## 3 0 2 0 4 0 0 1 0
+1
+## irradiant
+
+--- Page 12 ---
+## 1 0
+## 2 0
+## 3 0
+Task 2 (20 marks)
+Describe (without using any form of code), your choice of parameter values for
+each of the two classifiers.
+1. Decision Tree For the decison tree, we shall use the class variable as the dependent
+variable and the rest of the variables as the independent variable in creating the
+model. Rparts and rpart.plot will be used to create the model and plot it
+respectively.
+Develop the code needed to generate and optimize models for the Decision
+Tree and PART classifiers.
+# Decision Tree
+tree <- rpart(class ~ ., data = new_dataset, control = list(cp= 0, xval =
+10))
+plotcp(tree)
+rpart.plot(tree, type = 2, fallen.leaves = F, cex = 1, extra = 2)
+
+--- Page 13 ---
+#pruning the tree for optimization
+p_tree <- prune(tree, cp=tree$cptable[which.min(tree$cptable[,'xerror']),
+'CP'])
+To create the optimal decision tree we prune it.
+# PART classifiers
+train_index <- createFolds(brestcancerdata$class, k = 10)
+partree <- brestcancerdata %>% train(class ~ .,method = "PART", data = .,
+tuneLength = 5, trControl =trainControl(method = "cv"))
+partree
+## Rule-Based Classifier
+##
+## 277 samples
+## 9 predictor
+## 2 classes: '0', '1'
+##
+## No pre-processing
+## Resampling: Cross-Validated (10 fold)
+## Summary of sample sizes: 250, 249, 249, 249, 249, 250, ...
+## Resampling results across tuning parameters:
+##
+## threshold pruned Accuracy Kappa
+## 0.0100 yes 0.7044974 0.2030683
+## 0.0100 no 0.6427249 0.1400264
+
+--- Page 14 ---
+## 0.1325 yes 0.7111111 0.2614203
+## 0.1325 no 0.6427249 0.1400264
+## 0.2550 yes 0.6898148 0.2094781
+## 0.2550 no 0.6427249 0.1400264
+## 0.3775 yes 0.6825397 0.1982872
+## 0.3775 no 0.6427249 0.1400264
+## 0.5000 yes 0.6825397 0.1982872
+## 0.5000 no 0.6427249 0.1400264
+##
+## Accuracy was used to select the optimal model using the largest value.
+## The final values used for the model were threshold = 0.1325 and pruned =
+yes.
+partree$finalModel
+## PART decision list
+## ------------------
+##
+## degmalig2 <= 0 AND
+## tumorsize2 <= 0 AND
+## invnodes1 <= 0 AND
+## breastquad3 <= 0 AND
+## age1 <= 0 AND
+## tumorsize6 <= 0 AND
+## tumorsize3 <= 0 AND
+## nodecaps1 <= 0 AND
+## irradiant1 <= 0 AND
+## tumorsize7 <= 0 AND
+## tumorsize10 <= 0 AND
+## breastquad4 <= 0: 0 (46.0/10.0)
+##
+## degmalig2 <= 0 AND
+## tumorsize2 <= 0 AND
+## invnodes1 <= 0 AND
+## tumorsize4 <= 0 AND
+## menopause2 > 0 AND
+## tumorsize7 <= 0 AND
+## irradiant1 <= 0: 0 (27.0)
+##
+## tumorsize2 > 0: 0 (28.0/1.0)
+##
+## degmalig2 <= 0 AND
+## breastquad3 <= 0 AND
+## age4 <= 0 AND
+## invnodes2 <= 0 AND
+## menopause2 <= 0 AND
+## tumorsize7 <= 0 AND
+## breastquad2 <= 0 AND
+## tumorsize8 <= 0 AND
+## degmalig1 > 0 AND
+
+--- Page 15 ---
+## breastquad4 <= 0: 0 (20.0/6.0)
+##
+## degmalig2 <= 0 AND
+## invnodes1 <= 0 AND
+## tumorsize4 <= 0 AND
+## age2 <= 0 AND
+## invnodes3 <= 0 AND
+## tumorsize10 <= 0 AND
+## breastquad4 <= 0: 0 (24.0/6.0)
+##
+## nodecaps1 <= 0 AND
+## tumorsize8 <= 0 AND
+## invnodes1 > 0 AND
+## menopause2 > 0: 1 (6.0)
+##
+## nodecaps1 <= 0 AND
+## tumorsize8 <= 0 AND
+## age4 <= 0 AND
+## breastquad3 <= 0 AND
+## menopause2 <= 0 AND
+## age2 > 0 AND
+## tumorsize4 <= 0 AND
+## irradiant1 <= 0 AND
+## tumorsize5 <= 0: 0 (13.0/4.0)
+##
+## nodecaps1 <= 0 AND
+## tumorsize8 <= 0 AND
+## age2 > 0 AND
+## breast1 > 0: 0 (12.0)
+##
+## invnodes2 <= 0 AND
+## tumorsize8 <= 0 AND
+## breastquad4 <= 0 AND
+## invnodes3 <= 0 AND
+## degmalig1 <= 0 AND
+## irradiant1 > 0 AND
+## tumorsize7 <= 0: 1 (14.0/2.0)
+##
+## invnodes2 <= 0 AND
+## breastquad4 <= 0 AND
+## invnodes3 <= 0 AND
+## age3 > 0: 0 (18.0)
+##
+## age3 > 0: 1 (13.0/2.0)
+##
+## tumorsize8 <= 0 AND
+## tumorsize4 > 0 AND
+## breast1 <= 0: 0 (7.0)
+##
+## tumorsize8 <= 0 AND
+
+--- Page 16 ---
+## degmalig1 <= 0 AND
+## breastquad4 <= 0 AND
+## invnodes3 <= 0 AND
+## invnodes5 <= 0 AND
+## invnodes2 <= 0 AND
+## irradiant1 <= 0 AND
+## tumorsize7 <= 0 AND
+## age1 <= 0 AND
+## breastquad2 <= 0: 0 (6.0/2.0)
+##
+## degmalig1 <= 0: 1 (26.0/8.0)
+##
+## : 0 (17.0/5.0)
+##
+## Number of Rules : 15
+For the decision tree classifier, visualize the tree obtained.
+rpart.plot(p_tree, type = 2, fallen.leaves = F, cex = 1, extra = 2)
+Generate the rules obtained for both types of classifiers.
+# generating the rule used for the decision tree
+rpart.rules(p_tree)
+## class
+## 0.19 when degmalig is 0 or 1
+
+--- Page 17 ---
+## 0.36 when degmalig is 2 & invnodes is 0
+## 0.77 when degmalig is 2 & invnodes is 1 or 2 or 3 or 4 or 5 or 6
+Task 3 (20 marks)
+In this task we will focus on testing the stability of the two classifiers. This will
+be done by partitioning the Breast cancer dataset into training and testing
+segments. Use 70% of data for training and the rest for testing.
+set.seed(77)
+ratio <-sample.split(new_dataset$class,SplitRatio =0.7)
+training_data <-subset(new_dataset,ratio==TRUE)
+testing_data <-subset(new_dataset,ratio==FALSE)
+print('----------------------------Training- Set-----------------------------
+--------------')
+## [1] "----------------------------Training- Set----------------------------
+---------------"
+dim(training_data)
+## [1] 194 10
+print('----------------------------Testing-- Set-----------------------------
+--------------')
+## [1] "----------------------------Testing-- Set----------------------------
+---------------"
+dim(testing_data)
+## [1] 83 10
+Fit a model to the training segment and then deploy the model on 100 different
+test segments and then record accuracy across each of the different test
+segments. This process will then be repeated for the other dataset. You will now
+have 100 pairs of accuracy values.
+# train decision tree model
+control <- trainControl(method="cv", number=10,savePredictions = "final")
+set.seed(123)
+tree_model = train(class ~., data = training_data, method = "rpart", parms =
+list(split = "information"),
+control = rpart.control(minsplit = 2), trControl=control,
+tuneLength = 5,tuneGrid=expand.grid(cp = seq(from = 0.001,
+to = 0.010, length = 100)))
+
+--- Page 18 ---
+#tree_model
+plotting
+prp(tree_model$finalModel, box.palette = "Reds", tweak = 1.2)
+# PART classifiers with 100 runs
+train_index <- createFolds(training_data$class, k = 10)
+partree <- training_data %>% train(class ~ .,method = "PART", data = .,
+tuneLength = 100, trControl =trainControl(method = "cv") )
+#partree
+summary(partree)
+##
+## === Summary ===
+##
+## Correctly Classified Instances 165 85.0515 %
+## Incorrectly Classified Instances 29 14.9485 %
+## Kappa statistic 0.6141
+## Mean absolute error 0.2418
+## Root mean squared error 0.3477
+## Relative absolute error 58.1487 %
+## Root relative squared error 76.3341 %
+## Total Number of Instances 194
+##
+## === Confusion Matrix ===
+
+--- Page 19 ---
+##
+## a b <-- classified as
+## 129 8 | a = 0
+## 21 36 | b = 1
+For each dataset, use the F test to compare the variances across the two groups
+(group 1 is the decision tree accuracy values across the 100 runs, similarly group
+2 is the vector of accuracy values for PART).
+group1 <- tree_model$results['Accuracy']
+group2 <- partree$results['Accuracy']
+group2['G1_Accuracy'] <- group1$Accuracy
+group2['G2_Accuracy'] <- group2$Accuracy
+group2$Accuracy <- NULL
+group2
+## G1_Accuracy G2_Accuracy
+## 1 0.6131871 0.6853801
+## 2 0.6131871 0.5982749
+## 3 0.6131871 0.6953801
+## 4 0.6131871 0.5982749
+## 5 0.6131871 0.7009064
+## 6 0.6131871 0.5982749
+## 7 0.6131871 0.7009064
+## 8 0.6131871 0.5982749
+## 9 0.6131871 0.7009064
+## 10 0.6131871 0.5982749
+## 11 0.6131871 0.7009064
+## 12 0.6131871 0.5982749
+## 13 0.6131871 0.7059064
+## 14 0.6131871 0.5982749
+## 15 0.6131871 0.7059064
+## 16 0.6131871 0.5982749
+## 17 0.6131871 0.7059064
+## 18 0.6131871 0.5982749
+## 19 0.6131871 0.7059064
+## 20 0.6131871 0.5982749
+## 21 0.6131871 0.7059064
+## 22 0.6131871 0.5982749
+## 23 0.6131871 0.7059064
+## 24 0.6131871 0.5982749
+## 25 0.6131871 0.7059064
+## 26 0.6131871 0.5982749
+## 27 0.6131871 0.7059064
+## 28 0.6131871 0.5982749
+## 29 0.6131871 0.7059064
+## 30 0.6131871 0.5982749
+## 31 0.6131871 0.7059064
+## 32 0.6131871 0.5982749
+## 33 0.6131871 0.7059064
+
+--- Page 20 ---
+## 34 0.6131871 0.5982749
+## 35 0.6131871 0.7059064
+## 36 0.6131871 0.5982749
+## 37 0.6131871 0.7059064
+## 38 0.6131871 0.5982749
+## 39 0.6131871 0.7059064
+## 40 0.6131871 0.5982749
+## 41 0.6131871 0.7059064
+## 42 0.6131871 0.5982749
+## 43 0.6131871 0.7059064
+## 44 0.6081871 0.5982749
+## 45 0.6081871 0.7059064
+## 46 0.6081871 0.5982749
+## 47 0.6081871 0.7059064
+## 48 0.6081871 0.5982749
+## 49 0.6081871 0.7059064
+## 50 0.6081871 0.5982749
+## 51 0.6187135 0.7059064
+## 52 0.6187135 0.5982749
+## 53 0.6187135 0.7059064
+## 54 0.6187135 0.5982749
+## 55 0.6187135 0.7059064
+## 56 0.6187135 0.5982749
+## 57 0.6187135 0.7059064
+## 58 0.6187135 0.5982749
+## 59 0.6187135 0.7059064
+## 60 0.6187135 0.5982749
+## 61 0.6456140 0.7059064
+## 62 0.6656140 0.5982749
+## 63 0.6656140 0.7059064
+## 64 0.6656140 0.5982749
+## 65 0.6656140 0.7059064
+## 66 0.6656140 0.5982749
+## 67 0.6656140 0.7059064
+## 68 0.6656140 0.5982749
+## 69 0.6656140 0.7059064
+## 70 0.6656140 0.5982749
+## 71 0.6656140 0.7059064
+## 72 0.6656140 0.5982749
+## 73 0.6656140 0.6553801
+## 74 0.6656140 0.5982749
+## 75 0.6656140 0.6553801
+## 76 0.6656140 0.5982749
+## 77 0.6603509 0.6553801
+## 78 0.6603509 0.5982749
+## 79 0.6603509 0.6495906
+## 80 0.6603509 0.5982749
+## 81 0.6603509 0.6495906
+## 82 0.6603509 0.5982749
+## 83 0.6603509 0.6495906
+
+--- Page 21 ---
+## 84 0.6603509 0.5982749
+## 85 0.6603509 0.6748538
+## 86 0.6603509 0.5982749
+## 87 0.6603509 0.6701170
+## 88 0.6603509 0.5982749
+## 89 0.6603509 0.6701170
+## 90 0.6603509 0.5982749
+## 91 0.6603509 0.6853801
+## 92 0.6603509 0.5982749
+## 93 0.6603509 0.6801170
+## 94 0.6603509 0.5982749
+## 95 0.6603509 0.6801170
+## 96 0.6603509 0.5982749
+## 97 0.6603509 0.6745614
+## 98 0.6653509 0.5982749
+## 99 0.6653509 0.6745614
+## 100 0.6653509 0.5982749
+## 101 0.6131871 0.6853509
+## 102 0.6131871 0.5982749
+## 103 0.6131871 0.6853509
+## 104 0.6131871 0.5982749
+## 105 0.6131871 0.6853509
+## 106 0.6131871 0.5982749
+## 107 0.6131871 0.6853509
+## 108 0.6131871 0.5982749
+## 109 0.6131871 0.6853509
+## 110 0.6131871 0.5982749
+## 111 0.6131871 0.6853509
+## 112 0.6131871 0.5982749
+## 113 0.6131871 0.6853509
+## 114 0.6131871 0.5982749
+## 115 0.6131871 0.6748246
+## 116 0.6131871 0.5982749
+## 117 0.6131871 0.6748246
+## 118 0.6131871 0.5982749
+## 119 0.6131871 0.6748246
+## 120 0.6131871 0.5982749
+## 121 0.6131871 0.6748246
+## 122 0.6131871 0.5982749
+## 123 0.6131871 0.6748246
+## 124 0.6131871 0.5982749
+## 125 0.6131871 0.6748246
+## 126 0.6131871 0.5982749
+## 127 0.6131871 0.6748246
+## 128 0.6131871 0.5982749
+## 129 0.6131871 0.6748246
+## 130 0.6131871 0.5982749
+## 131 0.6131871 0.6748246
+## 132 0.6131871 0.5982749
+## 133 0.6131871 0.6748246
+
+--- Page 22 ---
+## 134 0.6131871 0.5982749
+## 135 0.6131871 0.6748246
+## 136 0.6131871 0.5982749
+## 137 0.6131871 0.6748246
+## 138 0.6131871 0.5982749
+## 139 0.6131871 0.6748246
+## 140 0.6131871 0.5982749
+## 141 0.6131871 0.6748246
+## 142 0.6131871 0.5982749
+## 143 0.6131871 0.6748246
+## 144 0.6081871 0.5982749
+## 145 0.6081871 0.6748246
+## 146 0.6081871 0.5982749
+## 147 0.6081871 0.6748246
+## 148 0.6081871 0.5982749
+## 149 0.6081871 0.6748246
+## 150 0.6081871 0.5982749
+## 151 0.6187135 0.6748246
+## 152 0.6187135 0.5982749
+## 153 0.6187135 0.6748246
+## 154 0.6187135 0.5982749
+## 155 0.6187135 0.6748246
+## 156 0.6187135 0.5982749
+## 157 0.6187135 0.6748246
+## 158 0.6187135 0.5982749
+## 159 0.6187135 0.6748246
+## 160 0.6187135 0.5982749
+## 161 0.6456140 0.6748246
+## 162 0.6656140 0.5982749
+## 163 0.6656140 0.6748246
+## 164 0.6656140 0.5982749
+## 165 0.6656140 0.6748246
+## 166 0.6656140 0.5982749
+## 167 0.6656140 0.6748246
+## 168 0.6656140 0.5982749
+## 169 0.6656140 0.6748246
+## 170 0.6656140 0.5982749
+## 171 0.6656140 0.6748246
+## 172 0.6656140 0.5982749
+## 173 0.6656140 0.6748246
+## 174 0.6656140 0.5982749
+## 175 0.6656140 0.6748246
+## 176 0.6656140 0.5982749
+## 177 0.6603509 0.6748246
+## 178 0.6603509 0.5982749
+## 179 0.6603509 0.6748246
+## 180 0.6603509 0.5982749
+## 181 0.6603509 0.6748246
+## 182 0.6603509 0.5982749
+## 183 0.6603509 0.6748246
+
+--- Page 23 ---
+## 184 0.6603509 0.5982749
+## 185 0.6603509 0.6748246
+## 186 0.6603509 0.5982749
+## 187 0.6603509 0.6748246
+## 188 0.6603509 0.5982749
+## 189 0.6603509 0.6748246
+## 190 0.6603509 0.5982749
+## 191 0.6603509 0.6748246
+## 192 0.6603509 0.5982749
+## 193 0.6603509 0.6748246
+## 194 0.6603509 0.5982749
+## 195 0.6603509 0.6748246
+## 196 0.6603509 0.5982749
+## 197 0.6603509 0.6748246
+## 198 0.6653509 0.5982749
+## 199 0.6653509 0.6748246
+## 200 0.6653509 0.5982749
+#conducting f test
+ftest <- var.test(group2$G1_Accuracy, group2$G2_Accuracy)
+ftest
+##
+## F test to compare two variances
+##
+## data: group2$G1_Accuracy and group2$G2_Accuracy
+## F = 0.28948, num df = 199, denom df = 199, p-value < 2.2e-16
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+## 0.2190729 0.3825092
+## sample estimates:
+## ratio of variances
+## 0.2894778
+The variance ratio is 0.29
+
+--- Page 24 ---
+Task 4 (30 marks)
+## In this task you will introduce changes in the data using your own
+change management mechanism rather than relying on random
+chance For each dataset and for each classifier, identify the numeric
+feature that is most highly correlated with the class feature, and
+which is used by the classifier to build the model. Now introduce 3
+levels of change to this feature as follows. For each level l (10%, 20%
+and 30%) modify the feature value for each sample as follows:
+fv(new)=fv(old)+lfv(old) if fv(old)<=mean(fv), otherwise
+fv(new)=fv(old)-lfv(old).Develop the code required to implement the
+above requirements.
+For each dataset, use the F test as in Task 3 to compare the variances of the two
+classifiers.
+# determining the important variables through previasely created models
+# PART
+partree <- training_data %>% train(class ~ .,method = "PART", data = .,
+trControl =trainControl(method = "cv") )
+rpartImp <- varImp(partree)
+print(rpartImp)
+## PART variable importance
+##
+## only 20 most important variables shown (out of 32)
+##
+## Overall
+## menopause2 100
+## degmalig2 100
+## age2 100
+## breastquad1 90
+## tumorsize10 90
+## tumorsize1 90
+## irradiant1 80
+## breast1 80
+## invnodes1 70
+## tumorsize8 70
+## tumorsize6 70
+## age4 60
+## nodecaps1 60
+## tumorsize4 60
+## tumorsize5 50
+## tumorsize3 40
+
+--- Page 25 ---
+## age1 40
+## tumorsize7 40
+## breastquad4 30
+## degmalig1 30
+# selecting top 3 variables for model fitting
+control <- trainControl(method="repeatedcv", number=10, repeats=3)
+# feature selection
+featureselection <- train(class~., data=training_data, method="lvq",
+preProcess="scale", trControl=control)
+## Warning in preProcess.default(method = "scale", x = structure(c(1, 0, 0, :
+These
+## variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+
+--- Page 26 ---
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+
+--- Page 27 ---
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+
+--- Page 28 ---
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+
+--- Page 29 ---
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+
+--- Page 30 ---
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+
+--- Page 31 ---
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+
+--- Page 32 ---
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+
+--- Page 33 ---
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+
+--- Page 34 ---
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+
+--- Page 35 ---
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+
+--- Page 36 ---
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+
+--- Page 37 ---
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+
+--- Page 38 ---
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+
+--- Page 39 ---
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+
+--- Page 40 ---
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+
+--- Page 41 ---
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+
+--- Page 42 ---
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+
+--- Page 43 ---
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+
+--- Page 44 ---
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+
+--- Page 45 ---
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes4, invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+
+--- Page 46 ---
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+
+--- Page 47 ---
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+## Warning in preProcess.default(thresh = 0.95, k = 5, freqCut = 19,
+uniqueCut =
+## 10, : These variables have zero variances: invnodes6
+# value of importance
+bestF <- varImp(featureselection, scale=FALSE)
+# display
+print(bestF)
+## ROC curve variable importance
+##
+## Importance
+## degmalig 0.6913
+## invnodes 0.6229
+## irradiant 0.5988
+## nodecaps 0.5973
+## tumorsize 0.5800
+## menopause 0.5645
+## age 0.5394
+## breastquad 0.5194
+## breast 0.5026
+# plot
+plot(bestF)
+
+--- Page 48 ---
+# train decision tree model
+control <- trainControl(method="cv", number=10,savePredictions = "final")
+set.seed(123)
+tree_model = train(class ~ degmalig + invnodes+ irradiant, data =
+training_data, method = "rpart", parms = list(split = "information"),
+control = rpart.control(minsplit = 2), trControl=control,
+tuneLength = 5,tuneGrid=expand.grid(cp = seq(from = 0.001,
+to = 0.010, length = 100)))
+#tree_model
+# PART classifiers with 100 runs
+train_index <- createFolds(training_data$class, k = 10)
+partree <- training_data %>% train(class ~ degmalig + invnodes+
+irradiant,method = "PART", data = ., tuneLength = 100, trControl
+=trainControl(method = "cv") )
+#partree
+group1 <- tree_model$results['Accuracy']
+group2 <- partree$results['Accuracy']
+group2['G1_Accuracy'] <- group1$Accuracy
+group2['G2_Accuracy'] <- group2$Accuracy
+group2$Accuracy <- NULL
+group2
+## G1_Accuracy G2_Accuracy
+## 1 0.7111696 0.6850877
+## 2 0.7111696 0.6906140
+
+--- Page 49 ---
+## 3 0.7111696 0.6850877
+## 4 0.7111696 0.6906140
+## 5 0.7111696 0.6850877
+## 6 0.7111696 0.6906140
+## 7 0.7111696 0.6850877
+## 8 0.7111696 0.6906140
+## 9 0.7111696 0.6850877
+## 10 0.7111696 0.6906140
+## 11 0.7111696 0.6850877
+## 12 0.7111696 0.6906140
+## 13 0.7111696 0.6850877
+## 14 0.7111696 0.6906140
+## 15 0.7111696 0.6850877
+## 16 0.7111696 0.6906140
+## 17 0.7111696 0.6850877
+## 18 0.7111696 0.6906140
+## 19 0.7111696 0.6850877
+## 20 0.7111696 0.6906140
+## 21 0.7111696 0.6850877
+## 22 0.7111696 0.6906140
+## 23 0.7111696 0.6850877
+## 24 0.7111696 0.6906140
+## 25 0.7111696 0.6850877
+## 26 0.7111696 0.6906140
+## 27 0.7111696 0.6850877
+## 28 0.7111696 0.6906140
+## 29 0.7111696 0.6798246
+## 30 0.7111696 0.6906140
+## 31 0.7111696 0.6798246
+## 32 0.7111696 0.6906140
+## 33 0.7111696 0.6798246
+## 34 0.7111696 0.6906140
+## 35 0.7111696 0.6798246
+## 36 0.7111696 0.6906140
+## 37 0.7111696 0.6798246
+## 38 0.7111696 0.6906140
+## 39 0.7111696 0.6798246
+## 40 0.7111696 0.6906140
+## 41 0.7111696 0.6798246
+## 42 0.7111696 0.6906140
+## 43 0.7111696 0.6798246
+## 44 0.7111696 0.6906140
+## 45 0.7111696 0.6798246
+## 46 0.7111696 0.6906140
+## 47 0.7111696 0.6798246
+## 48 0.7111696 0.6906140
+## 49 0.7111696 0.6798246
+## 50 0.7111696 0.6906140
+## 51 0.7111696 0.6798246
+## 52 0.7111696 0.6906140
+
+--- Page 50 ---
+## 53 0.7111696 0.6798246
+## 54 0.7111696 0.6906140
+## 55 0.7111696 0.6798246
+## 56 0.7111696 0.6906140
+## 57 0.7111696 0.6798246
+## 58 0.7111696 0.6906140
+## 59 0.7111696 0.6798246
+## 60 0.7111696 0.6906140
+## 61 0.7111696 0.6798246
+## 62 0.7111696 0.6906140
+## 63 0.7111696 0.6798246
+## 64 0.7111696 0.6906140
+## 65 0.7111696 0.6798246
+## 66 0.7111696 0.6906140
+## 67 0.7111696 0.6798246
+## 68 0.7111696 0.6906140
+## 69 0.7111696 0.6798246
+## 70 0.7111696 0.6906140
+## 71 0.7111696 0.6798246
+## 72 0.7111696 0.6906140
+## 73 0.7111696 0.6798246
+## 74 0.7111696 0.6906140
+## 75 0.7111696 0.6798246
+## 76 0.7111696 0.6906140
+## 77 0.7111696 0.6798246
+## 78 0.7111696 0.6906140
+## 79 0.7111696 0.6798246
+## 80 0.7111696 0.6906140
+## 81 0.7111696 0.6798246
+## 82 0.7111696 0.6906140
+## 83 0.7111696 0.6798246
+## 84 0.7111696 0.6906140
+## 85 0.7111696 0.6798246
+## 86 0.7111696 0.6906140
+## 87 0.7111696 0.6798246
+## 88 0.7111696 0.6906140
+## 89 0.7111696 0.6798246
+## 90 0.7111696 0.6906140
+## 91 0.7111696 0.6798246
+## 92 0.7111696 0.6906140
+## 93 0.7111696 0.6798246
+## 94 0.7111696 0.6906140
+## 95 0.7111696 0.6798246
+## 96 0.7111696 0.6906140
+## 97 0.7111696 0.6798246
+## 98 0.7111696 0.6906140
+## 99 0.7111696 0.6798246
+## 100 0.7111696 0.6906140
+## 101 0.7111696 0.6798246
+## 102 0.7111696 0.6906140
+
+--- Page 51 ---
+## 103 0.7111696 0.6798246
+## 104 0.7111696 0.6906140
+## 105 0.7111696 0.6798246
+## 106 0.7111696 0.6906140
+## 107 0.7111696 0.6956140
+## 108 0.7111696 0.6906140
+## 109 0.7111696 0.7008772
+## 110 0.7111696 0.6906140
+## 111 0.7111696 0.6956140
+## 112 0.7111696 0.6906140
+## 113 0.7111696 0.6956140
+## 114 0.7111696 0.6906140
+## 115 0.7111696 0.6956140
+## 116 0.7111696 0.6906140
+## 117 0.7111696 0.6956140
+## 118 0.7111696 0.6906140
+## 119 0.7111696 0.6956140
+## 120 0.7111696 0.6906140
+## 121 0.7111696 0.6956140
+## 122 0.7111696 0.6906140
+## 123 0.7111696 0.6956140
+## 124 0.7111696 0.6906140
+## 125 0.7111696 0.6956140
+## 126 0.7111696 0.6906140
+## 127 0.7111696 0.6956140
+## 128 0.7111696 0.6906140
+## 129 0.7111696 0.6956140
+## 130 0.7111696 0.6906140
+## 131 0.7111696 0.6956140
+## 132 0.7111696 0.6906140
+## 133 0.7111696 0.6956140
+## 134 0.7111696 0.6906140
+## 135 0.7111696 0.6956140
+## 136 0.7111696 0.6906140
+## 137 0.7111696 0.6956140
+## 138 0.7111696 0.6906140
+## 139 0.7111696 0.6956140
+## 140 0.7111696 0.6906140
+## 141 0.7111696 0.6956140
+## 142 0.7111696 0.6906140
+## 143 0.7111696 0.6956140
+## 144 0.7111696 0.6906140
+## 145 0.7111696 0.6956140
+## 146 0.7111696 0.6906140
+## 147 0.7111696 0.6956140
+## 148 0.7111696 0.6906140
+## 149 0.7111696 0.6956140
+## 150 0.7111696 0.6906140
+## 151 0.7111696 0.6956140
+## 152 0.7111696 0.6906140
+
+--- Page 52 ---
+## 153 0.7111696 0.6956140
+## 154 0.7111696 0.6906140
+## 155 0.7111696 0.6956140
+## 156 0.7111696 0.6906140
+## 157 0.7111696 0.6956140
+## 158 0.7111696 0.6906140
+## 159 0.7111696 0.6956140
+## 160 0.7111696 0.6906140
+## 161 0.7111696 0.6956140
+## 162 0.7111696 0.6906140
+## 163 0.7111696 0.6956140
+## 164 0.7111696 0.6906140
+## 165 0.7111696 0.6956140
+## 166 0.7111696 0.6906140
+## 167 0.7111696 0.6956140
+## 168 0.7111696 0.6906140
+## 169 0.7111696 0.6956140
+## 170 0.7111696 0.6906140
+## 171 0.7111696 0.6956140
+## 172 0.7111696 0.6906140
+## 173 0.7111696 0.6956140
+## 174 0.7111696 0.6906140
+## 175 0.7111696 0.6956140
+## 176 0.7111696 0.6906140
+## 177 0.7111696 0.6956140
+## 178 0.7111696 0.6906140
+## 179 0.7111696 0.6956140
+## 180 0.7111696 0.6906140
+## 181 0.7111696 0.6956140
+## 182 0.7111696 0.6906140
+## 183 0.7111696 0.6956140
+## 184 0.7111696 0.6906140
+## 185 0.7111696 0.6956140
+## 186 0.7111696 0.6906140
+## 187 0.7111696 0.6956140
+## 188 0.7111696 0.6906140
+## 189 0.7111696 0.6956140
+## 190 0.7111696 0.6906140
+## 191 0.7111696 0.6956140
+## 192 0.7111696 0.6906140
+## 193 0.7111696 0.6956140
+## 194 0.7111696 0.6906140
+## 195 0.7111696 0.6956140
+## 196 0.7111696 0.6906140
+## 197 0.7111696 0.6956140
+## 198 0.7111696 0.6906140
+## 199 0.7111696 0.6956140
+## 200 0.7111696 0.6906140
+
+--- Page 53 ---
+#conducting f test
+ftest <- var.test(group2$G1_Accuracy, group2$G2_Accuracy, )
+ftest
+##
+## F test to compare two variances
+##
+## data: group2$G1_Accuracy and group2$G2_Accuracy
+## F = 0, num df = 199, denom df = 199, p-value < 2.2e-16
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+## 0 0
+## sample estimates:
+## ratio of variances
+## 0
+# prediction
+predict_model<-predict(tree_model, testing_data)
+conf_mtx <- table(testing_data$class, predict_model)
+conf_mtx
+## predict_model
+## 0 1
+## 0 56 3
+## 1 16 8
+Decision tree accuracy
+Decision_Test <- sum(diag(conf_mtx)) / sum(conf_mtx)
+print(paste('Decision tree accuracy for test is found to be', Decision_Test))
+## [1] "Decision tree accuracy for test is found to be 0.771084337349398"
+PART accuracy
+predict_model<-predict(partree, testing_data)
+conf_mtx <- table(testing_data$class, predict_model)
+part_Test <- sum(diag(conf_mtx)) / sum(conf_mtx)
+print(paste('PART accuracy for test is found to be', part_Test))
+## [1] "PART accuracy for test is found to be 0.771084337349398"
+Task 5 (15 marks)
+Based on the results of your experimentation in this project, would you judge
+one classifier to be better than the other? Justify your answer.

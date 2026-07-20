@@ -1,0 +1,149 @@
+--- Page 1 ---
+Department of Electrical Engineering and Computer Science
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+6.858 Fall 2010
+Quiz II
+All problems are open-ended questions. In order to receive credit you must answer the question
+as precisely as possible. You have 80 minutes to finish this quiz.
+Write your name on this cover sheet.
+Some questions may be harder than others. Read them all through first and attack them in the
+order that allows you to make the most progress. If you find a question ambiguous, be sure to
+write down any assumptions you make. Be neat. If we can’t understand your answer, we can’t
+give you credit!
+THIS IS AN OPEN BOOK, OPEN NOTES EXAM.
+Please do not write in the boxes below.
+I (xx/32) II (xx/5) III (xx/9) IV (xx/20) V (xx/8) VI (xx/6) Total (xx/80)
+Name:
+1
+
+--- Page 2 ---
+I Backtracking Intrusions
+Alice finds a suspicious file, /tmp/mybot, left behind by an attacker on her computer. Alice decides to
+use Backtracker to find the initial entry point of the attacker into her computer. In the following scenarios,
+would Alice be able to use Backtracker, as described in the paper, to find the entry point?
+1. [2 points]: An attacker exploits a buffer overflow in a web server running as root, gets a root
+shell, and creates the /tmp/mybot file.
+2. [2 points]: An attacker exploits a buffer overflow in a web server running as root, gets a root
+shell, and modifies the password file to create an account for himself. The attacker then logs in using
+the new account, and creates the /tmp/mybot file.
+3. [2 points]: An attacker guesses root’s password, logs in, and creates the /tmp/mybot file.
+2
+
+--- Page 3 ---
+Ben Bitdiddle wants to use Backtracker on his web server running the Zoobar web application. Ben is wor­
+ried about both SQL injection and cross-site scripting attacks, where an attacker might use the vulnerability
+to modify the profiles of other users.
+4. [6 points]: Ben runs unmodified Backtracker on his server, and uses a known SQL injection
+vulnerability to test Backtracker, while other users are actively using the site. Ben finds that he cannot
+effectively track down the attacker’s initial entry point, after he detects that one of the user’s profiles
+has been defaced by the attack. Explain why Backtracker is not working well for Ben as-is.
+3
+
+--- Page 4 ---
+5. [10 points]: Propose a modification of Backtracker that would allow Ben to find the attacker’s
+initial entry point for SQL injection attacks. Be sure to explain how the log, EventLogger, and Graph-
+Gen would need to be modified for your design, if at all, and whether you need to add any additional
+logging components. It’s fine if your design does not handle buffer overflow attacks, and only handles
+SQL injection.
+4
+
+--- Page 5 ---
+6. [10 points]: Ben’s modified Backtracker system still cannot catch the attacker’s initial entry
+point for the Zoobar profile worm, which spreads through a cross-site scripting vulnerability. Propose
+a modified design for Backtracker that can track down the source of a XSS attack like the profile
+worm.
+5
+
+--- Page 6 ---
+II TPMs
+Suppose Ben implements Sailer’s integrity measurement architecture on a Linux server, and a client uses
+the protocol in Figure 3 to verify the server’s integrity (while sending these protocol messages over an SSL
+connection to Ben’s server).
+7. [5 points]: What, precisely, can a client safely assume about its SSL connection and about Ben’s
+server, if it validates the response (steps 5a, 5b, and 5c)? Assume that no attackers have compromised
+any TPM chips or certificate authorities.
+6
+
+--- Page 7 ---
+III Disk encryption
+Ben Bitdiddle decides to optimize BitLocker’s encryption mechanism by re-ordering some steps, so that the
+key-dependent sector key and AES-CBC steps can be combined. In particular, Ben’s version of BitLocker
+looks like the follows (contrast with Figure 1 from the paper):
+Plaintext sector
+|
+V
++---------------------+
+| XOR with sector key |
++---------------------+
+|
+V
++---------+
+| AES-CBC |
++---------+
+|
+V
++------------+
+| A diffuser |
++------------+
+|
+V
++------------+
+| B diffuser |
++------------+
+|
+V
+Ciphertext
+8. [9 points]: How can an adversary extract data from a stolen laptop running Ben’s version of
+BitLocker in TPM-only mode, in a way that he or she could not for the original version of BitLocker?
+In other words, how is this scheme weaker?
+7
+
+--- Page 8 ---
+IV Tor
+Alice wants to improve the privacy of Tor, and changes the design slightly. In Alice’s design, clients choose
+an exit node, and instead of building one circuit to the exit node, they build two circuits to the same exit
+node. Once the client builds both circuits, it sends the same randomly-chosen cookie to the exit node via
+each of the circuits, to tell the exit node that the two circuits belong to the same client. (After this point, the
+client and the exit node use the same stream IDs on both circuits interchangeably.) When a client wants to
+send a packet to the exit node, it sends the packet via one of the two circuits, chosen at random. Similarly,
+when the exit node wants to send data back to the client, it uses one of the two circuits at random.
+9. [5 points]: What kinds of attacks against privacy does this scheme make more difficult?
+10. [5 points]: What kinds of attacks against privacy does this scheme make easier?
+11. [2 points]: What kinds of attacks against individual exit nodes does this scheme make easier?
+8
+
+--- Page 9 ---
+12. [8 points]: Propose a modified design for Tor’s hidden services that would allow a hidden
+service to require CAPTCHAs before spending resources on a client’s request. Explain who generates
+the CAPTCHA in your design, who is responsible for checking the solution, and how the steps re­
+quired to connect to a CAPTCHA-enabled hidden service change (along the lines of the list in Section
+5.1 of the paper).
+9
+
+--- Page 10 ---
+V IP Traceback
+Ben Bitdiddle likes the IP Traceback scheme proposed by Stefan Savage, but doesn’t like the fact that edge
+fragments are so small (consisting of just 8 bits of edge fragment data, as shown in Figure 9). Ben decides
+that he can get rid of the distance field, and expand the edge fragment field to 13 bits. To reconstruct the
+entire edge, Ben proposes to try all combinations of fragments (since he no longer knows what fragments
+came from the same distance away), at the cost of requiring more CPU time.
+13. [8 points]: Describe a specific attack against Ben’s scheme that violates the goal of IP
+Traceback (i.e., that the real path to the attacker is a suffix of the path returned by IP Traceback).
+10
+
+--- Page 11 ---
+VI 6.858
+We’d like to hear your opinions about 6.858, so please answer the following questions. (Any answer, except
+no answer, will receive full credit.)
+14. [2 points]: What security topics did you want to learn more about, either in lectures or in labs?
+15. [2 points]: What is your favorite paper from 6.858, which we should keep in future years?
+16. [2 points]: What is your least favorite paper, which we should get rid of in the future?
+End of Quiz
+11
+
+--- Page 12 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.858 Computer Systems Security
+Fall 2014
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

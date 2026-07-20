@@ -1,0 +1,231 @@
+--- Page 1 ---
+IntroductiontoAlgorithms October18,2011
+MassachusettsInstituteofTechnology 6.006Fall2011
+ProfessorsErikDemaineandSriniDevadas Quiz1
+Quiz 1
+• Donotopenthisquizbookletuntildirectedtodoso. Readalltheinstructionsonthispage.
+• Whenthequizbegins,writeyournameoneverypageofthisquizbooklet.
+• Youhave120minutestoearn120points. Donotspendtoomuchtimeonanyoneproblem.
+Readthemallfirst,andattackthemintheorderthatallowsyoutomakethemostprogress.
+• This quiz is closed book. You may use one 81(cid:48)(cid:48) × 11(cid:48)(cid:48) or A4 crib sheet (both sides). No
+2
+calculatorsorprogrammabledevicesarepermitted. Nocellphonesorothercommunications
+devicesarepermitted.
+• Writeyoursolutionsinthespaceprovided. Ifyouneedmorespace,writeonthebackofthe
+sheetcontainingtheproblem. Pagesmaybeseparatedforgrading.
+• Do not waste time and paper rederiving facts that we have studied. It is sufficient to cite
+knownresults.
+• When writing an algorithm, a clear description in English will suffice. Pseudo-code is not
+required.
+• When asked for an algorithm, your algorithm should have the time complexity specified in
+theproblemwithacorrectanalysis. Ifyoucannotfindsuchanalgorithm,youwillgenerally
+receivepartialcreditforasloweralgorithmifyouanalyzeyouralgorithmcorrectly.
+• Show your work, as partial credit will be given. You will be graded not only on the correct-
+nessofyouranswer,butalsoontheclaritywithwhichyouexpressit. Beneat.
+• Goodluck!
+Problem Parts Points Grade Grader
+1 2 2
+2 3 20
+3 9 18
+4 2 20
+5 2 20
+6 3 20
+7 2 20
+Total 120
+Name:
+Wed/Fri Ying Kevin Sarah Yafim Victor
+Recitation: 10, 11AM 11AM 12, 1PM 12PM 2, 3PM
+
+--- Page 2 ---
+6.006Quiz1 Name 2
+Problem1. [2points] Writeyournameontopofeachpage.
+Problem2. Asymptotics&Recurrences[20points] (3parts)
+(a) [10 points] Rank the following functions by increasing order of growth. That is, find
+any arrangement g ,g ,g ,g ,g ,g ,g ,g of the functions satisfying g = O(g ),
+1 2 3 4 5 6 7 8 1 2
+g = O(g ),g = O(g ),g = O(g ),g = O(g ),g = O(g ),g = O(g ).
+2 3 3 4 4 5 5 6 6 7 7 8
+(cid:18) (cid:19)
+n (cid:112) √
+f (n) = nπ f (n) = πn f (n) = f (n) = 2 n
+1 2 3 4
+5
+(cid:18) (cid:19) (cid:18) (cid:19)
+n n
+f (n) = f (n) = 2log4n f (n) = n5(logn)2 f (n) = n4
+5 6 7 8
+n−4 4
+(b) [5points] FindasolutiontotherecurrenceT(n) = T(n)+T(2n)+Θ(n).
+3 3
+
+--- Page 3 ---
+6.006Quiz1 Name 3
+(c) [5 points] Find an asymptotic solution of the following recurrence. Express your
+answerusingΘ-notation,andgiveabriefjustification.
+√
+(cid:0) (cid:1)
+T(n) = logn+T n
+
+--- Page 4 ---
+6.006Quiz1 Name 4
+Problem3. True/False[18points] (9parts)
+Circle(T)rueor(F)alse. Youdon’tneedtojustifyyourchoice.
+(a) T F [2 points] Binary insertion sorting (insertion sort that uses binary search to find
+eachinsertionpoint)requiresO(nlogn)totaloperations.
+(b) T F [2 points] In the merge-sort execution tree, roughly the same amount of work is
+doneateachlevelofthetree.
+(c) T F [2 points] In a BST, we can find the next smallest element to a given element in
+O(1)time.
+(d) T F [2 points] In an AVL tree, during the insert operation there are at most two
+rotationsneeded.
+(e) T F [2points] Countingsortisastable,in-placesortingalgorithm.
+(f) T F [2 points] In a min-heap, the next largest element of any element can be found
+inO(logn)time.
+(g) T F [2 points] The multiplication method satisfies the simple uniform hashing as-
+sumption.
+(h) T F [2points] Doublehashingsatisfiestheuniformhashingassumption.
+(i) T F [2points] Pythongeneratorscanbeusedtoiterateoverpotentiallyinfinitecount-
+ablesetswithO(1)memory.
+
+--- Page 5 ---
+6.006Quiz1 Name 5
+Problem4. PeakFinding(again!) [20points] (2parts)
+When Alyssa P. Hacker did the first 6.006 problem set this semester, she didn’t particularly like
+any of the 2-D peak-finding algorithms. A peak is defined as any location that has a value at least
+aslargeasallfourofitsneighbors.
+Alyssaisexcitedaboutthefollowingalgorithm:
+1. Examine all of the values in the first, middle, and last columns of the matrix to find the
+maximumlocation(cid:96).
+2. If (cid:96) is a peak within the current subproblem, return it. Otherwise, it must have a neighbor p
+thatisstrictlygreater.
+3. Ifpliestotheleftofthecentralcolumn,restricttheproblemmatrixtothelefthalfofthema-
+trix,includingthefirstandmiddlecolumns. Ifpliestotherightofthecentralcolumn,restrict
+theproblemmatrixtotherighthalfofthematrix,includingthemiddleandlastcolumns.
+4. Repeatsteps1through3lookingatthefirst,middle,andlastrows.
+5. Repeatsteps1through4untilapeakisfound.
+Considerthe5×5exampledepictedbelow. Onthisexample,thealgorithminitiallyexaminesthe
+first,third,andfifthcolumns,andfindsthemaximuminallthree. Inthiscase,themaximumisthe
+number4. Thenumber4isnotapeak,duetoitsneighbor5.
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+4 5 0 0 0 4 5 0 0 0 4 5 0 0 0
+0 0 1 2 0 0 0 1 2 0 0 0 1 2 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 6 0 7 0 0 6 0 7 0 0 6 0 7 0
+Thenumber5istotheleftofthemiddlecolumn,sowerestrictourviewtojustthelefthalfofthe
+matrix. (Note that we include both the first and middle columns.) Because we examined columns
+intheprevious step,wenowexamine thefirst,middle,and last rowsofthesubmatrix. Thelargest
+value still visible in those rows is 6, which is a peak within the subproblem. Hence, the algorithm
+willfindthepeak6.
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+4 5 0 0 0 4 5 0 0 0 4 5 0 0 0
+0 0 1 2 0 0 0 1 2 0 0 0 1 2 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 6 0 7 0 0 6 0 7 0 0 6 0 7 0
+
+--- Page 6 ---
+6.006Quiz1 Name 6
+(a) [5 points] What is the worst-case runtime of Alyssa’s algorithm on an m×n matrix
+(mrows,ncolumns),inbig-Θnotation? Giveabriefjustificationforyouranswer.
+(b) [15 points] Does Alyssa’s algorithm return a peak in all cases? If so, give a short
+proofofcorrectness. Otherwise,provideacounterexampleforthealgorithm.
+
+--- Page 7 ---
+6.006Quiz1 Name 7
+Problem5. WhoLetTheZombiesOut? [20points] (2parts)
+In an attempt to take over Earth, evil aliens have contaminated certain water supplies with a virus
+that transforms humans into flesh-craving zombies. To track down the aliens, the Center for Dis-
+ease Control needs to determine the epicenters of the outbreak—which water supplies have been
+contaminated. There are n potentially infected cities C = {c ,c ,...,c }, but the FBI is certain
+1 2 n
+thatonlyk citieshavecontaminatedwatersupplies.
+Unfortunately, the only known test to determine the contamination of a city’s water supply is to
+serve some of that waterto a human and see whether they turn ravenous. Several brave volunteers
+have offered to undergo such an experiment, but they are only willing to try their luck once. Each
+volunteer is willing to drink a single glass of water that mixes together samples of water from any
+subset C(cid:48) ⊆ C of the n cities, which reveals whether at least one city in C(cid:48) had contaminated
+water.
+Yourgoalistousethefewestpossibleexperiments(volunteers)inordertodetermine,foreachcity
+c , whether its water was contaminated, under the assumption that exactly k cities have contami-
+i
+natedwater. Youcandesigneachexperimentbasedontheresultsofallprecedingexperiments.
+(a) [10 points] You observe that, as in the comparison model, any algorithm can be
+viewed as a decision tree where a node corresponds to an experiment with two out-
+comes(contaminatedornot)andthustwochildren. ProvealowerboundofΩ(klg n)
+k
+on the number of experiments that must be done to save the world. Assume that
+lgx! ∼ xlgxandthatlg(n−k) ∼ lgn(whichisreasonablewhenk < 0.99n).
+
+--- Page 8 ---
+6.006Quiz1 Name 8
+(b) [10 points] Save the world by designing an algorithm to determine which k of the n
+cities have contaminated water supplies using O(klgn) experiments. Describe and
+analyzeyouralgorithm.
+
+--- Page 9 ---
+6.006Quiz1 Name 9
+Problem6. ShoppingMadness[20points] (3parts)
+Ben Bitdiddle was peer-pressured into signing up for the tryouts in a shopping reality TV show,
+and he needs your help to make it past the first round. In order to qualify, Ben must browse a
+store’s inventory, which has N items with different positive prices P[1],P[2],...,P[N], and the
+challenge is to spend exactly S dollars on exactly K items, where K is a small even integer. Ben
+canbuythesameitemmultipletimes. Forexample,3broomsand2wizardhatsaddupto5items.
+In your solutions below, you may use a subroutine MULTISETS(k,T ) which iterates over all the
+k-element multisets (like subsets, except the same elements can show up multiple times) of a set
+T, in time O(k · |T|k), using O(k) total space. Note that if your code holds onto the results of
+MULTISETS,itmayendupusingmorethanO(k)space.
+(a) [5 points] Write pseudo-code for a data structure that supports the following two
+operations.
+INIT(N,K,P) —preprocessestheP[1...N]arrayofprices,inO(K·NK)expected
+time,usingO(K ·NK)space,tobeabletoanswerthequerybelow.
+BAG(S) — in O(1) expected time, determines whether K of the items have prices
+summingtoS,andifso,returnsK indicesb ,b ,...,b suchthatS =
+(cid:80)K
+P[b ].
+1 2 K i=1 i
+
+--- Page 10 ---
+6.006Quiz1 Name 10
+(b) [10points] Writepseudo-codeforafunction PWN-CONTEST(N,S,K,P)thatdeter-
+mines whether K of the items have prices summing to S, and if so, returns K indices
+b
+1
+,b
+2
+,...,b
+K
+such that S =
+(cid:80)K
+i=1
+P[b
+i
+]. Unlike part (a), PWN-CONTEST should run
+inO(K ·NK/2)anduseO(K ·NK/2)space.
+
+--- Page 11 ---
+6.006Quiz1 Name 11
+(c) [5points] Analyzetherunningtimeofyourpseudo-codeforthepreviouspart.
+
+--- Page 12 ---
+6.006Quiz1 Name 12
+Problem7. WhenIWasYourAge... [20points] (2parts)
+In order to design a new joke for your standup comedy routine, you’ve collected n distinct mea-
+surements into an array A[1...n], where A[i] represents a measurement at time i. Your goal is to
+findthelongesttimespani...j,i.e.,maximizej −i,suchthatA[i] < A[j]. 1 Notethatthevalues
+inbetweenA[i]andA[j]donotmatter. Asanexample,considerthefollowingarrayA[1...7]:
+A[1] = 14 A[2] = 6 A[3] = 8 A[4] = 1 A[5] = 12 A[6] = 7 A[7] = 5
+Your algorithm should return a span of 4 since A[2] = 6 and A[6] = 7. The next biggest span is
+A[4] = 1toA[7] = 5.
+(a) [5 points] Give an O(n)-time algorithm to compute the minimums of the prefix
+A[1...k]foreachk,andstoreinMA[k]: MA[k] = mink A[i].
+i=1
+(b) [15 points] Using the MA[i] computed above, give an O(nlogn)-time algorithm to
+maximizej −isubjecttoA[i] < A[j].
+Hint: TheMAisasortedarray.
+1Thejokecouldbealongtheselines: “Youthoughttimej wasbadwithA[j]? Backintimei,weonlyhadA[i]!”
+
+--- Page 13 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.006 Introduction to Algorithms
+Fall 2011
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

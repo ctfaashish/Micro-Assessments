@@ -1,0 +1,93 @@
+--- Page 1 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.854J / 18.415J Advanced Algorithms
+�� Fall 2008
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.
+
+--- Page 2 ---
+18.415/6.854 Advanced Algorithms
+Problem Set 6
+1. In lecture, we saw a randomized incremental algorithm to find the convex hull of
+n points in Rd . The algorithm first selects a random ordering, say p , ··· ,p , of
+1 n
+the n points, and then incrementally computes P = conv({p , ··· ,p }). When
+i 1 i
+going from P to P , some of the facets of P disappears (the ones that were
+i−1 i i−1
+visible from x ) and a number of new facets are created. Let N be the number
+i i
+of facets created at step i. The expected running time of the algorithm can be
+shown to be O(n2 + �n E[N ]). Prove that
+i=d+2 i
+�
+n
+� �
+E[N ] = O n�d/2� .
+i
+i=d+2
+(You can use the fact that the convex hull of k points in Rd has O(k�d/2�) facets.)
+2. We haven’t discussed this in lecture, but given a Voronoi diagram, one can
+construct in O(n) time a data structure for point location with query time
+O(log n): a query consists of a point q ∈ R2 and the output sahould be the
+Voronoi cell that contains this point (this is known as point location). Although
+we haven’t discussed this data structure in lecture, let’s assume we have such a
+data structure.
+Now, suppose we are given two sets of n points in R2: P = {p , ··· ,p } and
+1 n
+Q = {q ,q , ··· ,q }. Define the Hausdorff distance between A and B to be:
+1 2 n
+� �
+d(A,B) = max max min ||p − q ||, maxmin ||p − q ||
+i j i j
+i j j i
+where ||x|| is the standard Euclidean norm. Describe an algorithm to compute
+d(A,B) in O(n log n) time.
+3. Suppose you are implementing a video game in which the player can walk around
+a planar environment made up of walls, and at any time the screen displays only
+the walls that are (partially) visible by the player. More precisely, the player is
+modeled as a single point; the walls are modeled as noncrossing line segments;
+two points are visible if the line segment connecting them does not intersect any
+walls except at its endpoints; and a wall is visible from a point if at least one
+point on the wall is visible from the point. Give an O(n lg n)-time algorithm
+PS6-1
+
+--- Page 3 ---
+to compute the set of walls visible from the player. Hint: Use a line-sweep
+algorithm, but instead of sweeping a horizontal line, sweep a half-line around a
+point.
+4. Given a set P = {p ,p , ··· ,p } of points in R2, the Delaunay graph D(P ) =
+1 2 n
+(P,E) is a graph whose vertex set is P and which has an edge (p ,p ) ∈ E if
+i j
+and only if part of the bisector between p and p is an edge (line segment) of
+i j
+the Voronoi diagram V or(P ).
+(a) Show that (p ,p ) is an edge of D(P ) if and only if there exists an empty
+i j
+circle (i.e. no points of P in its interior) with only p and p on its boundary.
+i j
+(This is easy; you can rely on properties derived for the Voronoi diagram
+in lecture.)
+(b) Given P , the Euclidean minimum spanning tree problem is the minimum
+spanning tree problem in the complete graph whose vertex set is P and
+with the length of the edge (p ,p ) equal to its Euclidean length. Prove
+i j
+that if T is a Euclidean minimum spanning tree then T ⊆ E where E is
+the edge set of the Delaunay graph D(P ).
+(Hint: What is a property of any edge of a minimum spanning tree?)
+(c) How efficiently can you find the Euclidean minimum spanning tree of a set
+P of n points?
+(d) The definition of the Delaunay graph D(P ) shows that it is dual to the
+Voronoi diagram V or(P ) in the (planar graph) sense that two points p
+i
+and p are connected in D(P ) iff their corresponding cells are adjacent (i.e.
+j
+share an edge) in V or(P ). This implies that D(P ) is a planar graph since
+its edges can be drawn by non-intersecting curves. Show that we do not
+even need to move the (positions of the) points in P to get a straight-line
+drawing of D(P ), i.e. that if (p ,p ) and (p ,p ) are edges of D(P ) then
+i j k l
+the corresponding line segments do not intersect (except at an endpoint if
+{i,j}∩{k,l} =� ∅).
+PS6-2

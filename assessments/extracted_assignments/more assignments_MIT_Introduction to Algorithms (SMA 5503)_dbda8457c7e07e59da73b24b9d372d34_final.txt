@@ -1,0 +1,888 @@
+--- Page 1 ---
+Introduction to Algorithms December 20, 2005
+Massachusetts Institute of Technology 6.046J/18.410J
+Professors Erik D. Demaine and Charles E. Leiserson Final Exam
+Final Exam
+�
+Do not open this exam booklet until you are directed to do so. Read all the instructions on
+this page.
+�
+When the exam begins, write your name on every page of this exam booklet.
+�
+This exam contains 11 problems, some with multiple parts. You have 180 minutes to earn
+180 points.
+�
+This exam booklet contains 20 pages, including this one. Two extra sheets of scratch paper
+are attached. Please detach them before turning in your exam at the end of the examination
+period.
+�   This exam is closed book. You may use two handwritten A4 or
+    
+crib sheets. No
+calculators or programmable devices are permitted.
+�
+Write your solutions in the space provided. If you need more space, write on the back of the
+sheet containing the problem. Do not put part of the answer to one problem on the back of
+the sheet for another problem, since the pages may be separated for grading.
+�
+Do not waste time and paper rederiving facts that we have studied. It is sufficient to cite
+known results.
+�
+Do not spend too much time on any one problem. Read them all through first, and attack
+them in the order that allows you to make the most progress.
+�
+Show your work, as partial credit will be given. You will be graded not only on the correct­
+ness of your answer, but also on the clarity with which you express it. Be neat.
+�
+Good luck!
+Name:
+
+--- Page 2 ---
+6.046J/18.410J Final Exam Name 2
+Grade sheet: Do not write in the spaces below.
+Problem Title Parts Points Grade Grader
+1 Recurrences 3 15
+2 Algorithms and running times 1 9
+3 Substitution method 1 10
+4 True or False, and Justify 7 35
+5 Red-black trees 3 15
+6 Wiggly arrays 1 10
+7 Difference constraints 2 12
+8 Amortized increment 1 12
+9 Minimum spanning trees 1 12
+10 Multithreaded scheduling 1 10
+11 Transposing a matrix 4 40
+Total 180
+
+--- Page 3 ---
+6.046J/18.410J Final Exam Name 3
+Problem 1. Recurrences [15 points] (3 parts)
+Give a tight asymptotic upper bound ( � notation) on the solution to each of the following recur­
+rences. You need not justify your answers.
+ (a)          
+
+  .
+(b)        
+
+            
+$
+
+# %' &
+(c)      %
+     !"   if 
+$
+
+() %+ *
+if
+%
+
+where is a variable independent from  .
+
+--- Page 4 ---
+6.046J/18.410J Final Exam Name 4
+Problem 2. Algorithms and running times [9 points]
+Match each algorithm below with the tightest asymptotic upper bound for its worst-case running
+time by inserting one of the letters A, B,
+� � �
+, I into the corresponding box. For sorting algorithms,
+
+
+is the number of input elements. For matrix algorithms, the input matrix has size   . For
+graph algorithms, the number of vertices is  , and the number of edges is !"    .
+You need not justify your answers. Some running times may be used multiple times or not at all.
+Because points will be deducted for wrong answers, do not guess unless you are reasonably sure.
+ 
+Insertion sort A: �   
+Heapsort B: �   
+ 
+BUILD-HEAP C: �  
+
+ 
+Strassen’s D: �  
+
+
+  Bellman-Ford E: �  
+
+
+
+ 
+Depth-first search F: �   
+Floyd-Warshall G: �  
+
+
+Johnson’s H: �  
+
+
+
+ 
+Prim’s I: �  
+ 
+ 
+
+--- Page 5 ---
+6.046J/18.410J Final Exam Name 5
+Problem 3. Substitution method [10 points]
+Use the substitution method to prove a tight asymptotic lower bound (
+�
+-notation) on the solution
+to the recurrence
+    )        
+�
+
+--- Page 6 ---
+6.046J/18.410J Final Exam Name 6
+Problem 4. True or False, and Justify [35 points] (7 parts)
+Circle T or F for each of the following statements to indicate whether the statement is true or
+false, respectively. If the statement is correct, briefly state why. If the statement is wrong, explain
+why. The more content you provide in your justification, the higher your grade, but be brief. Your
+justification is worth more points than your true-or-false designation.
+T F Let
+� 
+,
+� 
+, and
+�
+be three sorted arrays of  real numbers (all distinct). In the comparison
+
+
+ 
+model, constructing a balanced binary search tree of the set
+�   �   � 
+requires
+�
+   
+time.
+T F Let  be a complete binary tree with  nodes. Finding a path from the root of  to a given
+ 
+vertex
+ 
+ using breadth-first search takes �    time.
+
+--- Page 7 ---
+6.046J/18.410J Final Exam Name 7
+ �
+� �
+ T F Given an unsorted array
+�  
+of  integers, building a max-heap out of the elements of
+�
+can be performed asymptotically faster than building a red-black tree out of the elements
+of
+�
+.
+T F Suppose we use a hash function
+
+to hash  distinct keys into an array  of length
+
+.
+Assuming simple uniform hashing, the expected number of colliding pairs of elements is
+!   
+ 
+ .
+
+--- Page 8 ---
+6.046J/18.410J Final Exam Name 8
+ 
+T F Every sorting network with  inputs has depth
+�
+   .
+T F If a dynamic-programming problem satisfies the optimal-substructure property, then a lo­
+cally optimal solution is globally optimal.
+
+--- Page 9 ---
+6.046J/18.410J Final Exam Name 9
+T F Let
+�
+ 
+ 
+&
+   be a directed graph with negative-weight edges, but no negative-weight
+ 
+to all
+ 
+cycles. Then, one can compute all shortest paths from a source
+   
+faster
+than Bellman-Ford using the technique of reweighting.
+
+--- Page 10 ---
+6.046J/18.410J Final Exam Name 10
+Problem 5. Red-black trees [15 points] (3 parts)
+& & &
+ �
+& &
+
+&
+�
+&
+(a) Assign the keys 
+ 
+to the nodes of the binary search tree below so
+that they satisfy the binary-search-tree property.
+nil nil
+nil nil
+nil nil nil
+nil nil
+(b) Explain why this binary search tree cannot be colored to form a legal red-black tree.
+
+--- Page 11 ---
+6.046J/18.410J Final Exam Name 11
+(c) The binary search tree can be transformed into a red-black tree by performing a single
+rotation. Draw the red-black tree that results, labeling each node with “red” or “black.”
+Include the keys from part (a).
+
+--- Page 12 ---
+6.046J/18.410J Final Exam Name 12
+Problem 6. Wiggly arrays [10 points]
+( (
+An array
+� �
+� �
+  
+
+is wiggly if
+� �  � �  � �
+
+�  �
+
+�  �
+� � �
+(
+�
+
+�
+
+  � �
+
+�
+ 
+
+.
+Given an unsorted array
+ �
+� �
+ 
+
+of real numbers, describe an efficient algorithm that outputs
+a permutation
+� �
+� �
+  
+
+of
+
+such that
+�
+is a wiggly array.
+
+--- Page 13 ---
+6.046J/18.410J Final Exam Name 13
+Problem 7. Difference constraints [12 points] (2 parts)
+Consider the following linear-programming system of difference constraints (note that one con­
+straint is an equality):
+�
+�
+�
+�
+�
+�
+�
+�
+�
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+�
+�
+�
+�
+�
+�
+�
+�
+�
+
+
+
+
+
+
+
+
+
+(
+(
+(
+
+(
+(
+(
+(
+(
+
+
+
+
+
+
+
+
+
+(a) Draw the constraint graph for these constraints.
+� � �  (b) Solve for the unknowns
+
+, �
+
+,
+
+, , and �  , or explain why no solution exists.
+
+--- Page 14 ---
+6.046J/18.410JFinalExam Name 14
+Problem8. Amortizedincrement [12 points]
+Anarray (cid:0)(cid:1) (cid:0) (cid:0) (cid:0)(cid:1) (cid:0)(cid:2) (cid:1) (cid:1) (cid:9) (cid:2) ofbits(eacharrayelementis (cid:0) or (cid:9) )storesabinarynumber (cid:0) (cid:8)
+(cid:3)(cid:5)
+(cid:6)
+(cid:7)(cid:9)
+(cid:4)
+(cid:8)(cid:11)
+(cid:2)
+(cid:10)
+(cid:0)(cid:1) (cid:13)(cid:12) (cid:0) (cid:15) (cid:2) (cid:14) (cid:10) (cid:7) .
+To add
+(cid:9)
+(modulo (cid:10)
+(cid:3)
+)to (cid:0) , weuse thefollowingprocedure:
+INCREMENT (cid:2)
+(cid:0)
+&
+(cid:1)
+(cid:6)
+1
+(cid:12)(cid:17) (cid:16)
+(cid:0)
+2 while
+(cid:12)(cid:19) (cid:18)(cid:20) (cid:1)
+and
+(cid:0)(cid:1) (cid:13)(cid:12) (cid:0) (cid:2)
+(cid:8)
+(cid:9)
+3 do
+(cid:0)
+(cid:21)(cid:12)
+(cid:0)
+(cid:22)
+(cid:2)
+(cid:16)
+(cid:0)
+4
+(cid:12)(cid:23) (cid:16) (cid:12)
+(cid:14)
+(cid:9)
+5 if
+(cid:12)(cid:24) (cid:18)(cid:20) (cid:1)
+6 then
+(cid:0) (cid:21)(cid:12) (cid:0) (cid:22) (cid:2) (cid:16) (cid:9)
+Givenanumber (cid:0) ,definethepotential
+(cid:25)
+(cid:2) (cid:0) (cid:6) of (cid:0) tobethenumberof
+(cid:9)
+’sinthebinaryrepresentation
+of (cid:0) . For example,
+(cid:25)
+(cid:2)
+(cid:3)(cid:9) (cid:2)
+(cid:6) (cid:8) (cid:22) , because
+(cid:3)(cid:9) (cid:2)
+(cid:8)
+(cid:9)
+(cid:0)(cid:26) (cid:0)
+(cid:9)(cid:11) (cid:9) (cid:4)
+. Use a potential-function argument to prove
+thatthe amortizedcost ofanincrementis (cid:0) (cid:2)
+(cid:9)
+(cid:6) ,wherethe initialvalueinthe counteris (cid:0) (cid:8) (cid:0) .
+
+--- Page 15 ---
+6.046J/18.410J Final Exam Name 15
+Problem 9. Minimum spanning trees [12 points]
+   Let
+�
+ 
+
+&
+&
+  be a connected, undirected graph with edge-weight function
+� 
+ , and
+&
+ 
+&
+ assume all edge weights are distinct. Consider a cycle   
+&
+� � �
+&
+      in � , where &       ,
+
+and let 
+
+
+
+   be the edge in the cycle with the largest edge weight. Prove that 
+
+
+
+ 
+
+ does
+not belong to the minimum spanning tree  of
+�
+.
+
+--- Page 16 ---
+6.046J/18.410J Final Exam Name 16
+Problem 10. Multithreaded scheduling [10 points]
+ �
+� A greedy scheduler runs a multithreaded computation in � seconds on  processors and in
+
+
+seconds on  processors. Is it possible that the computation has work   �   and critical-path
+length 
+
+
+�
+ ? Justify your answer.
+ 
+
+
+--- Page 17 ---
+6.046J/18.410J Final Exam Name 17
+Problem 11. Transposing a matrix [40 points] (4 parts)
+Let
+�
+be an
+  
+matrix, where
+
+is an exact power of . The following code computes
+ 
+ �
+T:
+&
+
+&
+
+ TRANS 
+ �
+1 for
+
+to
+
+2 do for
+
+
+
+to
+
+&
+3 do
+�
+&
+
+
+
+ �
+
+�  
+%
+Consider the cache-oblivious two-level memory model with a cache of elements and blocks of
+
+ elements. Assume that both matrices
+&
+�
+and
+&
+are stored in row-major order, that is, the linear
+&
+order of
+&
+�
+in memory is
+� �
+&
+
+� � �
+&
+� �
+&
+ 
+� �
+&
+
+&
+� �
+&
+
+�
+
+� �
+&
+� �  
+&
+� �
+&
+
+&
+� �
+&
+
+&
+� � �
+&
+� �
+&
+ 
+&
+� � �
+&
+� �
+&
+
+, and similarly for .
+%
+(a) Analyze the number MT 
+
+ of memory transfers incurred by TRANS when
+
+.
+
+--- Page 18 ---
+6.046J/18.410J Final Exam Name 18
+Now, consider the following divide-and-conquer algorithm for computing the transpose:
+&
+
+&
+
+ R-TRANS 
+�
+1 if
+
+
+
+& &
+2 then
+� 
+
+ � � 
+
+Partition into four
+&
+ "
+
+
+ "
+
+
+
+ submatrices
+�
+,
+�  
+,
+�  
+, and
+�
+3 else Partition .
+�
+
+into four  "
+
+
+"  submatrices
+ 
+,
+ 
+,
+ 
+, and .
+ 
+4
+" 
+
+  
+ 
+5 R-TRANS 
+ �     
+"  6 R-TRANS 
+ �  
+&
+&
+&
+
+
+
+ 
+&
+& 
+
+ 
+7 R-TRANS 
+ � 
+
+
+
+  &
+"
+
+
+8 R-TRANS 
+ �
+&
+
+ 
+"
+
+
+Assume that the cost of partitioning is �   .
+(b) Give and solve a recurrence for the number MT 
+
+ of memory transfers incurred by
+%
+R-TRANS when
+
+.
+
+--- Page 19 ---
+6.046J/18.410J Final Exam Name 19
+The following multithreaded algorithm computes the transpose in parallel:
+&
+
+&
+
+ P-TRANS 
+ �
+1 if
+
+
+
+& &
+2 then
+� 
+
+ � � 
+&
+
+  
+Partition into four  "
+
+
+&
+ "
+
+
+
+ submatrices
+�
+,
+�  
+,
+�  
+, and
+�
+3 else Partition .
+�
+
+into four  "
+
+
+"
+"
+
+ submatrices
+ 
+,
+ 
+,
+ 
+4 , and .
+5 spawn P-TRANS 
+ �   &
+&
+
+
+
+
+
+
+
+
+&
+&
+&
+
+
+
+
+
+ 
+  
+ 
+6 spawn P-TRANS 
+ �  
+" 
+7 spawn P-TRANS 
+ � 
+
+
+
+" 
+8 spawn P-TRANS 
+ �
+&
+
+ 
+"
+
+
+9 sync
+ 
+"
+
+
+
+ (c) Give and solve recurrences describing the work  
+
+ and critical-path length 
+of P-TRANS. What is the asymptotic parallelism of the algorithm?
+
+--- Page 20 ---
+6.046J/18.410JFinalExam Name 20
+ProfessorKellogginadvertantlyplacestwoadditionalsyncstatementsintohiscodeasfollows:
+K-TRANS (cid:2)
+(cid:0)
+&
+(cid:2)
+&
+(cid:1)
+(cid:6)
+1 if
+(cid:1)
+(cid:8)
+(cid:9)
+2 then (cid:2)
+(cid:0) (cid:9)
+&
+(cid:9) (cid:2) (cid:16) (cid:6) (cid:0) (cid:0) (cid:9)
+&
+(cid:9) (cid:2)
+3 else Partition
+(cid:0)
+intofour (cid:2)
+(cid:9)
+"
+(cid:1)
+(cid:13) (cid:10)(cid:23) (cid:6)
+(cid:7)
+(cid:2)
+(cid:9)
+"
+(cid:1)
+(cid:13) (cid:10) (cid:6) submatrices
+(cid:0) (cid:2) (cid:2)
+,
+(cid:0) (cid:2) (cid:4)
+,
+(cid:0) (cid:4) (cid:2)
+, and
+(cid:0) (cid:4) (cid:4)
+.
+4 Partition (cid:2) intofour (cid:2)
+(cid:9)
+"
+(cid:1)
+(cid:13) (cid:10) (cid:6)
+(cid:7)
+(cid:2) "
+(cid:1)
+(cid:13) (cid:10) (cid:6) submatrices (cid:2)
+(cid:2) (cid:2)
+, (cid:2)
+(cid:2) (cid:4)
+, (cid:2)
+(cid:4) (cid:2)
+,and (cid:2)
+(cid:4) (cid:4)
+.
+5 spawn K-TRANS (cid:2)
+(cid:4) (cid:0) (cid:2) (cid:2)
+&
+(cid:2)
+(cid:2) (cid:2)
+&
+"
+(cid:1)
+(cid:13)(cid:23) (cid:10) (cid:6)
+6 sync
+7 spawn K-TRANS (cid:2)
+(cid:4) (cid:0) (cid:2) (cid:4)
+&
+(cid:2)
+(cid:4) (cid:2)
+&
+"
+(cid:1)
+(cid:13)(cid:23) (cid:10) (cid:6)
+8 sync
+9 spawn K-TRANS (cid:2)
+(cid:4) (cid:0) (cid:4) (cid:2)
+&
+(cid:2)
+(cid:2) (cid:4)
+&
+"
+(cid:1)
+(cid:13)(cid:23) (cid:10) (cid:6)
+10 spawn K-TRANS (cid:2)
+(cid:4) (cid:0)
+(cid:4) (cid:4)
+&
+(cid:2)
+(cid:4) (cid:4)
+&
+"
+(cid:1)
+(cid:13)(cid:23) (cid:10) (cid:6)
+11 sync
+(d) Giveandsolverecurrencesdescribingthework (cid:1)
+(cid:2)
+(cid:2)
+(cid:1)
+(cid:6) andcritical-pathlength (cid:1)
+(cid:3)
+"
+(cid:2)
+(cid:2)
+(cid:9) (cid:1)
+(cid:6)
+of K-TRANS. What isthe asymptoticparallelismofthisalgorithm?
+
+--- Page 21 ---
+SCRATCH PAPER — Please detach this page before handing in your exam.
+
+--- Page 22 ---
+SCRATCH PAPER — Please detach this page before handing in your exam.

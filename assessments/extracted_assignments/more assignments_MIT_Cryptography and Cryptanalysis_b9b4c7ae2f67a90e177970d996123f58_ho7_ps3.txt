@@ -1,0 +1,123 @@
+--- Page 1 ---
+6.875/18.425J Cryptography and Cryptanalysis March 2, 2005
+Handout
+5:
+Problem Set
+#3
+This problem set is due on: Friday, March 11, 2005.
+Problem 1 ­ Yao Security
+We consider a definition of security for a public­key cryptosystem proposed by Yao. The
+idea is that Alice has a polynomial number (nk ) of strings that she wants to send to Bob
+using as few bits as possible. These strings are selected from a probability distribution
+known to both Alice and Bob and Alice wants to send enough bits to Bob so that he can
+(with high probability) reconstruct all of the messages. Note that Alice and Bob are not
+trying to keep any of these messages secret; Alice is just trying to deliver them to Bob
+as efficiently as possible.
+Now suppose that Bob gets encryptions of the messages “for free,” in addition to the
+bits that Alice sends him (however, Bob doesn’t know the secret key to decrypt those
+ciphertexts). We say that a cryptosystem is Yao­Secure if the average number of bits
+which Alice must send to Bob is the same regardless of whether or not Bob possesses a
+copy of the ciphertexts. (That is, sharing the ciphertexts does not help Alice compress
+the messages.)
+In the definitions below, we let M = {M } be a sequence of probability distributions
+n
+over {0,1}∗ where M only assigns positive probability to n­bit strings. We denote by
+n
+{A } a family of probabilistic polynomial­size encoding circuits, and by {B } a family
+n n
+of probabilistic polynomial­size decoding circuits.
+• The cost of communicating M:
+We say that the cost of communicating M is less than or equal to f(n) (in symbols,
+C(M) ≤ f(n)) if there exist {A } and {B } such that the following two properties
+n n
+are satisfied: (for some constant k, for all c, and for all sufficiently large n...)
+1. “B understands A ”
+n n
+Pr[m ← M ; ...m ← M ; β ← A (m � ); �y ← B (β) : m� = �y] > 1 − n−c
+1 n nk n n n
+2. “A transmits at most f(n) bits per message”
+n
+� �
+|β|
+E m ← M ; ...m ← M ; β ← A (m � ) : ≤ f(n)
+1 n nk n n nk
+5­1
+
+--- Page 2 ---
+• The cost of communicating M, given encryptions:
+Let (G,E,D) be a cryptosystem. We say that the cost of communicating M, given
+encryptions using E, is less than or equal to f(n) (in symbols, C(M|E(M)) ≤ f(n))
+if there exist {A } and {B } such that the following two properties are satisfied:
+n n
+(for some constant k, for all c, and for all sufficiently large n...)
+1. “B understands A ”
+n n
+Pr[(PK,SK) ← G(1n); m ← M ; ...m ← M ; c ← E (m ),...,
+1 n nk n 1 PK 1
+c ← E (m ); β ← A (m � ,PK,�c); �y ← B (β,PK,�c) : m� = �y] > 1 −n−c
+nk PK nk n n
+2. “A transmits at most f(n) bits per message”
+n
+�
+E (PK,SK) ← G(1n); m ← M ; ...m ← M ;
+1 n nk n
+|β|�
+c ← E (m ),...,c ← E (m ); β ← A (m � ,PK,�c) : ≤ f(n)
+1 PK 1 nk PK nk n nk
+• Yao­Security
+We say that a cryptosystem is Yao­secure if for all M, for all c and for all sufficiently
+large n,
+1
+C(M|E(M)) ≤ f(n) ⇒ C(M) ≤ f(n) +
+nc
+Part A: Prove that Yao­security implies GM­security. (Use a definition of GM­security
+in which adversaries are polynomial­size families of circuits.)
+Part B: Prove that GM­security implies Yao­security.
+Problem 2 ­ Neighbour Indistinguishability
+For this problem, we will always have M = {0,1}k. Consider the following potential
+k
+definition of security:
+Neighbour Indistinguishability (NI): This notion aims at capturing the intuition
+that the encryption of each message (considered as an integer in {0,1,...,2k −1}) should
+look like the encryption of the next message:
+∀PPT A ∀c > 0 ∃k ∀k > k ∀m ∈ {0,1}k
+0 0
+� �
+Pr (pk,sk) ← G(1k); c ← E (m) : A(1k,pk,c) = 1 −
+pk
+� �
+Pr (pk,sk) ← G(1k); c ← E (m+ 1 mod 2k) : A(1k,pk,c) = 1 < k−c
+pk
+5­2
+
+--- Page 3 ---
+For the problem, prove or carefully disprove each of the following statements.
+Part A: Prove or Disprove: Any system which is GM­secure is NI.
+Part B: Prove or Disprove: Any system which is NI is GM­secure.
+Problem 3 ­ Non­Uniform Message Spaces
+When we discussed one­bit cryptosystems in class, we considered only the message space
+where a bit is drawn uniformly from {0,1}. This problem will consider other message
+spaces for one­bit cryptosystems. Let D be the probability distribution over {0,1} that
+q
+assigns probability q to 0 and probability 1 − q to 1. For 1 ≤ q < 1, We will say that a
+2
+public­key cryptosystem (G,E,D) is q­secure if
+∀PPT A ∀c > 0,∃k s.t. ∀k > k
+0 0
+1
+Pr[(PK,SK) ← G(1k); b ← D ; x ← E (b); g ← A(1k,PK,x) : b = g] < q +
+q PK kc
+Observe that this is the same definition we discussed in class when q = 1/2.
+Part A: Prove or Disprove: If a cryptosystem, (G,E,D), is 1/2­secure than it is q­secure
+for any 1/2 ≤ q < 1.
+Part B: Prove or Disprove: If a cryptosystem, (G,E,D), is q­secure for any 1/2 ≤ q < 1
+then it is 1/2­secure.
+Problem 4 ­ Active Adversaries
+The definition of GM­Security embodies security against a passive adversary who listens
+to a conversation between Alice and Bob and after hearing the ciphertext, attempts to
+understand what is being said. In particular, the adversary is not a participant in the
+system and is not allowed any interaction with Alice and Bob.
+Define security against an active adversary. Explain why your definition is good. (In
+particular, a system satisfying your definition should not be vulnerable to the type of
+active attack we discussed in class.) Prove that your definition implies GM­Security.
+5­3

@@ -1,0 +1,26 @@
+--- Page 1 ---
+DFSC 1316 Lab 4, Fall 2019
+Mobile Forensics (200 points)
+Submission Due: October 23, Wednesday
+This lab is set for team work. Two students can make a group. Each group is
+requested to make slides and present your work in class on Wednesday
+October 23.
+Please have your mobile devices such as smartphones. You may have text
+messages, facebook, whatsapp, or other social account and conversation
+records on your mobile devices. You may also delete a part of messages or
+photos.
+Search on the Internet and get suitable mobile forensics tools for your
+devices and perform a forensics analysis about your mobile devices, and
+submit a report about your work with screen shots. The report should include:
+1. Your mobile devices (bands and models, operating systems, major
+applications) (5 points)
+2. Mobile forensics tools used and the reason to select the tools;
+3. Each step and operation to perform logical acquisition and data analysis.
+What types of data can be retrieved (including but not limited to call
+history, text history, contact, browsing history, geo-tag information, etc)?
+(100 points)
+4. Can you recover the removed data? If yes, what kinds of data may be
+recovered? If no, why? (45 points)
+5. What have you learned from this exercise? (20 points)
+The grading includes the report (170 points) and in-class presentation (30
+points).

@@ -1,0 +1,54 @@
+--- Page 1 ---
+Homework #4
+CSCE 3530.001
+Fall 2018
+Introduction to Computer Networks
+100 Points
+Due: 11/07/2018, 11:59 PM
+Instructions: Complete the homework either typed in text file (MSWord/ LibreOffice or
+anything else) or handwritten. In case of mathematical problem, clearly show all the
+steps. Convert the typed in document into PDF. In case of handwritten document, scan
+it and convert it into PDF. Upload the PDF file to blackboard on or before the due date
+and time. Late submissions are not allowed.
+1. Differentiate between Go-Back-N (GBN) and Selective Repeat (SR) protocols. (10
+Points)
+2. Assume that the timeout values for GBN, SR, and TCP protocols are sufficiently long
+such that 7 consecutive data segments can be received (if not lost in the channel) by
+the receiving host (Host B) and their corresponding ACKs can received by the
+sending host (Host A). Suppose Host A sends 7 data segments to Host B, and the
+4th segment (sent from A) is lost. In the end, all 7 data segments have been correctly
+received by Host B. For GBN, SR, and TCP (no delayed ACK) protocols how many
+segments has Host A sent in total and how many ACKs has Host B sent in total?
+What are their sequence numbers? [For TCP, assume the payload size is 1 byte] (15
+Points)
+3. Five values of SampleRTT are 56 ms, 40 ms, 80 ms, 100 ms, and 70 ms. Compute
+the EstimatedRTT, DevRTT, and Timeoutinterval after each of these SampleRTT
+values is obtained. Assume α = 0.125 and β = 0.25. Initial value of EstimatedRTT
+was 70 ms and initial value of DevRTT was 10 ms just before the first of these five
+samples was obtained. (15 Points)
+4. What is TCP fast retransmit? Use an example and explain the working principle of
+TCP fast retransmit. (5 Points)
+5. Explain how TCP flow control is done? (5 Points)
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 15:43:59 GMT -05:00
+https://www.coursehero.com/file/35476704/Hw4pdf/
+
+--- Page 2 ---
+6. What are the steps involved in opening and closing a TCP connection? (10 Points)
+7. A 100 Mbps (about to be congested) non-buffered link is used to send a huge file
+between two hosts. The receiving host has a large buffer than the congestion
+window. Assume the turnaround time is 3.84 ms, and the TCP Reno connection is
+always in congestion avoidance phase. Answer the following questions. (20 Points)
+a. What is the maximum window size in bytes that this TCP connection can achieve?
+b. What is the average window size in bytes and the average throughput in bps of
+this TCP connection?
+c. How long would it take for this TCP connection to reach its maximum window
+again after recovering from a packet loss if the TCP segment size is 2,000 bytes?
+d. What is the maximum window size and average window size in segments if the
+TCP segment size is 2,000 bytes?
+8. Plot a single graph with congestion window on y-axis and transmission rounds on x-
+axis for TCP Tahoe and TCP Reno. On the plot, show TCP Tahoe’s and TCP Reno’s
+congestion window for 20 transmission rounds. Assume ssthresh is initially set to 16
+segments and the maximum window size is 22 segments. (20 Points)
+This study source was downloaded by 100000785934119 from CourseHero.com on 04-21-2025 15:43:59 GMT -05:00
+https://www.coursehero.com/file/35476704/Hw4pdf/
+Powered by TCPDF (www.tcpdf.org)

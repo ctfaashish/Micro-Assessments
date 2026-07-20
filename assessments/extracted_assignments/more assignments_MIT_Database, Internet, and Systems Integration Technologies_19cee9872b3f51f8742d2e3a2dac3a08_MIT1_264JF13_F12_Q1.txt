@@ -1,0 +1,174 @@
+--- Page 1 ---
+1.264 MIDTERM EXAM
+FALL 2012
+NAME
+Exam guidelines:
+1) 80 minutes are allowed to complete the exam.
+2) Open notes; open book.
+3) There are 8 questions (100 points) and 9 pages (including this one) in the exam booklet.
+4) No laptop computers, calculators, cell phones or messaging devices are allowed. Please
+turn off any that you have brought.
+5) Please write legibly – you are welcome to use both sides of the paper; we can provide
+additional paper if necessary.
+1
+
+--- Page 2 ---
+PART I: SOFTWARE PROCESS (35 POINTS; SUGGESTED TIME: 25 MINUTES)
+1. Read the case study below and identify five errors in the execution of the project: circle a
+phrase from the case to support each error you identify, write a number next to each circled
+phrase, and describe each error with a phrase or two next to the corresponding numbers on
+the following page. If the error is an activity that the team did not do and thus is not
+mentioned, also include it. (15 points) (Suggested time: 15 minutes)
+One Parking is about to launch the first version of a parking garage/lot automation project, Reserve‐
+Your‐Spot. The parking garage currently operates without any computerized system. The management
+has concerns about inefficiencies of sub‐optimal usage of parking space. In addition, congestion inside
+the garage is often caused by drivers searching for vacant spots. Currently, management monitors the
+garage occupancy by having employees walk around the decks to inspect the occupancy of individual
+spots. The purpose of Reserve‐Your‐Spot is to track and manage occupancy of a parking garage and
+allow customers to find and reserve available parking places. Paul was assigned as the project manager
+and hired two software developers with more than 5 years of experience. All team members are in the
+top 25% in talent and experience, and have good tools and familiarity with the area. There is some
+turnover. Paul’s team had been working on the system for a little more than 6 months and now the
+deadline was just 1 month away. He called the team meeting to order. “According to the schedule,
+everybody should be checking in the final versions of their code this week. How’s that going?”
+“Pretty good, but not good enough,” Ryan responded honestly. “I’ve run into a few problems, and I’m
+working as hard as I can, but I don’t see any way I can finish in less than 6 weeks.” “That goes double for
+me,” Lorena said. “I’m making good progress, but this never should have been scheduled as a 7‐month
+project. It’s more like a 10‐month project. I’ve got 6 or 7 weeks of work left”.
+“All right. I’m to think about how to break this news to my boss. Give me the rest of the day to come up
+with a recovery plan, and I’ll let you know the plan.”
+The next day, Paul laid out his plan. He had talked his boss, Michael, into slipping their schedule 4
+weeks. He was going to borrow Alison, an analyst from another group to help Lorena and Ryan. And he
+had a line on a top‐notch contractor named Rashmi to pick‐up the rest of the slack. Furthermore, Paul
+divided the project for the team to hardly notice the two new developers and decided to train the new
+members himself.
+“They might be able to help a little,” Ryan chimed in. “But I honestly need 6 weeks, and I don’t see any
+way to divide up my work so that I can give any of it to anyone else”.
+“Are you signed up for this project or not?” Carl said. “The project isn’t in that much trouble. Just do
+your best, and let’s see what happens. OK?” Lorena and Ryan didn’t see any point in arguing about it, so
+they said OK and went back to work. They worked almost nonstop for the next 4 weeks, but at the end
+of that time they were barely any closer to the finish line. “How are we doing?” Paul asked.
+2
+
+--- Page 3 ---
+“About the same,” Lorena reported. “I’ve still got at least 4 or 5 weeks’ worth of work left”.
+“Same here,” Ryan reported.
+“What have you guys been doing?” Paul fumed. “Lorena you said you had 6 or 7 weeks of work left, and
+that was 4 weeks ago. How can you still have 4 or 5 weeks left?”
+“Some things took longer than expected, plus, no offense to Alison and Rashmi, but getting them up to
+speed is taking a lot of time. They didn’t understand how we handle our files,” she said.
+Lorena’s patience was wearing thin. She was tired and had poured everything she had into this project.
+“Listen, we’ve been going all‐out for more than 2 months. We’re doing our best. We’ve just had a
+couple of minor setbacks. Look, I said I’ll be done in 4 or 5 weeks, and that’s when I’ll be done.” The
+meeting broke up, and Paul optimistically told Michael that the team would be done in 4 weeks.
+Four weeks later, the team reported making good progress but still thought it would be another 3 weeks
+or so until they were done. A few weeks after that, Lorena and Ryan discovered some design flaws that
+they couldn’t code around, and they had to redesign major chunk of the system. Each bug fix seemed to
+give rise to two more defect reports and the group’s estimated completion times started getting farther
+away instead of closer. Paul admitted that he didn’t really know when the project would be finished.
+Two months later, after three more 3‐week schedule slips, Michael canceled the project.
+3
+
+--- Page 4 ---
+Write a phrase or two describing each error, making sure that the numbers below correspond
+to the numbers that you wrote next to the circled text above:
+ERROR 1:
+ERROR 2:
+ERROR 3:
+ERROR 4:
+ERROR 5:
+4
+
+--- Page 5 ---
+2. Answer the following questions based on the system mentioned above. (20 points)(Suggested
+time: 15 minutes)
+After firing Paul, One‐Parking has hired you, an expert in rapid development practices, as their
+new Project Manager and has asked you to re‐evaluate Reserve‐Your‐Spot.
+Assume the system has been completely re‐designed and that the team has agreed on the
+mission of the project. Also assume that there are 15 web pages, 6 reports and documents, 12
+database tables, 9 inquiries and no external files and the complexity of each is 1/3 low, 1/3
+medium, and 1/3 high with and influence multiplier of 1.1.
+a. How many function points would it contain? (5 pts.)
+b. Estimate the lines of code for the system. Assume you will use Perl for the Web
+application and Oracle for databases, each using 40 lines of code per function point. (3
+pts.)
+c. What type of product is Reserve‐Your‐Spot: system, business, or shrink‐wrap? Explain.
+(3 points)
+5
+
+--- Page 6 ---
+d. What type of schedule will you use: fastest possible, efficient or nominal? Explain. (3
+points)
+e. Compute the size of the team based on appropriate tables from Rapid Development.
+(3 points)
+f. Assign a confidence range to your estimate, and explain why in 1 sentence or phrase.
+(3 points)
+6
+
+--- Page 7 ---
+PART II: DATA MODEL AND UML (35 POINTS; SUGGESTED TIME: 30 MINUTES)
+You are asked by a construction company to develop a Project Scheduling System using the following
+business rules:
+ A project has an id, a name, a city, and a state.
+ An activity has an id, a name, a starting date and ending date. An activity may be design,
+construction, quality assurance, etc.
+ Each activity belongs to a single project, but a project may have one or more activities.
+ A worker has an id and a name. Workers may be assigned to several projects and they have
+a specific role in each project, but the role may be different on each project. (Roles are
+different than activities.)
+ Several workers may be working on the same project.
+ There is a list of possible roles a worker may have in a project. (A worker’s role must be on
+this list.) The possible roles a worker may have are construction worker, manager,
+supervisor, or office management.
+3. Draw a normalized data model that corresponds to the set of business rules presented below.
+Follow these steps. You only need to turn in one drawing that includes all the elements listed
+in steps a‐e. (31 points) (Suggested time: 25 minutes)
+a. Draw a single box for each entity: give each an appropriate name. (7 points)
+b. List the attributes in the box for each entity. (6 points)
+c. Indicate the primary key for each entity by placing the phrase (PK) next to its name. (4
+points)
+d. Draw all relationships between the entities in the model. Indicate foreign keys by
+placing the phrase (FK) next to attributes that are foreign keys. Show the
+associative/intermediate table explicitly in many‐to‐many relationships; don’t use the
+many‐to‐many notation. You do not have to distinguish between one‐to‐one‐or‐many
+and one‐to‐zero‐or‐many in your relationships. (8 points)
+e. Indicate the cardinality of the relationship: many‐many, many‐one or one‐one. Use
+crows‐foot notation; if you use another notation, define it. You do not have to
+indicate the data type. (6 points)
+7
+
+--- Page 8 ---
+(DRAW YOUR DATA MODEL HERE)
+8
+
+--- Page 9 ---
+4. What type of UML diagram would you use to represent the following aspects of the new
+system? In one phrase, explain why. (4 points) (Suggested time: 5 minutes)
+a. The activities that make up the system and the connections between them: (1 point)
+b. The status of an activity: in process, completed, delayed, etc. (1 point)
+c. The people/roles, physical equipment, and constructed elements in the project (1 point)
+d. The various ways in which a worker, a project, and a schedule interact: (1 point)
+9
+
+--- Page 10 ---
+PART III: DATABASE AND SQL (30 POINTS; SUGGESTED TIME: 25 MINUTES)
+Suppose that you have implemented the database described in Part II: the tables, attributes, and
+relationships in the database correspond exactly to the model that you have defined. You are now asked
+to write the following SQL queries against your database. Briefly define any variable you use that isn’t
+obvious. Assume that the dates are integers; the earliest date is day 1, and the latest date is some
+higher integer (e.g., day 120). You don’t need to use SQL date arithmetic or date functions; just use
+standard addition or subtraction.
+5. Determine the duration of a project with the name ‘Gilman Bridge Replacement’. The
+duration of the project is determined by the duration of its activities. (8 points)
+6. List the name of the supervisor of the Gilman Bridge Replacement project. Assume there is
+only one supervisor. Recall that ‘supervisor’ is a worker type. (8 points)
+7. Determine the total number of projects an employee has supervised. (8 points)
+8. Number of projects in each state. Each state should not be listed more than once (6 points)
+10
+
+--- Page 11 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+1.264J / ESD.264J Database, Internet, and Systems Integration Technologies
+Fall 2013
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

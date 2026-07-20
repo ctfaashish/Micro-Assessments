@@ -1,0 +1,142 @@
+--- Page 1 ---
+CSCE 3560/5562 – Cloud Security
+Spring 2024
+Homework 3
+Question 1(30 pts):
+Previously westudiesside-channel attacks.Let’s study onecoverchannelattackinfurther
+details.For thisquestion,you willcheck oneacademic paperandstudy it. -
+(10 pts)What isthecitation;authors,papertitle, whereand whenitwaspublished. -
+Yan, M.,Shalabi, Y.,& Torrellas, J.2016.ReplayConfusion:Detecting Cache-based
+Covert Channel AttacksUsingRecord andReplay. Universityof Illinois,
+Urbana-Champaign. Retrievedfrom http://iacoma.cs.uiuc.edu
+(20 pts)Howdoesthecovert-channel work?
+o What istheirarchitectureandenvironment?
+Inthe article they useapps suchasbzip2, h264ref, gobmk, sjengand Steam alongsidethe
+covert channel attack.
+o Howdothey createthe covert-channel?
+TheCovert attack worksby exploiting “missrates” withregardsto CPUcache. Modern
+devicesuse cachesto store frequently accesseddata.A cachemiss occurswhen theCPU
+needs datathat isnotcurrentlyin the cache.By observingand measuringthemissrates
+overaperiod of time, an attackercanmapout patternsandidentify whenthesemiss
+rates happen.After thisisfigured out,theattacker cancraftmalware that usesthesemiss
+rates to send malicious data acrossaprocess without directcommunication,leading tothe
+Covert channel exploit.
+o Howgeneralizedis it(i.e.,can weapplyit for all theenvironmentsandwhy?)
+Theexploit relies heavilyon precisecontrol overthe timingof thesemissrateandtotal
+workload takingplace.Thisleads theexploit to bemore specificand uniquethan for
+general use.
+o What istheadvantage anddisadvantage for it?
+Advantage: This methodis particularlystealthy,requiring additionalhardware to
+detectthis method.
+
+--- Page 2 ---
+Disadvantage: This exploit ishighly specific causingit to notbefor generaluse.
+
+--- Page 3 ---
+Question 3(20 pts):
+In theclass, wediscussed XaaS.Provide 4examplesandexplainhow they work(showthe
+servicesand providers).
+VGaaS (ViewGamesas a Service):Users canaccessdevicestoplay gamesthat their
+local devicemay not beable tohandle. Suchas Macusers wanting toplay agame
+only available onWindows. They worklike other cloud services,you subscribe tothe
+serviceand gain access to alibrary ofgaming content. Apopular provideris Google
+Stadia.
+DBaaS(Databaseas aService):This allows companies tooutsource theirDBto the
+cloud. Usually thissoftwareis customized toqueryand personalizethedata. Youjust
+setthe cloud device IP/domain name,alongside somekeyin environmentalvariables
+to point yourlogsto the DB. Apopular provideris OracleDatabase orMSSQLas a
+service.
+AssS(Authentication asaService):AaaS providesitsusers withtheability to
+implement access controlsthrough the cloud. Thisgives the userthe ability to
+configure and customizetheirauthentication process. Apopular providerI haveused
+myself isDuo Security.
+STaaS(Storage asaService): Thisallows companiestooutsource the storageoftheir
+data to areliableSTaaSprovider.They alsoprovide freeinternal resourcesto interact
+with what yousave.A popularprovideris HPEGreenlake.
+Kinsta. (n.d.). XaaS: Everything asaService.RetrievedApril 30,2024,from
+https://kinsta.com/blog/xaas/
+
+--- Page 4 ---
+Question 4(15 pts):
+Xenisone of thecommonly usedhypervisors.What makesit special?What arethe advantages
+of Xencomparedto otherhypervisors?
+There areafewthings that makeXen special,oneis itis wellknown for having a
+smaller sizecoderepositoryand thedevelopershaveput afocus on creating secure code.
+Aswellit isoften referredto asthe“pioneer” ofparavirtualization, still offeringsomeof
+the best paravirtualizationservices to thisday. Also,it iscommonly used,thereis good
+documentation to setupaXen hypervisor but thebest onesare quiteold. Assomeone
+who’s setup XenVM’s myselfit'snot toodifficult at allthough.
+Xen's largestadvantagein my eyesis itslightweight,the clusterability and
+security.Asdiscussedbefore, Xen pridesitselfon being lightweightmakingit suitable for
+large environments.This alongsideitsclustering capability boosts itsusein large
+environments, howevera regularuser maynotbeable totake advantageofthe clustering
+capabilities. Finally,Xen providesuniqueand strongisolation betweenguest andhosts,
+alongside secure coding practices,that makes itsecurity notablecompared toother
+hypervisors.
+
+--- Page 5 ---
+Question 5(10 pts):
+Explain OpenStackservice glanceandhow itwouldwork. Explaineach componentindetail.
+OpenStack glanceactsasacentralstorage andmanagement systemfor Imagesin cloud
+environments. Itisacentral repositorythat canstore,organize, retrieveand edit said
+images.
+Thecomponents are listedbelow:
+1. ImageRepository: Storesvirtual machine imagesin various fileformats.
+2. ImageMetadata: Providesdescriptive/metadata relatedinfoof images.
+3. ImageFormats: Supports multipleformatslike QCOW2,VMDK,RAW, and
+Docker.
+4. LifecycleManagement:Manages imagesthrough commands oraconsole.
+5. ImageSharing: Facilitates imagesharingacross acloud environment.
+6. Caching and Optimization:Improvesperformance through cachingand
+optimization.
+7. Authentication and AccessControl: Ensuressecure accessto imagesbasedon user
+permissions, canset theory ofleastprivilege, etc.
+OpenStack. (n.d.). Glance documentation.RetrievedApril30,2024,from
+https://docs.openstack.org/glance/latest/
+
+--- Page 6 ---
+Question 6(30 pts):
+Explain live migrationprocess by:
+a. Howdoesit work?
+LiveMigration isthe processof migratingavirtual machine toanew physical device
+without interrupting itsoperation.
+b.Howcanwehaveminimum down-timewhenweareapplying live migration?
+Tostartmimimizing downtime.the hypervisor willensurethat the deviceit is
+attempting to transfer too hastheproperresourcesto intakethe VM.
+Next,the hypervisor willtransfer and copy thestate ofthe VM,suchas
+memory,satethe CPUin. It doesthis in aconcurrent processto ensurethe matching
+stateistransferred.
+Finally the Hypervisorhasto redirectnetworktrafficto thenew VMuntil the
+new routesare setin stone.
+c. Whatwouldhappen ifthe destination hostfails beforelive migration iscompleted?
+Itdepends on whichhost fails.Inthescenariothe device weareattempting totransfer to
+fails, hypervisorswill detectthis and keeptheVMrunning onthe samedevice. However
+lets sayboth transfersfail, thereis ariskof dataloss dependingon which statethe
+migration isin.
+Wikipedia contributors. (n.d.).Livemigration. In Wikipedia. RetrievedApril30,2024,
+from https://en.wikipedia.org/wiki/Live_migration
+
+--- Page 7 ---
+Question 7(15 pts):
+What arethecomponentsfor both(a)facilities and(b) hardware resources?Show your
+references.
+A.) Some facilitiesin acloud environmentinclude:
+1. Thephysical building
+2. Powerto said building
+3. Physical securitymeasures
+4. ACand HVAC
+5. Hot, warmand coldbackupsites
+B.)Some Hardware resources in acloud environmentinclude:
+1. Servers
+2. Networking equipment(routers, switches,etc.)
+3. UPS (uninterruptiblepowersupplies)
+4. Custom ornot commonly usedcablesto transfer largeamounts of data
+Google Cloud. (n.d.). Whatis cloud architecture?Retrieved from
+https://cloud.google.com/learn/what-is-cloud-architecture
+HeroVired.(n.d.). Cloud ComputingArchitectures. Retrievedfrom
+https://herovired.com/learning-hub/blogs/cloud-computing-architectures/
+Red Hat.(n.d.). What iscloud infrastructure?Retrievedfrom
+https://www.redhat.com/en/topics/cloud-computing/what-is-cloud-infrastructure#
+components
+NOTE:Pleasedonot forgettociteyour works.Most of thesequestionswillrequire some
+reading, hence,youwill needtociteyour references.Also,copy-paste willnot beaccepted!

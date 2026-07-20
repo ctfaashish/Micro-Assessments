@@ -1,0 +1,318 @@
+--- Page 1 ---
+CSCE 3530 – Introduction to Computer Networks
+Spring 2022
+Homework #3 Solutions
+1. List at least five application layer protocols (expand the abbreviations). What do these
+listed protocols do? (10 Points)
+FTP: The File Transfer Protocol (FTP) is a standard network protocol used for the transfer of
+computer files between a client and server on a computer network. FTP is built on a client-
+server model architecture using separate control and data connections between the client and
+the server.
+TFTP: TFTP, or Trivial File Transfer Protocol, is a simple high-level protocol for transferring
+data servers use to boot diskless workstations, X-terminals, and routers by using User Data
+Protocol (UDP). TFTP was primarily designed to read or write files by using a remote server.
+HTTP: The Hypertext Transfer Protocol (HTTP) is an application-level protocol for
+distributed, collaborative, hypermedia information systems. Basically, HTTP is a TCP/IP
+based communication protocol, that is used to deliver data (HTML files, image files, query
+results, etc.) on the World Wide Web.
+SMTP: An SMTP (Simple Mail Transfer Protocol) server is an application that's primary
+purpose is to send emails to the receiver.
+DNS: The Domain Name System (DNS) is a central part of the internet, providing a way to
+match names (a website you're seeking) to numbers (the address for the website). DNS syncs
+up domain names with IP addresses enabling humans to use memorable domain names while
+computers on the internet can use IP addresses.
+(For Each Application Layer: 2 Points; Total: (5*2) = 10 Points)
+2. Differentiate (at least three differences) between client-server and P2P architecture. (6
+Points)
+Client-Server P2P
+There is a specific server and specific Clients and server are not distinguished;
+clients connected to the server. each node act as client and server.
+The client request for service and server Each node can request for services and can
+responds with the service. also provide the services.
+It focuses on sharing the information. It focuses on connectivity
+Page 1 of 8
+
+--- Page 2 ---
+The data is stored in a centralized server. Each peer has its own data.
+When several clients request for the services As the services are provided by several
+simultaneously, a server can get servers (peers) distributed in the peer-to-
+bottlenecked. peer system, a server in not bottlenecked
+The client-server is expensive to implement. Peer-to-peer is less expensive to implement.
+(Each difference: 2 Points; Total: (3 * 2) = 6 Points)
+3. What is a socket? Can a socket be used to send and receive messages? How is the socket
+identified by the OS (Operating System)? (4 Points)
+Socket: A socket is one endpoint of a two-way communication link between two programs
+running on the network. A socket is bound to a port number so that the TCP layer can identify the
+application that data is destined to be sent to.
+Yes, a socket is the link between your application and the outside world, via which you may send
+and receive data. Sockets are the most basic kind of network communication, and practically all
+network applications will have to deal with them.
+An IP address and a port number are used to identify a socket. Well-known ports are used by
+servers that implement certain services (such as TELNET, FTP, and HTTP). Each of the operations
+and services that will be supplied will be identified by a port number.
+(Definition: 2 Points; Can the socket be used? 1 Point; How it is identified?: 1 Points;
+Total: 4 Points)
+4. Differentiate (at least four differences) between TCP and UDP services. (8 Points)
+TCP UDP
+Reliability: TCP is a connection-oriented No Reliability: UDP is connectionless
+protocol. When a file or message is sent, it protocol. When you a send a data or
+will get delivered for sure unless there is no message, you don’t know if it’ll get there,
+fail in connection. it could get lost on the way.
+Flow control: TCP does not overwhelm the No Flow Control:
+receiver UDP does not have flow control
+Congestion control: TCP would throttle the No Congestion Control:
+data when the network is overloaded. UDP does not have congestion control
+Speed: Slower than UDP Faster than TCP
+Page 2 of 8
+
+--- Page 3 ---
+Examples: World Wide Web (Apache TCP Examples: Domain Name System (DNS
+port 80), e-mail (SMTP TCP port 25 Postfix UDP port 53), streaming media
+MTA), File Transfer Protocol (FTP port 21) applications such as IPTV or movies,
+and Secure Shell (Open SSH port 22) etc. Voice over IP (VoIP), Trivial File Transfer
+Protocol (TFTP) and online multiplayer
+games etc.
+(Each difference: 2 Points; Total: (4*2) = 8 Points)
+5. Differentiate (at least two differences) between persistent and non-persistent HTTP
+connection. (4 Points)
+Persistent HTTP Non-persistent HTTP
+We can send multiple objects over single At most one object can be sent over one TCP
+TCP connection between the source and connection. And then after sending the object
+destination. the connection is closed.
+It does not need constant connection setup. Each object you send requires the
+Connection can be used by several objects establishment of a new connection.
+A persistent connection takes as small as The non-persistent connection takes the
+one RTT for all the objects. connection time of 2RTT per object.
+(Each difference 2 Points: Total: (2*2) = 4 Points)
+6. The nearest Google server from UNT DP is in Houston, TX. The copper cable connection
+between UNT DP and the Google server is 500 KM long and the propagation speed through
+the copper cable is 2.5 x 108 m/s. The transmit rate and receive rate is 10 Mbps. Now consider
+the HTTP protocol and suppose that initial downloaded page from Google server is 5,000
+bits in size, and that the initial downloaded page contains 4 referenced objects from the
+Google server. Each referenced object is 10,000 bits long. Assume packets containing only
+control signals (ACK or handshaking) are 200 bits long. Assume that N parallel connections
+each get 1/N of the link bandwidth. Answer the below questions by clearly showing the setup
+equation and showing all the steps to calculate the total time required.
+Given,
+Distance (d) = 500 km
+Propagation Speed (s) = 2.5 x 108 m/s
+Transmission rate (R) = 10 Mbps
+Initial download page length (L ) = 5,000 bits
+L
+No of referenced objects (n) = 4
+Length of each referenced object (L ) = 10,000 bits
+o
+Length of packets containing only control signals (L ) =200 bits
+c
+Page 3 of 8
+
+--- Page 4 ---
+3
+𝐿𝐿 𝐶𝐶 200 𝑑𝑑 500×10
+= 6 = 0.00002 𝑠𝑠 = 0.02 𝑚𝑚𝑠𝑠 ; = 8 = 0.002 𝑠𝑠 = 2 𝑚𝑚𝑠𝑠
+𝑅𝑅 10×10 𝑠𝑠 2.5×10
+𝐿𝐿𝑜𝑜 10,000 𝐿𝐿𝐿𝐿 5,000
+= 6 = 0.001 𝑠𝑠 = 1 𝑚𝑚𝑠𝑠 ; = 6 = 0.0005 𝑠𝑠 = 0.5 𝑚𝑚𝑠𝑠
+𝑅𝑅 10×10 𝑅𝑅 10×10
+a. What will be the total time required to download the complete page using nonpersistent
+HTTP connection? (8 Points)
+RTT = (L /R) + (d/s) + (L /R) + (d/s)
+h c c
+= 0.02 + 2 + 0.02 + 2 = 4.04 ms
+RTT = (L /R) + (d/s) + (L /R) + (d/s)
+L c L
+= 0.02 + 2 + 0.5 + 2 = 4.52 ms
+RTT = (L /R) + (d/s) + (L /R) + (d/s)
+O c o
+= 0.02 + 2 + 1 + 2 = 5.02 ms
+Since there are 4 objects the total time using non-persistent HTTP
+Total time = RTT + RTT + 4(RTT + RTT )
+h L h O
+= 4.04 + 4.52 + 4*(4.04 + 5.02)
+= 44.8 ms
+(Setup equation: 2 Points; Steps: 5 Points; Final answer: 1 Point; Total: (2 + 5 + 1) = 8
+Points)
+b. What would be the total time required to download the complete page using persistent
+HTTP connection? (8 Points)
+RTT = (L /R) + (d/s) + (L /R) + (d/s)
+h c c
+= 0.02 + 2 + 0.02 + 2 = 4.04 ms
+RTT = (L /R) + (d/s) + (L /R) + (d/s)
+L c L
+= 0.02 + 2 + 0.5 + 2 = 4.52 ms
+RTT = (L /R) + (d/s) + (L /R) + (d/s)
+O c o
+= 0.02 + 2 + 1 + 2 = 5.02 ms
+Since there are 4 objects the total time using persistent HTTP
+Total time = RTT + RTT + 4* RTT
+h L O
+= 4.04 + 4.52 + 4*5.02
+= 28.64 ms
+(Setup equation: 2 Points; Steps: 5 Points; Final answer: 1 Point; Total: (2 + 5 + 1) = 8
+Points)
+Page 4 of 8
+
+--- Page 5 ---
+c. What would be the total time required to download the complete page using four (4)
+parallel instances of non-persistent HTTP connection? (8 Points)
+RTT = (L /R) + (d/s) + (L /R) + (d/s)
+h c c
+= 0.02 + 2 + 0.02 + 2 = 4.04 ms
+RTT = (L /R) + (d/s) + (L /R) + (d/s)
+L c L
+= 0.02 + 2 + 0.5 + 2 = 4.52 ms
+RTTph = (4L /R) + (d/s) + (4L /R) + (d/s)
+c c
+= 0.08 + 2 + 0.08 + 2 = 4.16 ms
+RTTpo = (4L /R) + (d/s) + (4L /R) + (d/s)
+c o
+= 0.08 + 2 + 4 + 2 = 8.08 ms
+Since there are 4 objects, the system will try to download 4 objects at a time so a total of 1 try
+for objects.
+Total time using 4 parallel instances = RTT
+h
++ RTT
+L
++ RTTph + RTTpo
+= 4.04 + 4.52 + 4.16 + 8.08
+= 20.8 ms
+(Setup equation: 2 Points; Steps: 5 Points; Final answer: 1 Point; Total: (2 + 5 + 1) = 8
+Points)
+d. What would be the total time required to download the complete page using two (2)
+parallel instances of non-persistent HTTP connection? (8 Points)
+RTT = (L /R) + (d/s) + (L /R) + (d/s)
+h c c
+= 0.02 + 2 + 0.02 + 2 = 4.04 ms
+RTT = (L /R) + (d/s) + (L /R) + (d/s)
+L c L
+= 0.02 + 2 + 0.5 + 2 = 4.52 ms
+RTTph = (2L /R) + (d/s) + (2L /R) + (d/s)
+c c
+= 0.04 + 2 + 0.04 + 2 = 4.08 ms
+RTTpo = (2L /R) + (d/s) + (2L /R) + (d/s)
+c o
+= 0.04 + 2 + 2 + 2 = 6.04 ms
+Since there are 4 objects, the system will try to download 2 objects at a time and 2 more in the
+next turn so a total of 2 tries for objects.
+Total time using 2 parallel instances = RTT
+h
++ RTT
+L
++ 2(RTTph + RTTpo)
+= 4.04 + 4.52 + 2*(4.08 + 6.04)
+= 28.8 ms
+(Setup equation: 2 Points; Steps: 5 Points; Final answer: 1 Point; Total: (2 + 5 +
+1) = 8 Points)
+Page 5 of 8
+
+--- Page 6 ---
+e. Which is better (in terms of total time to download the page) non-persistent HTTP,
+persistent HTTP, four (4) parallel instances of non-persistent HTTP, or two (2) parallel
+instances of non-persistent HTTP connection? (1 Point)
+4 Parallel instances of non-persistent HTTP is better because the time required to download a
+complete page is less than that of the non-persistent HTTP, persistent HTTP and two (2) parallel
+instances of non-persistent HTTP connection.
+(Correct answer: 1 Point)
+7. Describe GET, POST, HEAD, PUT and DELETE methods of the HTTP protocol. (10
+Points)
+GET: GET is used to request data from a specified resource. It is one of the most common HTTP
+methods. It is used to obtain data from a server using a certain URI. Requests made using the GET
+method should just obtain data and have no other impact on the data.
+POST: Using HTML forms, a POST request is used to deliver data to the server, such as customer
+information, file uploads, and so on. The server determines the POST method's real function,
+which is normally decided by the Request-URI. The POST method's operation may or may not
+result in a resource that can be identified by a URI.
+HEAD: The same as GET method, but just the status line and header portion are sent. A message-
+body MUST NOT be returned by the server in the response. To put it another way, if GET /users
+provides a list of users, HEAD /users will make the identical request but will not return the list.
+HEAD requests can be used to see what a GET request will return before making one - for example,
+before downloading a big file or response body.
+PUT: All existing representations of the target resource are replaced with the uploaded content.
+PUT requests vary from POST requests in that they are idempotent. That is, if you issue the same
+PUT request numerous times, the outcome will always be the same. Calling a POST request
+numerous time, on the other hand, has the unintended consequence of generating the same resource
+several times.
+DELETE: The DELETE method is used to ask the server to delete a file from a URL defined
+location.
+(Each method: 2 Points; Total: (5*2) = 10 Points)
+8. What does HTTP response codes 200, 301, 304, 501, and 503 tell? (5 Points)
+• 200 OK – Standard response for successful HTTP requests.
+• 301 Moved Permanently - The URL of the requested resource has been changed
+permanently. The new URL is given in the response.
+Page 6 of 8
+
+--- Page 7 ---
+• 304 Not Modified - This is used for caching purposes. It tells the client that the response
+has not been modified, so the client can continue to use the same cached version of the
+response.
+• 501 Not Implemented - The request method is not supported by the server and cannot be
+handled. The only methods that servers are required to support (and therefore that must not
+return this code) are GET and HEAD.
+• 503 Service unavailable - The server error response code indicates that the server is unable
+to process the request. Common causes are a server that is down for maintenance or that is
+overloaded.
+(Each response code details: 1 Point; Total: (5*1) = 5 Points)
+9. What are HTTP cookies? What are the uses (at least three uses) of HTTP cookies?
+Describe how cookies are used to keep the state of the users with an example. (10 Points)
+Cookies are small files that store the state of the user and are stored on a user's computer. They
+are designed to hold a modest amount of data specific to a particular client and website and can
+be accessed either by the web server or the client computer. This allows the server to deliver a
+page tailored to a particular user, or the page itself can contain some script which is aware of
+the data in the cookie and so is able to carry information from one visit to the website (or related
+site) to the next.
+Steps how cookies save the state of the users:
+1. When a person or user visits a website or an ecommerce website for the first time it sends an
+HTTP request message to the website server and creates a unique ID like 1678 in the backend
+database for the user.
+2. Then the HTTP response is sent back to the user as ‘set-cookie:1678’ header included.
+3. Again when the user visits the same website, it retrieves the unique cookie ID that was created
+earlier.
+4. For every HTTP request made by the browser which includes cookie ID:1678 header it is
+automatically updated in the server based on the requests.
+5. With the help of this the user will be able to manage his shopping carts, authorizations,
+recommendations.
+For example, when user visit amazon.com, the first thing the browser asks is to whether to save
+the cookies or not. If we click to save cookies, then from the next visit onwards the login
+information is automatically filled in in the login area and it saves all the products that are added
+in the shopping carts even after closing the browser and logging in again.
+Uses:
+- Session management: allow websites to recognize users and remember their unique login
+information and interests, such as sports news.
+Page 7 of 8
+
+--- Page 8 ---
+- Tracking: Cookies are used by shopping sites to monitor what things users have previously
+viewed, allowing them to propose additional items they might like and store items in
+shopping carts while they shop.
+- Personalization: The most common method cookies are used to tailor your experiences is
+through customized advertising. You may only see things or areas of a website, and cookies
+utilize this information to help create targeted advertisements that you would like.
+(Definition: 2 Points; Each Use: 1 Point, Description: 5 Points; Total: (2 + (2*3) + 5) =
+10 Points)
+10. Describe web caching using proxy servers. Describe how does it improve access link
+utilization? Describe how does the proxy server update the cached web pages to the latest
+version? (10 Points)
+Web caching is using of web proxy server (Web cache) that satisfies the HTTP requests on
+behalf of origin Web server. It keeps copies of recently requested objects in its own disk
+storage. When the client requests a page the proxy server checks the cache to find if a page is
+cached and if it is cached, it returns the cached page otherwise, it downloads the page from the
+original web server and caches the page and then returns it to the requesting client(s).
+It improves access link utilization because the frequently accessed documents are fetched from
+a nearby proxy cache instead of remote data servers; therefore, the transmission delay is
+minimized. Caching can reduce the network traffic, so those documents that are not cached
+can also be retrieved comparatively faster than without caching due to less congestion along
+the path and with less workload on the server.
+How does the proxy server update the cached web pages to the latest version: When a
+page is requested by the client, the proxy server checks to see if the page is available in its
+cache? If the page is not available in cache, it fetches the page and caches it and then returns
+the page to the requesting client. If the page is available in the cache, it then checks if the page
+is current or not. The stored page has a requested date in its header. This date is then used to
+send a conditional GET request with the If-Modified-Since header to the original web server.
+The If-Modified-Since header will have the date when the page was initially requested. This
+conditional GET with the If-Modified-Since header is sent to the original web server and if the
+page was really modified, the original web server will send the modified page. If the page is
+not modified since the initial requested date, then a 304 Not Modified is sent back to the proxy
+server which then sends the cached page to the requesting client(s).
+(Description of web caching: 2 Points; Explanation of access link utilization: 4 Points;
+Explanation of updating the cached web pages: 4 Points; Total: (2 + 4 + 4) = 10 Points)
+Page 8 of 8

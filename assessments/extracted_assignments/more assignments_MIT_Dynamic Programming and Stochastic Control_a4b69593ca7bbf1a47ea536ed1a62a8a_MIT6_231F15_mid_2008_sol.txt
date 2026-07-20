@@ -1,0 +1,279 @@
+--- Page 1 ---
+6.231 Dynamic Programming
+Midterm, Fall 2008
+Instructions
+The midterm comprises three problems. Problem 1 is worth 60 points, problem 2 is worth 40 points, and
+problem 3 is worth 40 points. Your grade G∈[0, 100] is given by the following formula:
+G=60·f +40·min[1, f +f ],
+1 2 3
+where f ∈[0, 1], i=1,2,3, is the fraction of problem i that you solved correctly.
+i
+Notice that if you solve correctly both problems 2 and 3, but you do not solve problem 1, your grade will
+only be G = 40. Thus, try to solve problem 1 first, then choose between problems 2 and 3 (whichever you
+prefer), and if you still have time, try to do the remaining problem.
+Credit is given only for clear logic and careful reasoning.
+GOOD LUCK!
+1
+
+--- Page 2 ---
+Problem 1 (Infinite Horizon Problem, 60 points)
+An engineer has invented a better mouse trap and is interested in selling it for the right price. At the
+beginning of each period, he receives a sale offer that takes one of the values s ,...,s with corresponding
+1 n
+probabilities p ,...,p , independently of prior offers. If he accepts the offer he retires from engineering. If
+1 n
+he refuses the offer, he may accept subsequent offers but he also runs the risk that a competitor will invent
+an even better mouse trap, rendering his own unsaleable; this happens with probability β >0 at each time
+period, independently of earlier time periods. While he is overtaken by the competitor, at each time period,
+he may choose to retire from engineering, or he may choose to invest an amount v ≥ 0, in which case he
+has a probability γ to improve his mouse trap, overtake his competitor, and start receiving offers as earlier.
+The problem is to determine the engineer’s strategy to maximize his discounted expected payoff (minus
+investment cost), assuming a discount factor α<1.
+(a) [15 points] Formulate the problem as an infinite horizon discounted cost problem and write the corre-
+sponding Bellman’s equation.
+(b) [15 points] Characterize as best as you can an optimal policy.
+(c) [10 points] Describe as best as you can how policy iteration would work for this problem. What kind of
+initial policy would lead to an efficient policy iteration algorithm?
+(d) [10 points] Assume that there is no discount factor. Does the problem make sense as an average cost per
+stage problem?
+(e) [10 points] Assume that there is no discount factor and that the investment cost v is equal to 0. Does the
+problem make sense as a stochastic shortest path problem, and what is then the optimal policy?
+Solution to Problem 1
+(a)Letthesetofpossibleoffersbe{x |i=1,...,n}∪{t,r},wherebeinginastatehasthefollowingmeaning:
+i
+x : receiving offer s ; t: overtaken; r: retired.
+i i
+Define the control space by {A(accept offer),I(invest),R(retire),Rej(reject)}. The state r is absorbing, and
+for the other states, the set of admissible controls is
+U(x )={A,Rej}, U(t)={I,R}.
+i
+2
+
+--- Page 3 ---
+Definethecorrespondingtransitionprobabilities,andper-stagecostsasdescribedintheproblem. Bellman’s
+equation for α<1 is
+  
+n
+X
+J∗(x
+i
+)=maxs
+i
+,α(1−β) p
+j
+J∗(x
+j
+)+βJ∗(t), (1)
+j=1
+  
+n
+X
+J∗(t)=max0,−v+αγ p
+j
+J∗(x
+j
+)+(1−γ)J∗(t). (2)
+j=1
+(b) From Eq. (1), we see that since the second term in the minimization of the right-hand side does not
+depend on the current state x , the optimal policy is a threshold policy at states x , i = 1,...,n. A single
+i i
+threshold is needed since J∗(s) is clearly monotonically nondecreasing with s. From Eq. (2), we see that
+once the inventor has been overtaken, it is either optimal to retire immediately, or to keep investing until
+his mouse trap is improved.
+(c) Consider policy iteration. If the current policy µ is a threshold policy, the cost J (s) is monotonically
+µ
+nondecreasing with s, so the cost of the improved policy is also monotonically nondecreasing with s. Hence,
+starting with a nonoptimal threshold policy, the method will generate a new and improved policy (for at
+least one offer). It follows that starting with a threshold policy, after at most n iterations, policy iteration
+will terminate with an optimal threshold policy.
+(d) Even without discounting, all policies have finite total cost, except the one that never sells and always
+invests, which incurs infinite total cost. Thus, we see that under the average cost criterion, all of the finite
+total cost policies will be optimal. Thus, the average cost criterion does not discriminate enough between
+different policies and makes no sense.
+(e) Since there is no discounting and v = 0, there is no penalty for waiting as long as necessary until the
+maximum possible offer is received, which is going to happen with probability 1. So a stochastic shortest
+path formulation makes limited sense, since it excludes from consideration all offers except the maximum
+possible, no matter how unlikely this maximum offer is.
+Problem 2 (Imperfect State Information Problem, 40 points)
+A machine tosses a coin N times, but each time may switch the probability of heads between two possible
+valueshandh. Theswitchoccurswithprobabilityq ateachtime,independentlyoftheswitchesinprevious
+times. A gambler may bet on the outcome of each coin toss knowing h, h, and q, the outcomes of previous
+tosses, and the probability r that h is used at the initial toss. If the gambler bets on a coin toss, he wins $2
+if a head occurs, while he loses $1 if a tail occurs. The gambler may also (permanently) stop betting prior
+to any coin toss.
+3
+
+--- Page 4 ---
+(a) [20 points] Define
+(cid:26)
+r for k =0,
+p =
+k Prob{Coin with a probability of heads h is used at toss k|z ,...,z } for k =1,...,N −1,
+k−1 0
+where z ,...,z are the preceding observed tosses. Write a equation for the evolution of p as the coin
+k−1 0 k
+tosses are observed.
+(b) [10 points] Use the equation of part (a) to write a DP algorithm to find the gambler’s optimal policy for
+betting or stopping to bet prior to any coin toss. (You will receive credit if you do this part correctly,
+assuming a generic functional form of this equation.)
+(c) [10 points] Repeat part (b) for the variant of the problem where the gambler may resume play at any
+time after he stops betting, and he keeps observing the coin tosses also when he is not betting.
+Solution to Problem 2
+(a) The machine uses two coins, one with a probability of heads equal to h, and the the other one with a
+probability of heads equal to h. We call the first coin a type h coin, while we call the second coin a type h
+coin.
+Let f (z), z ∈ {head,tail}, be the probability mass function for the type h coin (clearly, f (head) = h).
+h h
+Similarly,letf (z),z ∈{head,tail},betheprobabilitymassfunctionforthetypehcoin(clearly,f (head)=
+h h
+h).
+We are faced with an imperfect state information problem where the state at stage k, that we call x , is
+k
+the type of coin that the machine uses at stage k. We write x =h if at stage k the machine uses a type h
+k
+coin, and similarly we write x =h if at stage k the machine uses a type h coin.
+k
+The conditional probability p is generated recursively according to the following equation (with p =r):
+k 0
+p =
+k+1
+=Pr{x =h|z ,z ,...,z }
+k+1 k k−1 0
+Pr{x =h,z |z ,...,z }
+= k+1 k k−1 0
+Pr{z |z ,...,z }
+k k−1 0
+Pr{z |x =h,z ,...,z }Pr{x =h|z ,...,z }
+= k k+1 k−1 0 k+1 k−1 0
+Pr{z |x =h,z ,...,z }Pr{x =h|z ,...,z }+Pr{z |x =h,z ,...,z }Pr{x =h|z ,...,z }
+k k k−1 0 k k−1 0 k k k−1 0 k k−1 0
+!
+Pr{z |x =h,z ,...,z } Pr{x =h|x =h,z ,...,z }p +Pr{x =h|x =h,z ,...,z }(1−p )
+k k+1 k−1 0 k+1 k k−1 0 k k+1 k k−1 0 k
+=
+f (z )p +f (z )(1−p )
+h k k h k k
+4
+
+--- Page 5 ---
+" ! !# !
+f (z ) (1−q)pk +f (z ) q(1−pk) (1−q)p +q(1−p )
+h k (1−q)pk+q(1−pk) h k (1−q)pk+q(1−pk) k k
+=
+f (z )p +f (z )(1−p )
+h k k h k k
+.
+=φ(p ,z ),
+k k
+since
+Pr{z |x =h,z ,...,z }=
+k k+1 k−1 0
+=Pr{z |x =h,x =h,z ,...,z }Pr{x =h|x =h,z ,...,z }+
+k k+1 k k−1 0 k k+1 k−1 0
++Pr{z |x =h,x =h,z ,...,z }Pr{x =h|x =h,z ,...,z }=
+k k+1 k k−1 0 k k+1 k−1 0
+!
+Pr{x =h|x =h,z ,...,z }p
+=f (z ) k+1 k k−1 0 k +
+h k
+Pr{x =h|x =h,z ,...,z }p +Pr{x =h|x =h,z ,...,z }(1−p )
+k+1 k k−1 0 k k+1 k k−1 0 k
+!
+Pr{x =h|x =h,z ,...,z }(1−p )
++f (z ) k+1 k k−1 0 k =
+h k Pr{x =h|x =h,z ,...,z }p +Pr{x =h|x =h,z ,...,z }(1−p )
+k+1 k k−1 0 k k+1 k k−1 0 k
+! !
+(1−q)p q(1−p )
+=f (z ) k +f (z ) k
+h k (1−q)p +q(1−p ) h k (1−q)p +q(1−p )
+k k k k
+(b) The DP algorithm is
+" (cid:26) (cid:27)#
+(cid:0) (cid:1)
+J (p )=max 0 , 2·(p h+(1−p )h)−1·(p (1−h)+(1−p )(1−h))+E J φ (p ,z ) , k =0,...,N−1,
+k k
+|{z}
+k k k k zk k+1 k k k
+stop
+with J (p )≡0.
+N N
+(c) In this case we have for k =0,...,N −1
+" (cid:26) (cid:27) (cid:26) (cid:27)#
+(cid:0) (cid:1) (cid:0) (cid:1)
+J (p )=max 0+E J φ (p ,z ) , 2·(p h+(1−p )h)−1·(p (1−h)+(1−p )(1−h))+E J φ (p ,z ) ,
+k k zk k+1 k k k k k k k zk k+1 k k k
+| {z }
+donotplay
+with J (p )≡0.
+N N
+Thus, we do not play if
+0>2·(p h+(1−p )h)−1·(p (1−h)+(1−p )(1−h)),
+k k k k
+that is, assuming without loss of generality that h>h, we do not play if
+1−3h
+p < .
+k
+3(h−h)
+Problem 3 (Optimal Stopping Problem, 40 points)
+5
+
+--- Page 6 ---
+A driver is looking for parking on the way to his destination. Each parking place is free with probability p
+independently of whether other parking places are free or not. The driver cannot observe whether a parking
+place is free until he reaches it. If he parks k places from his destination, he incurs a cost k. If he reaches
+the destination without having parked the cost is C. The driver wishes to find an optimal parking policy.
+(a) [20 points] Formulate the problem as a DP problem, clearly identifying, states, controls, transition prob-
+abilities and costs.
+(b) [20 points] Write the DP algorithm and show that it can be represented by the sequence {C } generated
+k
+as follows
+C =pmin[k,C ]+qC , k =1,2,...,
+k k−1 k−1
+where C =C and q =1−p. Characterize as best as you can the optimal policy.
+0
+Solution to Problem 3
+(a) Let the state x ∈ {T,T¯} where T represents the driver having parked before reaching the kth spot.
+k
+Let the control at each parking spot u ∈ {P,P¯} where P represents the choice to park in the kth spot.
+k
+Let the disturbance w equal 1 if the kth spot is free; otherwise it equals 0. Clearly, we have the control
+k
+constraint that u =P¯, if x =T or w =0. The cost associated with parking in the kth spot is:
+k k k
+g (T¯,P,1)=k
+k
+If the driver has not parked upon reaching his destination, he incurs a cost g (T¯)=C. All other costs are
+N
+zero. The system evolves according to:
+(cid:26)
+T, if x =T or u =P
+x = k k
+k+1 T¯, otherwise
+(b) Once the driver has parked, his remaining cost is zero. Thus, we can define C to be the expected
+k
+remaining cost, given that the driver has not parked before the kth spot. (Note that this is simply J (T¯)).
+k
+The DP algorithm starts with
+C =C,
+0
+and for k =1,2,..., generates C by
+k
+C k = min E (cid:8) g k (T¯,u k ,w k )+J k−1 (x k−1 ) (cid:9) =min h p (cid:2) k+J k−1 (T) (cid:3) + qJ k−1 (T¯) , J k−1 (T¯) i
+uk∈{P,P¯}wk | {z } | {z } | {z }
+park, free park, not free don0t park
+Since J (T)=0 for all k, we have
+k
+(cid:2) (cid:3) (cid:2) (cid:3)
+C =min pk+qC ,C =pmin k,C +qC .
+k k−1 k−1 k−1 k−1
+Thus the sequence {C } is the sequence generated by DP.
+k
+6
+
+--- Page 7 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.231 Dynamic Programming and Stochastic Control
+Fall 2015
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

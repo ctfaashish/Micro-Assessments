@@ -1,0 +1,85 @@
+--- Page 1 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.854J / 18.415J Advanced Algorithms
+�� Fall 2008
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.
+
+--- Page 2 ---
+18.415/8,854 Advanced Algorithms
+Problem Set 2
+1. The Min s-&Cut problem is the following:
++
+Given an undimted gmph G = (V,E), a weight firaction w : E W, and two
+vertices 8, t E V,find
+Min 8 -t -Cut(G)=min{w(d(S)) : S C I/,s f S,t$3).
+where &($) denote the cut
+(a) Argue (i jwt afew lines) that there is a polynomial-timealgorithmto find
+a Min s -t-cut based on linear programming (remember Problem Set 1).
+(Be careful; problem set 1 dehed the Min s-t-cut problem for a directed
+graph, while this problem considera undirected graphs.) [We will see a
+much more efficient algorithm for it (not based on Iinem programming)
+hter this semester,]
+We are going to develop an algorithm for a generdization of the problem:
+Given an uadimted graph G = (lr, E), w :E +R? , and an even cardinality
+subset of vertices T G V,find
+Mzn T -Odd -Cut(G)=min{w(5(S)) :S C V,ISnTI = od4
+That is, we want to optimize over all cuts that separate T into two parts of odd
+size (since IT1 is even, ISn TI odd implies that T \ SIodd as well).
+(b) Suppose that IT1 = 2,say T = {s,t). Wbat is the Min T-Odd-Cut then?
+(c) For a given T V,call a cut d(S) T-splitting if 0# SnT # T.
+Using a s-t-&-Cut algorithm, show how we can 6nd the minimum T-
+splitting cut in polynomial time. Can you do it in at most IT1cab to a
+Min s-t-Cut algorithm?
+
+--- Page 3 ---
+(d) For any lam sets C and D (0# C,D c V),prove the inequally that
+(o) Prove that if 6(C)is sminimum T-splitting cut then there is a minimum
+T-odd-cut 6(D)such that either D E C or C D.
+Hint: UE the inquality proved above.
+(f) Use the previous ohemtion to design a recursive algorithm which wlvm
+Min T-Odd-Cut in polynomial time. (Hint: pwibly think about mod-
+m g the graph.) HOWm any &(inO(.) notation) to s Mig &-Cut
+algorithm does your algorithm perfom?
+2. Usethe ellipacidmethod to solve the minimummight perfect matchingproblem
+(there: is a more &cient mmbinatorial dgoritlm for it, but here we will use
+the power of the ellipsoid dgorithm]:
+Given an undimtai gmph G = (V,E) and a weight finctiopa w :E -+ N, find a
+set of dgaM wvm-nganwy vertex ea;actiy once (a perfect matching) with the
+minim~srntotalweight.
+In order to formdab this problem w a linear program, we d&e the V-join
+polytope:
+P =catu{XM E {0, lIE :M is a perfect matching}
+where XM is the c.har%ter&tic vector of M ((xMx(,e)= 1 if e E M and 0 other-
+=
+wise). ?"he CQ~ h W uU W TIUCAis) d h d Aiai : E A, & >_ O,Ci& =
+1) (where t b m a t i o ni a finite:).
+(a) Argue that thevertices of P are the chractedsticvector~of perf& match-
+inp. Deduce that if we can optimize w,~, over P, we would fud a
+minimumweight perfect matching.
+(b) Suppose now that we can dwide (via linw pro^^ or same other
+way) whether Pi-74~:wTx 5 A) isemptyor not, for any dvenX (remember
+aJI wei&ts weare integers). Show that by calling an algorithm for this
+decision problem a polynomial number of fhna(in the &e of the input,
+i.e. IVI, IEl and log(w-) 1, we canfind tbe weight of the mhimm-weight
+perfect matchingp
+(c) With the same amumptiona as in the previous part, can you also fbd
+a minimtrm-weight perfect matching (not just its weight, but a h w hich
+edges are in it) in polynomid time? (There might be merd perfect match-
+ing having the m em inFmnm .weightTbut here you need to produce only
+one of them. &o, the algorithm does not need to be extremely efficient,
+just palgnomial.)
+
+--- Page 4 ---
+Due to Jack Edmonds, the perfect matching polytope can be described by the
+following inequalities:
+(d) Show that every vector in P satisfies the above inequalities.
+Take the other implicationfor granted (everyvector satisfying these inequalities
+is in P).
+(e) How many inequalities do we have in this complete description of P? Can
+we just use any polynomial-time algorithm for linear programming to o p
+t G e o ver P?
+(f) Show how we can use the ellipsoid method to decide if there exists a perfect
+matching of weight at most X in polynomial time. How would you select
+the initial ellipsoid? How would you tike care of the equality constraints
+in the description of P? When can you stop?

@@ -1,0 +1,214 @@
+--- Page 1 ---
+CSCE 3560/5562 – Cloud Security
+Spring 2024
+University of North Texas
+Lab 2
+Objective
+In this lab, we will use the existing virtual machine (VM) and on top we will use container technology.
+Background
+In this lab, we will be using Docker technology, which is one of the most popular container technologies
+today. Below, you will find some information on how it works and some terminology.
+Terminology
+• Images - The blueprints of applications which form the basis of containers. We will use different
+images in this lab. This is similar to the iso images we download.
+• Containers - Created from Docker images and run the actual application. This is similar to the
+VM we create using the iso images.
+• Docker Daemon – This is the background service to manage building, running and distributing
+Docker containers. The daemon is the process that runs in the operating system which clients talk
+to.
+• Docker Client - The command line tool that allows the user to interact with the daemon. Even
+though there exists GUI based tools, we will use command line client in this lab.
+• Docker Hub - A registry (collection) of Docker images publicly available but you can also create
+your own Docker registry. You can think of the registry as a directory of all available Docker
+images. If required, one can host their own Docker registries and can use them for pulling images.
+How does it work?
+When we have the Docker images, they are a stack of read-only application layers and when we create a
+container, Docker engine uses this read-only stack of layers and adds an additional read+write stack on
+top. This allows us to have the required software layers and on top the user data in a way that these user
+data (in read+write layer) will not affect the original files in the read-only layer; i.e., Docker image. This
+also means that when we create and modify things on the read+write layer, when we remove the
+container, these data will no longer exist.
+Where do we store the files then? Considering VirtualBox VMs as an example, we create and have the
+files under “~/VirtualBox VMs” as .vbox files for the definition of the VMs and .vdi files for the virtual
+harddrives. Also, we have a directory for the Snapshots. Similarly, for Dockers, we have the Volumes to
+store data as part of the host file system (“/var/lib/docker/volume”) managed by Docker.
+
+--- Page 2 ---
+Steps
+1. (60 pts) Create and configure the environment
+a. First update and upgrade the system and then install Docker:
+# update and upgrade
+$ sudo apt update
+$ sudo apt upgrade
+# install Docker
+$ sudo apt install docker.io
+# Let’s make some small configurations
+$ sudo groupadd docker
+$ sudo usermod -aG docker ${USER}
+# close the terminal and open a new one
+b. Test if it is running correctly
+$ docker run hello-world
+(provide a screenshot of the output)
+It should give some output as follows:
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+2db29710123e: Pull complete
+Digest: sha256:bfea6278a0a267fad2634554f4f0c6f31981eea41c553fdf5a83e95a41d40c38
+Status: Downloaded newer image for hello-world:latest
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+To generate this message, Docker took the following steps:
+1. The Docker client contacted the Docker daemon.
+2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+(amd64)
+3. The Docker daemon created a new container from that image which runs the
+executable that produces the output you are currently reading.
+4. The Docker daemon streamed that output to the Docker client, which sent it
+to your terminal.
+To try something more ambitious, you can run an Ubuntu container with:
+$ docker run -it ubuntu bash
+Share images, automate workflows, and more with a free Docker ID:
+https://hub.docker.com/
+For more examples and ideas, visit:
+https://docs.docker.com/get-started/
+What happened here? We used ‘docker run’ command to run ‘hello-world’ image. However, we don’t
+have the image itself (think it similar to the Ubuntu iso image that we downloaded to create the VM in the
+
+--- Page 3 ---
+first lab). So, first it downloaded the image. And, then? Then, it ran it. So, what would happen if we did
+the same thing in virtual machine: First we needed to create a virtual machine and install the operating
+system. Alternatively, we could download the whole virtual machine, which would be really large (more
+than 8GB most probably). And, then start the VM and use it. Instead, we downloaded an image and
+executed it directly.
+c. Check which images we have (provide a screenshot)
+$ docker images
+REPOSITORY TAG IMAGE ID CREATED SIZE
+hello-world latest feb5d9fea6a5 6 months ago 13.3kB
+d. Now, let’s run BusyBox inside our VM. BusyBox is a software suite that has many Unix utilities in a
+single executable. You can consider it as an extremely simplified version of a Unix based
+environment.
+$ docker pull busybox
+(Provide your screenshot)
+Using default tag: latest
+latest: Pulling from library/busybox
+554879bb3004: Pull complete
+Digest: sha256:caa382c432891547782ce7140fb3b7304613d3b0438834dce1cad68896ab110a
+Status: Downloaded newer image for busybox:latest
+docker.io/library/busybox:latest
+e. Now, let’s see our images. You should see similar to below (Provide your screenshot).
+$ docker images
+REPOSITORY TAG IMAGE ID CREATED SIZE
+busybox latest 2fb6fc2d97e1 4 weeks ago 1.24MB
+hello-world latest feb5d9fea6a5 6 months ago 13.3kB
+f. Time to have fun. Let’s run BusyBox:
+$ docker run busybox
+(Provide a screenshot of your command and output).
+Have you received any outputs? If not, don’t worry, this is normal. Actually, at the backend, it worked
+successfully. What happened is: When you call run, the Docker client finds the image and loads up the
+container and sends the command we provide to it to execute. So, when we run docker run
+busybox, we didn’t provide any command; meaning that, the container started, ran no commands, and
+then exited successfully. So, let’s go ahead and provide an input command.
+$ docker run busybox echo "hello from busybox"
+hello from busybox
+(Provide a screenshot of your command and output).
+
+--- Page 4 ---
+g. Are there any ways of running it in the background?
+docker run -it busybox sh
+/ # ls
+bin dev etc home proc root sys tmp usr var
+Running the run command with the -it flags attaches us to an interactive tty in the container. Now we
+can run as many commands in the container as we want. Take some time to run your favorite commands.
+Without exiting from the BusyBox, open a new terminal for the next step.
+h. We also need to see the existing containers and their status. For that in a new terminal, run the
+following command.
+$ docker ps
+What does it show? Explain your observations. Provide a screenshot.
+i. Let’s get a more detailed ps output:
+$ docker ps -a
+CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+a3ef344efcbc busybox "sh" About a minute ago Exited (0) 2 seconds ago crazy_swanson
+749cb5a1af19 busybox "sh" 2 minutes ago Exited (0) 2 minutes ago gifted_swartz
+55262fe0c996 busybox "sh" 2 minutes ago Exited (0) 2 minutes ago xenodochial_carver
+3ec4a26637cd busybox "echo 'hello from bu…" 3 minutes ago Exited (0) 3 minutes ago
+infallible_dijkstra
+c8a1dd1822a5 busybox "sh" 2 hours ago Exited (0) 2 hours ago
+determined_lichterman
+6d9a110b4a67 hello-world "/hello" 2 hours ago Exited (0) 2 hours ago gallant_stonebraker
+6bece46c7bf5 hello-world "/hello" 2 hours ago Exited (0) 2 hours ago brave_lehmann
+What does it show in your case? Explain your observations. Provide a screenshot.
+j. On the second terminal, let’s check a couple more things. Let’s see the resource utilization.
+$ docker stats
+CONTAINER ID NAME CPU % MEM USAGE / LIMIT MEM % NET I/O BLOCK I/O PIDS
+ec2366f04f2b exciting_blackwell 0.00% 928KiB / 971.5MiB 0.09% 65.4kB / 1.95MB 8.24MB / 8.19kB 2
+9c1971998816 romantic_burnell 0.00% 244KiB / 971.5MiB 0.02% 6.75kB / 0B 352kB / 0B 1
+We can even change the output format:
+$ docker stats --format "{{.Container}}: {{.CPUPerc}}"
+ec2366f04f2b: 0.00%
+9c1971998816: 0.00%
+
+--- Page 5 ---
+What does it show in your case? Explain your observations. Provide a screenshot.
+k. We can even run websites and even configure the ports:
+docker run -d -p 80:80 docker/getting-started
+Unable to find image 'docker/getting-started:latest' locally
+latest: Pulling from docker/getting-started
+59bf1c3509f3: Pull complete
+8d6ba530f648: Pull complete
+5288d7ad7a7f: Pull complete
+39e51c61c033: Pull complete
+ee6f71c6f4a8: Pull complete
+f2303c6c8865: Pull complete
+0645fddcff40: Pull complete
+d05ee95f5d2f: Pull complete
+Digest: sha256:aa945bdff163395d3293834697fa91fd4c725f47093ec499f27bc032dc1bdd16
+Status: Downloaded newer image for docker/getting-started:latest
+ec2366f04f2b64f54cdae5014eadcb1532e64d8a7fc24d55682a4318a3483612
+You will see that it will be downloading/pulling multiple things automatically. After it is completed, open
+your browser on the VM and visit 127.0.0.1 or visit your VM’s IP from your host machine. You should
+see a website there. Show your findings through a screenshot.
+2. Question (5 pts): Now, we need to clear the actively running containers. Find the way to delete them.
+Show your command and prove that you are able to delete actively running containers.
+3. (35 pts) In the second part of the lab, we will create our own small Docker container from scratch,
+which also means that it will not depend on any of the existing images.
+a. First we need to create a small executable. Below is a simple C++ code, save it as mydocker.cpp:
+#include<iostream>
+using namespace std;
+int main(){
+cout << "Hello from mydocker \n";
+return 0;
+}
+b. Now, we will be compiling it:
+$ g++ -o mydocker -static mydocker.cpp
+Here -static flag is really important since we don’t want any dynamic libraries at the moment. Compile
+your code and show your compilation and output.
+c. Next we will create a Dockerfile as follows:
+
+--- Page 6 ---
+FROM scratch
+ADD mydocker /
+CMD ["/mydocker"]
+Scratch means that we don’t require any parent image. And, we add the mydocker executable we created
+and it to the root of the image we are creating and when we run our container it will be in the root
+directory (e.g., /mydocker). Now, let’s build it:
+$ docker build --tag mydocker .
+Sending build context to Docker daemon 2.375MB
+Step 1/3 : FROM scratch
+--->
+Step 2/3 : ADD mydocker /
+---> 51f291872a27
+Step 3/3 : CMD ["/mydocker"]
+---> Running in f584304ab65a
+Removing intermediate container f584304ab65a
+---> 89696bacea3a
+Successfully built 89696bacea3a
+Successfully tagged mydocker:latest
+Show your output with a screenshot.
+d. Check if it shows in your images. Show a screenshot.
+e. Let’s run it now:
+$ docker run mydocker
+Hello from mydocker
+Show how it runs for you.
+Bonus (5 pts): Run BusyBox as a container and add new files on top. In the VM, locate these files you
+have created. Explain your findings.
+For each part, you need to take a screenshot and demonstrate your findings.

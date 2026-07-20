@@ -1,0 +1,330 @@
+--- Page 1 ---
+IntroductiontoAlgorithms November17,2011
+MassachusettsInstituteofTechnology 6.006Fall2011
+ProfessorsErikDemaineandSriniDevadas Quiz2
+Quiz 2
+• Donotopenthisquizbookletuntildirectedtodoso. Readalltheinstructionsonthispage.
+• Whenthequizbegins,writeyournameoneverypageofthisquizbooklet.
+• Youhave120minutestoearn120points. Donotspendtoomuchtimeonanyoneproblem.
+Readthemallfirst,andattackthemintheorderthatallowsyoutomakethemostprogress.
+• This quiz is closed book. You may use two 81(cid:48)(cid:48) × 11(cid:48)(cid:48) or A4 crib sheets (both sides). No
+2
+calculatorsorprogrammabledevicesarepermitted. Nocellphonesorothercommunications
+devicesarepermitted.
+• Writeyoursolutionsinthespaceprovided. Ifyouneedmorespace,writeonthebackofthe
+sheetcontainingtheproblem. Pagesmaybeseparatedforgrading.
+• Do not waste time and paper rederiving facts that we have studied. It is sufficient to cite
+knownresults.
+• When writing an algorithm, a clear description in English will suffice. Pseudo-code is not
+required.
+• When asked for an algorithm, your algorithm should have the time complexity specified in
+theproblemwithacorrectanalysis. Ifyoucannotfindsuchanalgorithm,youwillgenerally
+receivepartialcreditforasloweralgorithmifyouanalyzeyouralgorithmcorrectly.
+• Show your work, as partial credit will be given. You will be graded not only on the correct-
+nessofyouranswer,butalsoontheclaritywithwhichyouexpressit. Beneat.
+• Goodluck!
+Problem Parts Points Grade Grader
+1 1 1
+2 14 28
+3 5 26
+4 5 25
+5 1 15
+6 3 25
+Total 120
+Name:
+Wed/Fri Ying Kevin Sarah Yafim Victor
+Recitation: 10, 11AM 11AM 12, 1PM 12PM 2, 3PM
+
+--- Page 2 ---
+6.006Quiz2 Name 2
+Problem1. [1points] Writeyournameontopofeachpage.
+Problem2. True/False[28points] (14parts)
+Circle(T)rueor(F)alse. Youdon’tneedtojustifyyourchoice.
+√
+(a) T F [2points] Computing(cid:98) a(cid:99)forann-bitpositiveintegeracanbedoneinO(lgn)
+iterationsofNewton’smethod.
+(b) T F [2 points] Suppose we want to solve a polynomial equation f(x) = 0. While
+our choice of initial approximation x will affect how quickly Newton’s method
+0
+converges,itwillalwaysconvergeeventually.
+(c) T F [2 points] Karatsuba’s integer multiplication algorithm always runs faster than
+thegrade-schoolintegermultiplicationalgorithm.
+(d) T F [2 points] If we convert an n-digit base-256 number into base 2, the resulting
+numberofdigitsisΘ(n2).
+(e) T F [2 points] In a weighted undirected graph G = (V,E,w), breadth-first search
+from a vertex s finds single-source shortest paths from s (via parent pointers) in
+O(V +E)time.
+(f) T F [2 points] In a weighted undirected tree G = (V,E,w), breadth-first search
+from a vertex s finds single-source shortest paths from s (via parent pointers) in
+O(V +E)time.
+(g) T F [2 points] In a weighted undirected tree G = (V,E,w), depth-first search from
+avertexsfindssingle-sourceshortestpathsfroms(viaparentpointers)inO(V +
+E)time.
+(h) T F [2 points] If a graph represents tasks and their interdependencies (i.e., an edge
+(u,v) indicates that u must happen before v happens), then the breadth-first
+searchorderofverticesisavalidorderinwhichtotacklethetasks.
+(i) T F [2 points] Dijkstra’s shortest-path algorithm may relax an edge more than once
+inagraphwithacycle.
+(j) T F [2 points] Given a weighted directed graph G = (V,E,w) and a source s ∈ V,
+if G has a negative-weight cycle somewhere, then the Bellman-Ford algorithm
+willnecessarilycomputeanincorrectresultforsomeδ(s,v).
+(k) T F [2 points] In a weighted directed graph G = (V,E,w) containing no zero- or
+positive-weightcycles,Bellman-Fordcanfindalongest(maximum-weight)path
+fromvertexstovertext.
+(l) T F [2 points] In a weighted directed graph G = (V,E,w) containing a negative-
+weight cycle, running the Bellman-Ford algorithm from s will find a shortest
+acyclicpathfromstoagivendestinationvertext.
+(m) T F [2 points] The bidirectional Dijkstra algorithm runs asymptotically faster than
+theDijkstraalgorithm.
+
+--- Page 3 ---
+6.006Quiz2 Name 3
+(n) T F [2 points] Given a weighted directed graph G = (V,E,w) and a shortest path p
+from s to t, if we doubled the weight of every edge to produce G(cid:48) = (V,E,w(cid:48)),
+thenpisalsoashortestpathinG(cid:48).
+
+--- Page 4 ---
+6.006Quiz2 Name 4
+Problem3. MazeCraft[26points] (5parts)
+YouareplayingSnowStorm’snewvideogame,MazeCraft. Realizingthatyoucanconvertamaze
+intoagraphwithverticesrepresentingcellsandedgesrepresentingpassages,youwanttouseyour
+newly learned graph-search algorithms to navigate the maze. Consider the following converted
+graph.
+D
+B F
+A C E G H
+Forthefollowingquestions,assumethatthegraphisrepresentedusingadjacencylists,andthatall
+adjacencylistsaresorted,i.e.,theverticesinanadjacencylistarealwayssortedalphabetically.
+(a) [4 points] Suppose that you want to find a path from A to H. If you use breadth-first
+search,writedowntheresultingpathasasequenceofvertices.
+(b) [4 points] If you use depth-first search to find a path from A to H, write down the
+resultingpathasasequenceofvertices.
+
+--- Page 5 ---
+6.006Quiz2 Name 5
+(c) [6 points] To determine whether the maze has cycles or multiple paths to the same
+destination,youdecidetousetheedgeclassificationofdepth-firstsearch. Rundepth-
+first search on the graph reproduced below, starting from vertex A, and label every
+edge with T if it’s a tree edge, B if it’s a back edge, F if it’s a forward edge, and C if
+it’sacrossedge.
+Asareminder,recallthatanedge(u,v)is
+• atreeedge(T)ifv wasfirstdiscoveredbyexploringedge(u,v)(treeedgesform
+thedepth-firstforest);
+• abackedge(B)ifv isu’sancestorinadepth-firsttree;
+• aforwardedge(F)ifv isu’sdescendantinadepth-firsttree;and
+• acrossedge(C)ifnoneoftheaboveapply.
+D
+B F
+A C E G H
+
+--- Page 6 ---
+6.006Quiz2 Name 6
+(d) [6 points] Now suppose that the passages in the maze are directional. Rerun depth-
+firstsearchinthedirectedgraphbelowandlabeltheedgesaccordingly.
+D
+B F
+A C E G H
+
+--- Page 7 ---
+6.006Quiz2 Name 7
+(e) [6 points] Suppose each passage in the maze causes a different amount of damage to
+youingame. Youchangethegraphtouseweightstorepresentthedamagecausedby
+each edge. You then use Dijkstra’s algorithm to find the path from A to H with the
+lowestpossibledamage. Writedowntheorderinwhichverticesgetremovedfromthe
+priorityqueuewhenrunningDijkstra’salgorithm.
+D
+2 2
+1 3
+B F
+1 3 3
+4
+1
+A C E G H
+1 1
+
+--- Page 8 ---
+6.006Quiz2 Name 8
+Problem4. MalfunctioningCalculator[25points] (5parts)
+Former 6.006 student Mallory Funke is at a math competition, but her calculator isn’t working. It
+seems to work fine for whole numbers, but the numbers after the decimal point always seem to
+be the sequence repeated over and over again, making those digits useless. For one of the
+problems,shehasbeenaskedtocompute(cid:98)A3/4(cid:99)forafewdifferentintegervaluesofA. Malknows
+thatNewton’sMethodcanbeusedtocomputethesquarerootorthecuberootofanintegerA. So
+as a first step in computing (cid:98)A3/4(cid:99), Mal wants to use Newton’s Method to compute (cid:98)A1/4(cid:99). She
+thenplanstousethatinformationtocompute(cid:98)A3/4(cid:99).
+(a) [5 points] Mal decides to use the function f(x) = x4 − A, because it has a root
+at x = A1/4. Use Newton’s Method on f(x) to generate a formula for computing
+increasingly accurate estimates of (cid:98)A1/4(cid:99). In other words, give a formula for the
+more accurate estimate x in terms of a less accurate estimate x . The formula you
+i+1 i
+construct must use only addition, subtraction, multiplication, and division. (You do
+notneedtosimplifytheformula.)
+
+--- Page 9 ---
+6.006Quiz2 Name 9
+(b) [5 points] Mal decides to use the technique from part (a) to compute the value B =
+(cid:98)A1/4(cid:99). Shethenplanstocompute(cid:98)A3/4(cid:99)bycalculatingthevalueC = B3 = B·B·B.
+Provideanexplanationofwhythistechniquedoesnotwork.
+Hint: Define α to be the fractional part of A1/4, so that B = A1/4 −α. What happens
+whenyoucomputeC = B3?
+(c) [5points] Malclearlyneedsawaytocheckheranswerfor(cid:98)A3/4(cid:99),usingonlyintegers.
+Given a pair of positive integers A and C, explain how to check whether C ≤ A3/4
+usingO(1)additions,subtractions,multiplications,andcomparisons.
+(d) [5 points] Explain how to check whether C = (cid:98)A3/4(cid:99), again using only O(1) addi-
+tions,subtractions,multiplications,andcomparisons.
+Hint:Recallhowthefloorfunctionisdefined.
+
+--- Page 10 ---
+6.006Quiz2 Name 10
+(e) [5points] Giveabriefdescriptionofanalgorithmthattakesasinputad-digitpositive
+integer A and computes (cid:98)A3/4(cid:99). The only arithmetic operations you can use are inte-
+ger addition, integer subtraction, integer multiplication, integer division, and integer
+comparison. YouralgorithmshoulduseΘ(lgd)arithmeticoperationsintotal,butpar-
+tialcreditwillbeawardedforusingΘ(d)arithmeticoperations. Forthisquestion,you
+may assume that Newton’s Method has a quadratic rate of convergence for whatever
+functionyoudevise.
+
+--- Page 11 ---
+6.006Quiz2 Name 11
+Problem5. TheTourist[15points]
+Yournewstartup,BirdTours,bringspeoplearoundBostoninanewaviationcarthatcanbothdrive
+andfly. You’veconstructedaweighteddirectedgraphG = (V,E,w)representingthebesttimeto
+driveorflybetweenvariouscitysites(representedbyverticesinV). You’vealsowrittenahistory
+ofBoston,whichwouldbebestdescribedbyvisitingsitesv ,v ,...,v inthatorder.
+0 1 k
+Your goal is to find the shortest path in G that visits v ,v ,...,v in order, possibly visiting other
+0 1 k
+vertices in between. (The path must have v ,v ,...,v as a subsequence; the path is allowed to
+0 1 k
+visit a vertex more than once. For example, v ,v ,v ,v ,...,v is legal.) To do the computation,
+0 2 1 2 k
+you’ve found an online service, Paths ’ R Us, that will compute the shortest path from a given
+source s to a given target t in a given weighted graph, for the bargain price of $1. You see how to
+solvetheproblembypaying$k,callingPaths’ R Uswith(v ,v ,G),(v ,v ,G),...,(v ,v ,G)
+0 1 1 2 k−1 k
+and piecing together the paths. Describe how to solve the problem with only $1 by calling Paths
+’ R Us with (s,t,G(cid:48)) for a newly constructed graph G(cid:48) = (V(cid:48),E(cid:48),w(cid:48)), and converting the resulting
+pathintoapathinG.
+
+--- Page 12 ---
+6.006Quiz2 Name 12
+Problem6. Fill’ErUp! [25points]
+You are traveling by car from one city to another city. Unfortunately, you have a hole in your
+gas tank, and you have to refill your gas tank to travel across more than two roads. In addition,
+there is a toll booth on every road that charges you for using that road. Your goal is to find the
+least-expensivepathfromyourstarttoyourdestination.
+You represent the city network using a directed graph G = (V,E,w) with weights w defined on
+both edges and vertices. The vertices V represent the cities and the edges E represent the roads.
+Theweightw(e)ofanedgeerepresentsthetollamountonthatroad. Theweightw(v)ofavertex
+v is the price of filling your gas tank in that city (which is a fixed price independent of how much
+gasyouhaveleft,or∞ifthereisnogasavailabletopurchase). Youareallowed(butnotobligated)
+to end your journey with an empty tank, and you may assume that you always start your journey
+withafulltank.
+Below is an example graph that we will use to answer part (a). One seemingly cheap path from s
+to t is (s,u ,u ,t) at a cost of $8. Unfortunately, this path is not valid, because our leaky gas tank
+1 2
+won’tpermitmovingacrossthreeedgeswithoutrefillingourgastank.
+One valid path is (s,u ,u ,t) at a cost of $22. (This is a valid path: we begin with a full tank,
+3 2
+travel across one edge to a gas station where we refill our tank, and then travel two edges to the
+destination, arriving with an empty gas tank. Notice that we are unable to continue the journey to
+u if we wanted to, because even though there is a gas station there, we have to traverse a third
+5
+edgetogettoit.)
+u u
+3 4
+Gas: Gas:
+Toll: $7
+$5 $3
+t
+Toll: $3
+Toll: $10
+NO
+GAS
+Gas:
+s
+Toll: $2
+Free Toll: $1
+Toll: $4
+Toll: $1
+Toll: $5
+Toll: $2
+Gas:
+NO NO
+Toll: $9
+Toll: $1 $1
+GAS GAS
+u
+u u 2 5
+1
+Therearesomeextracopiesofthisgraphattheendoftheexam(foryourconvenience).
+
+--- Page 13 ---
+(a) [5 points] The valid path given in the description above is not the best path. Find a
+least-expensivepathfromstotinthegraphabove.
+(b) [5points] Findtheleast-expensivepathfromstou inthegraphabove.
+5
+(c) [15points] GiveanO(V logV+E)algorithmtofind,inagivengraphG = (V,E,w),
+aleast-expensivevalid pathfromacitystoacityt,orreportthatnosuchpathexists.
+
+--- Page 14 ---
+HerearesomeextracopiesofthegraphfromProblem6(foryourconvenience).
+u u
+3 4
+Gas: Gas:
+Toll: $7
+$5 $3
+t
+Toll: $3
+Toll: $10
+NO
+GAS
+Gas:
+s
+Toll: $2
+Free Toll: $1
+Toll: $4
+Toll: $1
+Toll: $5
+Toll: $2
+Gas:
+NO NO
+Toll: $9
+Toll: $1 $1
+GAS GAS
+u
+u u 2 5
+1
+u u
+3 4
+Gas: Gas:
+Toll: $7
+$5 $3
+t
+Toll: $3
+Toll: $10
+NO
+GAS
+Gas:
+s
+Toll: $2
+Free Toll: $1
+Toll: $4
+Toll: $1
+Toll: $5
+Toll: $2
+Gas:
+NO NO
+Toll: $9
+Toll: $1 $1
+GAS GAS
+u
+u u 2 5
+1
+
+--- Page 15 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.006 Introduction to Algorithms
+Fall 2011
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

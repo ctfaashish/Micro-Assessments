@@ -1,0 +1,79 @@
+--- Page 1 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.854J / 18.415J Advanced Algorithms
+�� Fall 2008
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.
+
+--- Page 2 ---
+18.415/6.854 Advanced Algorithms
+Problem Set 5
+1. Consider the linear programming relaxation of the vertex cover problem seen
+in class.
+C
+Min Wixi
+subject to:
+(a) Argue that any basic feasible solution x of the above linear program must
+i,
+satisfy xi E (0, 1) for all vertices i E V.
+Hint: given a bfs x, consider the vector y defined by yi =xi if xi E (0, I),
+and yi = 0.5 otherwise.
+(b) To solve the linear program to optimality, we can therefore restrict our
+attention to solutions satisfying xi E {0,0.5,1). For this purpose, consider
+the bipartite graph obtained by introducing two vertices say ai and bi for
+every vertex i, both of weight wi, and having edges (ai, bj) and (aj,bi) for
+every edge (i,j) of the original graph. Show that the minimum weight of
+any vertex cover in this bipartite graph is exactly equal to twice the value
+of the above linear program. Also, how can you extract the solution of the
+LP from the vertex cover in the bipartite graph and vice versa?
+(c) Show that the problem of finding a minimum weight vertex cover in a bi-
+partite graph can be solved by a minimum cut computation or a maximum
+flow computation in a related graph.
+2. Consider the 2-approximation algorithm seen in class for the generalized Steiner
+tree problem (we are given a set T of pairs of vertices and cost on the edges of
+a graph, and the goal is to find a subgraph (a forest) of minimum cost in which
+every pair of vertices in T is connected).
+(a) Argue that this problem is a generalization of the minimum spanning tree
+problem.
+i. Does the algorithm seen in class produce a minimum spanning tree in
+that case? If so, prove it; if not, give a counterexample.
+(Cs
+ii. Is the value ys) of the dual solution y constructed equal to the
+minimum spanning tree value? If so, prove it; if not, give a counterex-
+ample.
+
+--- Page 3 ---
+(b) Argue that this problem is a generalization of the shortest s t path
+-
+problem (in an undirected graph with nonnegative edge weights).
+i. Does the algorithm seen in class produce a shortest s - t in that case?
+If so, prove it; if not, give a counterexample.
+(Cs
+ii. Is the value ys) of the dual solution y constructed equal to the
+shortest path value? If so, prove it; if not, give a counterexample.
+3. We would like to design an approximation algorithm for the following problem.
+We are given an undirected graph G with cost c, for every edge e, 2 disjoint
+sets A and B of vertices of the same size, and we would like to find a minimum
+cost set H of edges such that in every connected component of H, we have the
+same number of vertices of A and B (so for example a matching between A and
+B would be one possible solution, and a spanning tree would be another).
+Show that the approach used to design the 2-approximation algorithm seen
+in class for the generalized Steiner problem can be applied here to get a 2-
+approximation algorithm as well. Do not reprove everything, but state and
+prove everything (in the algorithm and/or in the proof) that differs from the
+case of the generalized Steiner tree problem seen in class.
+. Consider the maximum weight matching problem in a (non-bipartite) graph G =
+(V, E). More precisely, given a non-negative weight Wij for each edge (i, j) E E,
+the problem is to find a (not necessarily perfect) matching of maximum total
+weight. Consider the following greedy algorithm: start from an empty matching
+and repeatedly add an edge of maximum weight among all edges which do
+not meet any of the edges chosen previously. Stop as soon as the matching
+is maximal (i.e. no other edge can be added). Let MG denote the greedy
+matching and ZG its cost. You are asked to show that the greedy algorithm is
+a 2-approximation algorithm.
+Show that the following linear program gives an upper bound ZLP on the opti-
+mal value ZM of the maximum weight matching problem.
+Min x u i
+subject to:
+From the greedy matching MG, construct a feasible solution u to the above
+linear program and show that its value is 2ZG. Conclude that ZG2 &ZM.

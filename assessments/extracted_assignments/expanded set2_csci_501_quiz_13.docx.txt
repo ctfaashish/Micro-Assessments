@@ -1,0 +1,95 @@
+--- Page 1 ---
+QUIZ 4
+ Question 1
+1 out of 1 points
+Which of the following provides best practices for IT management and was created for ISA,
+ISACA, and ITGI?
+Selected
+Answer:
+COBIT
+ Question 2
+1 out of 1 points
+During a security audit, for what reason does an auditor review risk analysis output?
+Selected
+Answer:
+To understand system criticality ratings and help rank systems into the
+appropriate order for mitigation in the reporting phase
+ Question 3
+1 out of 1 points
+In a security monitoring system, which of the following can pose a danger to security?
+Selected
+Answer:
+False negative
+ Question 4
+1 out of 1 points
+What is a characteristic of a hardened computer or device?
+Selected
+Answer:
+Both A and B
+ Question 5
+0 out of 1 points
+Which of the following is typically not part of a security audit report?
+Selected
+Answer:
+Corporate security policy
+Or security controls (corrected)
+ Question 6
+1 out of 1 points
+Which of the following is not a type of penetration test?
+Selected
+Answer:
+Blue box
+ Question 7
+1 out of 1 points
+Identify a drawback of log monitoring.
+Selected
+Answer:
+Amount of information
+ Question 8
+0 out of 1 points
+Which of the following is a process for verifying policy compliance?
+Selected
+Answer:
+Security
+Auditing
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:40 GMT -05:00
+https://www.coursehero.com/file/126034473/csci-501-quiz-13docx/
+
+--- Page 2 ---
+- (corrected)
+ Question 9
+0 out of 1 points
+List the four most common permission levels, and define two.
+Selected
+Answer:
+Promiscuous —Everything is allowed. This permission level is used by many home
+users but makes it easier for attackers to succeed.
+Permissive —Anything not specifically prohibited is OK. This permission level is
+suitable for most public Internet sites, some schools and libraries, and many training
+centers.
+Prudent —A reasonable list of things is permitted; all others are prohibited. This
+permission level is suitable for most businesses.
+Paranoid —Very few things are permitted; all others are prohibited and carefully
+monitored. This permission level is suitable for secure facilities.
+Kim, David, and Michael G. Solomon. Fundamentals of Information Systems
+Security, Jones & Bartlett Learning, LLC, 2016. ProQuest Ebook Central,
+http://ebookcentral.proquest.com/lib/liberty/detail.action?docID=4746807.
+Created from liberty on 2018-06-24 13:05:48.
+(corrected)
+Respons
+e
+Feedbac
+k:
+The most common ones are listed in the answer.
+ Question 10
+1 out of 1 points
+Briefly explain what it means to harden a computer or device.
+Selected
+Answer:
+Harden a computer is the process of securing a system by reducing its
+surface of vulnerability, which is larger when a system performs more
+functions; in principle a single-function system is more secure than a
+multipurpose one. Keeping security patches updated, Installing firewall
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:31:40 GMT -05:00
+https://www.coursehero.com/file/126034473/csci-501-quiz-13docx/
+Powered by TCPDF (www.tcpdf.org)

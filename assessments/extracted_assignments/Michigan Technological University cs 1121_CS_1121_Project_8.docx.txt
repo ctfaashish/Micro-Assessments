@@ -1,0 +1,99 @@
+--- Page 1 ---
+CS-1121 Visual Basic
+Project 8 Report
+Title: Sold Solution
+Author: Olajumobi Akeeb
+I certify that this project is the product of my own intellectual labor.
+_________________________________________________________
+(Author’s signature)
+Date: 3/27/2017
+Lab: 11:00-11:50am
+Grading:
+______ Project Execution (0-10)
+3 Lesson A
+3 Lesson B
+4 Lesson C
+______ Program Documentation (0-5)
+3 TOE Chart
+1 Code
+1 Screen Captures
+______ Total
+1
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:42 GMT -05:00
+https://www.coursehero.com/file/30615237/CS-1121-Project-8docx/
+
+--- Page 2 ---
+TOE CHART
+TASK OBJECT EVENT
+Click on the For…. Next button btnForNext Click
+Click on the ForEach….Next button btnForEachNext Click
+Click on the Do….Loop button btnDoLoop Click
+Exit the application btnExit Click
+PROJECT CODE
+' Name: Sold Project
+' Purpose: Display the average number sold
+' Programmer: <Olajumobi Akeeb> on <3/27/2017>
+Option Explicit On
+Option Strict On
+Option Infer Of
+Public Class frmMain
+Dim intSold() As Integer = {250, 225, 193, 260}
+Dim intTotal As Integer
+Dim dblAvg As Double
+Dim intNum As Integer
+Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+2
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:42 GMT -05:00
+https://www.coursehero.com/file/30615237/CS-1121-Project-8docx/
+
+--- Page 3 ---
+Me.Close()
+End Sub
+Private Sub btnForNext_Click(sender As Object, e As EventArgs) Handles
+btnForNext.Click
+' displays the average number sold
+Dim intHighNum As Integer = intSold.GetUpperBound(0)
+For intNum = 0 To intHighNum
+intTotal += intSold(intNum)
+dblAvg = intTotal / 4
+Next intNum
+lblAvg.Text = dblAvg.ToString()
+End Sub
+Private Sub btnForEachNext_Click(sender As Object, e As EventArgs) Handles
+btnForEachNext.Click
+' displays the average number sold
+' intNum = 4
+lblAvg.BackColor = Color.LightBlue
+For Each intElement As Integer In intSold
+intTotal += intElement
+dblAvg = (intTotal / 4) / 2
+Next intElement
+lblAvg.Text = dblAvg.ToString()
+End Sub
+Private Sub btnDoLoop_Click(sender As Object, e As EventArgs) Handles
+btnDoLoop.Click
+' displays the average number sold
+' Dim intHighNum As Integer = intSold.Length - 1
+lblAvg.BackColor = Color.Lavender
+Do While intNum < 4
+intTotal += intSold(intNum)
+dblAvg = intTotal / 4
+intNum += 1
+Loop
+lblAvg.Text = dblAvg.ToString()
+End Sub
+Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles
+btnClear.Click
+lblAvg.Text = String.Empty
+End Sub
+End Class
+SCREEN CAPTURES
+3
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:42 GMT -05:00
+https://www.coursehero.com/file/30615237/CS-1121-Project-8docx/
+
+--- Page 4 ---
+4
+This study source was downloaded by 100000898471383 from CourseHero.com on 04-21-2025 17:19:42 GMT -05:00
+https://www.coursehero.com/file/30615237/CS-1121-Project-8docx/
+Powered by TCPDF (www.tcpdf.org)

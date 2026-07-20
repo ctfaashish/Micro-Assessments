@@ -1,0 +1,122 @@
+--- Page 1 ---
+MIT 6.S096 Assignment 2, Problem 1
+Problem 1: Linked List Library (list)
+In this problem we will learn how to write code distributed over multiple files that is compiled together
+and linked into one application. Download the zipped folder provided in the file list.zip as a basis
+of your program and take a look at the existing code.
+First notice the directory structure. The zipped folder contains an include/ directory, a Makefile
+which is much larger than the one we’ve been using in the past, a GRADER_INFO.txt file, and a src/
+directory. In general, all of our header (.h) files will be found in include/ while all of our source (.c)
+files will be in src/. This is visually represented in Figure 1 on the left. Now, let’s run make (just the
+command make, with nothing following that one word).
+I-- GRADER INFO.txt
+I-- include
+I-- GRADER INFO.txt
+I I-- list.h
+I-- include/
+I \-- s096.h
+I I-- list.h
+I-- list-test.x
+I \-- s096.h
+⇒
+I-- Makefile
+I-- Makefile
+\-- src
+\-- src/
+I-- list.c
+I-- list.c
+I-- list.o
+\-- test.c
+I-- test.c
+\-- test.o
+Figure 1: Project directory structure before and after build
+Notice there have been three files created: for every .c file, there’s been a .o object file created. These
+files are linked together into the list-text.x program, which you can run. Some important points:
+•
+All of the implementation code you will write should go in the list.c file.
+•
+GRADER INFO.txt is a file for the grader (don’t edit!) containing the usual PROG: list, LANG: C
+•
+Important information for submitting your code: you should submit a zipped folder using the
+same directory structure as the provided zip file. We’ve added a section in the Makefile for your
+convenience: if you type make zip in the same folder as your project, a zip file containing all
+of your code and the required headers will be constructed in the project directory and you can
+upload that to the grader.
+We are provided a header file describing the interface for the List data structure. Three functions have al­
+ready been defined for you in list.c: the code to create an empty list with no items: List empty list(void);
+the code to destroy all the items in a list: void list clear( List *list ); and some code to print
+out a representation of a provided list: void list print( List list );.
+Look in the file list.c to find the functionality required of the other functions, which you will write.
+1
+
+--- Page 2 ---
+MIT 6.S096 Assignment 2, Problem 1
+#ifndef 6S096 LIST H
+#define 6S096 LIST H
+#include <stddef.h>
+typedef struct List node s List node;
+struct List s {
+size t length;
+List node *front;
+};
+typedef struct List s List;
+// Code you are provided
+List empty list( void );
+void list clear( List *list );
+void list print( List list );
+// Code you will write
+void list append( List *list, int value );
+void list insert before( List *list, int insert, int before );
+void list delete( List *list, int value );
+void list apply( List *list, int (*function ptr)(int) );
+int list reduce( List list, int (*function ptr)(int, int) );
+#endif // 6S096 LIST H
+Some questions to ask yourself for understanding:
+•
+How do you read the arguments to list apply and list reduce? Re-read this article.
+•
+How is this a valid header to include when we don’t ever define what the struct List node s
+really is?
+•
+Why do we sometimes pass a pointer to a List struct and other times pass by value? When might
+we want to do it this way and when might we want to be more consistent?
+Input Format
+Not applicable; your library will be compiled into a testing suite, your implemented functions will be
+called by the program, and the behavior checked for correctness. For example, here is a potential test:
+2
+
+--- Page 3 ---
+MIT 6.S096 Assignment 2, Problem 1
+#include "list.h"
+#include <stdio.h>
+void test print list(void) {
+int N = 5;
+List list = empty list();
+for( int i = 0; i < N; ++i ) {
+list append( &list, i );
+}
+list print( list );
+list clear( &list );
+return 0;
+}
+Upon calling this function, the code outputs
+{ 0 -> 1 -> 2 -> 3 -> 4 }
+You are strongly encouraged to write your own tests in test.cpp so that you can try out your imple­
+mentation code before submitting it to the online grader.
+Output Format
+Not applicable.
+WARNING! FREE YOUR MEMORY!
+This problem is only worth 300 points on the online submission system when
+you upload it. This is because your code will be checked for memory leaks.
+No memory leaks (a clean run in val grind on our side) earns full points for a
+total of 400. Egregiously bad allocation, incorrect memory accesses, and lack
+of cleanup can result in as low as 300 points out of 400 maximum, even if all
+test cases are passing.
+3
+
+--- Page 4 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.S096 Effective Programming in C and C++
+IAP 2014
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

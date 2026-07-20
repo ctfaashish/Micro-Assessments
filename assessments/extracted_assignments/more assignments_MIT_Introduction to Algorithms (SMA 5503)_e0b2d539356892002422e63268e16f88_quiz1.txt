@@ -1,0 +1,299 @@
+--- Page 1 ---
+Introduction to Algorithms October 12, 2005
+Massachusetts Institute of Technology 6.046J/18.410J
+Professors Erik D. Demaine and Charles E. Leiserson Quiz 1
+Quiz 1
+�
+Do not open this quiz booklet until you are directed to do so. Read all the instructions on
+this page.
+�
+When the quiz begins, write your name on every page of this quiz booklet.
+�
+This quiz contains 4 problems, some with multiple parts. You have 80 minutes to earn 80
+points.
+�
+This quiz booklet contains 13 pages, including this one. Two extra sheets of scratch paper
+are attached. Please detach them before turning in your quiz at the end of the examination
+period.
+�   This quiz is closed book. You may use one handwritten A4 or
+
+crib sheet. No
+calculators or programmable devices are permitted.
+�
+   
+Write your solutions in the space provided. If you need more space, write on the back of the
+sheet containing the problem. Do not put part of the answer to one problem on the back of
+the sheet for another problem, since the pages may be separated for grading.
+�
+Do not waste time and paper rederiving facts that we have studied. It is sufficient to cite
+known results.
+�
+Do not spend too much time on any one problem. Read them all through first, and attack
+them in the order that allows you to make the most progress.
+�
+Show your work, as partial credit will be given. You will be graded not only on the correct­
+ness of your answer, but also on the clarity with which you express it. Be neat.
+�
+Good luck!
+Problem Parts Points Grade Grader
+1 5 10
+2 1 7
+3 12 48
+4 2 15
+Total 80
+Name:
+
+--- Page 2 ---
+6.046J/18.410J Quiz 1 Name 2
+Problem 1. Asymptotic Running Times [10 points] (5 parts)
+For each algorithm listed below,
+�
+give a recurrence that describes its worst-case running time, and
+�
+give its worst-case running time using
+�
+-notation.
+You need not justify your answers.
+(a) Binary search
+(b) Insertion sort
+
+--- Page 3 ---
+6.046J/18.410J Quiz 1 Name 3
+(c) Randomized quicksort
+(d) Strassen’s algorithm
+(e) Merge sort
+
+--- Page 4 ---
+6.046J/18.410JQuiz1 Name 4
+Problem2. SubstitutionMethod[7points]
+Considertherecurrence
+(cid:0)(cid:2) (cid:1)(cid:4) (cid:3)(cid:6) (cid:5)(cid:8) (cid:7)(cid:9) (cid:0)(cid:2) (cid:1)(cid:4) (cid:3)(cid:6) (cid:10)(cid:12) (cid:11)(cid:12) (cid:5)(cid:14) (cid:13)(cid:15) (cid:0)(cid:2) (cid:1)(cid:16) (cid:3)(cid:14) (cid:10)(cid:18) (cid:17)(cid:19) (cid:5)(cid:20) (cid:13)(cid:21) (cid:3)(cid:23) (cid:22)
+Use the substitution method to give a tight upper bound on the solution to the recurrence using (cid:24)
+-notation.
+
+--- Page 5 ---
+6.046J/18.410JQuiz1 Name 5
+Problem3. True orFalse,and Justify[48 points] (12 parts)
+Circle T or F for each of the following statements to indicate whether the statement is true or
+false, respectively. If the statement is correct, briefly state why. If the statement is wrong, explain
+why. Themore contentyou providein your justification,the higher your grade,but bebrief. Your
+justificationis worthmore pointsthan yourtrue-or-false designation.
+T F Let (cid:0) and (cid:1) be asymptotically nonnegative functions. Then, at least one relationship of
+(cid:0)
+(cid:1)(cid:4) (cid:3)(cid:6) (cid:5) (cid:7)
+(cid:24)
+(cid:1)
+(cid:1)
+(cid:1)(cid:16) (cid:3)(cid:14) (cid:5) (cid:5)
+and (cid:1)
+(cid:1)(cid:4) (cid:3)(cid:14) (cid:5) (cid:7)
+(cid:24)
+(cid:1)
+(cid:0)
+(cid:1)(cid:4) (cid:3)(cid:14) (cid:5) (cid:5)
+mustalways hold.
+T F Thesolutiontothe recurrence
+(cid:0)(cid:2) (cid:1)(cid:16) (cid:3)(cid:14) (cid:5)(cid:8) (cid:7)
+(cid:3)
+(cid:18)
+(cid:2)
+(cid:0)(cid:2) (cid:1)(cid:16) (cid:3)(cid:14) (cid:10)
+(cid:4) (cid:2)
+(cid:5)(cid:14) (cid:13)
+(cid:24)
+(cid:1)
+(cid:6) (cid:5)(cid:8) (cid:7)
+(cid:3)(cid:14) (cid:5)
+is
+(cid:0) (cid:1)(cid:16) (cid:3)(cid:14) (cid:5)(cid:8) (cid:7)
+(cid:0)
+(cid:1)(cid:16) (cid:3)
+(cid:9) (cid:5)(cid:8)
+(cid:8)
+(cid:7)
+(cid:3)(cid:14) (cid:5)
+.
+
+--- Page 6 ---
+6.046J/18.410J Quiz 1 Name 6
+
+ 
+
+T F Let
+� 
+denote the
+
+
+
+th Fibonacci number. Then, the  th Fibonacci number
+�  
+can be 
+computed in time.
+
+T F Suppose that an array contains numbers, each of which is
+
+,
+
+, or . Then, the array 
+  
+can be sorted in time in the worst case.
+
+--- Page 7 ---
+6.046J/18.410J Quiz 1 Name 7
+ 
+ 
+ 
+
+T F An adversary can provide randomized quicksort with an input array of length that forces
+the algorithm to run in � time on that input.
+T F The array
+
+ 
+
+
+ 
+
+ 
+forms a max-heap.
+
+--- Page 8 ---
+6.046J/18.410J Quiz 1 Name 8
+T F Heapsort can be used as the auxiliary sorting routine in radix sort, because it operates in
+place.
+
+T F There exists a comparison sort of  numbers that uses at most comparisons in the worst
+case.
+
+--- Page 9 ---
+6.046J/18.410J Quiz 1 Name 9
+
+ 
+
+
+T F Suppose that a hash table with collisions resolved by chaining contains items and has a
+load factor of
+�
+. Assuming simple uniform hashing, the expected time to search 
+
+ 
+ 
+for an item in the table is .
+
+ 
+T F Let be an indicator random variable such that
+
+
+
+ . Then, we have
+
+  
+
+.
+
+--- Page 10 ---
+6.046J/18.410J Quiz 1 Name 10
+T F Suppose that a hash table of
+�
+slots contains a single element with key
+
+and the rest of
+the slots are empty. Suppose further that we search
+
+times in the table for various other
+keys not equal to
+
+. Assuming simple uniform hashing, the probability is
+ �
+that one of
+the
+
+searches probes the slot containing the single element stored in the table.
+
+
+ T F Let be a set of integers. One can create a data structure for so that determining
+
+
+ 
+whether an integer
+
+belongs to can be performed in time in the worst case.
+
+--- Page 11 ---
+6.046J/18.410J Quiz 1 Name 11
+Problem 4. Close Numbers [15 points] (2 parts)
+(cid:9)
+
+ �
+
+
+ 
+      
+      Consider a set of distinct numbers. Call a pair of distinct numbers close in if
+ (cid:9)
+
+   
+
+   
+
+
+that is, if the distance between
+
+and  is at most the average distance between consecutive numbers
+in the sorted order.
+
+
+�
+(a) Explain briefly why every set of distinct numbers contains a pair of close
+elements.
+
+--- Page 12 ---
+6.046J/18.410J Quiz 1 Name 12
+
+    (b) Suppose that we partition around a pivot element
+
+
+ �  , organizing the result into
+ 
+ 
+two subsets of :
+ 
+  
+
+
+�
+� 
+. Prove that, for  
+
+
+ 
+�
+
+
+  
+and
+some of numbers that are close in (not just
+
+
+
+
+
+, there exists a pair
+
+ 
+
+in
+
+).
+
+--- Page 13 ---
+6.046J/18.410J Quiz 1 Name 13
+
+  
+ (c) Describe an -time algorithm to find a close pair of numbers in . Analyze your
+algorithm. (Hint: Use divide and conquer.)
+
+--- Page 14 ---
+SCRATCH PAPER — Please detach this page before handing in your exam.
+
+--- Page 15 ---
+SCRATCH PAPER — Please detach this page before handing in your exam.

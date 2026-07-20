@@ -1,0 +1,360 @@
+--- Page 1 ---
+IntroductiontoAlgorithms: 6.006
+MassachusettsInstituteofTechnology November22,2011
+ProfessorsErikDemaineandSriniDevadas ProblemSet7
+Problem Set 7
+Both theory and programming questions are due on Tuesday, December 6 at 11:59PM.
+Please download the .zip archive for this problem set. Instructions for submitting your answers
+willbepostedtothecoursewebsitebyTuesday,November29.
+Wewillprovidethesolutionstotheproblemset10hoursaftertheproblemsetisdue. Youwill
+have to read the solutions, and write a brief grading explanation to help your grader understand
+your write-up. You will need to submit the grading guide by Thursday, December 8, 11:59PM.
+Yourgradewillbebasedonbothyoursolutionsandthegradingexplanation.
+Problem7-1. [30points] SeamCarving
+In a recent paper, “Seam Carving for Content-Aware Image Resizing”, Shai Avidan and Ariel
+Shamir describe a novel method of resizing images. You are welcome to read the paper, but we
+recommendstartingwiththeYouTubevideo:
+http://www.youtube.com/watch?v=vIFCV2spKtg
+Both arelinked fromthe Problem Setspage on theclass website. Afteryou’ve watched thevideo,
+theterminologyintherestofthisproblemwillmakesense.
+If you were paying attention around time 1:50 of the video, then you can probably guess what
+you’re going to have to do. You are given an image, and your task is to calculate the best vertical
+seam to remove. A vertical seam is a connected path of pixels, one pixel in each row. We call two
+pixelsconnected iftheyareverticallyordiagonallyadjacent. Thebestverticalseamistheonethat
+minimizesthetotal“energy”ofpixelsintheseam.
+Thevideodidn’tspendmuchtimeondynamicprogramming,sohere’sthealgorithm:
+Subproblems: Foreachpixel(i,j),whatisthelower-energyseamthatstartsatthetoprowofthe
+image,butendsat(i,j)?
+Relation: Letdp[i,j]bethesolutiontosubproblem(i,j). Then
+dp[i,j] = min(dp[i,j-1],dp[i-1,j-1],dp[i+1,j-1]) + energy(i,j)
+Analysis: Solving each subproblem takes O(1) time: there are three smaller subproblems to look
+up, and one call to energy(), which all take O(1) time. There is one subproblem for each
+pixel, so the running time is Θ(A), where A is the number of pixels, i.e., the area of the
+image.
+Download ps7_code.zip and unpack it. To solve this problem set, you will need the Python
+Imaging Library (PIL), which you should have installed for Problem Set 4. If you wish to view
+yourresults,youwilladditionallyneedtheTkinterlibrary.
+1
+
+--- Page 2 ---
+ProblemSet7
+Inresizeable_image.py,writeafunctionbest_seam(self)thatreturnsalistofcoordi-
+natescorrespondingtothecheapestverticalseamtoremove,e.g.,[(5,0),(5,1),(4,2),(5,3),(6,4)].
+Youshouldimplementthedynamicprogramdescribedaboveinabottom-upmanner.
+The class ResizeableImage inherits from ImageMatrix. You should use the following
+componentsofImageMatrixinyourdynamicprogram:
+• self.energy(i,j) returns the energy of a pixel. This takes O(1) time, but the constant
+factorissizeable. Ifyoucallitmorethanonce,youmightwanttocachetheresults.
+• self.widthandself.heightarethewidthandheightoftheimage,respectively.
+Testyourcodeusingtest_resizable_image.py,andsubmitResizeableImage.pyto
+the class website. You can also view your code in action by running gui.py. Included with the
+problem set are two differently sized versions of the same sunset image. If you remove enough
+seamsfromthesunsetimage,itshouldcenterthesun.
+Also,pleasetryoutyourownpictures(mostfileformatsshouldwork),andsendusanyinteresting
+before/aftershots.
+2
+
+--- Page 3 ---
+ProblemSet7
+Problem7-2. [70points] HGFargo
+You have been given an internship at the extremely profitable and secretive bank HG Fargo. Your
+immediate supervisor tells you that higher-ups in the bank are very interested in learning from the
+past. Inparticular,theywanttoknowhowmuchmoneytheycould havemadeiftheyhadinvested
+optimally.
+Yoursupervisorgivesyouthefollowingdataontheprices1 ofselectstocksin1991andin2011:
+Company Pricein1991 Pricein2011
+Dale,Inc. $12 $39
+JCNCorp. $10 $13
+Macroware,Inc. $18 $47
+Pear,Inc. $15 $45
+Asafirststep,youdecidetoexaminewhattheoptimaldecisionisforacoupleofsmallexamples:
+(a) [5 points] If you had $20 available to purchase stocks in 1991, how much of each
+stock should you have bought to maximize profits when you sell everything in 2011?
+Notethatyoudonotneedtoinvestallofyourmoney—ifitismoreprofitabletokeep
+someascash,youdonotneedtoinvestit.
+(b) [5 points] If you had $30 available to purchase stocks in 1991, how much of each
+stockshouldyouhavebought?
+(c) [5 points] If you had $120 available to purchase stocks in 1991, how much of each
+stockshouldyouhavebought?
+Your supervisor asks you to write an algorithm for computing the best way to purchase stocks,
+given the initial money total, the number count of companies with stock available, an array start
+containing the prices of each stock in 1991, and an array end containing the prices of each stock
+in2011. Allpricesareassumedtobepositiveintegers.
+There is a strong relationship between this problem and the knapsack problem. The knapsack
+problem takes four inputs: the number of different items items, the item sizes size (all of which
+are integers), the item values value (which may not be integers), and the size capacity of the
+knapsack. Thegoalistopickasubsetoftheitemsthatfitsinsidetheknapsackandmaximizesthe
+totalvalue.
+(d) [1 point] Which input to the knapsack problem corresponds to the input total in the
+stockpurchasingproblem?
+1. items 2. size 3. value 4. capacity
+1Notethatforthepurposesofthisproblem,youshouldignoresomeoftheintricaciesoftherealstockmarket. The
+onlyincomeyoucanmakeisfrompurchasingstocksin1991,thensellingthosesamestocksatmarketvaluein2011.
+3
+
+--- Page 4 ---
+ProblemSet7
+(e) [1 point] Which input to the knapsack problem corresponds to the input count in the
+stockpurchasingproblem?
+1. items 2. size 3. value 4. capacity
+(f) [1 point] Which input to the knapsack problem corresponds to the input start in the
+stockpurchasingproblem?
+1. items 2. size 3. value 4. capacity
+(g) [1 point] Which input to the knapsack problem corresponds to the input end in the
+stockpurchasingproblem?
+1. items 2. size 3. value 4. capacity
+(h) [6 points] Unfortunately, the algorithm for the knapsack problem cannot be directly
+applied to the stock purchasing problem. For each of the following potential reasons,
+state whether it’s a valid reason not to use the knapsack algorithm. (In other words, if
+the difference mentioned were the only difference between the problems, would you
+stillbeabletousetheknapsackalgorithmtosolvethestockpurchasingproblem?)
+1. In the stock purchasing problem, there is a time delay between the selection and
+thereward.
+2. Allofthenumbersinthestockpurchasingproblemareintegers. Thevalue array
+intheknapsackproblemisnot.
+3. Inthestockpurchasingproblem,themoneyleftoverfromyourpurchasesiskept
+as cash, which contributes to your ultimate profit. The knapsack problem has no
+equivalentconcept.
+4. In the knapsack problem, there are some variables representing sizes of objects.
+Therearenosuchvariablesinthestockpurchasingproblem.
+5. Inthestockpurchasingproblem,youcanbuymorethanoneshareineachstock.
+6. Inthestockpurchasingproblem,yousellalltheitemsattheend. Intheknapsack
+problem,youdon’tdoanythingwiththeitems.
+Despite these differences, you decide that the knapsack algorithm is a good starting point for the
+problemyouaretryingtosolve. Soyoudigupsomepseudocodefortheknapsackproblem,relabel
+the variables to suit the stock purchasing problem, and then start modifying things. After a long
+night of work, you end up with a couple of feasible solutions. Unfortunately, there is a bit of a
+hard-drive error the next morning, and the files are all mixed up. You have recovered six different
+functions,fromvariousstatesinyourdevelopmentprocess. Thefirstfunctionisthefollowing:
+STOCK(total,count,start,end)
+1 purchase = STOCK-TABLE(total,count,start,end)
+2 return STOCK-RESULT(total,count,start,end,purchase)
+4
+
+--- Page 5 ---
+ProblemSet7
+This is the function that you ran to get your results. The STOCK-TABLE function generates the
+table of subproblem solutions. The STOCK-RESULT function uses that to figure out which stocks
+to purchase, and in what quantities. Unfortunately, you have two copies of the STOCK-TABLE
+function and three copies of the STOCK-RESULT function. You know that there’s a way to take
+one of each function to get the pseudocode for the original knapsack problem (with the names
+changed). Youalsoknowthatthere’sawaytotakeoneofeachfunctiontogetthepseudocodefor
+thestockpurchasesproblem. Youjustdon’tknowwhichfunctionsdowhat.
+Analyze each of the other five procedures, and select the correct running time. Recall that total
+and count are positive integers, as are each of the values start[stock] and end[stock]. To make
+the code simpler, the arrays start, end, and result are assumed to be indexed starting at 1, while
+the tables profit and purchase are assumed to be indexed starting at (0,0). You may assume that
+entriesinatablecanbeaccessedandmodifiedinΘ(1)time.
+(i) [1point] Whatistheworst-caseasymptoticrunningtimeof STOCK-TABLE-A (from
+Figure1)intermsofcount andtotal?
+1. Θ(count) 7. Θ(count +total)
+2. Θ(count2) 8. Θ(count2 +total)
+3. Θ(count3) 9. Θ(count +total2)
+4. Θ(total) 10. Θ(count ·total)
+5. Θ(total2) 11. Θ(count2 ·total)
+6. Θ(total3) 12. Θ(count ·total2)
+(j) [1point] Whatistheworst-caseasymptoticrunningtimeof STOCK-TABLE-B (from
+Figure2)intermsofcount andtotal?
+1. Θ(count) 7. Θ(count +total)
+2. Θ(count2) 8. Θ(count2 +total)
+3. Θ(count3) 9. Θ(count +total2)
+4. Θ(total) 10. Θ(count ·total)
+5. Θ(total2) 11. Θ(count2 ·total)
+6. Θ(total3) 12. Θ(count ·total2)
+(k) [1point] Whatistheworst-caseasymptoticrunningtimeofSTOCK-RESULT-A(from
+Figure3)intermsofcount andtotal?
+1. Θ(count) 7. Θ(count +total)
+2. Θ(count2) 8. Θ(count2 +total)
+3. Θ(count3) 9. Θ(count +total2)
+4. Θ(total) 10. Θ(count ·total)
+5. Θ(total2) 11. Θ(count2 ·total)
+6. Θ(total3) 12. Θ(count ·total2)
+5
+
+--- Page 6 ---
+ProblemSet7
+STOCK-TABLE-A(total,count,start,end)
+1 createatableprofit
+2 createatablepurchase
+3 forcash = 0 tototal
+4 profit[cash,0] = cash
+5 purchase[cash,0] = FALSE
+6 forstock = 1 tocount
+7 profit[cash,stock] = profit[cash,stock −1]
+8 purchase[cash,stock] = FALSE
+9 ifstart[stock] ≤ cash
+10 leftover = cash −start[stock]
+11 current = end[stock]+profit[leftover,stock]
+12 ifprofit[cash,stock] < current
+13 profit[cash,stock] = current
+14 purchase[cash,stock] = TRUE
+15 returnpurchase
+Figure1: Thepseudocodefor STOCK-TABLE-A.
+STOCK-TABLE-B(total,count,start,end)
+1 createatableprofit
+2 createatablepurchase
+3 forcash = 0 tototal
+4 profit[cash,0] = 0
+5 purchase[cash,0] = FALSE
+6 forstock = 1 tocount
+7 profit[cash,stock] = profit[cash,stock −1]
+8 purchase[cash,stock] = FALSE
+9 ifstart[stock] ≤ cash
+10 leftover = cash −start[stock]
+11 current = end[stock]+profit[leftover,stock −1]
+12 ifprofit[cash,stock] < current
+13 profit[cash,stock] = current
+14 purchase[cash,stock] = TRUE
+15 returnpurchase
+Figure2: Thepseudocodefor STOCK-TABLE-B.
+6
+
+--- Page 7 ---
+ProblemSet7
+STOCK-RESULT-A(total,count,start,end,purchase)
+1 createatableresult
+2 forstock = 1 tocount
+3 result[stock] = 0
+4
+5 cash = total
+6 stock = count
+7 whilestock > 0
+8 quantity = purchase[cash,stock]
+9 result[stock] = quantity
+10 cash = cash −quantity ·start[stock]
+11 stock = stock −1
+12
+13 returnresult
+Figure3: Thepseudocodefor STOCK-RESULT-A.
+STOCK-RESULT-B(total,count,start,end,purchase)
+1 createatableresult
+2 forstock = 1 tocount
+3 result[stock] = FALSE
+4
+5 cash = total
+6 stock = count
+7 whilestock > 0
+8 ifpurchase[cash,stock]
+9 result[stock] = TRUE
+10 cash = cash −start[stock]
+11 stock = stock −1
+12
+13 returnresult
+Figure4: Thepseudocodefor STOCK-RESULT-B.
+7
+
+--- Page 8 ---
+ProblemSet7
+STOCK-RESULT-C(total,count,start,end,purchase)
+1 createatableresult
+2 forstock = 1 tocount
+3 result[stock] = 0
+4
+5 cash = total
+6 stock = count
+7 whilestock > 0
+8 ifpurchase[cash,stock]
+9 result[stock] = result[stock]+1
+10 cash = cash −start[stock]
+11 else
+12 stock = stock −1
+13
+14 returnresult
+Figure5: Thepseudocodefor STOCK-RESULT-C.
+(l) [1point] Whatistheworst-caseasymptoticrunningtimeofSTOCK-RESULT-B(from
+Figure4)intermsofcount andtotal?
+1. Θ(count) 7. Θ(count +total)
+2. Θ(count2) 8. Θ(count2 +total)
+3. Θ(count3) 9. Θ(count +total2)
+4. Θ(total) 10. Θ(count ·total)
+5. Θ(total2) 11. Θ(count2 ·total)
+6. Θ(total3) 12. Θ(count ·total2)
+(m) [1point] Whatistheworst-caseasymptoticrunningtimeofSTOCK-RESULT-C(from
+Figure5)intermsofcount andtotal?
+1. Θ(count) 7. Θ(count +total)
+2. Θ(count2) 8. Θ(count2 +total)
+3. Θ(count3) 9. Θ(count +total2)
+4. Θ(total) 10. Θ(count ·total)
+5. Θ(total2) 11. Θ(count2 ·total)
+6. Θ(total3) 12. Θ(count ·total2)
+(n) [2points] Therecurrencerelationcomputedbythe STOCK-TABLE-A functionis:
+8
+
+--- Page 9 ---
+ProblemSet7
+1. profit[c,s] = max{profit[c,s −1],profit[c −start[s],s −1]}
+2. profit[c,s] = max{profit[c,s −1],profit[c −start[s],s −1]+end[s]}
+3. profit[c,s] = max{profit[c −q ·start[s],s −1]+q ·end[s]}
+q
+4. profit[c,s] = max{profit[c,s −1],profit[c −start[s],s]}
+5. profit[c,s] = max{profit[c,s −1],profit[c −start[s],s]+end[s]}
+6. profit[c,s] = max{profit[c −q ·start[s],s]+q ·end[s]}
+q
+(o) [2points] Therecurrencerelationcomputedbythe STOCK-TABLE-B functionis:
+1. profit[c,s] = max{profit[c,s −1],profit[c −start[s],s −1]}
+2. profit[c,s] = max{profit[c,s −1],profit[c −start[s],s −1]+end[s]}
+3. profit[c,s] = max{profit[c −q ·start[s],s −1]+q ·end[s]}
+q
+4. profit[c,s] = max{profit[c,s −1],profit[c −start[s],s]}
+5. profit[c,s] = max{profit[c,s −1],profit[c −start[s],s]+end[s]}
+6. profit[c,s] = max{profit[c −q ·start[s],s]+q ·end[s]}
+q
+Withthisinformation,youshouldbeabletofigureoutwhetherSTOCK-TABLE-AorSTOCK-TABLE-B
+is useful for the knapsack problem, and similarly for the stock purchasing problem. From there,
+you can figure out which of STOCK-RESULT-A, STOCK-RESULT-B, and STOCK-RESULT-C is
+bestforpiecingtogethertheoptimaldistributionofstocksand/oritems.
+(p) [3 points] Which two methods, when combined, let you compute the answer to the
+knapsackproblem?
+1. STOCK-TABLE-A and STOCK-RESULT-A
+2. STOCK-TABLE-A and STOCK-RESULT-B
+3. STOCK-TABLE-A and STOCK-RESULT-C
+4. STOCK-TABLE-B and STOCK-RESULT-A
+5. STOCK-TABLE-B and STOCK-RESULT-B
+6. STOCK-TABLE-B and STOCK-RESULT-C
+(q) [3 points] Which two methods, when combined, let you compute the answer to the
+stockpurchasesproblem?
+1. STOCK-TABLE-A and STOCK-RESULT-A
+2. STOCK-TABLE-A and STOCK-RESULT-B
+3. STOCK-TABLE-A and STOCK-RESULT-C
+4. STOCK-TABLE-B and STOCK-RESULT-A
+5. STOCK-TABLE-B and STOCK-RESULT-B
+6. STOCK-TABLE-B and STOCK-RESULT-C
+9
+
+--- Page 10 ---
+ProblemSet7
+With all that sorted out, you submit the code to your supervisor and pat yourself on the back for
+a job well done. Unfortunately, your supervisor comes back a few days later with a complaint
+from the higher-ups. They’ve been playing with your program, and were very upset to discover
+that when they ask what to do with $1,000,000,000 in the year 1991, it tells them to buy tens
+of millions of shares in Dale, Inc. According to them, there weren’t that many shares of Dale
+available to purchase. They want a new feature: the ability to pass in limits on the number of
+stockspurchaseable.
+Youchoosetobegin,asalways,withasmallexample:
+Company Pricein1991 Pricein2011 Limit
+Dale,Inc. $12 $39 3
+JCNCorp. $10 $13 ∞
+Macroware,Inc. $18 $47 2
+Pear,Inc. $15 $45 1
+(r) [5 points] If you had $30 available to purchase stocks in 1991, how much of each
+stockshouldyouhavebought,giventhelimitsimposedabove?
+(s) [5 points] If you had $120 available to purchase stocks in 1991, how much of each
+stockshouldyouhavebought,giventhelimitsimposedabove?
+(t) [20 points] Give pseudocode for an algorithm STOCKLIMITED that computes the
+maximum profit achievable given a starting amount total, a number count of compa-
+nies with stock available, an array of initial prices start, an array of final prices end,
+and an array of quantities limit. The value stored at limit[stock] will be equal to ∞
+in cases where there is no known limit on the number of stocks. The algorithm need
+only output the resulting quantity of money, not the purchases necessary to get that
+quantity.
+Remembertoanalyzetheruntimeofyourpseudocode,andprovideabriefjustification
+for its correctness. It is sufficient to give the recurrence relation that your algorithm
+implements,andtalkaboutwhytherecurrencerelationsolvestheproblemathand.
+10
+
+--- Page 11 ---
+MIT OpenCourseWare
+http://ocw.mit.edu
+6.006 In troduction to Algorithms
+Fall 2011
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms.

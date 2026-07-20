@@ -1,0 +1,31 @@
+--- Page 1 ---
+CSCE 3560/5562 – Cloud Security
+Spring 2024
+Homework 3
+Question 1 (30 pts):
+Previously we studies side-channel attacks. Let’s study one cover channel attack in further
+details. For this question, you will check one academic paper and study it.
+- (10 pts) What is the citation; authors, paper title, where and when it was published.
+- (20 pts) How does the covert-channel work?
+o What is their architecture and environment?
+o How do they create the covert-channel?
+o How generalized is it (i.e., can we apply it for all the environments and why?)
+o What is the advantage and disadvantage for it?
+Question 3 (20 pts):
+In the class, we discussed XaaS. Provide 4 examples and explain how they work (show the
+services and providers).
+Question 4 (15 pts):
+Xen is one of the commonly used hypervisors. What makes it special? What are the advantages
+of Xen compared to other hypervisors?
+Question 5 (10 pts):
+Explain OpenStack service glance and how it would work. Explain each component in detail.
+Question 6 (30 pts):
+Explain live migration process by:
+a. How does it work?
+b. How can we have minimum down-time when we are applying live migration?
+c. What would happen if the destination host fails before live migration is completed?
+Question 7 (15 pts):
+What are the components for both (a) facilities and (b) hardware resources? Show your
+references.
+NOTE: Please do not forget to cite your works. Most of these questions will require some
+reading, hence, you will need to cite your references. Also, copy-paste will not be accepted!

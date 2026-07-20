@@ -1,0 +1,511 @@
+--- Page 1 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Final Exam
+Due May 8 at 4pm Points 50 Questions 42
+Available May 8 at 1pm - May 8 at 4pm 3 hours Time Limit 75 Minutes
+Instructions
+The exam on modules 7, 8, 9, 10, 11 and 12.
+The exam will be available on Monday May 08, 2023 from 1:00 PM to 4:00 PM.
+You need to answer 38 MCQs with 1 point for each + 4 Short questions with 3
+points for each.
+You will have only 75 minutes to complete your exam in one sitting.
+Attempt History
+Attempt Time Score
+LATEST Attempt 1 75 minutes 31 out of 50 *
+* Some questions not yet graded
+ Correct answers will be available on May 9 at 4:30pm.
+Score for this quiz: 31 out of 50 *
+Submitted May 8 at 2:15pm
+This attempt took 75 minutes.
+1 / 1 pts
+Question 1
+What are general limitations of back propagation rule?
+scaling
+slow convergence
+all of the mentioned
+https://unt.instructure.com/courses/83399/quizzes/496270 1/23
+
+--- Page 2 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+local minima problem
+IInnccoorrrreecctt Question 2 0 / 1 pts
+What is true regarding backpropagation rule?
+there is no feedback of signal at any stage
+it is also called generalized delta rule
+error in output is propagated backwards only to determine weight updates
+all of the mentioned
+Question 3 1 / 1 pts
+Having multiple perceptrons can actually solve the XOR
+problem satisfactorily: this is because each perceptron can
+partition off a linear part of the space itself, and they can then
+combine their results.
+true – perceptrons can do this but are unable to learn to do it – they have
+to be explicitly hand-coded
+true – this works always, and these multiple perceptrons learn to classify
+even complex problems.
+false – just having a single perceptron is enough
+https://unt.instructure.com/courses/83399/quizzes/496270 2/23
+
+--- Page 3 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+false – perceptrons are mathematically incapable of solving linearly
+inseparable functions, no matter what you do
+Question 4 1 / 1 pts
+Layers between the input and output layers are known as:
+Resultant layer
+Output layer
+Hidden layer
+Multilayer
+Question 5 1 / 1 pts
+What is meant by generalized in statement “backpropagation is
+a generalized delta rule” ?
+none of the mentioned
+it has no significance
+because delta rule can be extended to hidden layer units
+because delta is applied to only input and output layers, thus making it
+more simple and generalized
+https://unt.instructure.com/courses/83399/quizzes/496270 3/23
+
+--- Page 4 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Question 6 1 / 1 pts
+How can learning process be stopped in backpropagation rule?
+there is convergence involved
+no heuristic criteria exist
+on basis of average gradient value
+none of the mentioned
+Question 7 1 / 1 pts
+If x1, x2 are independent variables and y the dependent
+variable, which of the following represents a linear regression
+model?
+y = a0 + a1/x1 + a2/x2
+y = a0 + a1x1 + a2x2
+y = a0 + a1x1 + a2x22
+y = a0 + a1x12 + a2x2
+Question 8 1 / 1 pts
+The SVM’s are less effective when -----.
+https://unt.instructure.com/courses/83399/quizzes/496270 4/23
+
+--- Page 5 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+The data is linearly separable
+All of the mentioned
+The data is noisy and contains overlapping points
+The data is clean and ready to use
+Question 9 1 / 1 pts
+The effectiveness of an SVM depends upon:
+Kernel Parameters
+Selection of Kernel
+All of the mentioned
+Soft Margin Parameter C
+Question 10 1 / 1 pts
+What’s the objective of the support vector machine algorithm?
+to find an optimal hyperplane in an N-dimensional space that distinctly
+classifies the data points where N is the number of features.
+to find an optimal hyperplane in an N-dimensional space that distinctly
+classifies the data points where N is the number of target variables.
+https://unt.instructure.com/courses/83399/quizzes/496270 5/23
+
+--- Page 6 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+to find an optimal hyperplane in an N-dimensional space that distinctly
+classifies the data points where N is the number of samples.
+None of the mentioned
+Question 11 1 / 1 pts
+What is/are true about kernel in SVM?
+1. Kernel function map low dimensional data to high
+dimensional space
+2. It’s a similarity function
+1
+1 and 2
+2
+None of these
+Question 12 1 / 1 pts
+Which of the following are real world applications of the
+SVM?
+All of the mentioned
+Image Classification
+https://unt.instructure.com/courses/83399/quizzes/496270 6/23
+
+--- Page 7 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Text and Hypertext Categorization
+Clustering of News Articles
+Question 13 1 / 1 pts
+Which of the following can affect the complexity of Apriori?
+Dimensionality of the given data set
+All of the mentioned
+Maximum number of items in the transactions
+Number of transactions in the database
+IInnccoorrrreecctt Question 14 0 / 1 pts
+Which of the following best describes the Apriori principle?
+When the anti-monotone property of support holds on given itemset
+All of the mentioned
+Support of an itemset never exceeds the support of its subsets
+If an itemset is frequent, then all of its subsets must also be frequent
+Question 15 1 / 1 pts
+https://unt.instructure.com/courses/83399/quizzes/496270 7/23
+
+--- Page 8 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Which of the following best describes lift in knowledge
+discovery?
+A data mining technique
+A measure of interestingness of a rule
+A known class attribute
+An unsupervised learning approach
+Question 16 1 / 1 pts
+A rule with a lower value of confidence and
+support could be
+preferred because:
+It indicates novelty
+Such rules are bound to hold throughout the dataset
+None of the mentioned
+Such rules are more interesting
+IInnccoorrrreecctt Question 17 0 / 1 pts
+Which of the following is not an example of frequent
+pattern analysis?
+https://unt.instructure.com/courses/83399/quizzes/496270 8/23
+
+--- Page 9 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Can we predict the winner of match?
+Can we automatically classify web documents?
+What are the subsequent purchases after buying a PC?
+What kinds of DNA are sensitive to this new drug?
+IInnccoorrrreecctt Question 18 0 / 1 pts
+if none of its immediate supersets has support count as X, then
+X will be:
+Closed itemset
+Maximal itemset
+Maximal frequent itemset
+Closed frequent itemset
+Question 19 1 / 1 pts
+Which of the following statement is NOT true about clustering?
+It is an unsupervised learning technique
+It uses clusters for data analysis
+It groups the data
+https://unt.instructure.com/courses/83399/quizzes/496270 9/23
+
+--- Page 10 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+It is a supervised learning technique
+Question 20 1 / 1 pts
+Which statement is not true about cluster analysis?
+Cluster analysis is also called classification analysis or numerical
+taxonomy.
+Cluster analysis is a technique for analyzing data when the criterion or
+dependent variable is categorical and the independent variables are
+interval in nature.
+Objects in each cluster tend to be similar to each other and dissimilar to
+objects in the other clusters.
+Groups or clusters are suggested by the data, not defined a priori.
+Question 21 1 / 1 pts
+Which of the following statements is incorrect about the
+hierarchal clustering?
+All of the mentioned
+The choice of an appropriate metric can influence the shape of the cluster
+https://unt.instructure.com/courses/83399/quizzes/496270 10/23
+
+--- Page 11 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+In general, the splits and merges both are determined in a greedy manner
+The hierarchal type of clustering is also known as the HCA
+Question 22 1 / 1 pts
+Which one of the following correctly defines the term cluster?
+Symbolic representation of facts or ideas from which information can
+potentially be extracted
+Operations on a database to transform or simplify data in order to prepare
+it for a machine-learning algorithm
+All of the mentioned
+Group of similar objects that differ significantly from other objects
+Question 23 1 / 1 pts
+_______ Method derives clusters from the number of
+observations locally falling in a neighborhood of each
+observation.
+Grid method
+Partition method
+https://unt.instructure.com/courses/83399/quizzes/496270 11/23
+
+--- Page 12 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Density-based method
+Hierarchical method
+Question 24 1 / 1 pts
+The subdivision of the hierarchical methods are:
+Partition and agglomerative
+Agglomerative and divisive
+Distance based and density based
+Partition and divisive
+Question 25 1 / 1 pts
+From the following which method is not the clustering method?
+Divide-and-conquer based
+Density based
+Hierarchical
+Partition
+https://unt.instructure.com/courses/83399/quizzes/496270 12/23
+
+--- Page 13 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Question 26 1 / 1 pts
+Which clustering algorithm starts with each cluster
+comprising exactly one observation and then progressively
+combines the two nearest clusters until there is just one cluster
+left at the end?
+Complete Linkage clustering
+Agglomerative clustering
+Divisive clustering
+Single Linkage clustering
+Question 27 1 / 1 pts
+Which one of the following can be defined as the data object
+which does not comply with the general behavior (or the model
+of available data)?
+Classification
+Evaluation Analysis
+Prediction
+Outlier Analysis
+Question 28 1 / 1 pts
+https://unt.instructure.com/courses/83399/quizzes/496270 13/23
+
+--- Page 14 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+For the purpose of anomaly detection, in the 1-Class SVM
+approaches we need to -----.
+reduce data to lower dimensional data
+All of the mentioned
+use certain kernel function on the given data to construct such a model
+assume data comes from normal distribution
+Question 29 1 / 1 pts
+Data may contain erroneous or anomalous values, which are
+usually referred to as_____________.
+Outliers
+Inconsistencies
+Noise
+Reduction
+Question 30 1 / 1 pts
+One of the strengths of using statistical methods in anomaly
+detection is:
+https://unt.instructure.com/courses/83399/quizzes/496270 14/23
+
+--- Page 15 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Theoretically it can be Theoretically it can be applicable to all kinds of
+dataapplicable to all kinds of data
+It can use many dimensionality reduction approaches.
+All of the mentioned
+It is very effective to find the outliers.
+Question 31 1 / 1 pts
+Which of the following will be Euclidean Distance between the
+two data point A(1, 3) and B(2, 3)?
+8
+4
+2
+1
+IInnccoorrrreecctt Question 32 0 / 1 pts
+One of the drawbacks of using clustering in anomaly detection
+is:
+It may be hard to estimate the true distribution for high dimensional data
+https://unt.instructure.com/courses/83399/quizzes/496270 15/23
+
+--- Page 16 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Density may become less meaningful in high-dimensional space.
+Sometime it can be difficult to decide on number of clusters
+All of the mentioned
+IInnccoorrrreecctt Question 33 0 / 1 pts
+Which of the following is not type of data mining in
+recommender systems?
+All of the mentioned
+Model-based method uses a collection of ratings to learn a model
+Extract from known to unknown ratings to predict user-item combinations
+Mining of spatiotemporal, biological, diverse semantics and relationships
+IInnccoorrrreecctt Question 34 0 / 1 pts
+Which of the following describes an example of the factor
+analysi?
+For given experimental data, one analyzes the data for two or more
+populations described by a numeric response variable and one or more
+categorical variables (factors)
+https://unt.instructure.com/courses/83399/quizzes/496270 16/23
+
+--- Page 17 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+For special type of data, one attempts to determine several discriminant
+functions (factors) that discriminate among the groups defined by the
+response variable
+All of the mentioned
+For certain data, researcher can indirectly measure other quantities that
+reflect the factor of interest
+Question 35 1 / 1 pts
+Data mining projects differ in many respects from both classical
+statistics and _________________analyses.
+OLAP
+OLTP
+HOLAP
+OLAM
+Question 36 1 / 1 pts
+Which of the following is method of preserving privacy in data
+mining process?
+https://unt.instructure.com/courses/83399/quizzes/496270 17/23
+
+--- Page 18 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Removing sensitive features or fields associated with the data
+Personal information is encrypted and stored at different locations
+Add noise to the data in order to mask some attribute values of records
+All of the mentioned
+Question 37 1 / 1 pts
+Which of the following is a new trend in data mining?
+Scalable data mining methods
+Invisible data mining
+A Web mining
+All of the mentioned
+Question 38 1 / 1 pts
+Which one of the following can be considered as the correct
+application of the data mining?
+All of the mentioned
+Fraud detection
+Management and market analysis
+https://unt.instructure.com/courses/83399/quizzes/496270 18/23
+
+--- Page 19 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Corporate Analysis & Risk management
+Question 39 Not yet graded / 3 pts
+For each of the following questions, provide an example of an
+association rule from the market basket domain that
+satisfies the following conditions. Also, describe whether such
+rules are subjectively interesting or not.
+a) A rule that has reasonably high support but low confidence.
+b) A rule that has low support and high confidence.
+Your Answer:
+a) Below is an example for the rule that has reasonably high support but
+low confidence.
+{bread} -> {butter}
+This suggests that customers who purchase bread are likely to also
+purchase butter. The rule might have a high support because both items,
+bread and butter, are commonly purchased, but the confidence might be
+low because not all customers who buy bread also buy butter. This rule
+may not be subjectively interesting because the association between
+bread and butter is well-known and may not provide any new insights.
+b) An example of an association rule that has low support and high
+confidence could be:
+{Lobster} -> {Champagne}
+This rule suggests that customers who purchase lobster are likely to also
+purchase champagne. The rule might have low support because lobster
+and champagne are luxury items that not all customers purchase.
+However, the confidence could be high because customers who do
+purchase lobster are more likely to also purchase champagne. This rule
+may be subjectively interesting because it suggests a pairing between two
+luxury items that may not be immediately apparent to all customers.
+https://unt.instructure.com/courses/83399/quizzes/496270 19/23
+
+--- Page 20 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Question 40 Not yet graded / 3 pts
+In your opinion, what are the major 5 trends in data mining
+research today? Name one major issue in data mining, which
+in your view, may have a strong impact on society.
+Your Answer:
+Multimedia Data Mining : It involves data extraction from different Kinds
+of multimedia sourcws such as auido, text, hyper test, video images etc.
+The data is coverted into a numnerical representation in different formats.
+Embedded Data Mining : Data mining features are increasingly finding
+their way into many enterprise software use cases, from sales forecasting
+in CRM SaaS platforms to cyber threat detection in intrusion
+detection/prevention systems. The embedding of data mining into vertical
+market software applications enables prediction capabilities for any
+number of industries and opens up new realms of possibilities for unique
+value creation
+Spatial and Geographic Data Mining:
+This new trending type of data mining includes extracting information from
+environmental, astronomical, and geographical data, including images
+taken from outer space. This type of data mining can reveal various
+aspects such as distance and topology, which are mainly used in
+geographic information systems and other navigation applications.
+Increasing Automation In Data Mining
+Today's data mining solutions typically integrate ML and big data stores to
+provide advanced data management functionality alongside sophisticated
+data analysis techniques. Earlier incarnations of data mining involved
+manual coding by specialists with a deep background in statistics and
+programming. Modern techniques are highly automated, with AI/ML
+replacing most of these previously manual processes for developing
+pattern-discovering algorithms.
+Biological data mining
+https://unt.instructure.com/courses/83399/quizzes/496270 20/23
+
+--- Page 21 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+Mining DNA and protein sequences, mining high dimensional microarray
+data, biological pathway and network analysis, link analysis across
+heterogeneous biological data, and information integration of biological
+data by data mining are interesting topics for biological data mining
+research.
+One major issue in data mining that may have a strong impact on society
+is privacy and data security. With the increasing amount of data being
+collected and analyzed, there is a risk of sensitive information being
+exposed or misused. This can have serious consequences for individuals
+and organizations, including identity theft, financial losses, and damage to
+reputation. Therefore, it is important for data mining techniques to be
+developed in a way that protects privacy and ensures data security.
+Question 41 Not yet graded / 3 pts
+Consider the following set of one-dimensional points: {4, 6, 17,
+19, 23, 27, 33, 37}. Suppose we apply k-means clustering to
+obtain three clusters, A, B, and C. If the three initial centroids
+are located at (15, 25, 31), respectively. Show: The three
+clusters and their new three centers after the first round of
+execution.
+Your Answer:
+we have the k=3 and initial Centroids are (15,25,31).
+The Distance from each point to each centroid:
+Point Distance to 15 Distance to 25 Distance to 31
+4 11 21 27
+6 9 19 25
+17 2 8 14
+19 4 6 12
+https://unt.instructure.com/courses/83399/quizzes/496270 21/23
+
+--- Page 22 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+23 8 2 8
+27 12 2 4
+33 18 8 2
+37 22 12 6
+The Cluster to A {4,6,17,19}
+Cluster to B:{23,27}
+Cluster to C{33,37}
+The new Centroid are (4+6+17+19)/4,(23+27)/2,(33+37)/2
+The new Centroids are (11.5,25,35)
+Question 42 Not yet graded / 3 pts
+A database has 4 transactions, shown below.
+Items
+TID
+bought
+T100 {K, A, D, B}
+{D, A, C, E,
+T200
+B}
+T300 {C, A, B, E}
+T400 {B, A, D}
+Assuming a minimum level of support min_sup = 60% and a
+minimum level of confidence min_conf = 80%.
+Given the frequent itemsets are: {{A}, {B}, {D}, {A, B}, {B, D},
+{A, B, D}}.
+List all of the strong association rules (with support s and
+confidence c) matching the following metarule, where X is a
+https://unt.instructure.com/courses/83399/quizzes/496270 22/23
+
+--- Page 23 ---
+5/8/23, 2:16 PM Final Exam: CSCE 5380 Section(s) 001 and CSCE 4380 Section(s) 001 (Spring 2023 1)
+variable representing customers, and item denotes variables
+i
+representing items (e.g., “A”, “B”, etc.):
+∀ X∈ transaction, buys(X,item1)∧ buys(X,item2)⇒
+buys(X,item3)[s,c]
+Your Answer:
+final 4 eswar ajay.pdf
+(https://unt.instructure.com/users/282745/files/21667910?
+wrap=1&verifier=ypzqymrLndmVoVfuH6pQc8trHTTAslKwAl1Lst8b)
+(https://unt.instructure.com/users/282745/files/21667910/download?
+verifier=ypzqymrLndmVoVfuH6pQc8trHTTAslKwAl1Lst8b&download_frd=1)
+Quiz Score: 31 out of 50
+https://unt.instructure.com/courses/83399/quizzes/496270 23/23

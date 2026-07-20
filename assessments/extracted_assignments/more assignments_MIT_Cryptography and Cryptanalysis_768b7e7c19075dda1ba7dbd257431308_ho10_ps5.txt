@@ -1,0 +1,74 @@
+--- Page 1 ---
+6.875/18.425J Cryptography and Cryptanalysis April 1, 2005
+Handout 10: Problem Set #5
+This problem set is due on: April 15, 2005.
+Problem 1 ­ Fun With Pseudorandom Functions
+Suppose that {F } is a pseudorandom family of functions from k­bit input to k­bit
+S
+output, indexed by a k­bit key (“seed”). Consider the following constructions, and for
+each say whether it is is pseudorandom or not. If it is, give a proof; if not, demonstrate
+a counterexample. Below, “◦ ” denotes concatenation, “⊕” denotes exclusive­or, and x¯
+denotes the bitwise complement of x.
+• G (x) = F (x) ◦F (x¯).
+S S S
+• G (x) = F (x) ◦F (x).
+S 0k S
+• G (x) = F (x) ◦F (x), where S = F (0k ) and S = F (1k ).
+S S1 S2 1 S 2 S
+• G (x) = F (S).
+S x
+• G (x) = F (x) ⊕S.
+S S
+• G (x) = F (x) ◦(F (x) ⊕S ) (where |S | = |S | = k; consider only even­length
+S1,S2 S1 S2 1 1 2
+seeds for G).
+Problem 2 ­ Another Definition of Pseudorandom Functions
+We define f (·) to be a NEW­PRF family if: ∀ PPTA, ∀ M, ∀ sufficiently large k,
+s
+Prob[s ← {0,1}k ; (x ,α ) ← A(1k ); (x ,α ) ← A(α ,f (x )); ... ;
+1 1 2 2 1 s 1
+(x ,α ) ← A(α ,f (x )); (x∗,α∗) ← A(α ,f (x ));
+M M M −1 s M −1 M s M
+b ← {0,1}; z ← f (x∗); z ← {0,1}k : b = A(α∗,z )] < neg(k)
+0 s 1 b
+Flip a fair coin. If your coin comes up heads, prove that the existence of a NEW­PRF
+family implies the existence of a PRF family. If your coin comes up tails, prove that the
+existence of a PRF family implies the existence of a NEW­PRF family.
+10­1
+
+--- Page 2 ---
+Informal Explanation: We say that f (·) is a NEW­PRF family if no probabilistic
+s
+polynomial­time adversary is able to win the following game between an adversary and
+an oracle. First, the oracle randomly selects a seed, s. Then, the adversary is allowed to
+adaptively select inputs x and the oracle returns to him f (x ). Once the adversary is
+i s i
+satisfied that he has learned something about the function, he outputs a challenge input
+x∗ (which is not one of the x ’s that he previously asked the oracle about). Next, the
+i
+oracle randomly selects a bit b and if b = 0 he gives the adversary z = f (x∗) and if
+0 s
+b = 1 he gives the adversary a truly random value z . The adversary wins if he can guess
+1
+b non­negligibly better than 1/2.
+[Note: The role of the α’s in the above definition is to allow the adversary to remember
+information between invocations. Without loss of generality, we can think of α as the
+i
+complete state of the adversary after he finishes selecting x .]
+i
+Problem 3 ­ Private Key Encryption
+Give a formal definition of private­key encryption. Your definition should embody secu­
+rity against chosen­message attacks. (That is, a private­key cryptosystem should remain
+secure even if the adversary picks the messages to be encrypted). Additionally, your
+definition should require that a private­key cryptosystem be secure even if the same key
+is used for an arbitrary number of messages. (That is, the one­time­pad system should
+not achieve your definition).
+Prove that the existence of PRF’s implies the existence of secure private­key encryption
+schemes.1
+Problem 4 ­ An Active Attack on Blum­Goldwasser
+Provide an active attack against the Blum­Goldwasser cryptosystem. Recall your defini­
+tion of Active­Security from Problem Set 3. Does your definition rule out the the active
+attack you just provided? (Why or Why Not?)
+1Note that since OW F ⇒ P RF , you have also proved that One­Way functions suffice for private­key
+encryption.
+10­2
